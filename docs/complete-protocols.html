@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Complete protocols | DataViz protocols</title>
+  <meta name="description" content="This is an introduction to data visualization protocols for wet lab scientists" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Complete protocols | DataViz protocols" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an introduction to data visualization protocols for wet lab scientists" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Complete protocols | DataViz protocols" />
+  
+  <meta name="twitter:description" content="This is an introduction to data visualization protocols for wet lab scientists" />
+  
+
+<meta name="author" content="Joachim Goedhart" />
+
+
+<meta name="date" content="2022-03-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="plotting-the-data.html"/>
+<link rel="next" href="questions-and-answers.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-toast"><i class="fa fa-check"></i>A toast</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#running-r"><i class="fa fa-check"></i><b>1.1</b> Running R</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#using-the-command-line"><i class="fa fa-check"></i><b>1.2</b> Using the command line</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help?</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing packages</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#multiline-code"><i class="fa fa-check"></i><b>1.5</b> Multiline code</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="read-and-reshape.html"><a href="read-and-reshape.html"><i class="fa fa-check"></i><b>2</b> Reading and reshaping data</a><ul>
+<li class="chapter" data-level="2.1" data-path="read-and-reshape.html"><a href="read-and-reshape.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="read-and-reshape.html"><a href="read-and-reshape.html#types-of-data"><i class="fa fa-check"></i><b>2.2</b> Types of data</a></li>
+<li class="chapter" data-level="2.3" data-path="read-and-reshape.html"><a href="read-and-reshape.html#reading-data"><i class="fa fa-check"></i><b>2.3</b> Reading data</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="read-and-reshape.html"><a href="read-and-reshape.html#loading-data-from-a-text-or-csv-file"><i class="fa fa-check"></i><b>2.3.1</b> Loading data from a text or csv file</a></li>
+<li class="chapter" data-level="2.3.2" data-path="read-and-reshape.html"><a href="read-and-reshape.html#loading-data-from-a-url"><i class="fa fa-check"></i><b>2.3.2</b> Loading data from a URL</a></li>
+<li class="chapter" data-level="2.3.3" data-path="read-and-reshape.html"><a href="read-and-reshape.html#retrieving-data-from-excel"><i class="fa fa-check"></i><b>2.3.3</b> Retrieving data from Excel</a></li>
+<li class="chapter" data-level="2.3.4" data-path="read-and-reshape.html"><a href="read-and-reshape.html#retrieving-data-from-multiple-files"><i class="fa fa-check"></i><b>2.3.4</b> Retrieving data from multiple files</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="read-and-reshape.html"><a href="read-and-reshape.html#tidy-data"><i class="fa fa-check"></i><b>2.4</b> Reshaping data</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="read-and-reshape.html"><a href="read-and-reshape.html#quantitative-data-discrete-conditions"><i class="fa fa-check"></i><b>2.4.1</b> Quantitative data, discrete conditions</a></li>
+<li class="chapter" data-level="2.4.2" data-path="read-and-reshape.html"><a href="read-and-reshape.html#multiple-discrete-conditions"><i class="fa fa-check"></i><b>2.4.2</b> Multiple discrete conditions</a></li>
+<li class="chapter" data-level="2.4.3" data-path="read-and-reshape.html"><a href="read-and-reshape.html#double-quantitative-data"><i class="fa fa-check"></i><b>2.4.3</b> Double quantitative data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="read-and-reshape.html"><a href="read-and-reshape.html#data-from-multiple-files"><i class="fa fa-check"></i><b>2.4.4</b> Data from multiple files</a></li>
+<li class="chapter" data-level="2.4.5" data-path="read-and-reshape.html"><a href="read-and-reshape.html#data-in-96-wells-format"><i class="fa fa-check"></i><b>2.4.5</b> Data in 96-wells format</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="plotting-the-data.html"><a href="plotting-the-data.html"><i class="fa fa-check"></i><b>3</b> Plotting the Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#data-over-time-continuous-vs.-continuous"><i class="fa fa-check"></i><b>3.1</b> Data over time (continuous vs. continuous)</a></li>
+<li class="chapter" data-level="3.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#discrete-conditions"><i class="fa fa-check"></i><b>3.2</b> Discrete conditions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#x-axis-data-qualitative-versus-quantitative-data"><i class="fa fa-check"></i><b>3.2.1</b> X-axis data: qualitative versus quantitative data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="plotting-the-data.html"><a href="plotting-the-data.html#statistics"><i class="fa fa-check"></i><b>3.3</b> Statistics</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#introduction-1"><i class="fa fa-check"></i><b>3.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.3.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#data-summaries-directly-added-as-a-plot-layer"><i class="fa fa-check"></i><b>3.3.2</b> Data summaries directly added as a plot layer</a></li>
+<li class="chapter" data-level="3.3.3" data-path="plotting-the-data.html"><a href="plotting-the-data.html#data-summaries-from-a-dataframe"><i class="fa fa-check"></i><b>3.3.3</b> Data summaries from a dataframe</a></li>
+<li class="chapter" data-level="3.3.4" data-path="plotting-the-data.html"><a href="plotting-the-data.html#data-summaries-for-continuous-x-axis-data"><i class="fa fa-check"></i><b>3.3.4</b> Data summaries for continuous x-axis data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="plotting-the-data.html"><a href="plotting-the-data.html#plot-a-lot---discrete-data"><i class="fa fa-check"></i><b>3.4</b> Plot-a-lot - discrete data</a></li>
+<li class="chapter" data-level="3.5" data-path="plotting-the-data.html"><a href="plotting-the-data.html#optimizing-the-data-visualization"><i class="fa fa-check"></i><b>3.5</b> Optimizing the data visualization</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#rotation"><i class="fa fa-check"></i><b>3.5.1</b> Rotation</a></li>
+<li class="chapter" data-level="3.5.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#ordering-conditions"><i class="fa fa-check"></i><b>3.5.2</b> Ordering conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="plotting-the-data.html"><a href="plotting-the-data.html#adjusting-the-layout"><i class="fa fa-check"></i><b>3.6</b> Adjusting the layout</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#themes"><i class="fa fa-check"></i><b>3.6.1</b> Themes</a></li>
+<li class="chapter" data-level="3.6.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#legend"><i class="fa fa-check"></i><b>3.6.2</b> Legend</a></li>
+<li class="chapter" data-level="3.6.3" data-path="plotting-the-data.html"><a href="plotting-the-data.html#grids"><i class="fa fa-check"></i><b>3.6.3</b> Grids</a></li>
+<li class="chapter" data-level="3.6.4" data-path="plotting-the-data.html"><a href="plotting-the-data.html#labelstitles"><i class="fa fa-check"></i><b>3.6.4</b> Labels/Titles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="plotting-the-data.html"><a href="plotting-the-data.html#plot-a-lot---continuous-data"><i class="fa fa-check"></i><b>3.7</b> Plot-a-lot - continuous data</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#small-multiples"><i class="fa fa-check"></i><b>3.7.1</b> Small multiples</a></li>
+<li class="chapter" data-level="3.7.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#heatmaps"><i class="fa fa-check"></i><b>3.7.2</b> Heatmaps</a></li>
+<li class="chapter" data-level="3.7.3" data-path="plotting-the-data.html"><a href="plotting-the-data.html#custom-objects"><i class="fa fa-check"></i><b>3.7.3</b> Custom objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="complete-protocols.html"><a href="complete-protocols.html"><i class="fa fa-check"></i><b>4</b> Complete protocols</a><ul>
+<li class="chapter" data-level="4.1" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-1"><i class="fa fa-check"></i><b>4.1</b> Protocol 1 - Spectra of fluorescent proteins</a></li>
+<li class="chapter" data-level="4.2" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-2"><i class="fa fa-check"></i><b>4.2</b> Protocol 2 - A superplot of calcium concentrations</a></li>
+<li class="chapter" data-level="4.3" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-3"><i class="fa fa-check"></i><b>4.3</b> Protocol 3 - small multiples of time courses</a></li>
+<li class="chapter" data-level="4.4" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-4"><i class="fa fa-check"></i><b>4.4</b> Protocol 4 - Plotting data from a 96-wells experiment</a></li>
+<li class="chapter" data-level="4.5" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-5"><i class="fa fa-check"></i><b>4.5</b> Protocol 5 - A map of amino acids</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a><ul>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble"><i class="fa fa-check"></i>What is the difference between a data.frame and a tibble?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#whats-up-with-spaces-in-variable-names-and-in-files-names"><i class="fa fa-check"></i>What’s up with spaces in variable names and in files names?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-are-the-rules-for-naming-dataframes-or-variables"><i class="fa fa-check"></i>What are the rules for naming dataframes or variables?</a></li>
+<li><a href="questions-and-answers.html#what-is-the-difference-between---and-for-assigning-variables">What is the difference between <code>&lt;-</code> and <code>=</code> for assigning variables?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-does-na-mean-in-a-dataframe"><i class="fa fa-check"></i>What does ‘NA’ mean in a dataframe?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-beste-way-to-type-a-operator"><i class="fa fa-check"></i>What is the beste way to type a ‘%&gt;%’ operator?</a></li>
+<li><a href="questions-and-answers.html#section"></a></li>
+<li><a href="questions-and-answers.html#section-1"></a></li>
+<li><a href="questions-and-answers.html#section-2"></a></li>
+<li><a href="questions-and-answers.html#section-3"></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DataViz protocols</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="complete-protocols" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Complete protocols</h1>
+<p>This chapter showcases a number of complete protocols for different kinds of data visualizations. Each protocol starts with the raw data and ends with a publication quality plot. The data is available from Github, just follow <a href="http://hmpg.net">this link</a>. In the same folder you can find the R markdown files for each protocol. To reproduce the data visualizations you can either take the data and follow the instructions in the chapter. Alternatively you can download the R markdown file (and the data) and run it step by step. The R markdown files can be used as a starting point to apply the same visualization to your own data.</p>
+<div id="protocol-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Protocol 1 - Spectra of fluorescent proteins</h2>
+<p>This protocol describes how you can turn a csv with spectral data that is obtained from FPbase.org into a plot of those spectra. First, we load the required package:</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="complete-protocols.html#cb204-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>For this data visualization, I selected several spectra from fluorescent proteins at FPbase.org: <a href="https://www.fpbase.org/spectra/?s=1746,6551,101,102,123,124,1604,1606&amp;showY=0&amp;showX=1&amp;showGrid=0&amp;areaFill=1&amp;logScale=0&amp;scaleEC=0&amp;scaleQY=0&amp;shareTooltip=1&amp;palette=wavelength">https://www.fpbase.org/spectra/?s=1746,6551,101,102,123,124,1604,1606&amp;showY=0&amp;showX=1&amp;showGrid=0&amp;areaFill=1&amp;logScale=0&amp;scaleEC=0&amp;scaleQY=0&amp;shareTooltip=1&amp;palette=wavelength</a></p>
+<p>The data was downloaded in CSV format (by clicking on the button in the lower right corner of the webpage) and renamed to ‘FPbase_Spectra_4FPs.csv’.
+We read the data from the CSV by using the <code>read_csv()</code> function. This function is part of the tidy verse and loads the data as a tibble. It also guesses type of data for each column. To hide that information, we use <code>show_col_types = FALSE</code> here.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="complete-protocols.html#cb205-1"></a>df_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;FPbase_Spectra_4FPs.csv&quot;</span>, <span class="dt">show_col_types =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>Let’s briefly look at what we have loaded:</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="complete-protocols.html#cb206-1"></a><span class="kw">glimpse</span>(df_raw)</span></code></pre></div>
+<pre><code>Rows: 512
+Columns: 9
+$ Wavelength       &lt;dbl&gt; 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310…
+$ `mTurquoise2 EM` &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ `mTurquoise2 EX` &lt;dbl&gt; 0.2484, 0.2266, 0.2048, 0.1852, 0.1634, 0.1482, 0.132…
+$ `mNeonGreen EM`  &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ `mNeonGreen EX`  &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ `mScarlet-I EM`  &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ `mScarlet-I EX`  &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ `miRFP670 EM`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</code></pre>
+<p>The data needs conversion to a tidy format before plotting. Since we have a single continuous data column with Wavelength information that is used for the x-axis, it is excluded from the operation:</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="complete-protocols.html#cb208-1"></a>df_<span class="dv">1</span> &lt;-</span>
+<span id="cb208-2"><a href="complete-protocols.html#cb208-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
+<span id="cb208-3"><a href="complete-protocols.html#cb208-3"></a>    df_raw,</span>
+<span id="cb208-4"><a href="complete-protocols.html#cb208-4"></a>    <span class="dt">cols =</span> <span class="op">-</span>Wavelength,</span>
+<span id="cb208-5"><a href="complete-protocols.html#cb208-5"></a>    <span class="dt">names_to =</span> <span class="st">&quot;Sample&quot;</span>,</span>
+<span id="cb208-6"><a href="complete-protocols.html#cb208-6"></a>    <span class="dt">values_to =</span> <span class="st">&quot;Intensity&quot;</span></span>
+<span id="cb208-7"><a href="complete-protocols.html#cb208-7"></a>  )</span></code></pre></div>
+<p>There are several rows that have NA values for Intensity and this is how to get rid of that:</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="complete-protocols.html#cb209-1"></a>df_<span class="dv">1</span> &lt;-<span class="st"> </span>df_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>(Intensity)</span></code></pre></div>
+<p>The column ‘Sample’ has labels for the fluorescent protein and the type of spectrum. We can separate that column into two different columns that we name ‘Fluorescent Protein’ and ‘Spectrum’:</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="complete-protocols.html#cb210-1"></a>df_<span class="dv">1</span> &lt;-<span class="st"> </span>df_<span class="dv">1</span> <span class="op">%&gt;%</span></span>
+<span id="cb210-2"><a href="complete-protocols.html#cb210-2"></a><span class="st">  </span><span class="kw">separate</span>(Sample, <span class="kw">c</span>(<span class="st">&quot;Fluorescent Protein&quot;</span>, <span class="st">&quot;Spectrum&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<p>Let’s do a first attempt and plot the data:</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="complete-protocols.html#cb211-1"></a><span class="kw">ggplot</span>(</span>
+<span id="cb211-2"><a href="complete-protocols.html#cb211-2"></a>  <span class="dt">data =</span> df_<span class="dv">1</span>,</span>
+<span id="cb211-3"><a href="complete-protocols.html#cb211-3"></a>  <span class="kw">aes</span>(<span class="dt">x =</span> Wavelength, <span class="dt">y =</span> Intensity, <span class="dt">color =</span> <span class="st">`</span><span class="dt">Fluorescent Protein</span><span class="st">`</span>)</span>
+<span id="cb211-4"><a href="complete-protocols.html#cb211-4"></a>) <span class="op">+</span></span>
+<span id="cb211-5"><a href="complete-protocols.html#cb211-5"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> Spectrum), <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p>This looks pretty good already. Now let’s change the order of the fluorescent proteins to their order in the plot:</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="complete-protocols.html#cb212-1"></a>df_<span class="dv">1</span> &lt;-<span class="st"> </span>df_<span class="dv">1</span> <span class="op">%&gt;%</span></span>
+<span id="cb212-2"><a href="complete-protocols.html#cb212-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">Fluorescent Protein</span><span class="st">`</span> =<span class="st"> </span>forcats<span class="op">::</span><span class="kw">fct_relevel</span>(</span>
+<span id="cb212-3"><a href="complete-protocols.html#cb212-3"></a>    <span class="st">`</span><span class="dt">Fluorescent Protein</span><span class="st">`</span>,</span>
+<span id="cb212-4"><a href="complete-protocols.html#cb212-4"></a>    <span class="kw">c</span>(<span class="st">&quot;mTurquoise2&quot;</span>, <span class="st">&quot;mNeonGreen&quot;</span>, <span class="st">&quot;mScarlet-I&quot;</span>, <span class="st">&quot;miRFP670&quot;</span>)</span>
+<span id="cb212-5"><a href="complete-protocols.html#cb212-5"></a>  ))</span></code></pre></div>
+<p>The data is in the right shape now, so let’s save it:</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="complete-protocols.html#cb213-1"></a>df_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;protocol_1.csv&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<p>We define the plot object and add an extra geometry, <code>geom_area()</code> to fill the area under the curves:</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="complete-protocols.html#cb214-1"></a>p &lt;-</span>
+<span id="cb214-2"><a href="complete-protocols.html#cb214-2"></a><span class="st">  </span><span class="kw">ggplot</span>(</span>
+<span id="cb214-3"><a href="complete-protocols.html#cb214-3"></a>    <span class="dt">data =</span> df_<span class="dv">1</span>,</span>
+<span id="cb214-4"><a href="complete-protocols.html#cb214-4"></a>    <span class="kw">aes</span>(</span>
+<span id="cb214-5"><a href="complete-protocols.html#cb214-5"></a>      <span class="dt">x =</span> Wavelength, <span class="dt">y =</span> Intensity,</span>
+<span id="cb214-6"><a href="complete-protocols.html#cb214-6"></a>      <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Fluorescent Protein</span><span class="st">`</span></span>
+<span id="cb214-7"><a href="complete-protocols.html#cb214-7"></a>    )</span>
+<span id="cb214-8"><a href="complete-protocols.html#cb214-8"></a>  ) <span class="op">+</span></span>
+<span id="cb214-9"><a href="complete-protocols.html#cb214-9"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> Spectrum),</span>
+<span id="cb214-10"><a href="complete-protocols.html#cb214-10"></a>    <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb214-11"><a href="complete-protocols.html#cb214-11"></a>  ) <span class="op">+</span></span>
+<span id="cb214-12"><a href="complete-protocols.html#cb214-12"></a><span class="st">  </span><span class="kw">geom_area</span>(</span>
+<span id="cb214-13"><a href="complete-protocols.html#cb214-13"></a>    <span class="kw">aes</span>(<span class="dt">linetype =</span> Spectrum),</span>
+<span id="cb214-14"><a href="complete-protocols.html#cb214-14"></a>    <span class="dt">color =</span> <span class="ot">NA</span>,</span>
+<span id="cb214-15"><a href="complete-protocols.html#cb214-15"></a>    <span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>,</span>
+<span id="cb214-16"><a href="complete-protocols.html#cb214-16"></a>    <span class="dt">size =</span> <span class="dv">1</span>,</span>
+<span id="cb214-17"><a href="complete-protocols.html#cb214-17"></a>    <span class="dt">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb214-18"><a href="complete-protocols.html#cb214-18"></a>  )</span></code></pre></div>
+<p>Let’s check the result:</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="complete-protocols.html#cb215-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p>Next, we set the limits of the axis and force the y-axis to start at 0</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="complete-protocols.html#cb216-1"></a>p &lt;-</span>
+<span id="cb216-2"><a href="complete-protocols.html#cb216-2"></a><span class="st">  </span>p <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">1.1</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb216-3"><a href="complete-protocols.html#cb216-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">350</span>, <span class="dv">810</span>))</span></code></pre></div>
+<p>Add labels:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="complete-protocols.html#cb217-1"></a>p &lt;-</span>
+<span id="cb217-2"><a href="complete-protocols.html#cb217-2"></a><span class="st">  </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(</span>
+<span id="cb217-3"><a href="complete-protocols.html#cb217-3"></a>    <span class="dt">title =</span> <span class="st">&quot;Spectra of Fluorescent Proteins&quot;</span>,</span>
+<span id="cb217-4"><a href="complete-protocols.html#cb217-4"></a>    <span class="dt">x =</span> <span class="st">&quot;Wavelength [nm]&quot;</span>,</span>
+<span id="cb217-5"><a href="complete-protocols.html#cb217-5"></a>    <span class="dt">y =</span> <span class="st">&quot;Normalized Intensity [a.u.]&quot;</span>,</span>
+<span id="cb217-6"><a href="complete-protocols.html#cb217-6"></a>    <span class="dt">caption =</span> <span class="st">&quot;(based on data from FPbase.org)&quot;</span>,</span>
+<span id="cb217-7"><a href="complete-protocols.html#cb217-7"></a>    <span class="dt">tag =</span> <span class="st">&quot;Protocol 1&quot;</span></span>
+<span id="cb217-8"><a href="complete-protocols.html#cb217-8"></a>  )</span></code></pre></div>
+<p>Modify the layout by adjusting the theme. Comments are used to explain effect of the individual lines of code:</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="complete-protocols.html#cb218-1"></a>p &lt;-</span>
+<span id="cb218-2"><a href="complete-protocols.html#cb218-2"></a><span class="st">  </span><span class="co">#Set text size</span></span>
+<span id="cb218-3"><a href="complete-protocols.html#cb218-3"></a><span class="st">  </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">14</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</span>
+<span id="cb218-4"><a href="complete-protocols.html#cb218-4"></a>    <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(</span>
+<span id="cb218-5"><a href="complete-protocols.html#cb218-5"></a>      <span class="dt">color =</span> <span class="st">&quot;grey80&quot;</span>,</span>
+<span id="cb218-6"><a href="complete-protocols.html#cb218-6"></a>      <span class="dt">hjust =</span> <span class="dv">1</span></span>
+<span id="cb218-7"><a href="complete-protocols.html#cb218-7"></a>    ),</span>
+<span id="cb218-8"><a href="complete-protocols.html#cb218-8"></a>    <span class="co">#Remove grid</span></span>
+<span id="cb218-9"><a href="complete-protocols.html#cb218-9"></a>    <span class="dt">panel.grid.major =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb218-10"><a href="complete-protocols.html#cb218-10"></a>    <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb218-11"><a href="complete-protocols.html#cb218-11"></a>    <span class="co">#Set position of legend</span></span>
+<span id="cb218-12"><a href="complete-protocols.html#cb218-12"></a>    <span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb218-13"><a href="complete-protocols.html#cb218-13"></a>    <span class="dt">legend.justification =</span> <span class="st">&quot;left&quot;</span></span>
+<span id="cb218-14"><a href="complete-protocols.html#cb218-14"></a>    <span class="co">#Define the legend layout</span></span>
+<span id="cb218-15"><a href="complete-protocols.html#cb218-15"></a>  ) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(</span>
+<span id="cb218-16"><a href="complete-protocols.html#cb218-16"></a>    <span class="dt">linetype =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb218-17"><a href="complete-protocols.html#cb218-17"></a>    <span class="dt">fill =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="ot">NULL</span>, <span class="dt">label.position =</span> <span class="st">&quot;right&quot;</span>)</span>
+<span id="cb218-18"><a href="complete-protocols.html#cb218-18"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="complete-protocols.html#cb219-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p>We are almost there, except that the colors of the plot do not match with the natural colors of the fluorescent proteins. Let’s fix that by defining a custom color palette. The order of the colors matches with the order of the fluorescent proteins that was defined earlier:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="complete-protocols.html#cb220-1"></a>custom_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p>To apply the custom colors to the filled area:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="complete-protocols.html#cb221-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> custom_colors)</span></code></pre></div>
+<p>This is the result:</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="complete-protocols.html#cb222-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p>To save this plot as a PNG file:</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="complete-protocols.html#cb223-1"></a><span class="kw">png</span>(<span class="dt">file=</span><span class="kw">paste0</span>(<span class="st">&quot;Protocol_1.png&quot;</span>), <span class="dt">width =</span> <span class="dv">4000</span>, <span class="dt">height =</span> <span class="dv">2600</span>, <span class="dt">units =</span> <span class="st">&quot;px&quot;</span>, <span class="dt">res =</span> <span class="dv">400</span>)</span>
+<span id="cb223-2"><a href="complete-protocols.html#cb223-2"></a>  p</span>
+<span id="cb223-3"><a href="complete-protocols.html#cb223-3"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<pre><code>quartz_off_screen 
+                2 </code></pre>
+</div>
+<div id="protocol-2" class="section level2">
+<h2><span class="header-section-number">4.2</span> Protocol 2 - A superplot of calcium concentrations</h2>
+<p>This protocol is used to create a superplot which differentiates between technical and biological replicates. The concept of superplots has been reported by Lord and colleagues <a href="https://doi.org/10.1083/jcb.202001064">(Lord et al., 2021)</a>. We will use the data from a publication by <a href="https://doi.org/10.1038/s41467-021-27249-w">van der Linden et al. (2021)</a> which was used to create figure 5e.</p>
+<p>The original figure summarizes the data from all experiments and does not identify the biological replicates. Below, we will differentiate the biological replicates, by treating each batch of neutrophils as a biological replicate.</p>
+<p>We start by loading the required tidyverse package:</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="complete-protocols.html#cb225-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>We define the confidence level as 95%:</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="complete-protocols.html#cb226-1"></a>Confidence_level &lt;-<span class="st">  </span><span class="fl">0.95</span></span></code></pre></div>
+<p>The data is stored in an excel sheet and we read it, skipping the first 6 lines which contain comments:</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="complete-protocols.html#cb227-1"></a>df_raw &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;figure5.xlsx&#39;</span>, <span class="dt">skip=</span><span class="dv">6</span>)</span></code></pre></div>
+<p>Let’s look at the data:</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="complete-protocols.html#cb228-1"></a><span class="kw">head</span>(df_raw)</span></code></pre></div>
+<pre><code># A tibble: 6 x 7
+  `Experimental day` `Replicate no.` `Neutrophil no.` `Batch no. neutroph… Stage
+               &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt; &lt;chr&gt;
+1                  1               1                1                    1 befo…
+2                  1               1                1                    1 befo…
+3                  1               1                1                    1 befo…
+4                  1               1                1                    1 befo…
+5                  1               1                1                    1 befo…
+6                  1               1                1                    1 befo…
+# … with 2 more variables: dF/F0 &lt;chr&gt;, Calcium (uM) &lt;dbl&gt;</code></pre>
+<p>The data is already in a tidy format. The column with ‘Stage’ has the four different conditions for which we will compare the data in the column ‘Calcium (uM)’. We change the name of the column ‘Batch no. neutrophils’ to ‘Replicate’ and make sure the different replicates are treated as factors (qualitative data):</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="complete-protocols.html#cb230-1"></a>df_raw &lt;-<span class="st"> </span>df_raw <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Replicate =</span> <span class="kw">as.factor</span>(<span class="st">`</span><span class="dt">Batch no. neutrophils</span><span class="st">`</span>))</span></code></pre></div>
+<p>Let’s look at the data, and identify the biological replicates, as suggested in the original publication on Superplot by <a href="https://doi.org/10.1083/jcb.202001064">(Lord et al., 2021)</a>. In this example a color code is used to label the replicates:</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="complete-protocols.html#cb231-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>df_raw, <span class="kw">aes</span>(<span class="dt">x=</span>Stage)) <span class="op">+</span></span>
+<span id="cb231-2"><a href="complete-protocols.html#cb231-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">data=</span>df_raw, <span class="kw">aes</span>(<span class="dt">x=</span>Stage, <span class="dt">y=</span><span class="st">`</span><span class="dt">Calcium (uM)</span><span class="st">`</span>, <span class="dt">color=</span>Replicate))</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p>To display the statistics for the individual biological replicates, we define a new dataframe. To this end, we group the data for the different stages and biological replicates:</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="complete-protocols.html#cb232-1"></a>df_summary &lt;-<span class="st"> </span>df_raw <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Stage, Replicate) <span class="op">%&gt;%</span></span>
+<span id="cb232-2"><a href="complete-protocols.html#cb232-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n=</span><span class="kw">n</span>(), <span class="dt">mean=</span><span class="kw">mean</span>(<span class="st">`</span><span class="dt">Calcium (uM)</span><span class="st">`</span>))</span></code></pre></div>
+<pre><code>`summarise()` has grouped output by &#39;Stage&#39;. You can override using the `.groups` argument.</code></pre>
+<p>Next, we use ‘df_summary’ which holds the averages of each biological replicate, and we calculate the statistics for the different conditions:</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="complete-protocols.html#cb234-1"></a>df_summary_replicas &lt;-<span class="st"> </span>df_summary <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Stage) <span class="op">%&gt;%</span></span>
+<span id="cb234-2"><a href="complete-protocols.html#cb234-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n_rep=</span><span class="kw">n</span>(), <span class="dt">mean_rep=</span><span class="kw">mean</span>(mean), <span class="dt">sd_rep =</span> <span class="kw">sd</span>(mean))  <span class="op">%&gt;%</span></span>
+<span id="cb234-3"><a href="complete-protocols.html#cb234-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sem =</span> sd_rep <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(n_rep <span class="op">-</span><span class="st"> </span><span class="dv">1</span>),</span>
+<span id="cb234-4"><a href="complete-protocols.html#cb234-4"></a>         <span class="st">`</span><span class="dt">95%CI_lo</span><span class="st">`</span> =<span class="st"> </span>mean_rep <span class="op">+</span><span class="st"> </span><span class="kw">qt</span>((<span class="dv">1</span><span class="op">-</span>Confidence_level)<span class="op">/</span><span class="dv">2</span>, n_rep <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>sem,</span>
+<span id="cb234-5"><a href="complete-protocols.html#cb234-5"></a>         <span class="st">`</span><span class="dt">95%CI_hi</span><span class="st">`</span> =<span class="st"> </span>mean_rep <span class="op">-</span><span class="st"> </span><span class="kw">qt</span>((<span class="dv">1</span><span class="op">-</span>Confidence_level)<span class="op">/</span><span class="dv">2</span>, n_rep <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>sem,</span>
+<span id="cb234-6"><a href="complete-protocols.html#cb234-6"></a>         <span class="ot">NULL</span>)</span></code></pre></div>
+<p>The dataframe has the summary of the conditions and note that each condition has a summary of 4 biological replicates:</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="complete-protocols.html#cb235-1"></a><span class="kw">head</span>(df_summary_replicas)</span></code></pre></div>
+<pre><code># A tibble: 6 x 10
+# Groups:   Stage [2]
+  Stage    Replicate     n   mean n_rep mean_rep  sd_rep     sem `95%CI_lo`
+  &lt;chr&gt;    &lt;fct&gt;     &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+1 before   1            38 0.0305     4   0.0301 0.00414 0.00239     0.0225
+2 before   2            67 0.0270     4   0.0301 0.00414 0.00239     0.0225
+3 before   3            56 0.0358     4   0.0301 0.00414 0.00239     0.0225
+4 before   4            55 0.0270     4   0.0301 0.00414 0.00239     0.0225
+5 crawling 1             7 0.0296     4   0.0317 0.00339 0.00196     0.0255
+6 crawling 2            29 0.0289     4   0.0317 0.00339 0.00196     0.0255
+# … with 1 more variable: 95%CI_hi &lt;dbl&gt;</code></pre>
+<p>We can now add or ‘bind’ the data of ‘df_summary_replicas’ to the original dataframe ‘df’ and store this as a dataframe ‘df_2’:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="complete-protocols.html#cb237-1"></a>df_<span class="dv">2</span> &lt;-<span class="st"> </span>df_raw <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(df_summary_replicas, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;Stage&quot;</span>,<span class="st">&quot;Replicate&quot;</span>))</span></code></pre></div>
+<p>Let’s save this data:</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="complete-protocols.html#cb238-1"></a>df_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;protocol_2.csv&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<p>Let’s first define a basic plot with all of the data for each stage shown as a violinplot:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="complete-protocols.html#cb239-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>df_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x=</span>Stage)) <span class="op">+</span></span>
+<span id="cb239-2"><a href="complete-protocols.html#cb239-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">data=</span>df_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x=</span>Stage, <span class="dt">y=</span><span class="st">`</span><span class="dt">Calcium (uM)</span><span class="st">`</span>), <span class="dt">color=</span><span class="ot">NA</span>, <span class="dt">fill=</span><span class="st">&quot;grey80&quot;</span>)</span></code></pre></div>
+<p>This is what it looks like:</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="complete-protocols.html#cb240-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
+<p>We add the 95% confidence interval from the summary of the biological replicates as a line:</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="complete-protocols.html#cb241-1"></a> p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_linerange</span>(<span class="dt">data =</span> df_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">ymin=</span><span class="st">`</span><span class="dt">95%CI_lo</span><span class="st">`</span>, <span class="dt">ymax=</span><span class="st">`</span><span class="dt">95%CI_hi</span><span class="st">`</span>), <span class="dt">size=</span><span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.8</span>) </span></code></pre></div>
+<p>And we add the mean value of each replicate as a dot. Here, the size of the dot is reflecting n:</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="complete-protocols.html#cb242-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span>df_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x=</span>Stage, <span class="dt">y=</span>mean, <span class="dt">size=</span>n, <span class="dt">fill=</span>Replicate),  <span class="dt">shape=</span><span class="dv">21</span>, <span class="dt">stroke =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>The function <code>scale_size_area()</code> ensures that 0 is represented as an area of 0 and allows to to define that an n of 10,50 and 90 is shown in the legend:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="complete-protocols.html#cb243-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">scale_size_area</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">90</span>), <span class="dt">max_size =</span> <span class="dv">6</span>)</span></code></pre></div>
+<p>This is what that looks like:</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="complete-protocols.html#cb244-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+<p>Next, one of my favorite tweaks for discrete conditions is to rotate the plot 90 degrees. At the same time, the limits are defined.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="complete-protocols.html#cb245-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="fl">0.02</span>,<span class="fl">0.09</span>)) <span class="op">+</span></span>
+<span id="cb245-2"><a href="complete-protocols.html#cb245-2"></a><span class="st">  </span><span class="co"># This ensures correct order of conditions when plot is rotated 90 degrees</span></span>
+<span id="cb245-3"><a href="complete-protocols.html#cb245-3"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">limits =</span> rev)</span></code></pre></div>
+<p>Rotation improves readability of the labels for the conditions, even when they are long. It also easier to read the different calcium levels:</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="complete-protocols.html#cb246-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
+<p>To guide the interpretation, a line is added as a threshold of 0.06 µM (=60 nM):</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="complete-protocols.html#cb247-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="fl">0.060</span>, <span class="dt">linetype=</span><span class="st">&#39;dotted&#39;</span>)</span></code></pre></div>
+<p>Adjusting the axis labels and adding a title and caption:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="complete-protocols.html#cb248-1"></a>p &lt;-</span>
+<span id="cb248-2"><a href="complete-protocols.html#cb248-2"></a><span class="st">  </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(</span>
+<span id="cb248-3"><a href="complete-protocols.html#cb248-3"></a>    <span class="dt">title =</span> <span class="st">&quot;Calcium concentrations are less than 60 nM&quot;</span>,</span>
+<span id="cb248-4"><a href="complete-protocols.html#cb248-4"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;at different stages of transendothelial migration&quot;</span>,</span>
+<span id="cb248-5"><a href="complete-protocols.html#cb248-5"></a>    <span class="dt">x =</span> <span class="st">&quot;Stage&quot;</span>,</span>
+<span id="cb248-6"><a href="complete-protocols.html#cb248-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Calcium [µM]&quot;</span>,</span>
+<span id="cb248-7"><a href="complete-protocols.html#cb248-7"></a>    <span class="dt">caption =</span> <span class="st">&quot;(based on data from van der Linden, DOI: 10.1101/2021.06.21.449214)&quot;</span>,</span>
+<span id="cb248-8"><a href="complete-protocols.html#cb248-8"></a>    <span class="dt">tag =</span> <span class="st">&quot;Protocol 2&quot;</span></span>
+<span id="cb248-9"><a href="complete-protocols.html#cb248-9"></a>  )</span></code></pre></div>
+<p>The layout it further optimized. The most tricky part is positioning of the label for the different conditions. It is placed right above the conditions, which I really like. However, getting this right involves a bit of trial and error and I recommend playing with the parameters to see how it affects the positioning. Something similar applies to the legend which is moved into the lower right corner of the plot, although this is eassier to accomplish. The comments explain the effect of the different lines:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="complete-protocols.html#cb249-1"></a>p &lt;-</span>
+<span id="cb249-2"><a href="complete-protocols.html#cb249-2"></a><span class="st">  </span><span class="co">#Set text size</span></span>
+<span id="cb249-3"><a href="complete-protocols.html#cb249-3"></a><span class="st">  </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">16</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</span>
+<span id="cb249-4"><a href="complete-protocols.html#cb249-4"></a>    <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(</span>
+<span id="cb249-5"><a href="complete-protocols.html#cb249-5"></a>      <span class="dt">color =</span> <span class="st">&quot;grey80&quot;</span>,</span>
+<span id="cb249-6"><a href="complete-protocols.html#cb249-6"></a>      <span class="dt">hjust =</span> <span class="dv">1</span></span>
+<span id="cb249-7"><a href="complete-protocols.html#cb249-7"></a>    ),</span>
+<span id="cb249-8"><a href="complete-protocols.html#cb249-8"></a>    <span class="co">#Set position of legend to lower right corner</span></span>
+<span id="cb249-9"><a href="complete-protocols.html#cb249-9"></a>    <span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.88</span>,<span class="fl">0.15</span>),</span>
+<span id="cb249-10"><a href="complete-protocols.html#cb249-10"></a>    </span>
+<span id="cb249-11"><a href="complete-protocols.html#cb249-11"></a>    <span class="co">#This line positions the label (&#39;title&#39;) of the conditions</span></span>
+<span id="cb249-12"><a href="complete-protocols.html#cb249-12"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="fl">0.98</span>, <span class="dt">angle =</span> <span class="dv">0</span>, <span class="dt">margin=</span><span class="kw">margin</span>(<span class="dt">l=</span><span class="dv">70</span>)),</span>
+<span id="cb249-13"><a href="complete-protocols.html#cb249-13"></a>    </span>
+<span id="cb249-14"><a href="complete-protocols.html#cb249-14"></a>    <span class="co">#This line positions the names of the conditions</span></span>
+<span id="cb249-15"><a href="complete-protocols.html#cb249-15"></a>    <span class="co">#A negative margin is needed for aligning the y-axis &#39;title&#39; with the &#39;text&#39;</span></span>
+<span id="cb249-16"><a href="complete-protocols.html#cb249-16"></a>    <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="fl">0.5</span>, <span class="dt">hjust=</span><span class="dv">1</span>, <span class="dt">angle =</span> <span class="dv">0</span>, <span class="dt">margin=</span><span class="kw">margin</span>(<span class="dt">l=</span><span class="op">-</span><span class="dv">90</span>, <span class="dt">r=</span><span class="dv">5</span>)),</span>
+<span id="cb249-17"><a href="complete-protocols.html#cb249-17"></a>    </span>
+<span id="cb249-18"><a href="complete-protocols.html#cb249-18"></a>    <span class="co">#Move &#39;tag&#39;, so its position partially overlaps with the conditions</span></span>
+<span id="cb249-19"><a href="complete-protocols.html#cb249-19"></a>    <span class="dt">plot.tag.position =</span> <span class="kw">c</span>(<span class="fl">0.06</span>,<span class="fl">0.99</span>)</span>
+<span id="cb249-20"><a href="complete-protocols.html#cb249-20"></a>    ) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">fill =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb249-21"><a href="complete-protocols.html#cb249-21"></a>               <span class="dt">size =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&#39;n per replicate&#39;</span>, <span class="dt">label.position =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb249-22"><a href="complete-protocols.html#cb249-22"></a>               )</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="complete-protocols.html#cb250-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p>To save the plot as a PNG file:</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="complete-protocols.html#cb251-1"></a><span class="kw">png</span>(<span class="dt">file=</span><span class="kw">paste0</span>(<span class="st">&quot;Protocol_2.png&quot;</span>), <span class="dt">width =</span> <span class="dv">4000</span>, <span class="dt">height =</span> <span class="dv">3000</span>, <span class="dt">units =</span> <span class="st">&quot;px&quot;</span>, <span class="dt">res =</span> <span class="dv">400</span>)</span>
+<span id="cb251-2"><a href="complete-protocols.html#cb251-2"></a>  p</span>
+<span id="cb251-3"><a href="complete-protocols.html#cb251-3"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<pre><code>quartz_off_screen 
+                2 </code></pre>
+</div>
+<div id="protocol-3" class="section level2">
+<h2><span class="header-section-number">4.3</span> Protocol 3 - small multiples of time courses</h2>
+<p>This protocol displays a number of different timecourses as ‘small multiples’. Small multiples, as the name suggests, displays many small plot separately as a stamp collection. By stressing the data, rather than the labels and grids, this can be a powerful visualization strategy.</p>
+<p>The data is taken from a publication by <a href="https://doi.org/10.3389/fimmu.2021.667213">Arts et al. (2021)</a> and we recreate figure panel 1F. The original figure is in small multiple format, but we tweak it a bit more to increase the focus on the data.</p>
+<p>Let’s first load the necessary package:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="complete-protocols.html#cb253-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>The data comes from an excel file:</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="complete-protocols.html#cb254-1"></a>df_raw &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;Data_Arts_Circularity.xlsx&quot;</span>)</span>
+<span id="cb254-2"><a href="complete-protocols.html#cb254-2"></a><span class="kw">head</span>(df_raw)</span></code></pre></div>
+<pre><code># A tibble: 6 x 13
+   time `neutro 1` `neutro 2` `neutro 3` `neutro 4` `neutro 5` `neutro 6`
+  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1     0       0.53       0.54       0.55       0.59       0.58       0.34
+2    10       0.44       0.6        0.5        0.4        0.54       0.4 
+3    20       0.33       0.55       0.64       0.3        0.48       0.41
+4    30       0.35       0.54       0.69       0.28       0.52       0.32
+5    40       0.41       0.53       0.57       0.23       0.44       0.29
+6    50       0.32       0.4        0.4        0.26       0.43       0.25
+# … with 6 more variables: neutro 7 &lt;dbl&gt;, neutro 8 &lt;dbl&gt;, neutro 9 &lt;dbl&gt;,
+#   neutro 10 &lt;dbl&gt;, neutro 11 &lt;dbl&gt;, neutro 12 &lt;dbl&gt;</code></pre>
+<p>It is in a wide format, so we need to make it tidy. The parameter that was measured over time is the ‘roundness’ of cells:</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="complete-protocols.html#cb256-1"></a>df_<span class="dv">3</span> &lt;-</span>
+<span id="cb256-2"><a href="complete-protocols.html#cb256-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
+<span id="cb256-3"><a href="complete-protocols.html#cb256-3"></a>    df_raw,</span>
+<span id="cb256-4"><a href="complete-protocols.html#cb256-4"></a>    <span class="dt">cols =</span> <span class="op">-</span>time,</span>
+<span id="cb256-5"><a href="complete-protocols.html#cb256-5"></a>    <span class="dt">names_to =</span> <span class="st">&quot;Cell&quot;</span>,</span>
+<span id="cb256-6"><a href="complete-protocols.html#cb256-6"></a>    <span class="dt">values_to =</span> <span class="st">&quot;Roundness&quot;</span></span>
+<span id="cb256-7"><a href="complete-protocols.html#cb256-7"></a>  )</span></code></pre></div>
+<p>The data is in the right shape now, so let’s save it:</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="complete-protocols.html#cb257-1"></a>df_<span class="dv">3</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;protocol_3.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>First we create a line plot of all the data:</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="complete-protocols.html#cb258-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df_<span class="dv">3</span>, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>Roundness, <span class="dt">group=</span>Cell)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span>
+<span id="cb258-2"><a href="complete-protocols.html#cb258-2"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
+<p>With the facet_wrap() function, we turn this into a small multiple:</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="complete-protocols.html#cb259-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Cell)</span>
+<span id="cb259-2"><a href="complete-protocols.html#cb259-2"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p>Set the limits of the axis and force the y-axis to start at 0</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="complete-protocols.html#cb260-1"></a>p &lt;-</span>
+<span id="cb260-2"><a href="complete-protocols.html#cb260-2"></a><span class="st">  </span>p <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">1.0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb260-3"><a href="complete-protocols.html#cb260-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">300</span>))</span></code></pre></div>
+<p>Use a minimal theme and remove the strips and grid to increase focus on the data:</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="complete-protocols.html#cb261-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>)</span>
+<span id="cb261-2"><a href="complete-protocols.html#cb261-2"></a></span>
+<span id="cb261-3"><a href="complete-protocols.html#cb261-3"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb261-4"><a href="complete-protocols.html#cb261-4"></a>               <span class="dt">strip.text =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb261-5"><a href="complete-protocols.html#cb261-5"></a>               <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">color =</span> <span class="st">&quot;grey80&quot;</span>),</span>
+<span id="cb261-6"><a href="complete-protocols.html#cb261-6"></a>               <span class="co">#Remove grid</span></span>
+<span id="cb261-7"><a href="complete-protocols.html#cb261-7"></a>               <span class="dt">panel.grid.major =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb261-8"><a href="complete-protocols.html#cb261-8"></a>               <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb261-9"><a href="complete-protocols.html#cb261-9"></a>)</span>
+<span id="cb261-10"><a href="complete-protocols.html#cb261-10"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
+<p>I do not like the repeated axis for the different plots. We can remove those:</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="complete-protocols.html#cb262-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(        </span>
+<span id="cb262-2"><a href="complete-protocols.html#cb262-2"></a>        <span class="co">#Remove axis labels</span></span>
+<span id="cb262-3"><a href="complete-protocols.html#cb262-3"></a>        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb262-4"><a href="complete-protocols.html#cb262-4"></a>        )</span>
+<span id="cb262-5"><a href="complete-protocols.html#cb262-5"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
+<p>This is a very minimal plot, focusing entirely on the data. It may work well, but it is informative to add some information about the scaling of the x- and y-axis. To achieve this, I add lines to the lower left plot, which correspond to the data of ‘neutro 6’ (you can see this in the small multiple plot where each plot was labeled). I define a new dataframe with the x- and y-scale for ‘neutro 6’ to do just that:</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="complete-protocols.html#cb263-1"></a>ann_line&lt;-<span class="kw">data.frame</span>(<span class="dt">xmin=</span><span class="dv">0</span>,<span class="dt">xmax=</span><span class="dv">300</span>,<span class="dt">ymin=</span><span class="dv">0</span>,<span class="dt">ymax=</span><span class="dv">1</span>,</span>
+<span id="cb263-2"><a href="complete-protocols.html#cb263-2"></a>                     <span class="dt">Cell=</span><span class="kw">factor</span>(<span class="st">&quot;neutro 6&quot;</span>,<span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;neutro 6&quot;</span>)))</span>
+<span id="cb263-3"><a href="complete-protocols.html#cb263-3"></a>ann_line</span></code></pre></div>
+<pre><code>  xmin xmax ymin ymax     Cell
+1    0  300    0    1 neutro 6</code></pre>
+<p>This dataframe can now be used to draw two lines with <code>geom_segment()</code>:</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="complete-protocols.html#cb265-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span></span>
+<span id="cb265-2"><a href="complete-protocols.html#cb265-2"></a><span class="st">  </span><span class="co">#Vertical line</span></span>
+<span id="cb265-3"><a href="complete-protocols.html#cb265-3"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data=</span>ann_line, <span class="kw">aes</span>(<span class="dt">x=</span>xmin,<span class="dt">xend=</span>xmin,<span class="dt">y=</span>ymin,<span class="dt">yend=</span>ymax), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">color=</span><span class="st">&#39;grey40&#39;</span>) <span class="op">+</span></span>
+<span id="cb265-4"><a href="complete-protocols.html#cb265-4"></a><span class="st">  </span><span class="co">#Horizontal line</span></span>
+<span id="cb265-5"><a href="complete-protocols.html#cb265-5"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data=</span>ann_line, <span class="kw">aes</span>(<span class="dt">x=</span>xmin,<span class="dt">xend=</span>xmax,<span class="dt">y=</span>ymin,<span class="dt">yend=</span>ymin), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">color=</span><span class="st">&#39;grey40&#39;</span>) <span class="op">+</span></span>
+<span id="cb265-6"><a href="complete-protocols.html#cb265-6"></a><span class="st">  </span><span class="ot">NULL</span></span>
+<span id="cb265-7"><a href="complete-protocols.html#cb265-7"></a></span>
+<span id="cb265-8"><a href="complete-protocols.html#cb265-8"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<p>The plot is now in black and white which gives it a strong contrast. We can make it a bit more soft and pleasant to look at by changing to shades of grey. Also, the labels of the axes are moved next to the lines:</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="complete-protocols.html#cb266-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span></span>
+<span id="cb266-2"><a href="complete-protocols.html#cb266-2"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&#39;grey98&#39;</span>, <span class="dt">color=</span><span class="ot">NA</span>),</span>
+<span id="cb266-3"><a href="complete-protocols.html#cb266-3"></a>        <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">color=</span><span class="st">&#39;grey90&#39;</span>, <span class="dt">fill=</span><span class="ot">NA</span>),</span>
+<span id="cb266-4"><a href="complete-protocols.html#cb266-4"></a>        <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">14</span>, <span class="dt">hjust =</span> <span class="dv">0</span>, <span class="dt">color=</span><span class="st">&#39;grey40&#39;</span>),</span>
+<span id="cb266-5"><a href="complete-protocols.html#cb266-5"></a>        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">14</span>, <span class="dt">vjust =</span> <span class="dv">0</span>, <span class="dt">hjust=</span><span class="dv">0</span>, <span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">color=</span><span class="st">&#39;grey40&#39;</span>),</span>
+<span id="cb266-6"><a href="complete-protocols.html#cb266-6"></a>  ) </span></code></pre></div>
+<p>Finally, we add a title, caption, and labels (and a scale in brackets):</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="complete-protocols.html#cb267-1"></a>p &lt;-</span>
+<span id="cb267-2"><a href="complete-protocols.html#cb267-2"></a><span class="st">  </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(</span>
+<span id="cb267-3"><a href="complete-protocols.html#cb267-3"></a>    <span class="dt">title =</span> <span class="st">&quot;Changes in the shape of migrating cells over time&quot;</span>,</span>
+<span id="cb267-4"><a href="complete-protocols.html#cb267-4"></a>    <span class="dt">x =</span> <span class="st">&quot;Time [300s]&quot;</span>,</span>
+<span id="cb267-5"><a href="complete-protocols.html#cb267-5"></a>    <span class="dt">y =</span> <span class="st">&quot;Circularity [0-1]&quot;</span>,</span>
+<span id="cb267-6"><a href="complete-protocols.html#cb267-6"></a>    <span class="dt">caption =</span> <span class="st">&quot;(based on data from Arts et al., DOI: 10.3389/fimmu.2021.667213)&quot;</span>,</span>
+<span id="cb267-7"><a href="complete-protocols.html#cb267-7"></a>    <span class="dt">tag =</span> <span class="st">&quot;Protocol 3&quot;</span></span>
+<span id="cb267-8"><a href="complete-protocols.html#cb267-8"></a>  ) </span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="complete-protocols.html#cb268-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="complete-protocols.html#cb269-1"></a><span class="kw">png</span>(<span class="dt">file=</span><span class="kw">paste0</span>(<span class="st">&quot;Protocol_3.png&quot;</span>), <span class="dt">width =</span> <span class="dv">4000</span>, <span class="dt">height =</span> <span class="dv">3200</span>, <span class="dt">units =</span> <span class="st">&quot;px&quot;</span>, <span class="dt">res =</span> <span class="dv">400</span>)</span>
+<span id="cb269-2"><a href="complete-protocols.html#cb269-2"></a> p</span>
+<span id="cb269-3"><a href="complete-protocols.html#cb269-3"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<pre><code>quartz_off_screen 
+                2 </code></pre>
+</div>
+<div id="protocol-4" class="section level2">
+<h2><span class="header-section-number">4.4</span> Protocol 4 - Plotting data from a 96-wells experiment</h2>
+<p>This protocol showcases some serious data wrangling and tidying. One reasons is that the data is acquired with a 96-wells plate reader and the data is stored according to the layout of the plate. This makes total sense from a human perspective, but it is not well suited for data visualization.</p>
+<p>In addition, the plate is measured twice. One measurement is the luminescence from a luciferase and the other measurement is the luminescence from Renilla. The latter reading serves as a reference and therefore, the luciferase data is divided by the Renilla intensities. A final step before the data is visualized is a normalization to a control condition.</p>
+<p>The code that is shown here is also the basis for the <a href="https://doi.org/10.12688/f1000research.73641.1">plotXpress app</a> that can be used to process and visualize the data. In fact, the data visualization is very close to the standard output of plotXpress and uses the same example data.</p>
+<p>We start by loading a package that we need:</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="complete-protocols.html#cb271-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>The measured data is read from an excel sheet. Note that this is the raw data that is stored by the software that operates the plate reader:</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="complete-protocols.html#cb272-1"></a>df_raw &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;DualLuc_example_data.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;Results&quot;</span>)</span></code></pre></div>
+<pre><code>New names:
+* `` -&gt; ...1
+* `` -&gt; ...2
+* `` -&gt; ...3
+* `` -&gt; ...5
+* `` -&gt; ...6
+* ...</code></pre>
+<p>The experimental conditions for each well are stored in a separate CSV file, generated by the experimentalist that did the experiment:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="complete-protocols.html#cb274-1"></a>df_design &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Tidy_design.csv&quot;</span>)</span>
+<span id="cb274-2"><a href="complete-protocols.html#cb274-2"></a><span class="kw">head</span>(df_design)</span></code></pre></div>
+<pre><code>  Wells condition treatment1 treatment2
+1   A01         -        HEK          -
+2   B01         -        HEK          -
+3   C01         -        HEK          -
+4   D01         -        HEK          -
+5   E01         -     neuron          -
+6   F01         -     neuron          -</code></pre>
+<p>You can see that the design file is tidy. In contrast the excel file with data is far from tidy. In the excel sheet, two ‘rectangles’ of cells define the data for the firefly &amp; renilla reads.
+The data is subset and converted to a vector</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="complete-protocols.html#cb276-1"></a>firefly &lt;-<span class="st"> </span>df_raw[<span class="dv">19</span><span class="op">:</span><span class="dv">26</span>,<span class="dv">6</span><span class="op">:</span><span class="dv">17</span>] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unlist</span>(<span class="dt">use.names =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb276-2"><a href="complete-protocols.html#cb276-2"></a>renilla &lt;-<span class="st"> </span>df_raw[<span class="dv">40</span><span class="op">:</span><span class="dv">47</span>,<span class="dv">6</span><span class="op">:</span><span class="dv">17</span>] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unlist</span>(<span class="dt">use.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>Define a dataframe with wells</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="complete-protocols.html#cb277-1"></a>column &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">each=</span><span class="dv">8</span>)</span>
+<span id="cb277-2"><a href="complete-protocols.html#cb277-2"></a>row &lt;-<span class="st"> </span><span class="kw">rep</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>],<span class="dv">12</span>)</span></code></pre></div>
+<p>For convenience, all numbers should consist of 2 digits and so we add a zero that precedes the single digit numbers:</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="complete-protocols.html#cb278-1"></a>x0 &lt;-<span class="st"> </span><span class="kw">str_pad</span>(column, <span class="dv">2</span>, <span class="dt">pad =</span> <span class="st">&quot;0&quot;</span>)</span></code></pre></div>
+<p>To generate a unique index for each row in the dataframe, we define ‘Wells’, which combines the row and column index:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="complete-protocols.html#cb279-1"></a>Wells &lt;-<span class="st"> </span><span class="kw">paste0</span>(row,x0)</span></code></pre></div>
+<p>Next, we create a dataframe that holds the data of individual columns, rows and wells:</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="complete-protocols.html#cb280-1"></a>df_plate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(column,row,Wells)</span>
+<span id="cb280-2"><a href="complete-protocols.html#cb280-2"></a><span class="kw">head</span>(df_plate)</span></code></pre></div>
+<pre><code>  column row Wells
+1      1   A   A01
+2      1   B   B01
+3      1   C   C01
+4      1   D   D01
+5      1   E   E01
+6      1   F   F01</code></pre>
+<p>Add to df_plate the vectors with data from firefly and renilla reads</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="complete-protocols.html#cb282-1"></a>df_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(df_plate,firefly,renilla)</span></code></pre></div>
+<p>Merge the design with the data, based on the well ID - left_join() is used to add only data for wells that are listed in the design dataframe</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="complete-protocols.html#cb283-1"></a>df_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">left_join</span>(df_design, df_<span class="dv">4</span>, <span class="dt">by=</span><span class="st">&#39;Wells&#39;</span>)</span>
+<span id="cb283-2"><a href="complete-protocols.html#cb283-2"></a><span class="kw">head</span>(df_<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>  Wells condition treatment1 treatment2 column row firefly renilla
+1   A01         -        HEK          -      1   A    2010 2391540
+2   B01         -        HEK          -      1   B    3210 2391639
+3   C01         -        HEK          -      1   C    1965 2390991
+4   D01         -        HEK          -      1   D    2381 2391774
+5   E01         -     neuron          -      1   E    1292  269021
+6   F01         -     neuron          -      1   F     991  268918</code></pre>
+<p>Calculate the relative expression from the firefly/renilla ratio</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="complete-protocols.html#cb285-1"></a>df_<span class="dv">4</span> &lt;-<span class="st"> </span>df_<span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">expression=</span>firefly<span class="op">/</span>renilla)</span></code></pre></div>
+<p>Take all control conditions and calculate the average value</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="complete-protocols.html#cb286-1"></a>df_norm &lt;-<span class="st"> </span>df_<span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(condition <span class="op">==</span><span class="st"> &quot;-&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb286-2"><a href="complete-protocols.html#cb286-2"></a><span class="st">  </span><span class="kw">group_by</span>(treatment1,treatment2) <span class="op">%&gt;%</span></span>
+<span id="cb286-3"><a href="complete-protocols.html#cb286-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean=</span><span class="kw">mean</span>(expression)) </span></code></pre></div>
+<pre><code>`summarise()` has grouped output by &#39;treatment1&#39;. You can override using the `.groups` argument.</code></pre>
+<p>Combine the mean values (needed for normalization) values with the df_4 dataframe</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="complete-protocols.html#cb288-1"></a>df_<span class="dv">4</span> &lt;-<span class="st"> </span>df_<span class="dv">4</span> <span class="op">%&gt;%</span></span>
+<span id="cb288-2"><a href="complete-protocols.html#cb288-2"></a><span class="st">  </span><span class="kw">full_join</span>(df_norm, <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;treatment1&quot;</span>,<span class="st">&quot;treatment2&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb288-3"><a href="complete-protocols.html#cb288-3"></a><span class="st">  </span><span class="kw">na.omit</span>(condition)</span></code></pre></div>
+<p>Calculate the <code>Fold Change</code> by normalizing all measurements against the control (-)</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="complete-protocols.html#cb289-1"></a>df_<span class="dv">4</span> &lt;-<span class="st"> </span>df_<span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">Fold Change</span><span class="st">`</span> =<span class="st"> </span>expression<span class="op">/</span>mean)</span></code></pre></div>
+<p>The result is a dataframe that holds all the necessary data:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="complete-protocols.html#cb290-1"></a><span class="kw">head</span>(df_<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>  Wells condition treatment1 treatment2 column row firefly renilla   expression
+1   A01         -        HEK          -      1   A    2010 2391540 0.0008404626
+2   B01         -        HEK          -      1   B    3210 2391639 0.0013421758
+3   C01         -        HEK          -      1   C    1965 2390991 0.0008218350
+4   D01         -        HEK          -      1   D    2381 2391774 0.0009954954
+5   E01         -     neuron          -      1   E    1292  269021 0.0048025991
+6   F01         -     neuron          -      1   F     991  268918 0.0036851382
+          mean Fold Change
+1 0.0009999922   0.8404692
+2 0.0009999922   1.3421863
+3 0.0009999922   0.8218414
+4 0.0009999922   0.9955032
+5 0.0040858977   1.1754085
+6 0.0040858977   0.9019164</code></pre>
+<p>The data is in the right shape now, so let’s save it:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="complete-protocols.html#cb292-1"></a>df_<span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;protocol_4.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>Based on the dataframe, we can create a plot with jittered dots that show the data:</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="complete-protocols.html#cb293-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df_<span class="dv">4</span>, <span class="kw">aes</span>(<span class="dt">x=</span>condition, <span class="dt">y=</span><span class="st">`</span><span class="dt">Fold Change</span><span class="st">`</span>)) <span class="op">+</span></span>
+<span id="cb293-2"><a href="complete-protocols.html#cb293-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="dt">size=</span><span class="dv">3</span>)</span></code></pre></div>
+<p>To splot the graphs based on treatment1 (vertical) and treatment2 (horizontal) we use the <code>facet_grid()</code> function:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="complete-protocols.html#cb294-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(treatment1<span class="op">~</span>treatment2)</span></code></pre></div>
+<p>We add a horizontal line for mean value:</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="complete-protocols.html#cb295-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">stat_summary</span>(<span class="dt">fun.min=</span>mean, <span class="dt">fun.max=</span>mean, <span class="dt">geom=</span><span class="st">&#39;errorbar&#39;</span>, <span class="dt">width=</span><span class="fl">0.6</span>, <span class="dt">size=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p>Add labels:</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="complete-protocols.html#cb296-1"></a>p &lt;-</span>
+<span id="cb296-2"><a href="complete-protocols.html#cb296-2"></a><span class="st">  </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(</span>
+<span id="cb296-3"><a href="complete-protocols.html#cb296-3"></a>    <span class="dt">title =</span> <span class="st">&quot;Effect of DNA sequences on reporter levels under different conditions&quot;</span>,</span>
+<span id="cb296-4"><a href="complete-protocols.html#cb296-4"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;The expression level was determined by a dual luciferase assay</span><span class="ch">\n</span><span class="st"> and the values were normalized to a control with no DNA sequence (-)&quot;</span>,</span>
+<span id="cb296-5"><a href="complete-protocols.html#cb296-5"></a>    <span class="dt">x =</span> <span class="st">&quot;DNA Sequence&quot;</span>,</span>
+<span id="cb296-6"><a href="complete-protocols.html#cb296-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Fold change of the reporter relative to the control (-)&quot;</span>,</span>
+<span id="cb296-7"><a href="complete-protocols.html#cb296-7"></a>    <span class="dt">caption =</span> <span class="st">&quot;(based on data from Brandorff et al., DOI: 10.1101/2021.07.08.451595)&quot;</span>,</span>
+<span id="cb296-8"><a href="complete-protocols.html#cb296-8"></a>    <span class="dt">tag =</span> <span class="st">&quot;Protocol 4&quot;</span></span>
+<span id="cb296-9"><a href="complete-protocols.html#cb296-9"></a>  ) </span></code></pre></div>
+<p>Set the theme and font size:</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="complete-protocols.html#cb297-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">14</span>)</span></code></pre></div>
+<p>Format the facet labels (strips) and the caption + subtitle</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="complete-protocols.html#cb298-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">strip.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;grey90&quot;</span>, <span class="dt">color=</span><span class="st">&quot;grey50&quot;</span>),</span>
+<span id="cb298-2"><a href="complete-protocols.html#cb298-2"></a>               <span class="dt">strip.text =</span> <span class="kw">element_text</span>(<span class="dt">color=</span><span class="st">&quot;grey50&quot;</span>),</span>
+<span id="cb298-3"><a href="complete-protocols.html#cb298-3"></a>               <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">color =</span> <span class="st">&quot;grey80&quot;</span>),</span>
+<span id="cb298-4"><a href="complete-protocols.html#cb298-4"></a>               <span class="dt">plot.subtitle =</span> <span class="kw">element_text</span>(<span class="dt">color =</span> <span class="st">&quot;grey50&quot;</span>, <span class="dt">face =</span> <span class="st">&quot;italic&quot;</span>),</span>
+<span id="cb298-5"><a href="complete-protocols.html#cb298-5"></a>               <span class="co">#Remove the grid</span></span>
+<span id="cb298-6"><a href="complete-protocols.html#cb298-6"></a>               <span class="dt">panel.grid.major =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb298-7"><a href="complete-protocols.html#cb298-7"></a>               <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb298-8"><a href="complete-protocols.html#cb298-8"></a>)</span></code></pre></div>
+<p>Let’s look at the result:</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="complete-protocols.html#cb299-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+<p>To save the plot as a png file:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="complete-protocols.html#cb300-1"></a><span class="kw">png</span>(<span class="dt">file=</span><span class="kw">paste0</span>(<span class="st">&quot;Protocol_4.png&quot;</span>), <span class="dt">width =</span> <span class="dv">4000</span>, <span class="dt">height =</span> <span class="dv">3200</span>, <span class="dt">units =</span> <span class="st">&quot;px&quot;</span>, <span class="dt">res =</span> <span class="dv">400</span>)</span>
+<span id="cb300-2"><a href="complete-protocols.html#cb300-2"></a> p</span>
+<span id="cb300-3"><a href="complete-protocols.html#cb300-3"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<pre><code>quartz_off_screen 
+                2 </code></pre>
+</div>
+<div id="protocol-5" class="section level2">
+<h2><span class="header-section-number">4.5</span> Protocol 5 - A map of amino acids</h2>
+<p>This data visualization plots the position of amino acids in a given protein. It is inspired by figure 2A of the paper by <a href="https://www.sciencedirect.com/science/article/pii/S0092867420304815">Basu et al. (2020)</a></p>
+<p>Let’s load the tidyverse package:</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="complete-protocols.html#cb302-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>First, we define a vector with the 20 amino acids and the order in which we plot them. The amino acids are grouped as hydrophobic (G,A,V,C,P,I,L,M,F,W), hydrophilic (S,T,Y,N,Q), acidic (D,E) and basic (R,H,K).</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="complete-protocols.html#cb303-1"></a>amino_acid_ordered &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="st">&quot;GAVCPILMFWSTYNQDERHK&quot;</span>,<span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unlist</span>()</span>
+<span id="cb303-2"><a href="complete-protocols.html#cb303-2"></a>amino_acid_ordered</span></code></pre></div>
+<pre><code> [1] &quot;G&quot; &quot;A&quot; &quot;V&quot; &quot;C&quot; &quot;P&quot; &quot;I&quot; &quot;L&quot; &quot;M&quot; &quot;F&quot; &quot;W&quot; &quot;S&quot; &quot;T&quot; &quot;Y&quot; &quot;N&quot; &quot;Q&quot; &quot;D&quot; &quot;E&quot; &quot;R&quot; &quot;H&quot;
+[20] &quot;K&quot;</code></pre>
+<p>The protein sequence that we will use is the <em>Homo sapiens</em> Homeobox protein Hox-D13:</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="complete-protocols.html#cb305-1"></a>protein &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MSRAGSWDMDGLRADGGGAGGAPASSSSSSVAAAAASGQCRGFLSAPVFAGTHSGRAAAA</span></span>
+<span id="cb305-2"><a href="complete-protocols.html#cb305-2"></a><span class="st">AAAAAAAAAAASGFAYPGTSERTGSSSSSSSSAVVAARPEAPPAKECPAPTPAAAAAAPP</span></span>
+<span id="cb305-3"><a href="complete-protocols.html#cb305-3"></a><span class="st">SAPALGYGYHFGNGYYSCRMSHGVGLQQNALKSSPHASLGGFPVEKYMDVSGLASSSVPA</span></span>
+<span id="cb305-4"><a href="complete-protocols.html#cb305-4"></a><span class="st">NEVPARAKEVSFYQGYTSPYQHVPGYIDMVSTFGSGEPRHEAYISMEGYQSWTLANGWNS</span></span>
+<span id="cb305-5"><a href="complete-protocols.html#cb305-5"></a><span class="st">QVYCTKDQPQGSHFWKSSFPGDVALNQPDMCVYRRGRKKRVPYTKLQLKELENEYAINKF</span></span>
+<span id="cb305-6"><a href="complete-protocols.html#cb305-6"></a><span class="st">INKDKRRRISAATNLSERQVTIWFQNRRVKDKKIVSKLKDTVS&quot;</span>)</span></code></pre></div>
+<p>The protein sequence may contain end-of-line characters “” after copy pasting and we need to remove these:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="complete-protocols.html#cb306-1"></a>protein &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>, protein)</span></code></pre></div>
+<p>Next, the protein sequence is split into single characters and we assign this vector to <code>aa</code>:</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="complete-protocols.html#cb307-1"></a>aa &lt;-<span class="st"> </span><span class="kw">strsplit</span>(protein, <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unlist</span>()</span></code></pre></div>
+<p>We generate a dataframe with a column with the amino acids and a column that defines their position:</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="complete-protocols.html#cb308-1"></a>df_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">aa=</span>aa, <span class="dt">position=</span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(aa))</span></code></pre></div>
+<p>Now we reorder the data frame to the order of the amino acids that we defined earlier in the vector <code>amino_acid_ordered</code>:</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="complete-protocols.html#cb309-1"></a>df_<span class="dv">5</span> &lt;-<span class="st"> </span>df_<span class="dv">5</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">aa =</span> <span class="kw">fct_relevel</span>(aa, amino_acid_ordered))</span></code></pre></div>
+<p>The basic plot shows a black tile for each amino acid. Note that the y-axis order is defined by the vector <code>amino_acid_ordered</code>, but it needs to be reverted to order the amino acids from top to bottom along the y-axis (which is naturally starts at the bottom it corresponds to the origin).</p>
+<p>The data is in the right shape now, so let’s save it:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="complete-protocols.html#cb310-1"></a>df_<span class="dv">5</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;protocol_5.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="complete-protocols.html#cb311-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_tile</span>(<span class="dt">data=</span>df_<span class="dv">5</span>, <span class="kw">aes</span>(<span class="dt">x=</span>position, <span class="dt">y=</span>aa)) <span class="op">+</span></span>
+<span id="cb311-2"><a href="complete-protocols.html#cb311-2"></a><span class="st">        </span><span class="kw">scale_y_discrete</span>(<span class="dt">limits =</span> <span class="kw">rev</span>(amino_acid_ordered))</span>
+<span id="cb311-3"><a href="complete-protocols.html#cb311-3"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<p>Set the theme to classic, to get rid off the ‘frame’ around the plot and the grid.</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="complete-protocols.html#cb312-1"></a>p &lt;-<span class="st"> </span>p<span class="op">+</span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">16</span>)</span></code></pre></div>
+<p>For each of the four classes of amino acids we can define a box with a color that indicates the class. For example, there are three basic residues that will have a rectangle filled with blue in the background. The amino acids are factors, but we need numbers to define the coordinates for the rectangle. In a plot with a factors (here on the y-axis) their position is defined by a (non visible) natural number. Therefore we can define a box with the function <code>annotate()</code> for the first residue with y-coordinates <code>ymin=0.5</code> and <code>ymax=1.5</code>:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="complete-protocols.html#cb313-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&quot;rect&quot;</span>, <span class="dt">xmin =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">ymin =</span> <span class="fl">0.5</span>, <span class="dt">xmax =</span> <span class="ot">Inf</span>, <span class="dt">ymax=</span><span class="fl">1.5</span>, <span class="dt">fill=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-257-1.png" width="672" />
+In this way, we define four colored rectangles that reflect the different amino acids categories; blue=basic, red=acidic, yellow=hydrophilic, grey=hydrophobic:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="complete-protocols.html#cb314-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&quot;rect&quot;</span>, <span class="dt">xmin =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">ymin =</span> <span class="fl">0.5</span>, <span class="dt">xmax =</span> <span class="ot">Inf</span>, <span class="dt">ymax=</span><span class="fl">3.5</span>, <span class="dt">fill=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.15</span>)</span>
+<span id="cb314-2"><a href="complete-protocols.html#cb314-2"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&quot;rect&quot;</span>, <span class="dt">xmin =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">ymin =</span> <span class="fl">3.5</span>, <span class="dt">xmax =</span> <span class="ot">Inf</span>, <span class="dt">ymax=</span><span class="fl">5.5</span>, <span class="dt">fill=</span><span class="st">&#39;red&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.15</span>)</span>
+<span id="cb314-3"><a href="complete-protocols.html#cb314-3"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&quot;rect&quot;</span>, <span class="dt">xmin =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">ymin =</span> <span class="fl">5.5</span>, <span class="dt">xmax =</span> <span class="ot">Inf</span>, <span class="dt">ymax=</span><span class="fl">10.5</span>, <span class="dt">fill=</span><span class="st">&#39;yellow&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.15</span>)</span>
+<span id="cb314-4"><a href="complete-protocols.html#cb314-4"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&quot;rect&quot;</span>, <span class="dt">xmin =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">ymin =</span> <span class="fl">10.5</span>, <span class="dt">xmax =</span> <span class="ot">Inf</span>, <span class="dt">ymax=</span><span class="fl">20.5</span>, <span class="dt">fill=</span><span class="st">&#39;black&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.15</span>)</span></code></pre></div>
+<p>Let’s look at the result:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="complete-protocols.html#cb315-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
+<p>Adjusting the axis labels and adding a title and caption:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="complete-protocols.html#cb316-1"></a>p &lt;-</span>
+<span id="cb316-2"><a href="complete-protocols.html#cb316-2"></a><span class="st">  </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(</span>
+<span id="cb316-3"><a href="complete-protocols.html#cb316-3"></a>    <span class="dt">title =</span> <span class="st">&quot;Mapping the amino acid positions of HOXD13&quot;</span>,</span>
+<span id="cb316-4"><a href="complete-protocols.html#cb316-4"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;shows a high abundance of alanines in the IDR&quot;</span>,</span>
+<span id="cb316-5"><a href="complete-protocols.html#cb316-5"></a>    <span class="dt">y =</span> <span class="st">&quot;Amino acid&quot;</span>,</span>
+<span id="cb316-6"><a href="complete-protocols.html#cb316-6"></a>    <span class="dt">caption =</span> <span class="st">&quot;(based on data from Basu et al, DOI: 10.1016/j.cell.2020.04.018)&quot;</span>,</span>
+<span id="cb316-7"><a href="complete-protocols.html#cb316-7"></a>    <span class="dt">tag =</span> <span class="st">&quot;Protocol 5&quot;</span></span>
+<span id="cb316-8"><a href="complete-protocols.html#cb316-8"></a>  )</span></code></pre></div>
+<p>And a final tweak of the label style and location:</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="complete-protocols.html#cb317-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</span>
+<span id="cb317-2"><a href="complete-protocols.html#cb317-2"></a>    <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(</span>
+<span id="cb317-3"><a href="complete-protocols.html#cb317-3"></a>      <span class="dt">color =</span> <span class="st">&quot;grey80&quot;</span>,</span>
+<span id="cb317-4"><a href="complete-protocols.html#cb317-4"></a>      <span class="dt">hjust =</span> <span class="dv">1</span></span>
+<span id="cb317-5"><a href="complete-protocols.html#cb317-5"></a>    ))</span></code></pre></div>
+<p>In the original paper, a region of the protein is annotated as an ‘intrinsically disordered region’ abbreviated as IDR. Here, we we use the <code>annotate()</code> function to add a rectangle and a label to the top of the plot:</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="complete-protocols.html#cb318-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="dt">xmin=</span><span class="dv">0</span>, <span class="dt">xmax=</span><span class="dv">118</span>, <span class="dt">ymin=</span><span class="dv">21</span>, <span class="dt">ymax=</span><span class="dv">22</span>, <span class="dt">fill=</span><span class="st">&#39;darkblue&#39;</span>) <span class="op">+</span></span>
+<span id="cb318-2"><a href="complete-protocols.html#cb318-2"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">59</span>, <span class="dt">y=</span><span class="dv">23</span>, <span class="dt">alpha=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">&#39;darkblue&#39;</span>, <span class="dt">size=</span><span class="dv">4</span>,<span class="dt">label=</span><span class="st">&#39;IDR&#39;</span>)</span>
+<span id="cb318-3"><a href="complete-protocols.html#cb318-3"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
+<p>To avoid clipping of the new label by the subtitle of the plot:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="complete-protocols.html#cb319-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">clip =</span> <span class="st">&#39;off&#39;</span>)</span>
+<span id="cb319-2"><a href="complete-protocols.html#cb319-2"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
+<p>The subtitle is quite close to the IDR label. Let’s give the subtitle a bit more room, by adding a margin at the bottom of the subtitle. This can be done with the <code>theme()</code> function to style the subtitle:</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="complete-protocols.html#cb320-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> <span class="kw">element_text</span>(<span class="dt">margin =</span> <span class="kw">margin</span>(<span class="dt">b=</span><span class="dv">20</span>)))</span>
+<span id="cb320-2"><a href="complete-protocols.html#cb320-2"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-264-1.png" width="672" /></p>
+<p>Finally we can save the plot:</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="complete-protocols.html#cb321-1"></a><span class="kw">png</span>(<span class="dt">file=</span><span class="kw">paste0</span>(<span class="st">&quot;Protocol_5.png&quot;</span>), <span class="dt">width =</span> <span class="dv">4000</span>, <span class="dt">height =</span> <span class="dv">3200</span>, <span class="dt">units =</span> <span class="st">&quot;px&quot;</span>, <span class="dt">res =</span> <span class="dv">400</span>)</span>
+<span id="cb321-2"><a href="complete-protocols.html#cb321-2"></a> p</span>
+<span id="cb321-3"><a href="complete-protocols.html#cb321-3"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<pre><code>quartz_off_screen 
+                2 </code></pre>
+<div id="in-progress" class="section level4 unnumbered">
+<h4>In progress</h4>
+<p>This chapter is ‘in progress’ and I plan to add more protocols in the future. A list of ideas:</p>
+<ul>
+<li>6: Heatmap of timeseries data (with sorting)</li>
+<li>7: Waterfall plot (timeseries)</li>
+<li>8: 96-well plate</li>
+<li>9: Dose-reponse curves</li>
+<li>10: Plot data from a Google form</li>
+<li>11: Polar plot with Timestamp data</li>
+<li>12: Annotated timeseries (optogenetics)</li>
+<li>Volcano plot</li>
+<li>Animated plot</li>
+<li>Multipanel figure (KTR data)</li>
+<li>correlation/regression/Bland-Altman</li>
+<li>Plots of Effect size (differences)</li>
+<li>Permutated p-values (not strictly dataViz)</li>
+<li>Bootstrapped confidence intervals</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="plotting-the-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="questions-and-answers.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

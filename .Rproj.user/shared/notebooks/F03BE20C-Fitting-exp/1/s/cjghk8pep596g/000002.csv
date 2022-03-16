@@ -1,0 +1,6 @@
+"0","var <- coef(fit)"
+"0","paste(""The halftime is"",log(2)/var[3])"
+"1","[1]"
+"1"," ""The halftime is 5.13628564953842"""
+"1","
+"

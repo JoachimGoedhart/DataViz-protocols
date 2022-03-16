@@ -1,0 +1,297 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={DataViz protocols},
+  pdfauthor={Joachim Goedhart},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{DataViz protocols}
+\author{Joachim Goedhart}
+\date{2022-01-18}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+Protocols that are used in a wet lab are similar to the instructions that are defined in scripts for data visualization. Although scientists are familiar with protocols for experiments, they are usually less familiar with code or scripts for handling experimental data. Given the similarities between experimental methods and computer instructions, it should be within reach for experimental scientists to add automated, reproducible data processing and visualization to their toolkit. This book aims to lower the barrier for wet lab scientists to use R and ggplot2 for data visualization. First, by explaining some basic principles in data processing and visualization. Second, by providing example protocols, which can be applied to your own data, and I hope that the protocols serve as inspiration and a starting point for new and improved protocols.
+
+Data visualization transforms data into a picture. The picture of the data helps humans to understand and interpret the information. As such, data visualization is an important step in the analysis of experimental data and it is key for interpretation of results. Moreover, proper data visualization is important for the communication about experiments and research in presentations and publications.
+
+Data visualization usually requires refinement of the data, e.g.~reshaping or processing. Therefore, the translation of data into a visualization is a multistep process. This process can be automated by defining the steps in a script for a software application. A script is a set of instructions in a language that both humans and computers can understand. Using a script can make data analysis and visualization faster, robust against errors and reproducible. As it becomes easier and cheaper to gather data, it becomes more important to use automated analyses. Finally, scripts make the processing transparent, when the scripts are shared or published.
+
+R is a very popular programming language for all things related to data. It is freely available, open-source and there is a large community of active users. In addition, it fulfills a need for reproducible, automated data analysis. And lastly, with the ggplot2 extension, it is possible to generate state-of-the-art data visualizations. There are many great resources out there (that is also the reason I came this far) and I'll try to explain how this one is different.
+First, there is a focus on R. All examples use R for all steps. In some examples the data comes straight from the equipment, in other examples it is source data of a published figure or it is data generated by another application. I don't assume any experience in R, but it is recommended to familiarize yourself with the basics.
+Second, the datasets that are used are realistic. Several come from actual experimental data gathered in a wet lab. By using real data, specific issues that may not be treated elsewhere are encountered, discussed and solved. One of the reasons is that R requires a specific data format (detailed in chapter 2 \protect\hyperlink{read-and-reshape}{Reading and Reshaping data}) before the data can be visualized. It is key to understand how experimental data should be processed and prepared in a way that it can be analyzed and visualized. As the required format is usually unfamiliar to wet lab scientists, I provide several examples of how to do this. One example is the processing of {[}Data in 96-wells{]}.
+Third, since details determine successful use of R, I will go into detail whenever necessary. Examples of details include the use of spaces in column names, reading files with missing values, or optimizing the position of a label in a data visualization.
+Finally, modern analysis and visualization methods are treated and since the book is in a digital, online format it will be adjusted when new methods are introduced. An example of a recently introduced data visualization is the Superplot, which is the result of (Protocol 2){[}\#protocol-2{]}.
+
+Part of this work has been published as blogs on \href{https://thenode.biologists.com}{The Node} and the enthusiastic response has encouraged me to create a more structured and complete resource. This does not at all imply that this document needs to be read in a structured manner. If you are totally new to R it makes sense to first read the chapter \protect\hyperlink{getting-started}{Getting started with R} which treats some of the essential basics. On the other hand, if you are familiar with R, you may be interested in the chapters on \protect\hyperlink{read-and-reshape}{Reading and Reshaping data} or \protect\hyperlink{plotting-the-data}{Visualizing data}. Finally, masters in R/ggplot2 may jump right to the \protect\hyperlink{complete-protocols}{Complete protocols}. This final part brings all the ingredients of the preceding chapters together. Each protocol starts with raw data and shows all the steps that lead to a publication quality plot.
+
+I hope that you'll find this document useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter (feel free to mention me: @joachimgoedhart), in meetings, in preprints or in peer reviewed publications.
+
+\hypertarget{a-toast}{%
+\subsection*{A toast}\label{a-toast}}
+\addcontentsline{toc}{subsection}{A toast}
+
+Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter is a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with!!
+
+\hypertarget{getting-started}{%
+\chapter{Getting started with R}\label{getting-started}}
+
+Placeholder
+
+\hypertarget{running-r}{%
+\section{Running R}\label{running-r}}
+
+\hypertarget{using-the-command-line}{%
+\section{Using the command line}\label{using-the-command-line}}
+
+\hypertarget{help}{%
+\section{?Help?}\label{help}}
+
+\hypertarget{installing-packages}{%
+\section{Installing packages}\label{installing-packages}}
+
+\hypertarget{multiline-code}{%
+\section{Multiline code}\label{multiline-code}}
+
+\hypertarget{read-and-reshape}{%
+\chapter{Reading and reshaping data}\label{read-and-reshape}}
+
+Placeholder
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+\hypertarget{types-of-data}{%
+\section{Types of data}\label{types-of-data}}
+
+\hypertarget{reading-data}{%
+\section{Reading data}\label{reading-data}}
+
+\hypertarget{loading-data-from-a-text-or-csv-file}{%
+\subsection{Loading data from a text or csv file}\label{loading-data-from-a-text-or-csv-file}}
+
+\hypertarget{loading-data-from-a-url}{%
+\subsection{Loading data from a URL}\label{loading-data-from-a-url}}
+
+\hypertarget{retrieving-data-from-excel}{%
+\subsection{Retrieving data from Excel}\label{retrieving-data-from-excel}}
+
+\hypertarget{retrieving-data-from-multiple-files}{%
+\subsection{Retrieving data from multiple files}\label{retrieving-data-from-multiple-files}}
+
+\hypertarget{tidy-data}{%
+\section{Reshaping data}\label{tidy-data}}
+
+\hypertarget{quantitative-data-discrete-conditions}{%
+\subsection{Quantitative data, discrete conditions}\label{quantitative-data-discrete-conditions}}
+
+\hypertarget{multiple-discrete-conditions}{%
+\subsection{Multiple discrete conditions}\label{multiple-discrete-conditions}}
+
+\hypertarget{double-quantitative-data}{%
+\subsection{Double quantitative data}\label{double-quantitative-data}}
+
+\hypertarget{data-from-multiple-files}{%
+\subsection{Data from multiple files}\label{data-from-multiple-files}}
+
+\hypertarget{data-in-96-wells-format}{%
+\subsection{Data in 96-wells format}\label{data-in-96-wells-format}}
+
+\hypertarget{plotting-the-data}{%
+\chapter{Plotting the Data}\label{plotting-the-data}}
+
+Placeholder
+
+\hypertarget{data-over-time-continuous-vs.-continuous}{%
+\section{Data over time (continuous vs.~continuous)}\label{data-over-time-continuous-vs.-continuous}}
+
+\hypertarget{discrete-conditions}{%
+\section{Discrete conditions}\label{discrete-conditions}}
+
+\hypertarget{x-axis-data-qualitative-versus-quantitative-data}{%
+\subsection{X-axis data: qualitative versus quantitative data}\label{x-axis-data-qualitative-versus-quantitative-data}}
+
+\hypertarget{statistics}{%
+\section{Statistics}\label{statistics}}
+
+\hypertarget{introduction-1}{%
+\subsection{Introduction}\label{introduction-1}}
+
+\hypertarget{data-summaries-directly-added-as-a-plot-layer}{%
+\subsection{Data summaries directly added as a plot layer}\label{data-summaries-directly-added-as-a-plot-layer}}
+
+\hypertarget{data-summaries-from-a-dataframe}{%
+\subsection{Data summaries from a dataframe}\label{data-summaries-from-a-dataframe}}
+
+\hypertarget{data-summaries-for-continuous-x-axis-data}{%
+\subsection{Data summaries for continuous x-axis data}\label{data-summaries-for-continuous-x-axis-data}}
+
+\hypertarget{plot-a-lot---discrete-data}{%
+\section{Plot-a-lot - discrete data}\label{plot-a-lot---discrete-data}}
+
+\hypertarget{optimizing-the-data-visualization}{%
+\section{Optimizing the data visualization}\label{optimizing-the-data-visualization}}
+
+\hypertarget{rotation}{%
+\subsection{Rotation}\label{rotation}}
+
+\hypertarget{ordering-conditions}{%
+\subsection{Ordering conditions}\label{ordering-conditions}}
+
+\hypertarget{adjusting-the-layout}{%
+\section{Adjusting the layout}\label{adjusting-the-layout}}
+
+\hypertarget{themes}{%
+\subsection{Themes}\label{themes}}
+
+\hypertarget{legend}{%
+\subsection{Legend}\label{legend}}
+
+\hypertarget{grids}{%
+\subsection{Grids}\label{grids}}
+
+\hypertarget{labelstitles}{%
+\subsection{Labels/Titles}\label{labelstitles}}
+
+\hypertarget{plot-a-lot---continuous-data}{%
+\section{Plot-a-lot - continuous data}\label{plot-a-lot---continuous-data}}
+
+\hypertarget{small-multiples}{%
+\subsection{Small multiples}\label{small-multiples}}
+
+\hypertarget{heatmaps}{%
+\subsection{Heatmaps}\label{heatmaps}}
+
+\hypertarget{custom-objects}{%
+\subsection{Custom objects}\label{custom-objects}}
+
+\hypertarget{complete-protocols}{%
+\chapter{Complete protocols}\label{complete-protocols}}
+
+Placeholder
+
+\hypertarget{in-progress}{%
+\subsubsection*{In progress}\label{in-progress}}
+\addcontentsline{toc}{subsubsection}{In progress}
+
+\hypertarget{questions-and-answers}{%
+\chapter{Questions and Answers}\label{questions-and-answers}}
+
+Placeholder
+
+\hypertarget{what-is-the-difference-between-a-data.frame-and-a-tibble}{%
+\subsection*{What is the difference between a data.frame and a tibble?}\label{what-is-the-difference-between-a-data.frame-and-a-tibble}}
+\addcontentsline{toc}{subsection}{What is the difference between a data.frame and a tibble?}
+
+\hypertarget{whats-up-with-spaces-in-variable-names-and-in-files-names}{%
+\subsection*{What's up with spaces in variable names and in files names?}\label{whats-up-with-spaces-in-variable-names-and-in-files-names}}
+\addcontentsline{toc}{subsection}{What's up with spaces in variable names and in files names?}
+
+\hypertarget{what-are-the-rules-for-naming-dataframes-or-variables}{%
+\subsection*{What are the rules for naming dataframes or variables?}\label{what-are-the-rules-for-naming-dataframes-or-variables}}
+\addcontentsline{toc}{subsection}{What are the rules for naming dataframes or variables?}
+
+\hypertarget{what-is-the-difference-between---and-for-assigning-variables}{%
+\subsection*{\texorpdfstring{What is the difference between \texttt{\textless{}-} and \texttt{=} for assigning variables?}{What is the difference between \textless- and = for assigning variables?}}\label{what-is-the-difference-between---and-for-assigning-variables}}
+\addcontentsline{toc}{subsection}{What is the difference between \texttt{\textless{}-} and \texttt{=} for assigning variables?}
+
+\hypertarget{what-does-na-mean-in-a-dataframe}{%
+\subsection*{What does `NA' mean in a dataframe?}\label{what-does-na-mean-in-a-dataframe}}
+\addcontentsline{toc}{subsection}{What does `NA' mean in a dataframe?}
+
+\hypertarget{what-is-the-beste-way-to-type-a-operator}{%
+\subsection*{What is the beste way to type a `\%\textgreater\%' operator?}\label{what-is-the-beste-way-to-type-a-operator}}
+\addcontentsline{toc}{subsection}{What is the beste way to type a `\%\textgreater\%' operator?}
+
+\hypertarget{section}{%
+\subsection*{}\label{section}}
+\addcontentsline{toc}{subsection}{}
+
+\hypertarget{section-1}{%
+\subsection*{}\label{section-1}}
+\addcontentsline{toc}{subsection}{}
+
+\hypertarget{section-2}{%
+\subsection*{}\label{section-2}}
+\addcontentsline{toc}{subsection}{}
+
+\hypertarget{section-3}{%
+\subsection*{}\label{section-3}}
+\addcontentsline{toc}{subsection}{}
+
+\end{document}

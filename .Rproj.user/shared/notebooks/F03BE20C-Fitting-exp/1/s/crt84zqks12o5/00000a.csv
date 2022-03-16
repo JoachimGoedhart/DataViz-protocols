@@ -1,0 +1,5 @@
+"0","library(broom)"
+"0",""
+"0","ggplot(data = augment(fit), aes(x=Time, y=mean)) + geom_point(size=4, alpha=.5) + "
+"0","  geom_line(aes(y=.fitted), color=""black"", size=1)"
+"0",""

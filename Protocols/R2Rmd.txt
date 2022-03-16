@@ -1,0 +1,3 @@
+Convert script.R to script.Rmd in R:
+
+knitr::spin('script.R', doc = '#', precious = TRUE)

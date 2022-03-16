@@ -1,0 +1,126 @@
+
+---
+title: "Protocol 7"
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 7 - Ridgeline plot {#protocol-7}
+
+ In protocol 6 we have seen how time traces can be visualized with a heatmap style data visualization.
+ The advantage is that huge amounts of data can be simultaneously visualized. However, it is difficult to relate the color to numbers.
+ As such the color coded values in a heatmap give a qualitative view of heterogeneity.
+ In this protocol, we use a method that allows more data than an ordinary lineplot, but keeps the advantage of this plot, i.e. allowing a quantitative comparison.
+ To do this, an offset between curves is introduced. A package to this directly in ggplot2 is available (`ggridges`) but it may not work well when the values show a negative and positive deviation from baseline values (usually the baseline is zero).
+ In addition, we have more flexibility (and insight) when we do this ourselves.
+ Read the data
+
+```{r }
+require(tidyverse)
+df1 <- read.csv("Rac_S1P.csv")
+head(df1)
+```
+
+The data is not tidy, so it needs to be re-arranged:
+
+```{r }
+df_tidy <- pivot_longer(df1, cols = -c(Time), names_to = "Cell", values_to = "Activity")
+head(df_tidy)
+```
+
+In the next step, we create a new dataframe 'df_rank' to order the traces. We group the data by 'Cell' and extract the data from a specified time window with `filter()`. The filtered data is used to integrate the activity by using the function `sum()`. This summed value is used to generate a rank, ranging from 0 to 1:
+
+```{r }
+df_rank <- df_tidy %>% group_by(Cell) %>% filter(Time>=2 & Time <=10) %>% summarise(amplitude=sum(Activity)) %>% mutate(rank=percent_rank(amplitude))
+head(df_rank)
+```
+
+We can add the rank information from 'df_rank' to the 'df_tidy' dataframe:
+
+```{r }
+df_7 <- as.data.frame(full_join(df_tidy, df_rank,by="Cell"))
+```
+
+
+This data is saved:
+```{r}
+df_7 %>% write.csv("protocol_7.csv", row.names=FALSE)
+```
+
+Let's make a lineplot of this data and use the rank to shift the data plotted on the y-axis:
+
+```{r}
+ggplot(df_7, aes(x=Time, y=Activity+(rank*1), group=Cell, height = rank)) + geom_line(alpha=0.5, size=0.5)
+```
+
+We can use the rank to shift the plot also in the horizontal direction:
+
+```{r }
+p <- ggplot(df_7, aes(x=Time+(rank*10), y=(Activity+(rank*1)), group=Cell)) + geom_line(alpha=0.5, size=0.5)
+p
+```
+
+Add labels:
+
+```{r }
+p <-
+  p + labs(
+    title = "Activities measured in single cells over time",
+    subtitle = "Sorting of the cells is based on integrated activity",
+    x = "Time [min]",
+    y = "Activity [arbitrary units]",
+    caption = "(data from Reinhard et al; doi: 10.1091/mbc.E17-03-0136)",
+    tag = "Protocol 7"
+  )
+```
+
+If we would like to use color, this would be a way to do that:
+```{r}
+p + geom_line(aes(color=as.factor(rank))) +
+  theme(legend.position = "none")
+```
+
+Although it looks flashy, we do not really need color here. So we stick to black and white and make some adjustments to the layout by tweaking the theme settings. To remove the grid and show the axis:
+
+```{r }
+p <- p + theme_classic(base_size = 16)
+p <- p + theme(panel.grid.major = element_blank(),
+               plot.caption = element_text(color = "grey80"),
+           panel.grid.minor = element_blank(),
+           NULL)
+p
+```
+
+To give it more of a 3D feel we can add a third axis by defining a line:
+
+```{r}
+p <- p + annotate(geom = "segment", x=0,y=1,xend=10,yend=2, size=1)
+```
+
+The next step is to remove the original x-axis, which is a bit too long and also replace that with a line that runs until 20 (minutes):
+
+```{r}
+p <- p + theme(axis.line.x = element_blank(),
+               axis.title.x = element_text(hjust = 0.3)
+               ) +
+  annotate(geom = "segment", x=0,y=1,xend=20,yend=1, size=1)
+p
+```
+
+Finally, we can use `scale_x_continuous()` to improve two aspects of the x-axis. First, the labels run up to 30, but we can set the scale to 0-20 with `breaks = c(0,20)`. Second, the default in ggplot is add a bit of margin to the plot, that's why the x-axis does not touch the y-axis. This can be solved by using `expand = c(0, 0)`:
+We can manually add two 
+
+```{r}
+p <- p + scale_x_continuous(breaks = c(0,10,20), expand = c(0, 0))
+p
+```
+
+
+To save the plot as PNG:
+
+```{r}
+ png(file=paste0("Protocol_7.png"), width = 4000, height = 3000, units = "px", res = 500)
+   p
+ dev.off()
+```

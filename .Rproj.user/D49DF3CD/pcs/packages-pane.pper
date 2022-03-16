@@ -1,0 +1,7 @@
+{
+    "installOptions": {
+        "installFromRepository": true,
+        "libraryPath": "/Users/Joachim/Library/R/3.6/library",
+        "installDependencies": true
+    }
+}

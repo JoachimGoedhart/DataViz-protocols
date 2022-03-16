@@ -1,0 +1,12 @@
+"0","fitted_off <- df_fit_off %>% "
+"0","  nest(-System) %>%"
+"0","  mutate("
+"0","    fit = map(data, ~nls(mean ~ a0 + a*(1- exp(-k * Time)),"
+"0","           data = ., "
+"0","           start = list(a0 = 2, a = -2, k = .1)"
+"0","           )),"
+"0","    tidied = map(fit, tidy),"
+"0","    augmented = map(fit, augment),"
+"0","  )"
+"2","All elements of `...` must be named.
+Did you want `data = c(Time, n, mean)`?"

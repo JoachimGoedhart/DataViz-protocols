@@ -1,0 +1,5 @@
+"0","#exponential fit: a0 is starting value, a is the amplitude, k is the rate constant"
+"0","fit <- nls(mean ~ a0 + a*(1- exp(-k * Time)),"
+"0","           data = df_ilid, "
+"0","           start = list(a0 = 0, a = 2, k = .1)"
+"0","           )"

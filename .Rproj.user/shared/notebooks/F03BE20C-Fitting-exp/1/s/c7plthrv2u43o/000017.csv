@@ -1,0 +1,5 @@
+"0","df_fit_off <- df_summary %>% mutate(Time=Time-121)"
+"0","df_fit_off <- df_fit_off %>% filter(System==""iLID"" & Time>=0 | System==""magnets"" & Time>=0)"
+"0",""
+"0","ggplot(df_fit_off, aes(x=Time, y=mean))+geom_point(size=2, alpha=0.8)+facet_wrap(~System)+xlim(0,200)"
+"0",""

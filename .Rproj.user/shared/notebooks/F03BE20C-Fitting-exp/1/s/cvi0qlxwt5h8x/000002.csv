@@ -1,0 +1,5 @@
+"0","#linear fit"
+"0","fit <- nls(mean ~ a * Time + b, data = df_ilid)"
+"2","No starting values specified for some parameters.
+Initializing ‘a’, ‘b’ to '1.'.
+Consider specifying 'start' or using a selfStart model"

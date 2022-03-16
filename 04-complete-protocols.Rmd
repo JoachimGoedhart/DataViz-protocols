@@ -1,0 +1,46 @@
+# Complete protocols {#complete-protocols}
+
+This chapter showcases a number of complete protocols for different kinds of data visualizations. Each protocol starts with the raw data and ends with a publication quality plot. The data is available from Github, just follow [this link](http://hmpg.net). In the same folder you can find the R markdown files for each protocol. To reproduce the data visualizations you can either take the data and follow the instructions in the chapter. Alternatively you can download the R markdown file (and the data) and run it step by step. The R markdown files can be used as a starting point to apply the same visualization to your own data.
+
+``` {r child = 'Protocols/protocol_1.Rmd'}
+```
+
+
+``` {r child = 'Protocols/protocol_2.Rmd'}
+```
+
+
+``` {r child = 'Protocols/protocol_3.Rmd'}
+```
+
+
+``` {r child = 'Protocols/protocol_4.Rmd'}
+```
+
+
+``` {r child = 'Protocols/protocol_5.Rmd'}
+```
+
+
+
+#### In progress {-}
+
+This chapter is 'in progress' and I plan to add more protocols in the future. A list of ideas:
+
+* Heatmap-style representation of timeseries data
+* Waterfall plot (timeseries)
+* 96-well plate data
+* Dose-reponse curves
+* Plot data from a Google form
+* Polar plot with Timestamp data
+* Plotting grouped data 
+* Annotated timeseries (optogenetics)
+* Volcano plot
+* Animated plot
+* Multipanel figure (KTR data)
+* correlation/regression/Bland-Altman
+* Plots of Effect size (differences)
+* Permutated p-values (not strictly dataViz)
+* Bootstrapped confidence intervals
+
+

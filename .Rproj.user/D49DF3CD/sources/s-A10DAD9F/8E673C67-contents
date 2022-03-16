@@ -1,0 +1,156 @@
+---
+title: "Protocol 9"
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 9 - A dose response curve with fit {#protocol-9}
+
+In this protocol we visualize the data that was used to make a 'dose reponse curve'. The data consists of some response that is measured at different concentrations of a compound that induces the effect (agonist). This is a typical experiment in pharmacology to understand the relation between the dose and the response. One of the relevant parameters is the 'Half maximal effective concentration' abbreviated as EC50. This is the concentration at which 50% of the maxiaml response is measured and we obtain this value by curve fitting.
+In this protocol we use data acquired from single cells from different biological replicates. We generate a 'superplot' to distuinguish technical and sample replicates. More details about the experimental approach are published by [Chavez-Abiega et al. (2022)](https://doi.org/10.1242/jcs.259685).
+
+We start by loading the `tidyverse` package:
+
+```{r }
+library(tidyverse)
+```
+
+Read the data:
+
+```{r }
+df_DRC <- read.csv("DRC_Histamine.csv")
+head(df_DRC)
+```
+The concentration is listed in the column 'Concen', the measured response is in the column 'ERKnac' and the column 'Experiment' identifies the replicates. Let's rename the columns for easier identification of what they represent:
+
+```{r }
+df_DRC <- df_DRC %>% rename(Concentration=Concen, Response=ERKnac)
+head(df_DRC)
+```
+
+To change the column 'Experiment' from text into a number that represents the replicate, we can convert it using `as.numeric()`. Since we need these numbers as qualitative data (a label), we convert the numbers to a factor with `as.factor()`:
+
+```{r}
+df_DRC <- df_DRC %>% mutate(Replicate=as.factor(as.numeric(Experiment)))
+head(df_DRC)
+```
+
+The range of concentrations at which the compound is examined spans a few orders of magnitude and therefore a log scale is used to display the concentrations. The minimal response is usually measured at a concentration of 0, but the logarithm of 0 is undefined. Therefore, plotting 0 on a logscale will give an error. The logarithm of 0  can be approached by minus infinity. Therefore, we convert the concentration of 0 to a low value, in this case 0.01:
+
+```{r }
+df_DRC <- df_DRC  %>%
+  mutate(Concentration = ifelse((Concentration == 0),
+                         yes = 0.01,
+                         no = Concentration)
+  )
+```
+
+Next we take the 'Response' and calculate the average per concentration and for each biological replicate and store that information in a new dataframe:
+
+```{r }
+df_summary <- df_DRC %>% group_by(Concentration, Replicate) %>% summarise(mean_Response=mean(Response))
+```
+
+We can define a plot that shows the data with `geom_jitter()` and the average with a large dot with `geom_point()`. Each replicate has its own color and the data is plotted on a log scale with `scale_x_log10()`:
+
+
+```{r}
+p <-  ggplot(data = df_DRC, aes(x = Concentration, y = Response)) + 
+  geom_jitter(aes(x = Concentration, y = Response, color=Replicate), width=0.2, size=2, shape=16, alpha=0.2) + 
+  geom_point(data=df_summary, aes(x = Concentration, y = mean_Response, fill=Replicate), size=8, shape=21, alpha=0.8) +
+  scale_x_log10()
+
+p
+```
+
+Adjusting the theme and the y-axis scale improves the plot:
+
+
+```{r }
+p <-  p +
+  ylim(-1,6) +
+  theme_light(16)
+
+p
+```
+
+
+Add labels:
+```{r}
+p <- p + labs(
+  title = "Responses of individual cells to Histamine",
+  x = "Histamine concentration [µM]",
+  y = "Response [arbitrary units]",
+  caption = "(based on data from Chavez-Abiega et al., DOI: 10.1242/jcs.259685)",
+  tag = "Protocol 9"
+) +
+  theme(plot.caption = element_text(color = "grey80"))
+```
+
+And to label the different replicates with a colorblind friendly palette, we define a set of colors that were proposed by Paul Tol: https://personal.sron.nl/~pault/
+
+```{r}
+Tol_bright <- c('66CCEE', '#BBBBBB', '#CCBB44','#AA3377','#228833', '#4477AA')
+```
+
+To use these colors we define manual color scales for both 'fill' (used for `geom_point()`) and 'color' (used for `geom_jitter()`):
+
+```{r }
+p <- p + scale_fill_manual(values = Tol_bright) + scale_color_manual(values = Tol_bright)
+p
+```
+
+
+The result is a dose response curve in which the replicates are clearly identified with colorblind friendly colors. The EC50 can be determined from fitting a curve. To this end, we use the function `nls()`, which needs an equation, the data and estimates of the values. It will perform a 'nonlinear least squares' optimization to find  parameters for the equation that best fit with the data of 'df_summary'. The parameters are 'bot', 'top', 'EC50' and 'slope':
+
+```{r }
+fit <- nls(mean_Response ~ top+(bot-top)/(1+(Concentration/EC50)^slope),
+           data = df_summary,
+           start=list(bot=-2, top=8, EC50=1, slope=1))
+```
+
+The result is stored in the object 'fit' and the parameters can be listed:
+
+```{r}
+coef(fit)
+```
+
+To plot the fitted data, we use `augment()` function that is part of the `broom` package, which we need to load:
+
+```{r }
+library(broom)
+
+p + geom_line(data = augment(fit), aes(x=Concentration,y=.fitted), color="black", size=1)
+```
+
+Instead of `geom_lin()` for plotting the fit, we can also use `geom_smooth()`: 
+
+```{r}
+p <- p + geom_smooth(data = augment(fit), aes(x=Concentration,y=.fitted), color="black", size=1)
+p
+```
+
+An alternative way to do the curve fit is provided through the `drc` package. To demonstrate this, we load the `drc` package and add the curve fit to the data:
+
+```{r }
+library(drc)
+p + geom_smooth(data=df_summary, aes(x = Concentration, y = mean_Response), color='blue', method = drm, method.args = list(fct = L.4()), se = FALSE)
+```
+
+The `drc` package was used to fit the data in the paper by [Chavez-Abiega et al. (2022)](https://doi.org/10.1242/jcs.259685). But the approach followed above with `nls()` is easier to adapt for data that requires other models for the fit.
+
+Finally, we can save the plot:
+
+
+```{r }
+png(file=paste0("Protocol_9.png"), width = 4000, height = 3200, units = "px", res = 400)
+ p
+dev.off()
+```
+
+
+
+
+
+

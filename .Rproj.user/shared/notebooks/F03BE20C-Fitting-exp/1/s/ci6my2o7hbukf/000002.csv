@@ -1,0 +1,5 @@
+"0","library(tidyverse)"
+"0","theme_set(theme_light())"
+"0","#Nature themed color palette by Eike =D"
+"0","#rapamycin would be springgreen4, magnets are cornflowerblue and iLID is darkorchid4"
+"0","newColors <- c(""cornflowerblue"", ""darkorchid4"", ""springgreen4"")"
