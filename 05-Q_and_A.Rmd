@@ -60,11 +60,17 @@ I prefer to literally type it. The shortcut that works in Rstudio is `<shift>+<c
 
 ------
 
-### {-}
+### Where do I find the example data? {-}
+
+The example data that is used in Chapter 2 and 3 is located on this github page: [https://github.com/JoachimGoedhart/DataViz-protocols](https://github.com/JoachimGoedhart/DataViz-protocols)
+
+The data that is used for the protocols in Chapter 4 is located in the subdirectory [/Protocols](https://github.com/JoachimGoedhart/DataViz-protocols/tree/main/Protocols).
 
 ------
 
-### {-}
+### Is there a way to re-use or adjust the protocols? {-}
+
+Instead of copy-pasting and running the code line-by-line, you can download the R Markdown file (.Rmd) from the protocols folder on the Github repository: [https://github.com/JoachimGoedhart/DataViz-protocols](https://github.com/JoachimGoedhart/DataViz-protocols). This file (together with the data) can be used to replicate the protocol and to modify it. For more info on  R Markdown, see [https://rmarkdown.rstudio.com](https://rmarkdown.rstudio.com)
 
 ------
 
