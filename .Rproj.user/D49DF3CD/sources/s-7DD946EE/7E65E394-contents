@@ -1,0 +1,48 @@
+--- 
+title: "DataViz protocols"
+subtitle: "An introduction to data visualization protocols for wet lab scientists"
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+description: "This is an introduction to data visualization protocols for wet lab scientists"
+cover-image: images/logo.png
+github-repo: "JoachimGoedhart/DataViz-protocols"
+always_allow_html: yes
+url: 'https\://joachimgoedhart.github.io/DataViz-protocols/'
+
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = NA, warning=FALSE)
+```
+
+
+# Preface {-}
+
+Experiments rely on step-by-step instructions that are detailed in protocols. These protocols, which are used in a wet lab, are similar to the instructions that are defined in scripts for data visualization. Although scientists are familiar with protocols for experiments, they are usually less familiar with code or scripts for handling experimental data. Given the similarities between experimental methods and computer instructions, it should be within reach for experimental scientists to add automated, reproducible data processing and visualization to their toolkit. This book aims to lower the barrier for wet lab scientists to use R and ggplot2 for data visualization. First, by explaining some basic principles in data processing and visualization. Second, by providing example protocols, which can be applied to your own data, and I hope that the protocols serve as inspiration and a starting point for new and improved protocols.
+
+Data visualization is the process of transforming information into a picture. The picture that reflects the information, helps humans to understand and interpret the data. As such, data visualization is an important step in the analysis of experimental data and it is key for interpretation of results. Moreover, proper data visualization is important for the communication about experiments and research in presentations and publications.
+
+Data visualization usually requires refinement of the data, e.g. reshaping or processing. Therefore, the translation of data into a visualization is a multistep process. This process can be automated by defining the steps in a script for a software application. A script is a set of instructions in a language that both humans and computers can understand. Using a script can make data analysis and visualization faster, robust against errors and reproducible. As it becomes easier and cheaper to gather data, it becomes more important to use automated analyses. Finally, scripts make the processing transparent when the scripts are shared or published. 
+
+R is a very popular programming language for all things related to data. It is freely available, open-source and there is a large community of active users. In addition, it fulfills a need for reproducible, automated data analysis. And lastly, with the ggplot2 extension, it is possible to generate state-of-the-art data visualizations. There are many great resources out there (that is also the reason I came this far) and below I list the specifics of this resource.
+First, there is a strict focus on R. All examples use R for all steps. Second, the datasets that are used are realistic and represent data that you may have. Several datasets that are used come from actual experimental data gathered in a wet lab. By using real data, specific issues that may not be treated elsewhere are encountered, discussed and solved. One of the reasons is that R requires a specific data format (detailed in chapter 2 [Reading and Reshaping data](#read-and-reshape)) before the data can be visualized. It is key to understand how experimental data should be processed and prepared in a way that it can be analyzed and visualized. As the required format is usually unfamiliar to wet lab scientists, I provide several examples of how to do this.
+Third, since details determine successful use of R, I will go into detail whenever necessary. Examples of  details include the use of spaces in column names, reading files with missing values, or optimizing the position of a label in a data visualization.
+Finally, modern analysis and visualization methods are treated and since the book is in a digital, online format it will be adjusted when new methods are introduced. An example of a recently introduced data visualization is the Superplot, which is the result of [Protocol 2](#protocol-2).
+
+Part of this work has been published as blogs on [The Node](https://thenode.biologists.com) and the enthusiastic response encouraged me to create a more structured and complete resource. This does not at all imply that this document needs to be read in a structured manner. If you are totally new to R it makes sense to first read the chapter [Getting started with R](#getting-started) which treats some of the essential basics. On the other hand, if you are familiar with R, you may be interested in the chapters on [Reading and Reshaping data](#read-and-reshape) or [Visualizing data](#plotting-the-data). Finally, masters in R/ggplot2 may jump right to the [Complete protocols](#complete-protocols). This final part brings all the ingredients of the preceding chapters together. Each protocol starts with raw data and shows all the steps that lead to a publication quality plot.
+
+I hope that you'll find this document useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter (feel free to mention me: \@joachimgoedhart), in meetings, in preprints or in peer reviewed publications.
+
+
+### A toast {-}
+Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter is a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with!
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
