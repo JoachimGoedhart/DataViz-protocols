@@ -1,6 +1,0 @@
-"0","p <- p + theme("
-"0","    plot.caption = element_text("
-"0","      color = ""grey80"","
-"0","      hjust = 1"
-"0","    ))"
-"0",""

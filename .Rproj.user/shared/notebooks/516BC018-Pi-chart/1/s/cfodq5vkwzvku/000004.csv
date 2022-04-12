@@ -1,2 +1,0 @@
-"0","p <- ggplot(data = df, aes(x=position, y=digit, fill=as.factor(digit))) + geom_bar(stat = 'identity')"
-"0","p"

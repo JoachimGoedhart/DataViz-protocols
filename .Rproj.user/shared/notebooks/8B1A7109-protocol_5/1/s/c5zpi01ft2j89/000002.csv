@@ -1,8 +1,0 @@
-"0","p <-"
-"0","  p + labs("
-"0","    title = ""Mapping the amino acid positions of HOXD13"","
-"0","    subtitle = ""shows a high abundance of alanines in the IDR"","
-"0","    y = ""Amino acid"","
-"0","    caption = ""(based on data from Basu et al, DOI: 10.1016/j.cell.2020.04.018)"","
-"0","    tag = ""Protocol 5"""
-"0","  )"

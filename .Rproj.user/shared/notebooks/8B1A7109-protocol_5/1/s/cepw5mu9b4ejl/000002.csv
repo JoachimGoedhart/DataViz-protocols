@@ -1,2 +1,0 @@
-"0","p <- p + theme(plot.subtitle = element_text(margin = margin(b=20)))"
-"0","p"

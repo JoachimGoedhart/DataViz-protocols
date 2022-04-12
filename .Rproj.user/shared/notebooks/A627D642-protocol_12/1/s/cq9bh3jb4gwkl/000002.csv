@@ -1,1 +1,0 @@
-"0","df_tidy <- df_tidy %>% mutate(`SGFP2-CTNNB1` = as.numeric(`Total SGFP2-CTNNB1 concentration`), .keep = ""unused"")"

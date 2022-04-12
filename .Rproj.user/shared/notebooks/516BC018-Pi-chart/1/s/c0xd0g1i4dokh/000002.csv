@@ -1,2 +1,0 @@
-"0","pi <- read.csv(""http://oeis.org/A000796/b000796.txt"", header=FALSE, sep="" "")"
-"0","colnames(pi) <- c(""position"", ""digit"")"

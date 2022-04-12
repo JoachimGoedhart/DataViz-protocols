@@ -1,3 +1,0 @@
-"0","df_tidy <- df_tidy %>% mutate(compartment ="
-"0","                                case_when(compartment==""cyto"" ~ ""cytoplasm"","
-"0","                                          TRUE ~ ""nucleus""))"

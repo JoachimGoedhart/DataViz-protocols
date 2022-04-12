@@ -1,4 +1,0 @@
-"0","p <- p + annotate(geom = ""rect"", xmin = -Inf, ymin = 0.5, xmax = Inf, ymax=3.5, fill='blue', alpha=0.15)"
-"0","p <- p + annotate(geom = ""rect"", xmin = -Inf, ymin = 3.5, xmax = Inf, ymax=5.5, fill='red', alpha=0.15)"
-"0","p <- p + annotate(geom = ""rect"", xmin = -Inf, ymin = 5.5, xmax = Inf, ymax=10.5, fill='yellow', alpha=0.15)"
-"0","p <- p + annotate(geom = ""rect"", xmin = -Inf, ymin = 10.5, xmax = Inf, ymax=20.5, fill='black', alpha=0.15)"

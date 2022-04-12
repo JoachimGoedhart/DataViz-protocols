@@ -1,3 +1,0 @@
-"0","p <- p + scale_y_continuous(breaks=seq(0,12,2), expand = c(0,0))"
-"2","Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
-"

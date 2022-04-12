@@ -1,7 +1,0 @@
-"0","p <- p + theme_minimal(base_size = 18) + "
-"0","  theme(panel.grid.minor = element_blank(),"
-"0","        panel.grid.major.x = element_blank(),"
-"0","        plot.caption = element_text(color=""grey80""),"
-"0","        legend.position = ""none"""
-"0","        )"
-"0","p"

@@ -1,5 +1,0 @@
-"0","p <- p + labs(fill='Digit',"
-"0","              y=""count"","
-"0","              title = paste(""Counting the numbers in the first"",n,""digits of π""),"
-"0","              caption = ""(Data: http://oeis.org/A000796/b000796.txt)"")"
-"0","p "

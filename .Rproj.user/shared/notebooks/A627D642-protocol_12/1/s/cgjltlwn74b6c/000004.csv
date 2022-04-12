@@ -1,7 +1,0 @@
-"0","p <- p + theme(strip.background = element_rect(fill=NA, color=""black"", size = .5),"
-"0","               strip.text = element_text(color = 'black'),"
-"0","               panel.grid = element_blank(),"
-"0","               legend.position = ""none"","
-"0","               plot.caption = element_text(color='grey80')"
-"0","               )"
-"0","p"

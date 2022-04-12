@@ -1,3 +1,0 @@
-"0","p <- ggplot() + geom_tile(data=df_5, aes(x=position, y=aa)) +"
-"0","        scale_y_discrete(limits = rev(amino_acid_ordered))"
-"0","p"

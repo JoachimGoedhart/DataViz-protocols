@@ -1,4 +1,0 @@
-"0","p <- p + theme_linedraw(base_size = 16) + "
-"0","          theme(panel.spacing = unit(0, ""points""))"
-"0",""
-"0","p"

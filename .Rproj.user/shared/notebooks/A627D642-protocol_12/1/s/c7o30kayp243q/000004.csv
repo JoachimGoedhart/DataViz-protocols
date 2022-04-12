@@ -1,5 +1,0 @@
-"0","p <- ggplot(df_tidy, aes(x=ligand, y=`SGFP2-CTNNB1`, fill = ligand)) +"
-"0","  geom_boxplot(outlier.color = NA) +"
-"0","  geom_jitter() + facet_wrap(~compartment)"
-"0",""
-"0","p"

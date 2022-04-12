@@ -1,2 +1,0 @@
-"0","n <- 50"
-"0","df <- pi[1:n,] %>% mutate(position=position-1)"
