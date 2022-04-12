@@ -1,6 +1,5 @@
 --- 
 title: "DataViz protocols"
-subtitle: "An introduction to data visualization protocols for wet lab scientists"
 author: "Joachim Goedhart"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,8 +8,8 @@ description: "This is an introduction to data visualization protocols for wet la
 output:
   bookdown::gitbook: default
 cover-image: images/logo.png
-github-repo: "JoachimGoedhart/DataViz-protocols"
-url: 'https\://joachimgoedhart.github.io/DataViz-protocols/'
+github-repo: JoachimGoedhart/DataViz-protocols
+url: https://joachimgoedhart.github.io/DataViz-protocols/
 
 ---
 

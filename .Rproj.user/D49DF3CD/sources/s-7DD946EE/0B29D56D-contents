@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Questions and Answers | DataViz protocols</title>
+  <title>DataViz protocols</title>
   <meta name="description" content="This is an introduction to data visualization protocols for wet lab scientists" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Questions and Answers | DataViz protocols" />
+  <meta property="og:title" content="DataViz protocols" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://joachimgoedhart.github.io/DataViz-protocols/" />
   <meta property="og:image" content="https://joachimgoedhart.github.io/DataViz-protocols//images/logo.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JoachimGoedhart/DataViz-protocols" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Questions and Answers | DataViz protocols" />
+  <meta name="twitter:title" content="DataViz protocols" />
   
   <meta name="twitter:description" content="This is an introduction to data visualization protocols for wet lab scientists" />
   <meta name="twitter:image" content="https://joachimgoedhart.github.io/DataViz-protocols//images/logo.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="complete-protocols.html"/>
 
+<link rel="next" href="getting-started.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -224,73 +224,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="questions-and-answers" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Questions and Answers</h1>
-<p>A list of questions that may arise during the use of R and their answers. When you have questions that remain unanswered, feel free to reach out!</p>
-<div id="what-is-the-difference-between-a-data.frame-and-a-tibble" class="section level3 unnumbered">
-<h3>What is the difference between a data.frame and a tibble?</h3>
-<p>Both are objects that hold data. The data.frame is the structure supported by basic R and the tibble is an extended variant that is supported by the tidyverse package. Dependig on the function that is used to load data, <code>read.csv()</code> from base R or <code>read_csv()</code> from the tidyverse, the data will be loaded in a data.frame or tibble, respectively. It is possible to convert a classic data.frame to a tibble (which requires the tidyverse pakcage):</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="questions-and-answers.html#cb323-1"></a>df &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(mtcars)</span>
-<span id="cb323-2"><a href="questions-and-answers.html#cb323-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
-<pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
-<p>And to convert a tibble to a data.frame:</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="questions-and-answers.html#cb325-1"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(df)</span>
-<span id="cb325-2"><a href="questions-and-answers.html#cb325-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
-<pre><code>[1] &quot;data.frame&quot;</code></pre>
-<hr />
+<div id="header">
+<h1 class="title">DataViz protocols</h1>
+<p class="author"><em>Joachim Goedhart</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2022-04-12</em></p>
 </div>
-<div id="whats-up-with-spaces-in-variable-names-and-in-files-names" class="section level3 unnumbered">
-<h3>What’s up with spaces in variable names and in files names?</h3>
-<p>Spaces are used to separate words (as in this line). When a space would be used between two words, these would be treated as separate entities. Avoiding spaces in filenames has a more technical background. Most filesystems currently accept spaces, but some systems do not. To increase compatibility across systems it is a good habit to use_underscores_instead.</p>
-<hr />
-</div>
-<div id="what-are-the-rules-for-naming-dataframes-or-variables" class="section level3 unnumbered">
-<h3>What are the rules for naming dataframes or variables?</h3>
-<p>Do not use spaces, stick to characters and numbers. Whenever a variable consists of multiple words, e.g. room temperature there are two options:</p>
-<ol style="list-style-type: decimal">
-<li>Add an underscore as separator: <code>room_temperature.</code></li>
-<li>Use the ‘camelCase’ notation: <code>roomTemperature.</code></li>
-</ol>
-<p>Personally, I prefer an underscore and the abbreviation df for dataframe when multiple dataframes are generated, e.g. df_tidy or df_summary</p>
-<hr />
-</div>
-<div id="what-is-the-difference-between---and-for-assigning-variables" class="section level3 unnumbered">
-<h3>What is the difference between <code>&lt;-</code> and <code>=</code> for assigning variables?</h3>
-<p>R prefers the <code>&lt;-</code> for the assignment of a value to a variable. In RStudio the shortcut is <code>&lt;alt&gt;+&lt;-&gt;</code>. It really is a <em>preference</em> since both can be used:</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="questions-and-answers.html#cb327-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb327-2"><a href="questions-and-answers.html#cb327-2"></a>y =<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb327-3"><a href="questions-and-answers.html#cb327-3"></a>x <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
-<pre><code>[1] 3</code></pre>
-<hr />
-</div>
-<div id="what-does-na-mean-in-a-dataframe" class="section level3 unnumbered">
-<h3>What does ‘NA’ mean in a dataframe?</h3>
-<p>When no data is available, this is known as a ‘missing value’. In R this is indicated with NA for ‘Not Available’. Empty cells in a CSV file will be converted to NA when the file is loaded. Other characters that can be present in a file (especially xls files) are: “.” or “NaN” or “#N/A” or “#VALUE!”. To convert these strings to NA use:</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="questions-and-answers.html#cb329-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>, <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;NaN&quot;</span>, <span class="st">&quot;#N/A&quot;</span>, <span class="st">&quot;#VALUE!&quot;</span>))</span></code></pre></div>
-<hr />
-</div>
-<div id="what-is-the-beste-way-to-type-a-operator" class="section level3 unnumbered">
-<h3>What is the beste way to type a ‘%&gt;%’ operator?</h3>
-<p>I prefer to literally type it. The shortcut that works in Rstudio is <code>&lt;shift&gt;+&lt;command&gt;+&lt;M&gt;</code> or <code>&lt;shift&gt;+&lt;control&gt;+&lt;M&gt;</code>.</p>
-<hr />
-</div>
-<div id="where-do-i-find-the-example-data" class="section level3 unnumbered">
-<h3>Where do I find the example data?</h3>
-<p>The example data that is used in Chapter 2 and 3 is located on this github page: <a href="https://github.com/JoachimGoedhart/DataViz-protocols">https://github.com/JoachimGoedhart/DataViz-protocols</a></p>
-<p>The data that is used for the protocols in Chapter 4 is located in the subdirectory <a href="https://github.com/JoachimGoedhart/DataViz-protocols/tree/main/Protocols">/Protocols</a>.</p>
-<hr />
-</div>
-<div id="is-there-a-way-to-re-use-or-adjust-the-protocols" class="section level3 unnumbered">
-<h3>Is there a way to re-use or adjust the protocols?</h3>
-<p>Instead of copy-pasting and running the code line-by-line, you can download the R Markdown file (.Rmd) from the protocols folder on the Github repository: <a href="https://github.com/JoachimGoedhart/DataViz-protocols">https://github.com/JoachimGoedhart/DataViz-protocols</a>. This file (together with the data) can be used to replicate the protocol and to modify it. For more info on R Markdown, see <a href="https://rmarkdown.rstudio.com">https://rmarkdown.rstudio.com</a></p>
-<hr />
-</div>
-<div id="section" class="section level3 unnumbered">
-<h3></h3>
-<hr />
-</div>
-<div id="section-1" class="section level3 unnumbered">
-<h3></h3>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p>Experiments rely on step-by-step instructions that are detailed in protocols. These protocols, which are used in a wet lab, are similar to the instructions that are defined in scripts for data visualization. Although scientists are familiar with protocols for experiments, they are usually less familiar with code or scripts for handling experimental data. Given the similarities between experimental methods and computer instructions, it should be within reach for experimental scientists to add automated, reproducible data processing and visualization to their toolkit. This book aims to lower the barrier for wet lab scientists to use R and ggplot2 for data visualization. First, by explaining some basic principles in data processing and visualization. Second, by providing example protocols, which can be applied to your own data, and I hope that the protocols serve as inspiration and a starting point for new and improved protocols.</p>
+<p>Data visualization is the process of transforming information into a picture. The picture that reflects the information, helps humans to understand and interpret the data. As such, data visualization is an important step in the analysis of experimental data and it is key for interpretation of results. Moreover, proper data visualization is important for the communication about experiments and research in presentations and publications.</p>
+<p>Data visualization usually requires refinement of the data, e.g. reshaping or processing. Therefore, the translation of data into a visualization is a multistep process. This process can be automated by defining the steps in a script for a software application. A script is a set of instructions in a language that both humans and computers can understand. Using a script can make data analysis and visualization faster, robust against errors and reproducible. As it becomes easier and cheaper to gather data, it becomes more important to use automated analyses. Finally, scripts make the processing transparent when the scripts are shared or published.</p>
+<p>R is a very popular programming language for all things related to data. It is freely available, open-source and there is a large community of active users. In addition, it fulfills a need for reproducible, automated data analysis. And lastly, with the ggplot2 extension, it is possible to generate state-of-the-art data visualizations. There are many great resources out there (that is also the reason I came this far) and below I list the specifics of this resource.
+First, there is a strict focus on R. All examples use R for all steps. Second, the datasets that are used are realistic and represent data that you may have. Several datasets that are used come from actual experimental data gathered in a wet lab. By using real data, specific issues that may not be treated elsewhere are encountered, discussed and solved. One of the reasons is that R requires a specific data format (detailed in chapter 2 <a href="read-and-reshape.html#read-and-reshape">Reading and Reshaping data</a>) before the data can be visualized. It is key to understand how experimental data should be processed and prepared in a way that it can be analyzed and visualized. As the required format is usually unfamiliar to wet lab scientists, I provide several examples of how to do this.
+Third, since details determine successful use of R, I will go into detail whenever necessary. Examples of details include the use of spaces in column names, reading files with missing values, or optimizing the position of a label in a data visualization.
+Finally, modern analysis and visualization methods are treated and since the book is in a digital, online format it will be adjusted when new methods are introduced. An example of a recently introduced data visualization is the Superplot, which is the result of <a href="complete-protocols.html#protocol-2">Protocol 2</a>.</p>
+<p>Part of this work has been published as blogs on <a href="https://thenode.biologists.com">The Node</a> and the enthusiastic response encouraged me to create a more structured and complete resource. This does not at all imply that this document needs to be read in a structured manner. If you are totally new to R it makes sense to first read the chapter <a href="getting-started.html#getting-started">Getting started with R</a> which treats some of the essential basics. On the other hand, if you are familiar with R, you may be interested in the chapters on <a href="read-and-reshape.html#read-and-reshape">Reading and Reshaping data</a> or <a href="plotting-the-data.html#plotting-the-data">Visualizing data</a>. Finally, masters in R/ggplot2 may jump right to the <a href="complete-protocols.html#complete-protocols">Complete protocols</a>. This final part brings all the ingredients of the preceding chapters together. Each protocol starts with raw data and shows all the steps that lead to a publication quality plot.</p>
+<p>I hope that you’ll find this document useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter (feel free to mention me: @joachimgoedhart), in meetings, in preprints or in peer reviewed publications.</p>
+<div id="a-toast" class="section level3 unnumbered">
+<h3>A toast</h3>
+<p>Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter is a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with!</p>
 
 </div>
 </div>
@@ -299,8 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="complete-protocols.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
+<a href="getting-started.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
