@@ -1,0 +1,2 @@
+"0","p <- p + scale_fill_manual(values = c(""grey"", ""cyan""))"
+"0","p"

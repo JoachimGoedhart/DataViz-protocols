@@ -1,0 +1,2 @@
+"0","df <- readxl::read_excel('Summary_GlobalActivation_TimeTrace_TIAM_01.xlsx')"
+"0","head(df)"

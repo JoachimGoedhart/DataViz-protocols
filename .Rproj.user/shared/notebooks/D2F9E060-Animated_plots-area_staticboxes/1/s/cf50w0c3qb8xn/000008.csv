@@ -1,0 +1,2 @@
+"0","ymax <- max(df_norm$Area_norm)*1.05"
+"0","ymin <- min(df_norm$Area_norm)*.95"

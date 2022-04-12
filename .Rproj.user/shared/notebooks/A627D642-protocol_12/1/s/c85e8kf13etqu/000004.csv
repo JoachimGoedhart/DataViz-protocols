@@ -1,0 +1,2 @@
+"0","df_tidy <- df_tidy %>% separate(`Sample`, c(""Celltype"", ""ligand"", ""number"", ""compartment""), sep="" "")"
+"0","head(df_tidy)"

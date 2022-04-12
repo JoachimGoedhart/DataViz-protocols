@@ -17,7 +17,7 @@ quantitative-data-discrete-conditions
 multiple-discrete-conditions
 double-quantitative-data
 data-from-multiple-files
-data-in-96-wells-format
+data-in-96-wells-format-data-in-96-wells-format
 plotting-the-data
 data-over-time-continuous-vs.-continuous
 discrete-conditions

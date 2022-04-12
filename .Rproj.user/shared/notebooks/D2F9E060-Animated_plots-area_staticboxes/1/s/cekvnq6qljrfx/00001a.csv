@@ -1,0 +1,6 @@
+"0","p <- ggplot(df_summary, aes(x=Time, y=mean)) +"
+"0","  annotate(""rect"", xmin = 0, xmax = 135 , ymin = ymin, ymax = ymax, fill=""grey"", alpha=1) +"
+"0","  annotate(""rect"", xmin = 135, xmax = 720 , ymin = ymin, ymax = ymax, fill=""cyan"", alpha=1) +"
+"0","  annotate(""rect"", xmin = 720, xmax = 1500 , ymin = ymin, ymax = ymax, fill=""grey"", alpha=1) +"
+"0","  geom_line(size=2, color='darkorchid4') "
+"0","p"

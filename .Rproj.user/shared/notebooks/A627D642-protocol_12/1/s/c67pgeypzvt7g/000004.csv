@@ -1,0 +1,7 @@
+"0","p <- p + labs(x="""","
+"0","              y=""Concentration [nM]"","
+"0","              title = ""Total SGFP2-CTNNB1"","
+"0","              caption = ""(based on data from de Man et al., DOI: 10.7554/eLife.66440)"","
+"0","              tag = ""Protocol 12"""
+"0","              )"
+"0","p"

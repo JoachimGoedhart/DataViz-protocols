@@ -42,12 +42,21 @@ The third column, containing the measurement data has the class `<chr>`, but the
 df_tidy <- df_tidy %>% mutate(`SGFP2-CTNNB1` = as.numeric(`Total SGFP2-CTNNB1 concentration`), .keep = "unused")
 ```
 
-Finally, we need to separate the first column, since it contains the relevant data on the conditions and the grouping of the data:
+Next, we need to separate the first column, since it contains the relevant data on the conditions and the grouping of the data:
 
 ```{r}
 df_tidy <- df_tidy %>% separate(`Sample`, c("Celltype", "ligand", "number", "compartment"), sep=" ")
 head(df_tidy)
 ```
+
+Finally, we change the abbreviated 'cyto' to 'cytoplasm' as it will later be used as a label for the facets:
+
+```{r}
+df_tidy <- df_tidy %>% mutate(compartment =
+                                case_when(compartment=="cyto" ~ "cytoplasm",
+                                          TRUE ~ "nucleus"))
+```
+
 
 There are two compartments (nucleus and cytoplasm) and two ligands (BSA as a control and WNT3A). This data can be plotted in a number of different ways. The first way is by comparing the different compartments for each ligand: 
 
@@ -107,5 +116,4 @@ p <- p + labs(x="",
               )
 p
 ```
-
 

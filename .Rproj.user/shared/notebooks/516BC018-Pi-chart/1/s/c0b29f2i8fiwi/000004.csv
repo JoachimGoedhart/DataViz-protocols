@@ -1,0 +1,5 @@
+"0","p <- p + labs(fill='Digit',"
+"0","              y="""","
+"0","              title = paste(""Pi chart: the first"",n,""digits of pi""),"
+"0","              caption = ""(Data: http://oeis.org/A000796/b000796.txt)"")"
+"0","p"

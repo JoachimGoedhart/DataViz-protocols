@@ -1,0 +1,5 @@
+"0","p <- ggplot(data = df_summary) + "
+"0","  geom_rect(data = df_box, aes(xmin=t1, xmax=t2, ymin=ymin, ymax=ymax, fill=light), alpha=0.8) +"
+"0","  geom_text(data = df_box, aes(x=(t1+t2)/2,y=ymax*1.03, label=light), size=8) +"
+"0","  geom_line(aes(x=Time, y=mean), size=2, color='darkorchid4') "
+"0","p"

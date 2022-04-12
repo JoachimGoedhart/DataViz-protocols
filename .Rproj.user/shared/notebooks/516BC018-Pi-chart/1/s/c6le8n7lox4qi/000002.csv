@@ -1,0 +1,2 @@
+"0","# library(gganimate)"
+"0","# p + transition_manual(frames = position, cumulative = TRUE) + view_follow(fixed_y = TRUE)"

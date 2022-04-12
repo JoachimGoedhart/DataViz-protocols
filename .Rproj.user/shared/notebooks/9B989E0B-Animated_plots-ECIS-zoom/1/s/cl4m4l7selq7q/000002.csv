@@ -1,0 +1,1 @@
+"0","p <- p + geom_label(aes(x = Time, y=mean, label=type), nudge_x = 0.02, size=4, hjust=0)"

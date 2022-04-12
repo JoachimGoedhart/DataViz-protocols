@@ -1,0 +1,2 @@
+"0","df_box <- data.frame(t1=c(0,135,720),t2=c(135,720,1500), light=c(""OFF"",""ON"",""OFF""))"
+"0","df_box"

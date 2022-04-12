@@ -1,0 +1,3 @@
+"0","df_sub_summary <- df_sub %>% group_by(type, Time) %>% summarize(mean=mean(Value))"
+"2","`summarise()` has grouped output by 'type'. You can override using the `.groups` argument.
+"

@@ -1,0 +1,4 @@
+"0","animation <- animate(a, nframes=88)"
+"2","Error in `$<-.data.frame`(`*tmp*`, ""group"", value = """") : 
+  replacement has 1 row, data has 0
+"

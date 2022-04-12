@@ -24,7 +24,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2022-03-16" />
+<meta name="date" content="2022-04-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.2" data-path="read-and-reshape.html"><a href="read-and-reshape.html#multiple-discrete-conditions"><i class="fa fa-check"></i><b>2.4.2</b> Multiple discrete conditions</a></li>
 <li class="chapter" data-level="2.4.3" data-path="read-and-reshape.html"><a href="read-and-reshape.html#double-quantitative-data"><i class="fa fa-check"></i><b>2.4.3</b> Double quantitative data</a></li>
 <li class="chapter" data-level="2.4.4" data-path="read-and-reshape.html"><a href="read-and-reshape.html#data-from-multiple-files"><i class="fa fa-check"></i><b>2.4.4</b> Data from multiple files</a></li>
-<li class="chapter" data-level="2.4.5" data-path="read-and-reshape.html"><a href="read-and-reshape.html#data-in-96-wells-format"><i class="fa fa-check"></i><b>2.4.5</b> Data in 96-wells format</a></li>
+<li class="chapter" data-level="2.4.5" data-path="read-and-reshape.html"><a href="read-and-reshape.html#data-in-96-wells-format-data-in-96-wells-format"><i class="fa fa-check"></i><b>2.4.5</b> Data in 96-wells format {data-in-96-wells-format}</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="plotting-the-data.html"><a href="plotting-the-data.html"><i class="fa fa-check"></i><b>3</b> Plotting the Data</a><ul>
@@ -202,10 +202,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="questions-and-answers.html#what-is-the-difference-between---and-for-assigning-variables">What is the difference between <code>&lt;-</code> and <code>=</code> for assigning variables?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-does-na-mean-in-a-dataframe"><i class="fa fa-check"></i>What does ‘NA’ mean in a dataframe?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-beste-way-to-type-a-operator"><i class="fa fa-check"></i>What is the beste way to type a ‘%&gt;%’ operator?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#where-do-i-find-the-example-data"><i class="fa fa-check"></i>Where do I find the example data?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-there-a-way-to-re-use-or-adjust-the-protocols"><i class="fa fa-check"></i>Is there a way to re-use or adjust the protocols?</a></li>
 <li><a href="questions-and-answers.html#section"></a></li>
 <li><a href="questions-and-answers.html#section-1"></a></li>
-<li><a href="questions-and-answers.html#section-2"></a></li>
-<li><a href="questions-and-answers.html#section-3"></a></li>
 </ul></li>
 </ul>
 
@@ -273,9 +273,10 @@ It is important to make the distinction between different types of data and tell
 <h3><span class="header-section-number">2.3.1</span> Loading data from a text or csv file</h3>
 <p>Before we can read the file, we need to make sure that we can locate the file. In RStudio you can select the directory (folder) from the menu: Session &gt; Set Working Directory &gt; Choose Directory…</p>
 <p>If you are running an R script and the data is in the same directory as the script, you can go to the menu of Rstudio and select: Session &gt; Set Working Directory &gt; To Source File Location</p>
-<p>When the directory is properly set, you can read the file. A common file format is the ‘comma separated values’ or CSV format. Here we load a CSV file that was obtained from <a href="www.fpbase.org">fpbase.org</a> and contains the excitation and emission data of Green Fluorescent Protein. The data is assigned to a dataframe called ‘df’:</p>
+<p>When the directory is properly set, you can read the file. A common file format is the ‘comma separated values’ or CSV format. Here we load a CSV file that was obtained from <a href="www.fpbase.org">fpbase.org</a> and contains the excitation and emission data of Green Fluorescent Protein. This file and all other example data are available at github: <a href="https://github.com/JoachimGoedhart/DataViz-protocols">https://github.com/JoachimGoedhart/DataViz-protocols</a>
+The function <code>read_csv()</code> is used to read the file and the data is assigned to a dataframe called ‘df’:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="read-and-reshape.html#cb28-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>)</span></code></pre></div>
-<p>To check whether the loading was succesful, we can look at the first lines of the dataframe with the function <code>head()</code>:</p>
+<p>To check whether the loading was successful, we can look at the first lines of the dataframe with the function <code>head()</code>:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="read-and-reshape.html#cb29-1"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>  Wavelength mEGFP.EM mEGFP.EX
 1        300       NA   0.0962
@@ -284,7 +285,7 @@ It is important to make the distinction between different types of data and tell
 4        303       NA   0.0739
 5        304       NA   0.0675
 6        305       NA   0.0612</code></pre>
-<p>This data has several columns, each containing quantitative data. Empty cells that do not have any data will be displayed as ‘NA’. Note that this is different from ‘0’!</p>
+<p>This data has several columns, each containing quantitative data. Empty cells that do not have any data will be displayed as ‘NA’. Note that this is different from ‘0’.</p>
 </div>
 <div id="loading-data-from-a-url" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Loading data from a URL</h3>
@@ -672,8 +673,8 @@ Let’s save the data in a csv file:</p>
 <p>We will save this tidy dataframe for later use:</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="read-and-reshape.html#cb92-1"></a>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;df_S1P_combined_tidy.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
-<div id="data-in-96-wells-format" class="section level3">
-<h3><span class="header-section-number">2.4.5</span> Data in 96-wells format</h3>
+<div id="data-in-96-wells-format-data-in-96-wells-format" class="section level3">
+<h3><span class="header-section-number">2.4.5</span> Data in 96-wells format {data-in-96-wells-format}</h3>
 <p>Data measured on samples in multiwell plates are often stored in a structure that resembles the plate layout. As an example, we use here a dataset from a luciferase experiment, measured with a 96-well plate luminescence reader. The data is stored in a sheet named ‘Results’ in an xlsx file. The cells in which the data is stored are located in F21:Q28. By selecting these cells, only the 96 values that were measured are read:</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="read-and-reshape.html#cb93-1"></a>df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;DualLuc_example_data.xlsx&#39;</span>, <span class="dt">sheet =</span> <span class="st">&#39;Results&#39;</span>, <span class="dt">range =</span> <span class="st">&quot;F21:Q28&quot;</span>, <span class="dt">col_names =</span> F)</span></code></pre></div>
 <pre><code>New names:

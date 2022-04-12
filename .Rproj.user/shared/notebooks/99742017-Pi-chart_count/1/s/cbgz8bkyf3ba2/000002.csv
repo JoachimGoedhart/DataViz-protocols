@@ -1,0 +1,2 @@
+"0","p <- ggplot(data = df, aes(x=digit, fill=as.factor(digit))) + geom_bar()"
+"0","p"

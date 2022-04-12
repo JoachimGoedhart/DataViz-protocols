@@ -1,0 +1,98 @@
+---
+title: "Opto-animations"
+author: "Joachim Goedhart"
+date: "3/21/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## (Animated) plots of data from optogenetics experiments
+
+Load the required packages:
+
+```{r}
+library(tidyverse)
+library(gganimate)
+
+```
+
+```{r}
+df <- readxl::read_excel('210222_OptoG08_02_Sheldon_TIAM_tidy_02.xlsx')
+head(df)
+```
+Select a timerange between 17.75 and 18.8378:
+
+```{r}
+df_sub <- df %>% filter(Time >= 17.75 & Time <= 18.8378)
+```
+
+```{r}
+df_sub_summary <- df_sub %>% group_by(type, Time) %>% summarize(mean=mean(Value))
+```
+
+
+
+Define light conditions:
+
+```{r}
+df_sub <- df_sub %>% mutate(light = case_when(Time >= 17.8333 & Time <= 18.0833  ~ "ON",
+                                              Time >= 18.3333 & Time <= 18.5833  ~ "ON",
+                                              TRUE ~ "OFF"
+                                              )
+                            )
+```
+
+
+
+Make a plot:
+
+```{r}
+ggplot(df_sub_summary, aes(x=Time, y=mean, color = type)) + geom_line(size=2) 
+```
+
+Let's define an object:
+
+```{r}
+p <- ggplot(df_sub_summary, aes(x=Time, y=mean, color = type)) + geom_line(size=2) + geom_point(aes(fill=type), color="black", size=4, shape=21)
+```
+
+```{r}
+p <- p + theme_light(base_size=18) +
+  theme(panel.grid = element_blank()) +
+  theme(legend.position="none")
+```
+
+```{r}
+p <- p + annotate("rect", xmin = 17.8333, xmax = 18.0833 , ymin = -Inf, ymax = Inf, fill="blue", alpha=0.1) +
+   annotate("rect", xmin = 18.3333, xmax = 18.5833 , ymin = -Inf, ymax = Inf, fill="blue", alpha=0.1)
+p
+```
+
+Change the colors:
+```{r}
+p <- p + scale_color_manual(values = c("#BEBEBE", "darkorchid4")) +
+  scale_fill_manual(values = c("#BEBEBE", "darkorchid4"))
+p
+```
+
+```{r}
+p <- p + geom_label(aes(x = Time, y=mean, label=type), nudge_x = 0.02, size=4, hjust=0)
+```
+
+
+
+
+```{r}
+a <- p + transition_reveal(Time)
+```
+
+Define light conditions:
+```{r}
+animation <- animate(a, nframes=100)
+animation
+```
+
+

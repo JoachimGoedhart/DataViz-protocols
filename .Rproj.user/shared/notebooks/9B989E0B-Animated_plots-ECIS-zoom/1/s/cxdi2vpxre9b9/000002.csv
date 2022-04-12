@@ -1,0 +1,5 @@
+"0","df_sub <- df_sub %>% mutate(light = case_when(Time >= 17.8333 & Time <= 18.0833  ~ ""ON"","
+"0","                                              Time >= 18.3333 & Time <= 18.5833  ~ ""ON"","
+"0","                                              TRUE ~ ""OFF"""
+"0","                                              )"
+"0","                            )"

@@ -1,0 +1,2 @@
+"0","df_tidy <- df_download %>% slice(-(1:12)) %>% select(1:3)"
+"0","head(df_tidy)"

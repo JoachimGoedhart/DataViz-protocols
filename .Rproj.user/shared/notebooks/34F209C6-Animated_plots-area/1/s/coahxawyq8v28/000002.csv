@@ -1,0 +1,1 @@
+"0","df <- df %>% group_by(Cell) %>% arrange(Time) %>% mutate(Area_norm=AreaShape_Area/AreaShape_Area[1]) %>% ungroup()"
