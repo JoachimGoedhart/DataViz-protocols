@@ -6,7 +6,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 description: "This is an introduction to data visualization protocols for wet lab scientists"
-cover-image: images/logo.png
+cover-image: logo.png
 github-repo: "JoachimGoedhart/DataViz-protocols"
 always_allow_html: yes
 url: 'https\://joachimgoedhart.github.io/DataViz-protocols/'
