@@ -24,7 +24,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2022-04-13" />
+<meta name="date" content="2022-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -207,6 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-3"><i class="fa fa-check"></i><b>4.3</b> Protocol 3 - small multiples of time courses</a></li>
 <li class="chapter" data-level="4.4" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-4"><i class="fa fa-check"></i><b>4.4</b> Protocol 4 - Plotting data from a 96-wells experiment</a></li>
 <li class="chapter" data-level="4.5" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-5"><i class="fa fa-check"></i><b>4.5</b> Protocol 5 - A map of amino acids</a></li>
+<li class="chapter" data-level="4.6" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-6"><i class="fa fa-check"></i><b>4.6</b> Protocol 6 - Heatmap style visualization of timelapse data</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a><ul>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble"><i class="fa fa-check"></i>What is the difference between a data.frame and a tibble?</a></li>
@@ -217,8 +218,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-beste-way-to-type-a-operator"><i class="fa fa-check"></i>What is the beste way to type a ‘%&gt;%’ operator?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#where-do-i-find-the-example-data"><i class="fa fa-check"></i>Where do I find the example data?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-there-a-way-to-re-use-or-adjust-the-protocols"><i class="fa fa-check"></i>Is there a way to re-use or adjust the protocols?</a></li>
+<li><a href="questions-and-answers.html#which-packages-are-included-in-the-tidyverse-package">Which packages are included in the <code>{tidyverse}</code> package?</a></li>
 <li><a href="questions-and-answers.html#section"></a></li>
-<li><a href="questions-and-answers.html#section-1"></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -244,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">DataViz protocols</h1>
 <h2 class="subtitle"><em>An introduction to data visualization protocols for wet lab scientists</em></h2>
 <p class="author"><em>Joachim Goedhart</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2022-04-13</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2022-04-21</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
@@ -256,7 +257,7 @@ First, there is a strict focus on R. All examples use R for all steps. Second, t
 Third, since details determine successful use of R, I will go into detail whenever necessary. Examples of details include the use of spaces in column names, reading files with missing values, or optimizing the position of a label in a data visualization.
 Finally, modern analysis and visualization methods are treated and since the book is in a digital, online format it will be adjusted when new methods are introduced. An example of a recently introduced data visualization is the Superplot, which is the result of <a href="complete-protocols.html#protocol-2">Protocol 2</a>.</p>
 <p>Part of this work has been published as blogs on <a href="https://thenode.biologists.com">The Node</a> and the enthusiastic response encouraged me to create a more structured and complete resource. This does not at all imply that this document needs to be read in a structured manner. If you are totally new to R it makes sense to first read the chapter <a href="getting-started.html#getting-started">Getting started with R</a> which treats some of the essential basics. On the other hand, if you are familiar with R, you may be interested in the chapters on <a href="read-and-reshape.html#read-and-reshape">Reading and Reshaping data</a> or <a href="plotting-the-data.html#plotting-the-data">Visualizing data</a>. Finally, masters in R/ggplot2 may jump right to the <a href="complete-protocols.html#complete-protocols">Complete protocols</a>. This final part brings all the ingredients of the preceding chapters together. Each protocol starts with raw data and shows all the steps that lead to a publication quality plot.</p>
-<p>I hope that you’ll find this document useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter (feel free to mention me: @joachimgoedhart), in meetings, in preprints or in peer reviewed publications.</p>
+<p>I hope that you’ll find this book useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter (feel free to mention me: @joachimgoedhart), in meetings, in preprints or in peer reviewed publications.</p>
 <div id="a-toast" class="section level3 unnumbered">
 <h3>A toast</h3>
 <p>Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter is a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with!</p>

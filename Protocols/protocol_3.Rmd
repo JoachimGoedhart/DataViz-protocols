@@ -132,7 +132,7 @@ p <-
     title = "Changes in the shape of migrating cells over time",
     x = "Time [300s]",
     y = "Circularity [0-1]",
-    caption = "(based on data from Arts et al., DOI: 10.3389/fimmu.2021.667213)",
+    caption = "@joachimgoedhart\n(based on data from Arts et al., DOI: 10.3389/fimmu.2021.667213)",
     tag = "Protocol 3"
   ) 
 ```
@@ -145,7 +145,7 @@ p
 
 
 ```{r }
-png(file=paste0("Protocol_3.png"), width = 4000, height = 3200, units = "px", res = 400)
+png(file=paste0("Protocol_3.png"), width = 4000, height = 3000, units = "px", res = 400)
  p
 dev.off()
 ```

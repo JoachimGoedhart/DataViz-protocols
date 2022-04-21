@@ -32,10 +32,16 @@ QVYCTKDQPQGSHFWKSSFPGDVALNQPDMCVYRRGRKKRVPYTKLQLKELENEYAINKF
 INKDKRRRISAATNLSERQVTIWFQNRRVKDKKIVSKLKDTVS")
 ```
 
-The protein sequence may contain end-of-line characters "\n" after copy pasting and we need to remove these:
+The protein sequence may contain end-of-line characters "\n" after copy pasting and we need to remove these. The `gsub()` function can be used:
 
 ```{r }
-protein <- gsub("\n", "", protein)
+gsub("\n", "", protein)
+```
+
+But we can also use `str_replace_all()` from the {tidyverse} package:
+
+```{r}
+protein <- protein %>% str_replace_all("\n", "")
 ```
 
 Next, the protein sequence is split into single characters and we assign this vector to `aa`:
@@ -105,7 +111,7 @@ p <-
     title = "Mapping the amino acid positions of HOXD13",
     subtitle = "shows a high abundance of alanines in the IDR",
     y = "Amino acid",
-    caption = "(based on data from Basu et al, DOI: 10.1016/j.cell.2020.04.018)",
+    caption = "@joachimgoedhart | based on data from Basu et al, DOI: 10.1016/j.cell.2020.04.018",
     tag = "Protocol 5"
   )
 ```
@@ -148,7 +154,7 @@ p
 Finally we can save the plot:
 
 ```{r }
-png(file=paste0("Protocol_5.png"), width = 4000, height = 3200, units = "px", res = 400)
+png(file=paste0("Protocol_5.png"), width = 4000, height = 3000, units = "px", res = 400)
  p
 dev.off()
 ```

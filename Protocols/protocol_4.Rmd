@@ -7,7 +7,7 @@ output: html_document
 
 ## Protocol 4 - Plotting data from a 96-wells experiment {#protocol-4}
 
-This protocol showcases some serious data wrangling and tidying. One reasons is that the data is acquired with a 96-wells plate reader and the data is stored according to the layout of the plate. This makes total sense from a human perspective, but it is not well suited for data visualization.
+This protocol showcases some serious data wrangling and tidying. One reason is that the data is acquired with a 96-wells plate reader and the data is stored according to the layout of the plate. This makes total sense from a human perspective, but it is not well suited for data visualization.
 
 In addition, the plate is measured twice. One measurement is the luminescence from a luciferase and the other measurement is the luminescence from Renilla. The latter reading serves as a reference and therefore, the luciferase data is divided by the Renilla intensities. A final step before the data is visualized is a normalization to a control condition.
 
@@ -145,7 +145,7 @@ p <-
     subtitle = "The expression level was determined by a dual luciferase assay\n and the values were normalized to a control with no DNA sequence (-)",
     x = "DNA Sequence",
     y = "Fold change of the reporter relative to the control (-)",
-    caption = "(based on data from Brandorff et al., DOI: 10.1101/2021.07.08.451595)",
+    caption = "@joachimgoedhart\n(based on data from Brandorff et al., DOI: 10.1101/2021.07.08.451595)",
     tag = "Protocol 4"
   ) 
 ```
@@ -178,7 +178,7 @@ p
 To save the plot as a png file:
 
 ```{r }
-png(file=paste0("Protocol_4.png"), width = 4000, height = 3200, units = "px", res = 400)
+png(file=paste0("Protocol_4.png"), width = 4000, height = 3000, units = "px", res = 400)
  p
 dev.off()
 ```

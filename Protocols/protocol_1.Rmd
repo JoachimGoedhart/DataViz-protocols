@@ -124,7 +124,7 @@ p <-
     title = "Spectra of Fluorescent Proteins",
     x = "Wavelength [nm]",
     y = "Normalized Intensity [a.u.]",
-    caption = "(based on data from FPbase.org)",
+    caption = "@joachimgoedhart\n(based on data from FPbase.org)",
     tag = "Protocol 1"
   )
 ```
@@ -178,7 +178,7 @@ p
 To save this plot as a PNG file:
 
 ```{r }
-png(file=paste0("Protocol_1.png"), width = 4000, height = 2600, units = "px", res = 400)
+png(file=paste0("Protocol_1.png"), width = 4000, height = 3000, units = "px", res = 400)
   p
 dev.off()
 ```

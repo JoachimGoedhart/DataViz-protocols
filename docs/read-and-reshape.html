@@ -24,7 +24,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2022-04-13" />
+<meta name="date" content="2022-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -207,6 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-3"><i class="fa fa-check"></i><b>4.3</b> Protocol 3 - small multiples of time courses</a></li>
 <li class="chapter" data-level="4.4" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-4"><i class="fa fa-check"></i><b>4.4</b> Protocol 4 - Plotting data from a 96-wells experiment</a></li>
 <li class="chapter" data-level="4.5" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-5"><i class="fa fa-check"></i><b>4.5</b> Protocol 5 - A map of amino acids</a></li>
+<li class="chapter" data-level="4.6" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-6"><i class="fa fa-check"></i><b>4.6</b> Protocol 6 - Heatmap style visualization of timelapse data</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a><ul>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble"><i class="fa fa-check"></i>What is the difference between a data.frame and a tibble?</a></li>
@@ -217,8 +218,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-beste-way-to-type-a-operator"><i class="fa fa-check"></i>What is the beste way to type a ‘%&gt;%’ operator?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#where-do-i-find-the-example-data"><i class="fa fa-check"></i>Where do I find the example data?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-there-a-way-to-re-use-or-adjust-the-protocols"><i class="fa fa-check"></i>Is there a way to re-use or adjust the protocols?</a></li>
+<li><a href="questions-and-answers.html#which-packages-are-included-in-the-tidyverse-package">Which packages are included in the <code>{tidyverse}</code> package?</a></li>
 <li><a href="questions-and-answers.html#section"></a></li>
-<li><a href="questions-and-answers.html#section-1"></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -406,7 +407,7 @@ In its current shape, the dataframe is not suitable for simultaneously plotting 
 <h2><span class="header-section-number">2.4</span> Reshaping data</h2>
 <p>Data is often recorded in tables or spreadsheets. Columns are typically used for different conditions (indicated in a header) and each data cell contains a measured value. Although this format makes perfect sense for humans, it is less suitable for analysis and visualization in R. Instead of the tabular, or wide, format, the functions from the tidyverse package work with data in a ‘tidy’ format. The benefit of tidy data is that it is a consistent way to structure datasets, facilitating data manipulation and visualization <a href="https://doi.org/10.18637/jss.v059.i10">Wickham, 2014</a>. In other words, this format simplifies downstream processing and visualization.
 In this section, I will show how data can be converted from spreadsheet format to a long, tidy format. This step is needed to prepare the data for visualization with <code>ggplot()</code> which is also part of the tidyverse package. I will use the nomenclature that is used in the original publication by Hadley Wickham.</p>
-<p>Before we start, a quick warning that I have been struggling with the concept of tidy data. Probably, because I was very much used to collect, process and summarize data in spreadsheets. In addition, I am used to read and present data in a tabular format. It is important to stress that data in the tidy format contains exactly the same information as non-tidy, spreadsheet data, but it is structured in a different way. In fact we can switch between the two formats with functions that are provided by R.</p>
+<p>Before we start, a quick warning that I have been struggling with the concept of tidy data. Probably, because I was very much used to collect, process and summarize data in spreadsheets. In addition, I am used to read and present data in a tabular format. It is important to realize that data in the tidy format contains exactly the same information as non-tidy, spreadsheet data, but it is structured in a different way. In fact we can switch back and forth between the two formats with functions that are provided by R.</p>
 <div id="quantitative-data-discrete-conditions" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> Quantitative data, discrete conditions</h3>
 <p>Let’s say that you have measured cell sizes under a number of different experimental conditions and this is stored in an excel spreadsheet. Let’s load the data:</p>

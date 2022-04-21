@@ -6,7 +6,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 description: "This is an introduction to data visualization protocols for wet lab scientists"
-cover-image: logo.png
+cover-image: "logo.png"
 github-repo: "JoachimGoedhart/DataViz-protocols"
 always_allow_html: yes
 url: 'https\://joachimgoedhart.github.io/DataViz-protocols/'
@@ -28,12 +28,12 @@ Data visualization usually requires refinement of the data, e.g. reshaping or pr
 
 R is a very popular programming language for all things related to data. It is freely available, open-source and there is a large community of active users. In addition, it fulfills a need for reproducible, automated data analysis. And lastly, with the ggplot2 extension, it is possible to generate state-of-the-art data visualizations. There are many great resources out there (that is also the reason I came this far) and below I list the specifics of this resource.
 First, there is a strict focus on R. All examples use R for all steps. Second, the datasets that are used are realistic and represent data that you may have. Several datasets that are used come from actual experimental data gathered in a wet lab. By using real data, specific issues that may not be treated elsewhere are encountered, discussed and solved. One of the reasons is that R requires a specific data format (detailed in chapter 2 [Reading and Reshaping data](#read-and-reshape)) before the data can be visualized. It is key to understand how experimental data should be processed and prepared in a way that it can be analyzed and visualized. As the required format is usually unfamiliar to wet lab scientists, I provide several examples of how to do this.
-Third, since details determine successful use of R, I will go into detail whenever necessary. Examples of  details include the use of spaces in column names, reading files with missing values, or optimizing the position of a label in a data visualization.
+Third, since details determine successful use of R, I will go into detail whenever necessary. Examples of details include the use of spaces in column names, reading files with missing values, or optimizing the position of a label in a data visualization.
 Finally, modern analysis and visualization methods are treated and since the book is in a digital, online format it will be adjusted when new methods are introduced. An example of a recently introduced data visualization is the Superplot, which is the result of [Protocol 2](#protocol-2).
 
 Part of this work has been published as blogs on [The Node](https://thenode.biologists.com) and the enthusiastic response encouraged me to create a more structured and complete resource. This does not at all imply that this document needs to be read in a structured manner. If you are totally new to R it makes sense to first read the chapter [Getting started with R](#getting-started) which treats some of the essential basics. On the other hand, if you are familiar with R, you may be interested in the chapters on [Reading and Reshaping data](#read-and-reshape) or [Visualizing data](#plotting-the-data). Finally, masters in R/ggplot2 may jump right to the [Complete protocols](#complete-protocols). This final part brings all the ingredients of the preceding chapters together. Each protocol starts with raw data and shows all the steps that lead to a publication quality plot.
 
-I hope that you'll find this document useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter (feel free to mention me: \@joachimgoedhart), in meetings, in preprints or in peer reviewed publications.
+I hope that you'll find this book useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter (feel free to mention me: \@joachimgoedhart), in meetings, in preprints or in peer reviewed publications.
 
 
 ### A toast {-}

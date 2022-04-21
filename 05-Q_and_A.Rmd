@@ -70,11 +70,13 @@ The data that is used for the protocols in Chapter 4 is located in the subdirect
 
 ### Is there a way to re-use or adjust the protocols? {-}
 
-Instead of copy-pasting and running the code line-by-line, you can download the R Markdown file (.Rmd) from the protocols folder on the Github repository: [https://github.com/JoachimGoedhart/DataViz-protocols](https://github.com/JoachimGoedhart/DataViz-protocols). This file (together with the data) can be used to replicate the protocol and to modify it. For more info on  R Markdown, see [https://rmarkdown.rstudio.com](https://rmarkdown.rstudio.com)
+Instead of copy-pasting and running the code line-by-line, you can download the R Markdown file (.Rmd) from the [protocols folder](https://github.com/JoachimGoedhart/DataViz-protocols/tree/main/Protocols) in the Github repository. The R Markdown file (together with the data) can be used to replicate the protocol and to modify it. For more info on R Markdown, see [https://rmarkdown.rstudio.com](https://rmarkdown.rstudio.com)
 
 ------
 
-### {-}
+### Which packages are included in the `{tidyverse}` package? {-}
+
+You can find this out by first loading the package and then run `tidyverse_packages()`
 
 ------
 

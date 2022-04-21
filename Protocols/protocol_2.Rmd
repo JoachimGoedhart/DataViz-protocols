@@ -7,9 +7,9 @@ output: html_document
 
 ## Protocol 2 - A superplot of calcium concentrations {#protocol-2}
 
-This protocol is used to create a superplot which differentiates between technical and biological replicates. The concept of superplots has been reported by Lord and colleagues [(Lord et al., 2021)](https://doi.org/10.1083/jcb.202001064). We will use the data from a publication by [van der Linden et al. (2021)](https://doi.org/10.1038/s41467-021-27249-w) which was used to create figure 5e. 
+This protocol is used to create a superplot which differentiates between technical and biological replicates. The concept of superplots has been reported by Lord and colleagues [(Lord et al., 2021)](https://doi.org/10.1083/jcb.202001064). We will use the data that was used to create figure 5e in a publication by [van der Linden et al. (2021)](https://doi.org/10.1038/s41467-021-27249-w). 
 
-The original figure summarizes the data from all experiments and does not identify the biological replicates. Below, we will differentiate the biological replicates, by treating each batch of neutrophils as a biological replicate. 
+The figure in the publication summarizes the data from all experiments and does not identify the biological replicates. Below, we will differentiate the biological replicates, by treating each batch of neutrophils as a biological replicate. 
 
 We start by loading the required tidyverse package:
 
@@ -149,7 +149,7 @@ p <-
     subtitle = "at different stages of transendothelial migration",
     x = "Stage",
     y = "Calcium [µM]",
-    caption = "(based on data from van der Linden, DOI: 10.1101/2021.06.21.449214)",
+    caption = "@joachimgoedhart\n(based on data from van der Linden, DOI: 10.1101/2021.06.21.449214)",
     tag = "Protocol 2"
   )
 ```
