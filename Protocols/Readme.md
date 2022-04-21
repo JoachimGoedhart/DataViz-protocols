@@ -5,3 +5,7 @@ These are full protocols that start with data and have a fully styled data visua
 The .Rmd files of individual protocols can be downloaded or copied and used in RStudio to reproduce the dataViz (together with the relevant data which is also located in this directory).
 Hopefully, these protocols serve as inspiration and a starting point for new and improved protocols.
 I look forward to seeing the results on twitter (please tag me: @joachimgoedhart), in meetings, in preprints or in peer reviewed publications.
+
+Here's an overview of the result of each protocol:
+
+![](https://github.com/JoachimGoedhart/DataViz-protocols/blob/main/Protocols/overview_of_protocols.png)
