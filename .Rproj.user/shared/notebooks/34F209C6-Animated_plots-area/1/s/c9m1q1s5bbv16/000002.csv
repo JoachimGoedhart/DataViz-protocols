@@ -1,4 +1,0 @@
-"0","p <- ggplot(df_summary, aes(x=Time, y=mean)) +"
-"0","  geom_tile(data=df_summary, aes(x=Time,y=1, height=Inf, width=15, fill=light, group = seq_along(Time)), alpha=1)"
-"0",""
-"0","p"

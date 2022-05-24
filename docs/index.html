@@ -24,7 +24,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2022-04-21" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a><ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#running-r"><i class="fa fa-check"></i><b>1.1</b> Running R</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#using-the-command-line"><i class="fa fa-check"></i><b>1.2</b> Using the command line</a></li>
-<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help?</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help</a></li>
 <li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing packages</a></li>
 <li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#multiline-code"><i class="fa fa-check"></i><b>1.5</b> Multiline code</a></li>
 </ul></li>
@@ -208,6 +208,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-4"><i class="fa fa-check"></i><b>4.4</b> Protocol 4 - Plotting data from a 96-wells experiment</a></li>
 <li class="chapter" data-level="4.5" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-5"><i class="fa fa-check"></i><b>4.5</b> Protocol 5 - A map of amino acids</a></li>
 <li class="chapter" data-level="4.6" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-6"><i class="fa fa-check"></i><b>4.6</b> Protocol 6 - Heatmap style visualization of timelapse data</a></li>
+<li class="chapter" data-level="4.7" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-7"><i class="fa fa-check"></i><b>4.7</b> Protocol 7 - Ridgeline plot</a></li>
+<li class="chapter" data-level="4.8" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-8"><i class="fa fa-check"></i><b>4.8</b> Protocol 8 - Plotting data in a 96-wells layout</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a><ul>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble"><i class="fa fa-check"></i>What is the difference between a data.frame and a tibble?</a></li>
@@ -219,6 +221,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#where-do-i-find-the-example-data"><i class="fa fa-check"></i>Where do I find the example data?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-there-a-way-to-re-use-or-adjust-the-protocols"><i class="fa fa-check"></i>Is there a way to re-use or adjust the protocols?</a></li>
 <li><a href="questions-and-answers.html#which-packages-are-included-in-the-tidyverse-package">Which packages are included in the <code>{tidyverse}</code> package?</a></li>
+<li><a href="questions-and-answers.html#what-is-the-difference-between-require-and-library-for-loading-a-package">What is the difference between <code>require()</code> and <code>library()</code> for loading a package?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-it-possible-to-have-interactive-file-selection"><i class="fa fa-check"></i>Is it possible to have interactive file selection?</a></li>
 <li><a href="questions-and-answers.html#section"></a></li>
 </ul></li>
 <li class="divider"></li>
@@ -245,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">DataViz protocols</h1>
 <h2 class="subtitle"><em>An introduction to data visualization protocols for wet lab scientists</em></h2>
 <p class="author"><em>Joachim Goedhart</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2022-04-21</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2022-05-24</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
@@ -260,7 +264,8 @@ Finally, modern analysis and visualization methods are treated and since the boo
 <p>I hope that you’ll find this book useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter (feel free to mention me: @joachimgoedhart), in meetings, in preprints or in peer reviewed publications.</p>
 <div id="a-toast" class="section level3 unnumbered">
 <h3>A toast</h3>
-<p>Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter is a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with!</p>
+<p>Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter is a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with!
+This work work was improved by specific comments from; Daniel C. de la Fuente (@DanCF93)</p>
 
 </div>
 </div>
@@ -302,8 +307,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JoachimGoedhart/DataViz-protocols/edit/master/index.Rmd",
-"text": "Suggest an edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,
@@ -313,7 +318,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/JoachimGoedhart/DataViz-protocols/raw/master/index.Rmd"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

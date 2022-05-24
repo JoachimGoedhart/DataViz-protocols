@@ -24,7 +24,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2022-04-21" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a><ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#running-r"><i class="fa fa-check"></i><b>1.1</b> Running R</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#using-the-command-line"><i class="fa fa-check"></i><b>1.2</b> Using the command line</a></li>
-<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help?</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help</a></li>
 <li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing packages</a></li>
 <li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#multiline-code"><i class="fa fa-check"></i><b>1.5</b> Multiline code</a></li>
 </ul></li>
@@ -208,6 +208,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-4"><i class="fa fa-check"></i><b>4.4</b> Protocol 4 - Plotting data from a 96-wells experiment</a></li>
 <li class="chapter" data-level="4.5" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-5"><i class="fa fa-check"></i><b>4.5</b> Protocol 5 - A map of amino acids</a></li>
 <li class="chapter" data-level="4.6" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-6"><i class="fa fa-check"></i><b>4.6</b> Protocol 6 - Heatmap style visualization of timelapse data</a></li>
+<li class="chapter" data-level="4.7" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-7"><i class="fa fa-check"></i><b>4.7</b> Protocol 7 - Ridgeline plot</a></li>
+<li class="chapter" data-level="4.8" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-8"><i class="fa fa-check"></i><b>4.8</b> Protocol 8 - Plotting data in a 96-wells layout</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a><ul>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble"><i class="fa fa-check"></i>What is the difference between a data.frame and a tibble?</a></li>
@@ -219,6 +221,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#where-do-i-find-the-example-data"><i class="fa fa-check"></i>Where do I find the example data?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-there-a-way-to-re-use-or-adjust-the-protocols"><i class="fa fa-check"></i>Is there a way to re-use or adjust the protocols?</a></li>
 <li><a href="questions-and-answers.html#which-packages-are-included-in-the-tidyverse-package">Which packages are included in the <code>{tidyverse}</code> package?</a></li>
+<li><a href="questions-and-answers.html#what-is-the-difference-between-require-and-library-for-loading-a-package">What is the difference between <code>require()</code> and <code>library()</code> for loading a package?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-it-possible-to-have-interactive-file-selection"><i class="fa fa-check"></i>Is it possible to have interactive file selection?</a></li>
 <li><a href="questions-and-answers.html#section"></a></li>
 </ul></li>
 <li class="divider"></li>
@@ -247,12 +251,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-is-the-difference-between-a-data.frame-and-a-tibble" class="section level3 unnumbered">
 <h3>What is the difference between a data.frame and a tibble?</h3>
 <p>Both are objects that hold data. The data.frame is the structure supported by basic R and the tibble is an extended variant that is supported by the tidyverse package. Dependig on the function that is used to load data, <code>read.csv()</code> from base R or <code>read_csv()</code> from the tidyverse, the data will be loaded in a data.frame or tibble, respectively. It is possible to convert a classic data.frame to a tibble (which requires the tidyverse pakcage):</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="questions-and-answers.html#cb353-1"></a>df &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(mtcars)</span>
-<span id="cb353-2"><a href="questions-and-answers.html#cb353-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="questions-and-answers.html#cb391-1"></a>df &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(mtcars)</span>
+<span id="cb391-2"><a href="questions-and-answers.html#cb391-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
 <pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
 <p>And to convert a tibble to a data.frame:</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="questions-and-answers.html#cb355-1"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(df)</span>
-<span id="cb355-2"><a href="questions-and-answers.html#cb355-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="questions-and-answers.html#cb393-1"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(df)</span>
+<span id="cb393-2"><a href="questions-and-answers.html#cb393-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
 <pre><code>[1] &quot;data.frame&quot;</code></pre>
 <hr />
 </div>
@@ -274,16 +278,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-is-the-difference-between---and-for-assigning-variables" class="section level3 unnumbered">
 <h3>What is the difference between <code>&lt;-</code> and <code>=</code> for assigning variables?</h3>
 <p>R prefers the <code>&lt;-</code> for the assignment of a value to a variable. In RStudio the shortcut is <code>&lt;alt&gt;+&lt;-&gt;</code>. It really is a <em>preference</em> since both can be used:</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="questions-and-answers.html#cb357-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb357-2"><a href="questions-and-answers.html#cb357-2"></a>y =<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb357-3"><a href="questions-and-answers.html#cb357-3"></a>x <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="questions-and-answers.html#cb395-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb395-2"><a href="questions-and-answers.html#cb395-2"></a>y =<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb395-3"><a href="questions-and-answers.html#cb395-3"></a>x <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>[1] 3</code></pre>
 <hr />
 </div>
 <div id="what-does-na-mean-in-a-dataframe" class="section level3 unnumbered">
 <h3>What does ‘NA’ mean in a dataframe?</h3>
 <p>When no data is available, this is known as a ‘missing value’. In R this is indicated with NA for ‘Not Available’. Empty cells in a CSV file will be converted to NA when the file is loaded. Other characters that can be present in a file (especially xls files) are: “.” or “NaN” or “#N/A” or “#VALUE!”. To convert these strings to NA use:</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="questions-and-answers.html#cb359-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>, <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;NaN&quot;</span>, <span class="st">&quot;#N/A&quot;</span>, <span class="st">&quot;#VALUE!&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="questions-and-answers.html#cb397-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>, <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;NaN&quot;</span>, <span class="st">&quot;#N/A&quot;</span>, <span class="st">&quot;#VALUE!&quot;</span>))</span></code></pre></div>
 <hr />
 </div>
 <div id="what-is-the-beste-way-to-type-a-operator" class="section level3 unnumbered">
@@ -299,12 +303,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="is-there-a-way-to-re-use-or-adjust-the-protocols" class="section level3 unnumbered">
 <h3>Is there a way to re-use or adjust the protocols?</h3>
-<p>Instead of copy-pasting and running the code line-by-line, you can download the R Markdown file (.Rmd) from the protocols folder on the Github repository: <a href="https://github.com/JoachimGoedhart/DataViz-protocols">https://github.com/JoachimGoedhart/DataViz-protocols</a>. This file (together with the data) can be used to replicate the protocol and to modify it. For more info on R Markdown, see <a href="https://rmarkdown.rstudio.com">https://rmarkdown.rstudio.com</a></p>
+<p>Instead of copy-pasting and running the code line-by-line, you can download the R Markdown file (.Rmd) from the <a href="https://github.com/JoachimGoedhart/DataViz-protocols/tree/main/Protocols">protocols folder</a> in the Github repository. The R Markdown file (together with the data) can be used to replicate the protocol and to modify it. For more info on R Markdown, see <a href="https://rmarkdown.rstudio.com">https://rmarkdown.rstudio.com</a></p>
 <hr />
 </div>
 <div id="which-packages-are-included-in-the-tidyverse-package" class="section level3 unnumbered">
 <h3>Which packages are included in the <code>{tidyverse}</code> package?</h3>
 <p>You can find this out by first loading the package and then run <code>tidyverse_packages()</code></p>
+<hr />
+</div>
+<div id="what-is-the-difference-between-require-and-library-for-loading-a-package" class="section level3 unnumbered">
+<h3>What is the difference between <code>require()</code> and <code>library()</code> for loading a package?</h3>
+<p>Both functions can be used to load a package. The difference is that <code>require()</code> returns <code>FALSE</code> when the package does not exist and can be used to check whether a package was loaded:</p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="questions-and-answers.html#cb398-1"></a><span class="cf">if</span> (<span class="kw">require</span>(<span class="st">&quot;nonexistant&quot;</span>) <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>) (<span class="st">&quot;This packkage doesn&#39;t exist&quot;</span>)</span></code></pre></div>
+<pre><code>Loading required package: nonexistant</code></pre>
+<pre><code>[1] &quot;This packkage doesn&#39;t exist&quot;</code></pre>
+<hr />
+</div>
+<div id="is-it-possible-to-have-interactive-file-selection" class="section level3 unnumbered">
+<h3>Is it possible to have interactive file selection?</h3>
+<p>In some cases it can be convenient to select a file by point-and-click, although this is not strictly reproducible. This example code shows how this can be achieved by using the function <code>file.choose()</code> inside a function for reading a csv file:</p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="questions-and-answers.html#cb401-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">file.choose</span>(), <span class="dt">header =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="section" class="section level3 unnumbered">
@@ -350,8 +368,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JoachimGoedhart/DataViz-protocols/edit/master/05-Q_and_A.Rmd",
-"text": "Suggest an edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,
@@ -361,7 +379,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/JoachimGoedhart/DataViz-protocols/raw/master/05-Q_and_A.Rmd"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

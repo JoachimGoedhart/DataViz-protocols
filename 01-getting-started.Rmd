@@ -43,7 +43,7 @@ R comes with datasets. Although these datasets are not so relevant for us, they 
 head(mtcars)
 ```
 
-## ?Help?
+## ?Help
 
 If you need help with a specific function, you may look at the documentation by typing a question mark followed by the function:
 
@@ -55,16 +55,24 @@ However, I usually find myself googling instead of reading the documentation. Th
 
 ## Installing packages
 
-R comes with a lot of commands and functions, but we often need to load additional 'packages' to add functionality. If the package is not yet available, it needs to be downloaded and installed. This handy piece of code checks whether the `{tidyverse}` package is available, downloads it if necessary and than activates it:
+R comes with a lot of commands and functions, but we often need to load additional 'packages' to add functionality. The most important one that we use here is the `{ggplot2}` package that we use for the data visualizations. The package can be activated with the function `require()` or `library()`:
+
+```{r}
+library("ggplot2")
+```
+
+The `{tidyverse}` package is very versatile and is a superpackage that hold several packages (including `{ggplot2}`). Loading the `{tidyverse}` package is like equipping R with superpowers. Often it is sufficient to load the `{tidyverse}` package. 
+
+The first time, the package has to be downloaded and installed. This handy piece of code checks whether the `{tidyverse}` package is available, downloads it if necessary and than activates it:
+
 ```{r, message=FALSE}
 if (!require(tidyverse)) {
     install.packages("tidyverse")
     require(tidyverse)
 }
 ```
-The output in the console depends on the packages that are installed and activated.
-The tidyverse package is very versatile and is a superpackage that hold several packages that equip R with superpowers. The most important one is the ggplot2 package that we use for the data visulizations.
-Whenever necessary, other packages are required and this will be mentioned when necessary.
+
+The output in the console depends on the packages that are installed and activated. For some specific functions, other packages are required, and these will be mentioned whenever they are used.
 
 ## Multiline code
 

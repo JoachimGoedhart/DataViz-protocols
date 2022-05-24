@@ -1,3 +1,0 @@
-"0","p <- p + scale_color_manual(values = c(""#BEBEBE"", ""darkorchid"")) +"
-"0","  scale_fill_manual(values = c(""#BEBEBE"", ""darkorchid""))"
-"0","p"

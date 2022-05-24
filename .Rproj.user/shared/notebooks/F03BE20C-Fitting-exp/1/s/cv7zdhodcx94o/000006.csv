@@ -1,1 +1,0 @@
-"0","ggplot(df, aes(x=Time, y=Ratio))+geom_line(aes(group=Experiment), alpha=0.5)+facet_wrap(~System)"

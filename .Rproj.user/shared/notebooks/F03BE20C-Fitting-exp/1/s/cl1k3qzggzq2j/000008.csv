@@ -1,5 +1,0 @@
-"0","df_summary <- df %>% group_by(Time, System) %>% summarise(n=n(),"
-"0","                                                                      mean=mean(Ratio))"
-"2","`summarise()` has grouped output by 'Time'. You can override using the `.groups` argument.
-"
-"0","head(df_summary)"

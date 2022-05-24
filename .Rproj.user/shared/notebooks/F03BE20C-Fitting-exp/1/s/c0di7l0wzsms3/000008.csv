@@ -1,7 +1,0 @@
-"0","fitted %>% "
-"0","  unnest(tidied) %>% "
-"0","  select(System, term, estimate) %>% "
-"0","  spread(term, estimate) %>% rename(Amplitude=a) %>% mutate(`t1/2`=log(2)/k)"
-"2","Error in select(., System, term, estimate) : 
-  unused arguments (System, term, estimate)
-"

@@ -24,7 +24,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2022-04-21" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a><ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#running-r"><i class="fa fa-check"></i><b>1.1</b> Running R</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#using-the-command-line"><i class="fa fa-check"></i><b>1.2</b> Using the command line</a></li>
-<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help?</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help</a></li>
 <li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing packages</a></li>
 <li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#multiline-code"><i class="fa fa-check"></i><b>1.5</b> Multiline code</a></li>
 </ul></li>
@@ -208,6 +208,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-4"><i class="fa fa-check"></i><b>4.4</b> Protocol 4 - Plotting data from a 96-wells experiment</a></li>
 <li class="chapter" data-level="4.5" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-5"><i class="fa fa-check"></i><b>4.5</b> Protocol 5 - A map of amino acids</a></li>
 <li class="chapter" data-level="4.6" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-6"><i class="fa fa-check"></i><b>4.6</b> Protocol 6 - Heatmap style visualization of timelapse data</a></li>
+<li class="chapter" data-level="4.7" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-7"><i class="fa fa-check"></i><b>4.7</b> Protocol 7 - Ridgeline plot</a></li>
+<li class="chapter" data-level="4.8" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-8"><i class="fa fa-check"></i><b>4.8</b> Protocol 8 - Plotting data in a 96-wells layout</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a><ul>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble"><i class="fa fa-check"></i>What is the difference between a data.frame and a tibble?</a></li>
@@ -219,6 +221,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#where-do-i-find-the-example-data"><i class="fa fa-check"></i>Where do I find the example data?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-there-a-way-to-re-use-or-adjust-the-protocols"><i class="fa fa-check"></i>Is there a way to re-use or adjust the protocols?</a></li>
 <li><a href="questions-and-answers.html#which-packages-are-included-in-the-tidyverse-package">Which packages are included in the <code>{tidyverse}</code> package?</a></li>
+<li><a href="questions-and-answers.html#what-is-the-difference-between-require-and-library-for-loading-a-package">What is the difference between <code>require()</code> and <code>library()</code> for loading a package?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-it-possible-to-have-interactive-file-selection"><i class="fa fa-check"></i>Is it possible to have interactive file selection?</a></li>
 <li><a href="questions-and-answers.html#section"></a></li>
 </ul></li>
 <li class="divider"></li>
@@ -247,10 +251,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.1</span> Introduction</h2>
 <p>Experimental data can be recorded and stored in different ways. Anything that is not digital (e.g. notes in an physical labbook) has to be converted, before it can be used in a computer. Nowadays, most information is already in a digital format and stored in a file. This can be a text file, an excel file, or a file generated by a piece of equipment.
 In R, the main structure for storing and processing data is a ‘dataframe’ (a modernized version of the dataframe is a ‘tibble’, which is available when the tidyverse package is used). The dataset <code>mtcars</code> that comes with R is a dataframe. We can check the type of a structure or variable by using the function <code>class()</code>. This is a very helpful function to learn about the class of an object:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="read-and-reshape.html#cb16-1"></a><span class="kw">class</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="read-and-reshape.html#cb17-1"></a><span class="kw">class</span>(mtcars)</span></code></pre></div>
 <pre><code>[1] &quot;data.frame&quot;</code></pre>
 <p>The dataframe itself can be printed by just typing its name. To look only at the first rows we can use the function <code>head()</code>:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="read-and-reshape.html#cb18-1"></a><span class="kw">head</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="read-and-reshape.html#cb19-1"></a><span class="kw">head</span>(mtcars)</span></code></pre></div>
 <pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -268,33 +272,33 @@ The raw data mostly consist of numbers, but these are often accompanied by label
 There is also data that cannot be expressed in numbers and we call that <em>qualitative</em> data. For instance different experimental categories, e.g. ‘control’ and ‘treated’. This is also known as nominal data (ordinal data is not treated as it is not used in this book).
 It is important to make the distinction between different types of data and tell R how to treat the data. In some cases a number stored in a file can be a category and it is important to treat the number as a category and not as quantitative data. We will see that R stores information about the type of data in the example below.</p>
 <p>The variable x to which we assigned a value of 1 is:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="read-and-reshape.html#cb20-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb20-2"><a href="read-and-reshape.html#cb20-2"></a><span class="kw">class</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="read-and-reshape.html#cb21-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb21-2"><a href="read-and-reshape.html#cb21-2"></a><span class="kw">class</span>(x)</span></code></pre></div>
 <pre><code>[1] &quot;numeric&quot;</code></pre>
 <p>We can convert this to a ‘factor’, which means that it is no longer a number but qualitative data:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="read-and-reshape.html#cb22-1"></a>x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(x)</span>
-<span id="cb22-2"><a href="read-and-reshape.html#cb22-2"></a><span class="kw">class</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="read-and-reshape.html#cb23-1"></a>x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(x)</span>
+<span id="cb23-2"><a href="read-and-reshape.html#cb23-2"></a><span class="kw">class</span>(x)</span></code></pre></div>
 <pre><code>[1] &quot;factor&quot;</code></pre>
 <p>And therefore, this will give an error:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="read-and-reshape.html#cb24-1"></a>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="read-and-reshape.html#cb25-1"></a>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>[1] NA</code></pre>
 <p>When we convert it back to a number, it works:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="read-and-reshape.html#cb26-1"></a><span class="kw">as.numeric</span>(x) <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="read-and-reshape.html#cb27-1"></a><span class="kw">as.numeric</span>(x) <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>[1] 2</code></pre>
 <p>This simple example illustrates the difference between quantitative and qualitative data and it shows that we can change the data type in R.</p>
 </div>
 <div id="reading-data" class="section level2">
 <h2><span class="header-section-number">2.3</span> Reading data</h2>
-<p>Reading, or loading data is the transfer of information from a file to the memory of R where it is stored as a dataframe. Rstudio supports ‘point-and-click’ loading of data from its menu (File &gt; Import Dataset &gt; …). This is a convenient way of loading data. Since the aim is to perform all steps in a script, including data loading, I’ll explain how to functions are used to load data from the console.</p>
+<p>Reading, or loading data is the transfer of information from a file to the memory of R where it is stored as a dataframe. Rstudio supports ‘point-and-click’ loading of data from its menu (File &gt; Import Dataset &gt; …). This is a convenient way of loading data. Since the aim is to perform all steps in a script, including data loading, I’ll explain how functions are used to load data from the console.</p>
 <div id="loading-data-from-a-text-or-csv-file" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Loading data from a text or csv file</h3>
 <p>Before we can read the file, we need to make sure that we can locate the file. In RStudio you can select the directory (folder) from the menu: Session &gt; Set Working Directory &gt; Choose Directory…</p>
 <p>If you are running an R script and the data is in the same directory as the script, you can go to the menu of Rstudio and select: Session &gt; Set Working Directory &gt; To Source File Location</p>
 <p>When the directory is properly set, you can read the file. A common file format is the ‘comma separated values’ or CSV format. Here we load a CSV file that was obtained from <a href="www.fpbase.org">fpbase.org</a> and contains the excitation and emission data of Green Fluorescent Protein. This file and all other example data are available at github: <a href="https://github.com/JoachimGoedhart/DataViz-protocols">https://github.com/JoachimGoedhart/DataViz-protocols</a>
 The function <code>read_csv()</code> is used to read the file and the data is assigned to a dataframe called ‘df’:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="read-and-reshape.html#cb28-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="read-and-reshape.html#cb29-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>)</span></code></pre></div>
 <p>To check whether the loading was successful, we can look at the first lines of the dataframe with the function <code>head()</code>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="read-and-reshape.html#cb29-1"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="read-and-reshape.html#cb30-1"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>  Wavelength mEGFP.EM mEGFP.EX
 1        300       NA   0.0962
 2        301       NA   0.0872
@@ -303,12 +307,14 @@ The function <code>read_csv()</code> is used to read the file and the data is as
 5        304       NA   0.0675
 6        305       NA   0.0612</code></pre>
 <p>This data has several columns, each containing quantitative data. Empty cells that do not have any data will be displayed as ‘NA’. Note that this is different from ‘0’.</p>
+<p>The ‘delimiter’ of a file is a character that separates the different fields of data. In a CSV file, as the name implies, this is a comma. However, other characters such as semicolons or tabs are often used as delimiters in text files. The function ‘read.delim()’ can be used to load a text file with a delimiter that can be specified, and therefore this function is more flexible for loading of data. For the CSV file, it would be used like this:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="read-and-reshape.html#cb32-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 </div>
 <div id="loading-data-from-a-url" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Loading data from a URL</h3>
 <p>When the CSV file is available online, e.g. in a data repository or on Github, it can be loaded by providng the URL:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="read-and-reshape.html#cb31-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://zenodo.org/record/2545922/files/FRET-efficiency_mTq2.csv&#39;</span>)</span>
-<span id="cb31-2"><a href="read-and-reshape.html#cb31-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="read-and-reshape.html#cb33-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://zenodo.org/record/2545922/files/FRET-efficiency_mTq2.csv&#39;</span>)</span>
+<span id="cb33-2"><a href="read-and-reshape.html#cb33-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>      EGFP   mNeonG   Clover mKOkappa mOrange2 mScarlet.I   mRuby2 TagRFP.T
 1 46.25865 61.27913 52.85122 47.28077 25.70513   36.03078 51.68192 12.39361
 2 46.48604 60.97392 54.05560 48.42123 26.43752   34.93961 33.75286 12.59682
@@ -327,8 +333,8 @@ The function <code>read_csv()</code> is used to read the file and the data is as
 <div id="retrieving-data-from-excel" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> Retrieving data from Excel</h3>
 <p>Suppose we have an excel file with multiple tabs and we would like to access the data for mNeonGreen. To import the correct data into a dataframe use:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="read-and-reshape.html#cb33-1"></a>df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;FPbase_Spectra.xlsx&#39;</span>, <span class="dt">sheet =</span> <span class="st">&#39;mNeonGreen&#39;</span>)</span>
-<span id="cb33-2"><a href="read-and-reshape.html#cb33-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="read-and-reshape.html#cb35-1"></a>df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;FPbase_Spectra.xlsx&#39;</span>, <span class="dt">sheet =</span> <span class="st">&#39;mNeonGreen&#39;</span>)</span>
+<span id="cb35-2"><a href="read-and-reshape.html#cb35-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
   Wavelength `mNeonGreen EM` `mNeonGreen EX`
        &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;
@@ -339,31 +345,31 @@ The function <code>read_csv()</code> is used to read the file and the data is as
 5        304              NA              NA
 6        305              NA              NA</code></pre>
 <p>Again, ‘NA’ indicates that no data is available. Since the <code>read_excel()</code> is a funtion from the ‘tidyverse’ the data is stored in a tibble. This can be converted to an ordinary dataframe:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="read-and-reshape.html#cb35-1"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(df)</span>
-<span id="cb35-2"><a href="read-and-reshape.html#cb35-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="read-and-reshape.html#cb37-1"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(df)</span>
+<span id="cb37-2"><a href="read-and-reshape.html#cb37-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
 <pre><code>[1] &quot;data.frame&quot;</code></pre>
 <p>Now that we have the data loaded, we can generate a plot. For simplicity I use the <code>qplot()</code> function. The more flexible <code>ggplot()</code> function will be introduced later. We need to supply the name of the dataframe, the column for the x-axis data and the column that is used for the y-axis. Note that two of the column names have a space and to properly indicate the name of the column we need to enclose the name with backtics (`).</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="read-and-reshape.html#cb37-1"></a><span class="kw">qplot</span>(<span class="dt">data=</span>df,<span class="dt">x=</span>Wavelength, <span class="dt">y=</span><span class="st">`</span><span class="dt">mNeonGreen EX</span><span class="st">`</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="read-and-reshape.html#cb39-1"></a><span class="kw">qplot</span>(<span class="dt">data=</span>df,<span class="dt">x=</span>Wavelength, <span class="dt">y=</span><span class="st">`</span><span class="dt">mNeonGreen EX</span><span class="st">`</span>)</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>A plot with lines instead of dots can be made by supplying this alternative ‘geometry’:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="read-and-reshape.html#cb38-1"></a><span class="kw">qplot</span>(<span class="dt">data=</span>df,<span class="dt">x=</span>Wavelength, <span class="dt">y=</span><span class="st">`</span><span class="dt">mNeonGreen EX</span><span class="st">`</span>, <span class="dt">geom=</span><span class="st">&#39;line&#39;</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="read-and-reshape.html#cb40-1"></a><span class="kw">qplot</span>(<span class="dt">data=</span>df,<span class="dt">x=</span>Wavelength, <span class="dt">y=</span><span class="st">`</span><span class="dt">mNeonGreen EX</span><span class="st">`</span>, <span class="dt">geom=</span><span class="st">&#39;line&#39;</span>)</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>The plots show the excitation spectrum of mNeonGreen, and it can be inferred that the protein is maximally excited near 500 nm.
 In its current shape, the dataframe is not suitable for simultaneously plotting the excitation and emission spectrum. To do that, we need to reshape the data and this will be the topic of the <a href="read-and-reshape.html#tidy-data">Reshaping data</a> section.</p>
 </div>
 <div id="retrieving-data-from-multiple-files" class="section level3">
 <h3><span class="header-section-number">2.3.4</span> Retrieving data from multiple files</h3>
 <p>When the data is spread over multiple files, it is useful to read these files and combine them into one dataframe. In this example we have the data from three different conditions, each is an individual CSV file. First we create a list with the files based on a pattern. In this case the relevant files contain the string <code>S1P.csv</code>:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="read-and-reshape.html#cb39-1"></a>filelist =<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern=</span><span class="st">&quot;*S1P.csv&quot;</span>)</span>
-<span id="cb39-2"><a href="read-and-reshape.html#cb39-2"></a>filelist</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="read-and-reshape.html#cb41-1"></a>filelist =<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern=</span><span class="st">&quot;*S1P.csv&quot;</span>)</span>
+<span id="cb41-2"><a href="read-and-reshape.html#cb41-2"></a>filelist</span></code></pre></div>
 <pre><code>[1] &quot;Cdc42_S1P.csv&quot; &quot;Rac_S1P.csv&quot;   &quot;Rho_S1P.csv&quot;  </code></pre>
 <p>Then we use the function <code>map()</code> to perform the function <code>read.csv()</code> for each of the files and we store the result in a new dataframe ‘df_input_list’.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="read-and-reshape.html#cb41-1"></a>df_input_list &lt;-<span class="st"> </span><span class="kw">map</span>(filelist, read.csv)</span></code></pre></div>
-<p>The result is a ‘nested’ dataframe, which is a dataframe with dataframes. Instead of having three separate dataframes, we want a single dataframe but it should have a label that reflects the condition. The labels are based on the filenames. Note that we use <code>gsub</code> here to remove the extension of the filename:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="read-and-reshape.html#cb42-1"></a><span class="kw">names</span>(df_input_list) &lt;-<span class="st"> </span><span class="kw">gsub</span>(filelist, <span class="dt">pattern=</span><span class="st">&quot;</span><span class="ch">\\</span><span class="st">..*&quot;</span>, <span class="dt">replacement=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="read-and-reshape.html#cb43-1"></a>df_input_list &lt;-<span class="st"> </span><span class="kw">map</span>(filelist, read.csv)</span></code></pre></div>
+<p>The result is a ‘nested’ dataframe, which is a dataframe with dataframes. Instead of having three separate dataframes, we want a single dataframe but it should have a label that reflects the condition. The labels are based on the filenames. We can use <code>str_replace()</code> to remove the extension of the filenames:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="read-and-reshape.html#cb44-1"></a><span class="kw">names</span>(df_input_list) &lt;-<span class="st"> </span><span class="kw">str_replace</span>(filelist, <span class="dt">pattern =</span> <span class="st">&quot;.csv&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>After this, we merge the dataframes and create a column ‘id’ that has the label with the filename:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="read-and-reshape.html#cb43-1"></a>df &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(df_input_list, <span class="dt">.id =</span> <span class="st">&quot;id&quot;</span>)</span>
-<span id="cb43-2"><a href="read-and-reshape.html#cb43-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="read-and-reshape.html#cb45-1"></a>df &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(df_input_list, <span class="dt">.id =</span> <span class="st">&quot;id&quot;</span>)</span>
+<span id="cb45-2"><a href="read-and-reshape.html#cb45-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>         id      Time    Cell.1    Cell.2    Cell.3    Cell.4    Cell.5
 1 Cdc42_S1P 0.0000000 1.0035170 1.0015490 0.9810209 0.9869040 1.0041990
 2 Cdc42_S1P 0.1666667 0.9991689 0.9961631 0.9801265 0.9891608 0.9989283
@@ -400,7 +406,7 @@ In its current shape, the dataframe is not suitable for simultaneously plotting 
 5      NA      NA      NA
 6      NA      NA      NA</code></pre>
 <p>This dataframe contains all the relevant information, but it is not tidy yet. We’ll discuss how to convert this dataframe into a tidy format. We can save this dataframe for later:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="read-and-reshape.html#cb45-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&#39;df_S1P_combined.csv&#39;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="read-and-reshape.html#cb47-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&#39;df_S1P_combined.csv&#39;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="tidy-data" class="section level2">
@@ -411,8 +417,8 @@ In this section, I will show how data can be converted from spreadsheet format t
 <div id="quantitative-data-discrete-conditions" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> Quantitative data, discrete conditions</h3>
 <p>Let’s say that you have measured cell sizes under a number of different experimental conditions and this is stored in an excel spreadsheet. Let’s load the data:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="read-and-reshape.html#cb46-1"></a>df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;Length-wide.xls&#39;</span>)</span>
-<span id="cb46-2"><a href="read-and-reshape.html#cb46-2"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="read-and-reshape.html#cb48-1"></a>df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;Length-wide.xls&#39;</span>)</span>
+<span id="cb48-2"><a href="read-and-reshape.html#cb48-2"></a>df</span></code></pre></div>
 <pre><code># A tibble: 10 x 5
    `Condition 1` `Condition 2` `Condition 3` `Condition 4` `Condition 5`
            &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
@@ -426,9 +432,9 @@ In this section, I will show how data can be converted from spreadsheet format t
  8          18.7          18.4          14.9          17.5          13.3
  9          19.1          20.7          14.6          16.5          13.9
 10          10.7          19.2          14.2          17.8          13.4</code></pre>
-<p>First, we will replace the spaces in the column names. Although this is not strictly necessary, it simplifies handling of the data. We use <code>names()</code> to get the names of the dataframe and <code>gsub()</code> to replace characters in a vector. The <code>"\\s"</code> is a symbol for a space and the second argument of the function "<code>"_"</code> indicates the new character or string:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="read-and-reshape.html#cb48-1"></a><span class="kw">names</span>(df) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">s&quot;</span>, <span class="st">&quot;_&quot;</span>, <span class="kw">names</span>(df))</span>
-<span id="cb48-2"><a href="read-and-reshape.html#cb48-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<p>First, we will replace the spaces in the column names. Although this is not strictly necessary, it simplifies handling of the data. We use <code>names()</code> to get the names of the dataframe and <code>str_replace()</code> to replace the space by an underscore:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="read-and-reshape.html#cb50-1"></a><span class="kw">names</span>(df) &lt;-<span class="st"> </span><span class="kw">str_replace</span>(<span class="kw">names</span>(df), <span class="dt">pattern =</span> <span class="st">&quot; &quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb50-2"><a href="read-and-reshape.html#cb50-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code># A tibble: 6 x 5
   Condition_1 Condition_2 Condition_3 Condition_4 Condition_5
         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -439,8 +445,8 @@ In this section, I will show how data can be converted from spreadsheet format t
 5        11.7        21.3        15.9        19.5        15.9
 6        17.5        19.9        13          14.3        28.7</code></pre>
 <p>Now that the column names are fixed, we can restructure the data. The aim is to create a dataframe with one column that specifies the conditions and one column with all the measured values. There is a long history of packages and functions that can be used for restructuring (<code>gather()</code>, <code>melt()</code>). Here we use the most modern function <code>pivot_longer()</code> from the tidyverse package. We need to specify the dataframe, which columns to restructure (specified by <code>everything()</code> here) and the names of the new columns. The current column names will be transferred to a column that is named “condition” and all values will be transferred to a column named “size”.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="read-and-reshape.html#cb50-1"></a>df_tidy &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(df, <span class="dt">cols =</span> <span class="kw">everything</span>(), <span class="dt">names_to =</span> <span class="st">&quot;Condition&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Size&quot;</span>)</span>
-<span id="cb50-2"><a href="read-and-reshape.html#cb50-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="read-and-reshape.html#cb52-1"></a>df_tidy &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(df, <span class="dt">cols =</span> <span class="kw">everything</span>(), <span class="dt">names_to =</span> <span class="st">&quot;Condition&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Size&quot;</span>)</span>
+<span id="cb52-2"><a href="read-and-reshape.html#cb52-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
 <pre><code># A tibble: 6 x 2
   Condition    Size
   &lt;chr&gt;       &lt;dbl&gt;
@@ -453,13 +459,13 @@ In this section, I will show how data can be converted from spreadsheet format t
 <p>The benefit of this format is that is is now clear what the numbers are.
 The most important requirement for tidy data is that each variable occupies only a single column and that each row is an observation.
 Let’s save the data in a csv file:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="read-and-reshape.html#cb52-1"></a>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&#39;Length-tidy.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="read-and-reshape.html#cb54-1"></a>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&#39;Length-tidy.csv&#39;</span>)</span></code></pre></div>
 </div>
 <div id="multiple-discrete-conditions" class="section level3">
 <h3><span class="header-section-number">2.4.2</span> Multiple discrete conditions</h3>
 <p>Here, we deal with a more complex spreadsheet that holds data of multiple replicates and two experimental conditions. Note that the data from multiple conditions can be stored in different ways and here we only treat one way. Especially for these kind of datasets, the tidy format is a better, cleaner structure. We will load the data from a repository:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="read-and-reshape.html#cb53-1"></a>df_multiheader &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://zenodo.org/record/4056966/files/Data-with-replicates.csv&#39;</span>)</span>
-<span id="cb53-2"><a href="read-and-reshape.html#cb53-2"></a><span class="kw">head</span>(df_multiheader)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="read-and-reshape.html#cb55-1"></a>df_multiheader &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://zenodo.org/record/4056966/files/Data-with-replicates.csv&#39;</span>)</span>
+<span id="cb55-2"><a href="read-and-reshape.html#cb55-2"></a><span class="kw">head</span>(df_multiheader)</span></code></pre></div>
 <pre><code>     Control  Control.1  Control.2       Drug     Drug.1     Drug.2
 1 Replicate1 Replicate2 Replicate3 Replicate1 Replicate2 Replicate3
 2   43.69202   35.43517   27.69333    35.3156   20.54166   16.13286
@@ -468,8 +474,8 @@ Let’s save the data in a csv file:</p>
 5   49.79331    37.5157   39.98903   37.46084   25.94712   18.48844
 6   41.54301   42.66665   26.92205   30.25243   22.90337   21.93457</code></pre>
 <p>The first row lists the experimental condition and the second row identifies biological replicates. Now, when this is loaded as an ordinary CSV, the first row is the header, but the second row is treated as data. Let’s load the data without flagging a header. We also add the <code>stringsAsFactors = FALSE</code> to make sure that the data is loaded as characters <code>&lt;chr&gt;</code> and not as factors <code>&lt;fctr&gt;</code>. The difference is not obvious, but we run into problems later when we want to convert all the values into actual numbers (which we will do this at the very last step):</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="read-and-reshape.html#cb55-1"></a>df_multiheader &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://zenodo.org/record/4056966/files/Data-with-replicates.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb55-2"><a href="read-and-reshape.html#cb55-2"></a><span class="kw">head</span>(df_multiheader)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="read-and-reshape.html#cb57-1"></a>df_multiheader &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://zenodo.org/record/4056966/files/Data-with-replicates.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb57-2"><a href="read-and-reshape.html#cb57-2"></a><span class="kw">head</span>(df_multiheader)</span></code></pre></div>
 <pre><code>          V1         V2         V3         V4         V5         V6
 1    Control    Control    Control       Drug       Drug       Drug
 2 Replicate1 Replicate2 Replicate3 Replicate1 Replicate2 Replicate3
@@ -478,19 +484,19 @@ Let’s save the data in a csv file:</p>
 5   49.11707   39.86308   27.20247   30.45615    29.8097   16.49928
 6   49.79331    37.5157   39.98903   37.46084   25.94712   18.48844</code></pre>
 <p>We’ll load the first row as a vector that contains the name of each column. To this end we select the first row of the dataframe with the brackets <code>[1,]</code>. The result is a dataframe and to turn this into a vector with strings we use <code>unlist()</code>:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="read-and-reshape.html#cb57-1"></a>first_row &lt;-<span class="st"> </span>df_multiheader[<span class="dv">1</span>,] <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb57-2"><a href="read-and-reshape.html#cb57-2"></a><span class="st">  </span><span class="kw">unlist</span>(<span class="dt">use.names=</span><span class="ot">FALSE</span>)</span>
-<span id="cb57-3"><a href="read-and-reshape.html#cb57-3"></a>first_row</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="read-and-reshape.html#cb59-1"></a>first_row &lt;-<span class="st"> </span>df_multiheader[<span class="dv">1</span>,] <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb59-2"><a href="read-and-reshape.html#cb59-2"></a><span class="st">  </span><span class="kw">unlist</span>(<span class="dt">use.names=</span><span class="ot">FALSE</span>)</span>
+<span id="cb59-3"><a href="read-and-reshape.html#cb59-3"></a>first_row</span></code></pre></div>
 <pre><code>[1] &quot;Control&quot; &quot;Control&quot; &quot;Control&quot; &quot;Drug&quot;    &quot;Drug&quot;    &quot;Drug&quot;   </code></pre>
 <p>We repeat this for the second row:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="read-and-reshape.html#cb59-1"></a>second_row &lt;-<span class="st"> </span>df_multiheader[<span class="dv">2</span>,] <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb59-2"><a href="read-and-reshape.html#cb59-2"></a><span class="st">  </span><span class="kw">unlist</span>(<span class="dt">use.names=</span><span class="ot">FALSE</span>)</span>
-<span id="cb59-3"><a href="read-and-reshape.html#cb59-3"></a>second_row</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="read-and-reshape.html#cb61-1"></a>second_row &lt;-<span class="st"> </span>df_multiheader[<span class="dv">2</span>,] <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb61-2"><a href="read-and-reshape.html#cb61-2"></a><span class="st">  </span><span class="kw">unlist</span>(<span class="dt">use.names=</span><span class="ot">FALSE</span>)</span>
+<span id="cb61-3"><a href="read-and-reshape.html#cb61-3"></a>second_row</span></code></pre></div>
 <pre><code>[1] &quot;Replicate1&quot; &quot;Replicate2&quot; &quot;Replicate3&quot; &quot;Replicate1&quot; &quot;Replicate2&quot;
 [6] &quot;Replicate3&quot;</code></pre>
 <p>Next, row 1 and row 2 are removed from the dataframe, keeping only the data:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="read-and-reshape.html#cb61-1"></a>df &lt;-<span class="st"> </span>df_multiheader[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>),]</span>
-<span id="cb61-2"><a href="read-and-reshape.html#cb61-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="read-and-reshape.html#cb63-1"></a>df &lt;-<span class="st"> </span>df_multiheader[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>),]</span>
+<span id="cb63-2"><a href="read-and-reshape.html#cb63-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>        V1       V2       V3       V4       V5       V6
 3 43.69202 35.43517 27.69333  35.3156 20.54166 16.13286
 4 41.85664 38.17644 35.61621 34.81943 20.43263 16.47575
@@ -499,13 +505,13 @@ Let’s save the data in a csv file:</p>
 7 41.54301 42.66665 26.92205 30.25243 22.90337 21.93457
 8 44.04201 37.10115 18.24681 35.93469 20.10045 22.86391</code></pre>
 <p>The labels of the conditions and replicates are combined by pasting them together with an underscore to separate the labes. The result is a single vector with unique labels:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="read-and-reshape.html#cb63-1"></a>combined_labels &lt;-<span class="st"> </span><span class="kw">paste</span>(first_row, second_row, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span>
-<span id="cb63-2"><a href="read-and-reshape.html#cb63-2"></a>combined_labels</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="read-and-reshape.html#cb65-1"></a>combined_labels &lt;-<span class="st"> </span><span class="kw">paste</span>(first_row, second_row, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb65-2"><a href="read-and-reshape.html#cb65-2"></a>combined_labels</span></code></pre></div>
 <pre><code>[1] &quot;Control_Replicate1&quot; &quot;Control_Replicate2&quot; &quot;Control_Replicate3&quot;
 [4] &quot;Drug_Replicate1&quot;    &quot;Drug_Replicate2&quot;    &quot;Drug_Replicate3&quot;   </code></pre>
 <p>Now, we can add these labels as column names to the dataframe:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="read-and-reshape.html#cb65-1"></a><span class="kw">colnames</span>(df) &lt;-<span class="st"> </span>combined_labels</span>
-<span id="cb65-2"><a href="read-and-reshape.html#cb65-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="read-and-reshape.html#cb67-1"></a><span class="kw">colnames</span>(df) &lt;-<span class="st"> </span>combined_labels</span>
+<span id="cb67-2"><a href="read-and-reshape.html#cb67-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>  Control_Replicate1 Control_Replicate2 Control_Replicate3 Drug_Replicate1
 3           43.69202           35.43517           27.69333         35.3156
 4           41.85664           38.17644           35.61621        34.81943
@@ -521,8 +527,8 @@ Let’s save the data in a csv file:</p>
 7        22.90337        21.93457
 8        20.10045        22.86391</code></pre>
 <p>To convert this dataframe into a tidy format we use the <code>pivot_longer()</code> function, exactly like we did in the previous example:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="read-and-reshape.html#cb67-1"></a>df_tidy &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(df, <span class="dt">cols =</span> <span class="kw">everything</span>(), <span class="dt">names_to =</span> <span class="st">&quot;combined_labels&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Size&quot;</span>)</span>
-<span id="cb67-2"><a href="read-and-reshape.html#cb67-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="read-and-reshape.html#cb69-1"></a>df_tidy &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(df, <span class="dt">cols =</span> <span class="kw">everything</span>(), <span class="dt">names_to =</span> <span class="st">&quot;combined_labels&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Size&quot;</span>)</span>
+<span id="cb69-2"><a href="read-and-reshape.html#cb69-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
 <pre><code># A tibble: 6 x 2
   combined_labels    Size    
   &lt;chr&gt;              &lt;chr&gt;   
@@ -533,8 +539,8 @@ Let’s save the data in a csv file:</p>
 5 Drug_Replicate2    20.54166
 6 Drug_Replicate3    16.13286</code></pre>
 <p>The dataframe is tidy now, but we need to split the conditions from the replicates in the first column with combined labels:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="read-and-reshape.html#cb69-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(combined_labels, <span class="kw">c</span>(<span class="st">&#39;Treatment&#39;</span>, <span class="st">&#39;Replicate&#39;</span>))</span>
-<span id="cb69-2"><a href="read-and-reshape.html#cb69-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="read-and-reshape.html#cb71-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(combined_labels, <span class="kw">c</span>(<span class="st">&#39;Treatment&#39;</span>, <span class="st">&#39;Replicate&#39;</span>))</span>
+<span id="cb71-2"><a href="read-and-reshape.html#cb71-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
   Treatment Replicate  Size    
   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;   
@@ -545,7 +551,7 @@ Let’s save the data in a csv file:</p>
 5 Drug      Replicate2 20.54166
 6 Drug      Replicate3 16.13286</code></pre>
 <p>There is still one problem that we need to fix. The values in de the column ‘Size’ are characters <code>&lt;chr&gt;</code>, which means these are strings. Let’s convert the strings to actual numbers:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="read-and-reshape.html#cb71-1"></a>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Size =</span> <span class="kw">as.numeric</span>(Size))</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="read-and-reshape.html#cb73-1"></a>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Size =</span> <span class="kw">as.numeric</span>(Size))</span></code></pre></div>
 <pre><code># A tibble: 300 x 3
    Treatment Replicate   Size
    &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;
@@ -565,8 +571,8 @@ Let’s save the data in a csv file:</p>
 <div id="double-quantitative-data" class="section level3">
 <h3><span class="header-section-number">2.4.3</span> Double quantitative data</h3>
 <p>An example of quantitative continuous data for two variables is when measurements are performed at different concentrations, times or wavelengths. The latter example we have encountered before when spectral data was loaded. Let’s look again at that data and convert it to tidy format.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="read-and-reshape.html#cb73-1"></a>df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;FPbase_Spectra.xlsx&#39;</span>, <span class="dt">sheet =</span> <span class="st">&#39;mNeonGreen&#39;</span>)</span>
-<span id="cb73-2"><a href="read-and-reshape.html#cb73-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="read-and-reshape.html#cb75-1"></a>df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;FPbase_Spectra.xlsx&#39;</span>, <span class="dt">sheet =</span> <span class="st">&#39;mNeonGreen&#39;</span>)</span>
+<span id="cb75-2"><a href="read-and-reshape.html#cb75-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
   Wavelength `mNeonGreen EM` `mNeonGreen EX`
        &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;
@@ -577,8 +583,8 @@ Let’s save the data in a csv file:</p>
 5        304              NA              NA
 6        305              NA              NA</code></pre>
 <p>Both the Emission (EM) and excitation (EX) data are acquired as a function of wavelength. To convert this data to tidy format, we need to keep a column with wavelength data and we need another column with the spectral data. To achieve this, we will modify the mNeonGreen data and keep the Wavelength data as a column:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="read-and-reshape.html#cb75-1"></a>df_tidy &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(df, <span class="dt">cols =</span> <span class="op">-</span>Wavelength, <span class="dt">names_to =</span> <span class="st">&quot;sample&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;intensity&quot;</span>)</span>
-<span id="cb75-2"><a href="read-and-reshape.html#cb75-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="read-and-reshape.html#cb77-1"></a>df_tidy &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(df, <span class="dt">cols =</span> <span class="op">-</span>Wavelength, <span class="dt">names_to =</span> <span class="st">&quot;sample&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;intensity&quot;</span>)</span>
+<span id="cb77-2"><a href="read-and-reshape.html#cb77-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
   Wavelength sample        intensity
        &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;
@@ -589,15 +595,15 @@ Let’s save the data in a csv file:</p>
 5        302 mNeonGreen EM        NA
 6        302 mNeonGreen EX        NA</code></pre>
 <p>We can now plot the two spectra, which was not possible before the conversion:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="read-and-reshape.html#cb77-1"></a><span class="kw">qplot</span>(<span class="dt">data=</span>df_tidy,<span class="dt">x=</span>Wavelength, <span class="dt">y=</span>intensity, <span class="dt">color=</span>sample, <span class="dt">geom=</span><span class="st">&#39;line&#39;</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="read-and-reshape.html#cb79-1"></a><span class="kw">qplot</span>(<span class="dt">data=</span>df_tidy,<span class="dt">x=</span>Wavelength, <span class="dt">y=</span>intensity, <span class="dt">color=</span>sample, <span class="dt">geom=</span><span class="st">&#39;line&#39;</span>)</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p>A more elaborate example of plotting spectra is given in <a href="complete-protocols.html#protocol-1">Protocol 1</a></p>
 </div>
 <div id="data-from-multiple-files" class="section level3">
 <h3><span class="header-section-number">2.4.4</span> Data from multiple files</h3>
 <p>In an earlier example, we have combined the data from multiple files into a single dataframe. Let’s first load it:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="read-and-reshape.html#cb78-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;df_S1P_combined.csv&#39;</span>)</span>
-<span id="cb78-2"><a href="read-and-reshape.html#cb78-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="read-and-reshape.html#cb80-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;df_S1P_combined.csv&#39;</span>)</span>
+<span id="cb80-2"><a href="read-and-reshape.html#cb80-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>         id      Time    Cell.1    Cell.2    Cell.3    Cell.4    Cell.5
 1 Cdc42_S1P 0.0000000 1.0035170 1.0015490 0.9810209 0.9869040 1.0041990
 2 Cdc42_S1P 0.1666667 0.9991689 0.9961631 0.9801265 0.9891608 0.9989283
@@ -634,8 +640,8 @@ Let’s save the data in a csv file:</p>
 5      NA      NA      NA
 6      NA      NA      NA</code></pre>
 <p>The data is still in a wide format and all the data that is in a column that starts with ‘Cell’ needs to be combined into a single column. The other columns <code>id</code> and <code>Time</code> need to be excluded from this operation and this is achieved with using the <code>-</code> sign:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="read-and-reshape.html#cb80-1"></a>df_tidy &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(df, <span class="dt">cols =</span> <span class="op">-</span><span class="kw">c</span>(id, Time), <span class="dt">names_to =</span> <span class="st">&quot;object&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;activity&quot;</span>)</span>
-<span id="cb80-2"><a href="read-and-reshape.html#cb80-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="read-and-reshape.html#cb82-1"></a>df_tidy &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(df, <span class="dt">cols =</span> <span class="op">-</span><span class="kw">c</span>(id, Time), <span class="dt">names_to =</span> <span class="st">&quot;object&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;activity&quot;</span>)</span>
+<span id="cb82-2"><a href="read-and-reshape.html#cb82-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
 <pre><code># A tibble: 6 x 4
   id         Time object activity
   &lt;fct&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
@@ -646,8 +652,8 @@ Let’s save the data in a csv file:</p>
 5 Cdc42_S1P     0 Cell.5    1.00 
 6 Cdc42_S1P     0 Cell.6    1.00 </code></pre>
 <p>If desired, the column ‘id’ can be renamed and/or split:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="read-and-reshape.html#cb82-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(id, <span class="kw">c</span>(<span class="st">&#39;Condition&#39;</span>, <span class="st">&#39;Treatment&#39;</span>))</span>
-<span id="cb82-2"><a href="read-and-reshape.html#cb82-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="read-and-reshape.html#cb84-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(id, <span class="kw">c</span>(<span class="st">&#39;Condition&#39;</span>, <span class="st">&#39;Treatment&#39;</span>))</span>
+<span id="cb84-2"><a href="read-and-reshape.html#cb84-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
 <pre><code># A tibble: 6 x 5
   Condition Treatment  Time object activity
   &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
@@ -658,19 +664,19 @@ Let’s save the data in a csv file:</p>
 5 Cdc42     S1P           0 Cell.5    1.00 
 6 Cdc42     S1P           0 Cell.6    1.00 </code></pre>
 <p>This dataframe is perfectly tidy, but there’s one little improvement that improves the sorting of the objects. The number of cells runs from 1 to 32. When it is sorted, Cell.1 will be followed by Cell.10:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="read-and-reshape.html#cb84-1"></a><span class="kw">sort</span>(<span class="kw">unique</span>(df_tidy<span class="op">$</span>object))</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="read-and-reshape.html#cb86-1"></a><span class="kw">sort</span>(<span class="kw">unique</span>(df_tidy<span class="op">$</span>object))</span></code></pre></div>
 <pre><code> [1] &quot;Cell.1&quot;  &quot;Cell.10&quot; &quot;Cell.11&quot; &quot;Cell.12&quot; &quot;Cell.13&quot; &quot;Cell.14&quot; &quot;Cell.15&quot;
  [8] &quot;Cell.16&quot; &quot;Cell.17&quot; &quot;Cell.18&quot; &quot;Cell.19&quot; &quot;Cell.2&quot;  &quot;Cell.20&quot; &quot;Cell.21&quot;
 [15] &quot;Cell.22&quot; &quot;Cell.23&quot; &quot;Cell.24&quot; &quot;Cell.25&quot; &quot;Cell.26&quot; &quot;Cell.27&quot; &quot;Cell.28&quot;
 [22] &quot;Cell.29&quot; &quot;Cell.3&quot;  &quot;Cell.30&quot; &quot;Cell.31&quot; &quot;Cell.32&quot; &quot;Cell.4&quot;  &quot;Cell.5&quot; 
 [29] &quot;Cell.6&quot;  &quot;Cell.7&quot;  &quot;Cell.8&quot;  &quot;Cell.9&quot; </code></pre>
 <p>To correct this, we need a 0 preceding the single digit numbers, e.g. Cell.01. To do that, we first split the object column into two columns, using the dot as a separator:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="read-and-reshape.html#cb86-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(<span class="st">&quot;object&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;object&quot;</span>, <span class="st">&quot;number&quot;</span>), <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="read-and-reshape.html#cb88-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(<span class="st">&quot;object&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;object&quot;</span>, <span class="st">&quot;number&quot;</span>), <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>)</span></code></pre></div>
 <p>Then, we fill up all the number to two digits by adding a 0 in front of all the single digit numbers with the function <code>str_pad()</code>:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="read-and-reshape.html#cb87-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">number=</span><span class="kw">str_pad</span>(number, <span class="dv">2</span>, <span class="dt">pad =</span> <span class="st">&quot;0&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="read-and-reshape.html#cb89-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">number=</span><span class="kw">str_pad</span>(number, <span class="dv">2</span>, <span class="dt">pad =</span> <span class="st">&quot;0&quot;</span>))</span></code></pre></div>
 <p>We can merge the two columns back together and I changed the seperator to a space:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="read-and-reshape.html#cb88-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;object&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;object&quot;</span>, <span class="st">&quot;number&quot;</span>), <span class="dt">sep=</span><span class="st">&quot; &quot;</span>)</span>
-<span id="cb88-2"><a href="read-and-reshape.html#cb88-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="read-and-reshape.html#cb90-1"></a>df_tidy &lt;-<span class="st"> </span>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;object&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;object&quot;</span>, <span class="st">&quot;number&quot;</span>), <span class="dt">sep=</span><span class="st">&quot; &quot;</span>)</span>
+<span id="cb90-2"><a href="read-and-reshape.html#cb90-2"></a><span class="kw">head</span>(df_tidy)</span></code></pre></div>
 <pre><code># A tibble: 6 x 5
   Condition Treatment  Time object  activity
   &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -681,19 +687,19 @@ Let’s save the data in a csv file:</p>
 5 Cdc42     S1P           0 Cell 05    1.00 
 6 Cdc42     S1P           0 Cell 06    1.00 </code></pre>
 <p>When the sorting is repeated it looks better:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="read-and-reshape.html#cb90-1"></a><span class="kw">sort</span>(<span class="kw">unique</span>(df_tidy<span class="op">$</span>object))</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="read-and-reshape.html#cb92-1"></a><span class="kw">sort</span>(<span class="kw">unique</span>(df_tidy<span class="op">$</span>object))</span></code></pre></div>
 <pre><code> [1] &quot;Cell 01&quot; &quot;Cell 02&quot; &quot;Cell 03&quot; &quot;Cell 04&quot; &quot;Cell 05&quot; &quot;Cell 06&quot; &quot;Cell 07&quot;
  [8] &quot;Cell 08&quot; &quot;Cell 09&quot; &quot;Cell 10&quot; &quot;Cell 11&quot; &quot;Cell 12&quot; &quot;Cell 13&quot; &quot;Cell 14&quot;
 [15] &quot;Cell 15&quot; &quot;Cell 16&quot; &quot;Cell 17&quot; &quot;Cell 18&quot; &quot;Cell 19&quot; &quot;Cell 20&quot; &quot;Cell 21&quot;
 [22] &quot;Cell 22&quot; &quot;Cell 23&quot; &quot;Cell 24&quot; &quot;Cell 25&quot; &quot;Cell 26&quot; &quot;Cell 27&quot; &quot;Cell 28&quot;
 [29] &quot;Cell 29&quot; &quot;Cell 30&quot; &quot;Cell 31&quot; &quot;Cell 32&quot;</code></pre>
 <p>We will save this tidy dataframe for later use:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="read-and-reshape.html#cb92-1"></a>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;df_S1P_combined_tidy.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="read-and-reshape.html#cb94-1"></a>df_tidy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;df_S1P_combined_tidy.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="data-in-96-wells-format-data-in-96-wells-format" class="section level3">
 <h3><span class="header-section-number">2.4.5</span> Data in 96-wells format {data-in-96-wells-format}</h3>
 <p>Data measured on samples in multiwell plates are often stored in a structure that resembles the plate layout. As an example, we use here a dataset from a luciferase experiment, measured with a 96-well plate luminescence reader. The data is stored in a sheet named ‘Results’ in an xlsx file. The cells in which the data is stored are located in F21:Q28. By selecting these cells, only the 96 values that were measured are read:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="read-and-reshape.html#cb93-1"></a>df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;DualLuc_example_data.xlsx&#39;</span>, <span class="dt">sheet =</span> <span class="st">&#39;Results&#39;</span>, <span class="dt">range =</span> <span class="st">&quot;F21:Q28&quot;</span>, <span class="dt">col_names =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="read-and-reshape.html#cb95-1"></a>df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&#39;DualLuc_example_data.xlsx&#39;</span>, <span class="dt">sheet =</span> <span class="st">&#39;Results&#39;</span>, <span class="dt">range =</span> <span class="st">&quot;F21:Q28&quot;</span>, <span class="dt">col_names =</span> F)</span></code></pre></div>
 <pre><code>New names:
 * `` -&gt; ...1
 * `` -&gt; ...2
@@ -702,13 +708,13 @@ Let’s save the data in a csv file:</p>
 * `` -&gt; ...5
 * ...</code></pre>
 <p>The table-like layout of the data can be changed into a list of 96 values:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="read-and-reshape.html#cb95-1"></a>data_as_list &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unlist</span>(<span class="dt">use.names =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="read-and-reshape.html#cb97-1"></a>data_as_list &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unlist</span>(<span class="dt">use.names =</span> F)</span></code></pre></div>
 <p>It is essential to know how the table is converted and this is done by reading the data from the first column, top to bottom, than the second column, etc.
 Knowing this, we can define the wells to which the data belongs, which would be A1, B1, … , G12, H12.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="read-and-reshape.html#cb96-1"></a>column &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">each=</span><span class="dv">8</span>)</span>
-<span id="cb96-2"><a href="read-and-reshape.html#cb96-2"></a>row &lt;-<span class="st"> </span><span class="kw">rep</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>],<span class="dv">12</span>)</span>
-<span id="cb96-3"><a href="read-and-reshape.html#cb96-3"></a>Well &lt;-<span class="st"> </span><span class="kw">paste0</span>(row,column)</span>
-<span id="cb96-4"><a href="read-and-reshape.html#cb96-4"></a>Well</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="read-and-reshape.html#cb98-1"></a>column &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">each=</span><span class="dv">8</span>)</span>
+<span id="cb98-2"><a href="read-and-reshape.html#cb98-2"></a>row &lt;-<span class="st"> </span><span class="kw">rep</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>],<span class="dv">12</span>)</span>
+<span id="cb98-3"><a href="read-and-reshape.html#cb98-3"></a>Well &lt;-<span class="st"> </span><span class="kw">paste0</span>(row,column)</span>
+<span id="cb98-4"><a href="read-and-reshape.html#cb98-4"></a>Well</span></code></pre></div>
 <pre><code> [1] &quot;A1&quot;  &quot;B1&quot;  &quot;C1&quot;  &quot;D1&quot;  &quot;E1&quot;  &quot;F1&quot;  &quot;G1&quot;  &quot;H1&quot;  &quot;A2&quot;  &quot;B2&quot;  &quot;C2&quot;  &quot;D2&quot; 
 [13] &quot;E2&quot;  &quot;F2&quot;  &quot;G2&quot;  &quot;H2&quot;  &quot;A3&quot;  &quot;B3&quot;  &quot;C3&quot;  &quot;D3&quot;  &quot;E3&quot;  &quot;F3&quot;  &quot;G3&quot;  &quot;H3&quot; 
 [25] &quot;A4&quot;  &quot;B4&quot;  &quot;C4&quot;  &quot;D4&quot;  &quot;E4&quot;  &quot;F4&quot;  &quot;G4&quot;  &quot;H4&quot;  &quot;A5&quot;  &quot;B5&quot;  &quot;C5&quot;  &quot;D5&quot; 
@@ -718,8 +724,8 @@ Knowing this, we can define the wells to which the data belongs, which would be 
 [73] &quot;A10&quot; &quot;B10&quot; &quot;C10&quot; &quot;D10&quot; &quot;E10&quot; &quot;F10&quot; &quot;G10&quot; &quot;H10&quot; &quot;A11&quot; &quot;B11&quot; &quot;C11&quot; &quot;D11&quot;
 [85] &quot;E11&quot; &quot;F11&quot; &quot;G11&quot; &quot;H11&quot; &quot;A12&quot; &quot;B12&quot; &quot;C12&quot; &quot;D12&quot; &quot;E12&quot; &quot;F12&quot; &quot;G12&quot; &quot;H12&quot;</code></pre>
 <p>We can now generate a dataframe that lists the wells and the values, which is a (luminescence) intensity. We can also add two additional columns that list the row and column information:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="read-and-reshape.html#cb98-1"></a>df_tidy_wells &lt;-<span class="st"> </span><span class="kw">data.frame</span>(column, row, Well, <span class="dt">Intensity=</span>data_as_list)</span>
-<span id="cb98-2"><a href="read-and-reshape.html#cb98-2"></a><span class="kw">head</span>(df_tidy_wells)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="read-and-reshape.html#cb100-1"></a>df_tidy_wells &lt;-<span class="st"> </span><span class="kw">data.frame</span>(column, row, Well, <span class="dt">Intensity=</span>data_as_list)</span>
+<span id="cb100-2"><a href="read-and-reshape.html#cb100-2"></a><span class="kw">head</span>(df_tidy_wells)</span></code></pre></div>
 <pre><code>  column row Well Intensity
 1      1   A   A1      2010
 2      1   B   B1      3210
@@ -727,7 +733,7 @@ Knowing this, we can define the wells to which the data belongs, which would be 
 4      1   D   D1      2381
 5      1   E   E1      1292
 6      1   F   F1       991</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="read-and-reshape.html#cb100-1"></a>df_tidy_wells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;df_tidy_wells.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="read-and-reshape.html#cb102-1"></a>df_tidy_wells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">write.csv</span>(<span class="st">&quot;df_tidy_wells.csv&quot;</span>)</span></code></pre></div>
 <p>This concludes the conversion of data from the plate layout into a tidy format. The instructions explained here are used in <a href="complete-protocols.html#protocol-4">Protocol 4</a></p>
 
 </div>
@@ -771,8 +777,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JoachimGoedhart/DataViz-protocols/edit/master/02-read-and-reshape.Rmd",
-"text": "Suggest an edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,
@@ -782,7 +788,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/JoachimGoedhart/DataViz-protocols/raw/master/02-read-and-reshape.Rmd"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

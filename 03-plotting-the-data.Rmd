@@ -237,7 +237,7 @@ ggplot(data=df, mapping = aes(x=Time, y=Intensity)) +
   stat_summary(fun = mean, geom='point', shape=95, size=24, color='black')
 ```
 
-This works, but it doesn't allow us to specify the width and the thickness of the line. To have better control over the line we turn to another 'geom', `geom_errorbar()`. This functions is actually used to display errorbars, but if we only set one value for the min and max, it allows us to display the mean. We can change the looks of the horizontal bar by changing the width and the size. The latter defines the thickness of the line.
+This works, but it doesn't allow us to specify the width and the thickness of the line. To have better control over the line we turn to another 'geom', `geom_errorbar()`. This function is actually used to display errorbars, but if we only set one value for the min and max, it allows us to display the mean. We can change the looks of the horizontal bar by changing the width and the size. The latter defines the thickness of the line.
 
 ```{r}
 ggplot(data=df, mapping = aes(x=Time, y=Intensity)) +
@@ -417,7 +417,7 @@ ggplot(df, aes(x=Condition, y=value)) +
 
 ```
 
-Personally, I like the combination of data and violinplot, but the jitter can make the plot look messy. There are packages that enable the plotting of the data according to its distribution. There is `geom_sina()` from ggforce package and `geom_quasirandom()` from the ggbeeswarm package:
+Personally, I like the combination of data and violinplot, but the jitter can make the plot look messy. There are packages that enable the plotting of the data according to its distribution. There is `geom_sina()` from the {ggforce} package and `geom_quasirandom()` from the {ggbeeswarm} package:
 
 ```{r}
 library(ggbeeswarm)
@@ -435,7 +435,7 @@ ggplot(df, aes(x=Condition, y=value)) +
   geom_boxplot(width=0.1, outlier.color = NA)
 ```
 
-I have a preference for showing the actual data. However, for large n the violinplot may be an accurate representation of the data, that better conveys the message than a cluttered plot that shows a lot of dots.
+Note that `geom_quasirandom()` can generate plots with excessive overlap between data points when there’s large amounts of data. In some cases this can be solved by increasing the transparency (by decreasing alpha). Another option is to use `geom_beeswarm()`, which does not allow overlap of the points. I have a preference for showing the actual data, but for large n the violinplot may better convey the message of the data than a cluttered plot that shows a lot of dots.
 
 
 ## Optimizing the data visualization

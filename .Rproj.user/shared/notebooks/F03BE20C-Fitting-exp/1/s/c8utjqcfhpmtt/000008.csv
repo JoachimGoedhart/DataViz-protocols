@@ -1,4 +1,0 @@
-"0","fitted_off %>% "
-"0","  unnest(tidied) %>% "
-"0","  select(System, term, estimate) %>% "
-"0","  spread(term, estimate) %>% rename(Amplitude=a) %>% mutate(`t1/2`=log(2)/k)"

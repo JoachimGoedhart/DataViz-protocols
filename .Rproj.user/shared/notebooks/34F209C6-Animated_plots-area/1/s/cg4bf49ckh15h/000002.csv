@@ -1,4 +1,0 @@
-"0","df_summary <- df_summary %>% mutate(light = case_when(Time >= 135 & Time <= 720  ~ ""ON"","
-"0","                                                      TRUE ~ ""OFF"""
-"0","                                                      )"
-"0","                                    )"

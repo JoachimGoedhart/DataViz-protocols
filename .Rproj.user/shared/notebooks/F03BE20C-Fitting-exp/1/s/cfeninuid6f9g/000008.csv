@@ -1,4 +1,0 @@
-"0","df_fit_on <- df_summary %>% filter(Time>=0)"
-"0","df_fit_on <- df_fit_on %>% filter(System==""iLID"" & Time<100 | System==""magnets"" & Time<100 | System==""rapamycin"")"
-"0",""
-"0","ggplot(df_fit_on, aes(x=Time, y=mean))+geom_point(size=2, alpha=0.8)+facet_wrap(~System)+xlim(0,200)"

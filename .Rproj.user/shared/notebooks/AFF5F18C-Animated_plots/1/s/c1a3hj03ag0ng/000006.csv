@@ -1,3 +1,0 @@
-"0","p <- p + theme_light(base_size=14) +"
-"0","  theme(panel.grid = element_blank()) +"
-"0","  theme(legend.position=""none"")"

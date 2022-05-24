@@ -56,7 +56,7 @@ This simple example illustrates the difference between quantitative and qualitat
 
 ## Reading data
 
-Reading, or loading data is the transfer of information from a file to the memory of R where it is stored as a dataframe. Rstudio supports 'point-and-click' loading of data from its menu (File > Import Dataset > ...). This is a convenient way of loading data. Since the aim is to perform all steps in a script, including data loading, I'll explain how to functions are used to load data from the console.
+Reading, or loading data is the transfer of information from a file to the memory of R where it is stored as a dataframe. Rstudio supports 'point-and-click' loading of data from its menu (File > Import Dataset > ...). This is a convenient way of loading data. Since the aim is to perform all steps in a script, including data loading, I'll explain how functions are used to load data from the console.
 
 ### Loading data from a text or csv file
 
@@ -76,6 +76,13 @@ To check whether the loading was successful, we can look at the first lines of t
 head(df)
 ```
 This data has several columns, each containing quantitative data. Empty cells that do not have any data will be displayed as 'NA'. Note that this is different from '0'.
+
+The 'delimiter' of a file is a character that separates the different fields of data. In a CSV file, as the name implies, this is a comma. However, other characters such as semicolons or tabs are often used as delimiters in text files. The function 'read.delim()' can be used to load a text file with a delimiter that can be specified, and therefore this function is more flexible for loading of data. For the CSV file, it would be used like this:
+
+```{r}
+df <- read.delim('FPbase_Spectra.csv', sep = ",")
+```
+
 
 ### Loading data from a URL
 
@@ -125,10 +132,10 @@ Then we use the function `map()` to perform the function `read.csv()` for each o
 df_input_list <- map(filelist, read.csv)
 ```
 
-The result is a 'nested' dataframe, which is a dataframe with dataframes. Instead of having three separate dataframes, we want a single dataframe but it should have a label that reflects the condition. The labels are based on the filenames. Note that we use `gsub` here to remove the extension of the filename:
+The result is a 'nested' dataframe, which is a dataframe with dataframes. Instead of having three separate dataframes, we want a single dataframe but it should have a label that reflects the condition. The labels are based on the filenames. We can use `str_replace()` to remove the extension of the filenames:
 
 ```{r}
-names(df_input_list) <- gsub(filelist, pattern="\\..*", replacement="")
+names(df_input_list) <- str_replace(filelist, pattern = ".csv", replacement = "")
 ```
 
 After this, we merge the dataframes and create a column 'id' that has the label with the filename:
@@ -159,10 +166,10 @@ df <- readxl::read_excel('Length-wide.xls')
 df
 ```
 
-First, we will replace the spaces in the column names. Although this is not strictly necessary, it simplifies handling of the data. We use `names()` to get the names of the dataframe and `gsub()` to replace characters in a vector. The `"\\s"` is a symbol for a space and the second argument of the function "`"_"` indicates the new character or string:
+First, we will replace the spaces in the column names. Although this is not strictly necessary, it simplifies handling of the data. We use `names()` to get the names of the dataframe and `str_replace()` to replace the space by an underscore:
 
 ```{r}
-names(df) <- gsub("\\s", "_", names(df))
+names(df) <- str_replace(names(df), pattern = " ", replacement = "_")
 head(df)
 ```
 

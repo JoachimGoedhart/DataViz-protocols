@@ -80,4 +80,24 @@ You can find this out by first loading the package and then run `tidyverse_packa
 
 ------
 
+### What is the difference between `require()` and `library()` for loading a package? {-}
+
+Both functions can be used to load a package. The difference is that `require()` returns `FALSE` when the package does not exist and can be used to check whether a package was loaded:
+
+```{r}
+if (require("nonexistant") == FALSE) ("This packkage doesn't exist")
+```
+
+------
+
+### Is it possible to have interactive file selection? {-}
+
+In some cases it can be convenient to select a file by point-and-click, although this is not strictly reproducible. This example code shows how this can be achieved by using the function `file.choose()` inside a function for reading a csv file:
+
+```{r eval = FALSE}
+df <- read.csv(file.choose(), header = TRUE)
+```
+
+------
+
 ### {-}

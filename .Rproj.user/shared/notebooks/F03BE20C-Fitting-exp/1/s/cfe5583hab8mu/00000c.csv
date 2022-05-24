@@ -1,8 +1,0 @@
-"0","augmented <- fitted_off %>% "
-"0","  unnest(augmented)"
-"0",""
-"0",""
-"0","ggplot(data = augmented, aes(x=Time, y=mean, colour = System)) + geom_point(size=4, alpha=.5) + "
-"0","  geom_line(aes(y=.fitted), color=""black"", size=1) + facet_wrap(~System)  +"
-"0","  scale_color_manual(values = newColors)"
-"0",""

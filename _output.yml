@@ -3,9 +3,6 @@ bookdown::gitbook:
     in_header: [ga_script.html]
   css: style.css
   config:
-    edit:
-      link: https://github.com/JoachimGoedhart/DataViz-protocols/edit/master/%s
-      text: "Suggest an edit"
     toc:
       before: |
         <li><a href="./">DataViz Protocols</a></li>

@@ -24,7 +24,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2022-04-21" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a><ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#running-r"><i class="fa fa-check"></i><b>1.1</b> Running R</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#using-the-command-line"><i class="fa fa-check"></i><b>1.2</b> Using the command line</a></li>
-<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help?</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help</a></li>
 <li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing packages</a></li>
 <li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#multiline-code"><i class="fa fa-check"></i><b>1.5</b> Multiline code</a></li>
 </ul></li>
@@ -208,6 +208,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-4"><i class="fa fa-check"></i><b>4.4</b> Protocol 4 - Plotting data from a 96-wells experiment</a></li>
 <li class="chapter" data-level="4.5" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-5"><i class="fa fa-check"></i><b>4.5</b> Protocol 5 - A map of amino acids</a></li>
 <li class="chapter" data-level="4.6" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-6"><i class="fa fa-check"></i><b>4.6</b> Protocol 6 - Heatmap style visualization of timelapse data</a></li>
+<li class="chapter" data-level="4.7" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-7"><i class="fa fa-check"></i><b>4.7</b> Protocol 7 - Ridgeline plot</a></li>
+<li class="chapter" data-level="4.8" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-8"><i class="fa fa-check"></i><b>4.8</b> Protocol 8 - Plotting data in a 96-wells layout</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a><ul>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble"><i class="fa fa-check"></i>What is the difference between a data.frame and a tibble?</a></li>
@@ -219,6 +221,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#where-do-i-find-the-example-data"><i class="fa fa-check"></i>Where do I find the example data?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-there-a-way-to-re-use-or-adjust-the-protocols"><i class="fa fa-check"></i>Is there a way to re-use or adjust the protocols?</a></li>
 <li><a href="questions-and-answers.html#which-packages-are-included-in-the-tidyverse-package">Which packages are included in the <code>{tidyverse}</code> package?</a></li>
+<li><a href="questions-and-answers.html#what-is-the-difference-between-require-and-library-for-loading-a-package">What is the difference between <code>require()</code> and <code>library()</code> for loading a package?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-it-possible-to-have-interactive-file-selection"><i class="fa fa-check"></i>Is it possible to have interactive file selection?</a></li>
 <li><a href="questions-and-answers.html#section"></a></li>
 </ul></li>
 <li class="divider"></li>
@@ -275,26 +279,27 @@ Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
 </div>
 <div id="help" class="section level2">
-<h2><span class="header-section-number">1.3</span> ?Help?</h2>
+<h2><span class="header-section-number">1.3</span> ?Help</h2>
 <p>If you need help with a specific function, you may look at the documentation by typing a question mark followed by the function:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="getting-started.html#cb8-1"></a>?<span class="kw">head</span>()</span></code></pre></div>
 <p>However, I usually find myself googling instead of reading the documentation. The result is often a website where the correct use is explained by an example. It also make sense to experiment. Systematically changing variables or options (or outcommenting lines of code, see below) will teach you the logic behind a function or operation. Finally, there may be some answers in the chapter <a href="questions-and-answers.html#questions-and-answers">Questions and Answers</a></p>
 </div>
 <div id="installing-packages" class="section level2">
 <h2><span class="header-section-number">1.4</span> Installing packages</h2>
-<p>R comes with a lot of commands and functions, but we often need to load additional ‘packages’ to add functionality. If the package is not yet available, it needs to be downloaded and installed. This handy piece of code checks whether the <code>{tidyverse}</code> package is available, downloads it if necessary and than activates it:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="getting-started.html#cb9-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(tidyverse)) {</span>
-<span id="cb9-2"><a href="getting-started.html#cb9-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb9-3"><a href="getting-started.html#cb9-3"></a>    <span class="kw">require</span>(tidyverse)</span>
-<span id="cb9-4"><a href="getting-started.html#cb9-4"></a>}</span></code></pre></div>
-<p>The output in the console depends on the packages that are installed and activated.
-The tidyverse package is very versatile and is a superpackage that hold several packages that equip R with superpowers. The most important one is the ggplot2 package that we use for the data visulizations.
-Whenever necessary, other packages are required and this will be mentioned when necessary.</p>
+<p>R comes with a lot of commands and functions, but we often need to load additional ‘packages’ to add functionality. The most important one that we use here is the <code>{ggplot2}</code> package that we use for the data visualizations. The package can be activated with the function <code>require()</code> or <code>library()</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="getting-started.html#cb9-1"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<p>The <code>{tidyverse}</code> package is very versatile and is a superpackage that hold several packages (including <code>{ggplot2}</code>). Loading the <code>{tidyverse}</code> package is like equipping R with superpowers. Often it is sufficient to load the <code>{tidyverse}</code> package.</p>
+<p>The first time, the package has to be downloaded and installed. This handy piece of code checks whether the <code>{tidyverse}</code> package is available, downloads it if necessary and than activates it:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="getting-started.html#cb10-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(tidyverse)) {</span>
+<span id="cb10-2"><a href="getting-started.html#cb10-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb10-3"><a href="getting-started.html#cb10-3"></a>    <span class="kw">require</span>(tidyverse)</span>
+<span id="cb10-4"><a href="getting-started.html#cb10-4"></a>}</span></code></pre></div>
+<p>The output in the console depends on the packages that are installed and activated. For some specific functions, other packages are required, and these will be mentioned whenever they are used.</p>
 </div>
 <div id="multiline-code" class="section level2">
 <h2><span class="header-section-number">1.5</span> Multiline code</h2>
 <p>The tidyverse package introduces a so-called pipe operator <code>%&gt;%</code> which we will use a lot. This operator is useful for stringing multiple functions together. An example is given below, which reads as ‘take the <code>mtcars</code> dataset <em>and next use</em> the <code>head()</code> function’.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="getting-started.html#cb10-1"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="getting-started.html#cb11-1"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
 <pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -303,26 +308,26 @@ Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
 <p>Also for the plots that are generated with <code>ggplot()</code>, several functions can be added and these reflects different layers in the plot. However, in case of ggplot the layers are combined by a <code>+</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="getting-started.html#cb12-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span></span>
-<span id="cb12-2"><a href="getting-started.html#cb12-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb12-3"><a href="getting-started.html#cb12-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>It is important to end each line with a <code>+</code>, as it indicates that the code continues on the next line. This will result in a warning message:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="getting-started.html#cb13-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span></span>
-<span id="cb13-2"><a href="getting-started.html#cb13-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
-<span id="cb13-3"><a href="getting-started.html#cb13-3"></a>  <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p>The last line should not end with a plus. A trick that I use a lot, is using <code>NULL</code> on the last line of the code:</p>
+<span id="cb13-2"><a href="getting-started.html#cb13-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb13-3"><a href="getting-started.html#cb13-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>It is important to end each line with a <code>+</code>, as it indicates that the code continues on the next line. This will result in a warning message:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="getting-started.html#cb14-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span></span>
-<span id="cb14-2"><a href="getting-started.html#cb14-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb14-3"><a href="getting-started.html#cb14-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb14-4"><a href="getting-started.html#cb14-4"></a><span class="st">  </span><span class="ot">NULL</span></span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>The advantage is that it is easy to deactivate a line by placing a hashtag in front of it (without the need to remove the <code>+</code>). The hashtag tells R to treat that line as a comment and not as code:</p>
+<span id="cb14-2"><a href="getting-started.html#cb14-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
+<span id="cb14-3"><a href="getting-started.html#cb14-3"></a>  <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p>The last line should not end with a plus. A trick that I use a lot, is using <code>NULL</code> on the last line of the code:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="getting-started.html#cb15-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span></span>
 <span id="cb15-2"><a href="getting-started.html#cb15-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb15-3"><a href="getting-started.html#cb15-3"></a><span class="co"># geom_line() +</span></span>
+<span id="cb15-3"><a href="getting-started.html#cb15-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
 <span id="cb15-4"><a href="getting-started.html#cb15-4"></a><span class="st">  </span><span class="ot">NULL</span></span></code></pre></div>
 <p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>The advantage is that it is easy to deactivate a line by placing a hashtag in front of it (without the need to remove the <code>+</code>). The hashtag tells R to treat that line as a comment and not as code:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="getting-started.html#cb16-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span></span>
+<span id="cb16-2"><a href="getting-started.html#cb16-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb16-3"><a href="getting-started.html#cb16-3"></a><span class="co"># geom_line() +</span></span>
+<span id="cb16-4"><a href="getting-started.html#cb16-4"></a><span class="st">  </span><span class="ot">NULL</span></span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>This strategy is called ‘commenting out’ and is very useful to examine the effect of a line of code. For plots, it works very well in combination with <code>NULL</code> on the last line.</p>
 
 </div>
@@ -365,8 +370,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JoachimGoedhart/DataViz-protocols/edit/master/01-getting-started.Rmd",
-"text": "Suggest an edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,
@@ -376,7 +381,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/JoachimGoedhart/DataViz-protocols/raw/master/01-getting-started.Rmd"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
