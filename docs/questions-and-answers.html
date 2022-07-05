@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Questions and Answers | DataViz protocols</title>
   <meta name="description" content="This is an introduction to data visualization protocols for wet lab scientists" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Questions and Answers | DataViz protocols" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://joachimgoedhart.github.io/DataViz-protocols/" />
-  <meta property="og:image" content="https://joachimgoedhart.github.io/DataViz-protocols//logo.png" />
+  
   <meta property="og:description" content="This is an introduction to data visualization protocols for wet lab scientists" />
   <meta name="github-repo" content="JoachimGoedhart/DataViz-protocols" />
 
@@ -19,12 +18,12 @@
   <meta name="twitter:title" content="Chapter 5 Questions and Answers | DataViz protocols" />
   
   <meta name="twitter:description" content="This is an introduction to data visualization protocols for wet lab scientists" />
-  <meta name="twitter:image" content="https://joachimgoedhart.github.io/DataViz-protocols//logo.png" />
+  
 
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2022-05-24" />
+<meta name="date" content="2022-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,8 @@
   
 <link rel="prev" href="complete-protocols.html"/>
 
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,10 +49,10 @@
 
 
 
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDBZZ5FR0E"></script>
 <script>
@@ -65,18 +65,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -96,7 +96,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -146,26 +146,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">DataViz Protocols</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-toast"><i class="fa fa-check"></i>A toast</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a><ul>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#running-r"><i class="fa fa-check"></i><b>1.1</b> Running R</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#using-the-command-line"><i class="fa fa-check"></i><b>1.2</b> Using the command line</a></li>
 <li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#help"><i class="fa fa-check"></i><b>1.3</b> ?Help</a></li>
 <li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing packages</a></li>
 <li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#multiline-code"><i class="fa fa-check"></i><b>1.5</b> Multiline code</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="read-and-reshape.html"><a href="read-and-reshape.html"><i class="fa fa-check"></i><b>2</b> Reading and reshaping data</a><ul>
+<li class="chapter" data-level="2" data-path="read-and-reshape.html"><a href="read-and-reshape.html"><i class="fa fa-check"></i><b>2</b> Reading and reshaping data</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="read-and-reshape.html"><a href="read-and-reshape.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
 <li class="chapter" data-level="2.2" data-path="read-and-reshape.html"><a href="read-and-reshape.html#types-of-data"><i class="fa fa-check"></i><b>2.2</b> Types of data</a></li>
-<li class="chapter" data-level="2.3" data-path="read-and-reshape.html"><a href="read-and-reshape.html#reading-data"><i class="fa fa-check"></i><b>2.3</b> Reading data</a><ul>
+<li class="chapter" data-level="2.3" data-path="read-and-reshape.html"><a href="read-and-reshape.html#reading-data"><i class="fa fa-check"></i><b>2.3</b> Reading data</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="read-and-reshape.html"><a href="read-and-reshape.html#loading-data-from-a-text-or-csv-file"><i class="fa fa-check"></i><b>2.3.1</b> Loading data from a text or csv file</a></li>
 <li class="chapter" data-level="2.3.2" data-path="read-and-reshape.html"><a href="read-and-reshape.html#loading-data-from-a-url"><i class="fa fa-check"></i><b>2.3.2</b> Loading data from a URL</a></li>
 <li class="chapter" data-level="2.3.3" data-path="read-and-reshape.html"><a href="read-and-reshape.html#retrieving-data-from-excel"><i class="fa fa-check"></i><b>2.3.3</b> Retrieving data from Excel</a></li>
 <li class="chapter" data-level="2.3.4" data-path="read-and-reshape.html"><a href="read-and-reshape.html#retrieving-data-from-multiple-files"><i class="fa fa-check"></i><b>2.3.4</b> Retrieving data from multiple files</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="read-and-reshape.html"><a href="read-and-reshape.html#tidy-data"><i class="fa fa-check"></i><b>2.4</b> Reshaping data</a><ul>
+<li class="chapter" data-level="2.4" data-path="read-and-reshape.html"><a href="read-and-reshape.html#tidy-data"><i class="fa fa-check"></i><b>2.4</b> Reshaping data</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="read-and-reshape.html"><a href="read-and-reshape.html#quantitative-data-discrete-conditions"><i class="fa fa-check"></i><b>2.4.1</b> Quantitative data, discrete conditions</a></li>
 <li class="chapter" data-level="2.4.2" data-path="read-and-reshape.html"><a href="read-and-reshape.html#multiple-discrete-conditions"><i class="fa fa-check"></i><b>2.4.2</b> Multiple discrete conditions</a></li>
 <li class="chapter" data-level="2.4.3" data-path="read-and-reshape.html"><a href="read-and-reshape.html#double-quantitative-data"><i class="fa fa-check"></i><b>2.4.3</b> Double quantitative data</a></li>
@@ -173,35 +178,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.5" data-path="read-and-reshape.html"><a href="read-and-reshape.html#data-in-96-wells-format-data-in-96-wells-format"><i class="fa fa-check"></i><b>2.4.5</b> Data in 96-wells format {data-in-96-wells-format}</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="plotting-the-data.html"><a href="plotting-the-data.html"><i class="fa fa-check"></i><b>3</b> Plotting the Data</a><ul>
+<li class="chapter" data-level="3" data-path="plotting-the-data.html"><a href="plotting-the-data.html"><i class="fa fa-check"></i><b>3</b> Plotting the Data</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#data-over-time-continuous-vs.-continuous"><i class="fa fa-check"></i><b>3.1</b> Data over time (continuous vs. continuous)</a></li>
-<li class="chapter" data-level="3.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#discrete-conditions"><i class="fa fa-check"></i><b>3.2</b> Discrete conditions</a><ul>
+<li class="chapter" data-level="3.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#discrete-conditions"><i class="fa fa-check"></i><b>3.2</b> Discrete conditions</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#x-axis-data-qualitative-versus-quantitative-data"><i class="fa fa-check"></i><b>3.2.1</b> X-axis data: qualitative versus quantitative data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="plotting-the-data.html"><a href="plotting-the-data.html#statistics"><i class="fa fa-check"></i><b>3.3</b> Statistics</a><ul>
+<li class="chapter" data-level="3.3" data-path="plotting-the-data.html"><a href="plotting-the-data.html#statistics"><i class="fa fa-check"></i><b>3.3</b> Statistics</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#introduction-1"><i class="fa fa-check"></i><b>3.3.1</b> Introduction</a></li>
 <li class="chapter" data-level="3.3.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#data-summaries-directly-added-as-a-plot-layer"><i class="fa fa-check"></i><b>3.3.2</b> Data summaries directly added as a plot layer</a></li>
 <li class="chapter" data-level="3.3.3" data-path="plotting-the-data.html"><a href="plotting-the-data.html#data-summaries-from-a-dataframe"><i class="fa fa-check"></i><b>3.3.3</b> Data summaries from a dataframe</a></li>
 <li class="chapter" data-level="3.3.4" data-path="plotting-the-data.html"><a href="plotting-the-data.html#data-summaries-for-continuous-x-axis-data"><i class="fa fa-check"></i><b>3.3.4</b> Data summaries for continuous x-axis data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="plotting-the-data.html"><a href="plotting-the-data.html#plot-a-lot---discrete-data"><i class="fa fa-check"></i><b>3.4</b> Plot-a-lot - discrete data</a></li>
-<li class="chapter" data-level="3.5" data-path="plotting-the-data.html"><a href="plotting-the-data.html#optimizing-the-data-visualization"><i class="fa fa-check"></i><b>3.5</b> Optimizing the data visualization</a><ul>
+<li class="chapter" data-level="3.5" data-path="plotting-the-data.html"><a href="plotting-the-data.html#optimizing-the-data-visualization"><i class="fa fa-check"></i><b>3.5</b> Optimizing the data visualization</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#rotation"><i class="fa fa-check"></i><b>3.5.1</b> Rotation</a></li>
 <li class="chapter" data-level="3.5.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#ordering-conditions"><i class="fa fa-check"></i><b>3.5.2</b> Ordering conditions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="plotting-the-data.html"><a href="plotting-the-data.html#adjusting-the-layout"><i class="fa fa-check"></i><b>3.6</b> Adjusting the layout</a><ul>
+<li class="chapter" data-level="3.6" data-path="plotting-the-data.html"><a href="plotting-the-data.html#adjusting-the-layout"><i class="fa fa-check"></i><b>3.6</b> Adjusting the layout</a>
+<ul>
 <li class="chapter" data-level="3.6.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#themes"><i class="fa fa-check"></i><b>3.6.1</b> Themes</a></li>
 <li class="chapter" data-level="3.6.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#legend"><i class="fa fa-check"></i><b>3.6.2</b> Legend</a></li>
 <li class="chapter" data-level="3.6.3" data-path="plotting-the-data.html"><a href="plotting-the-data.html#grids"><i class="fa fa-check"></i><b>3.6.3</b> Grids</a></li>
 <li class="chapter" data-level="3.6.4" data-path="plotting-the-data.html"><a href="plotting-the-data.html#labelstitles"><i class="fa fa-check"></i><b>3.6.4</b> Labels/Titles</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="plotting-the-data.html"><a href="plotting-the-data.html#plot-a-lot---continuous-data"><i class="fa fa-check"></i><b>3.7</b> Plot-a-lot - continuous data</a><ul>
+<li class="chapter" data-level="3.7" data-path="plotting-the-data.html"><a href="plotting-the-data.html#plot-a-lot---continuous-data"><i class="fa fa-check"></i><b>3.7</b> Plot-a-lot - continuous data</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="plotting-the-data.html"><a href="plotting-the-data.html#small-multiples"><i class="fa fa-check"></i><b>3.7.1</b> Small multiples</a></li>
 <li class="chapter" data-level="3.7.2" data-path="plotting-the-data.html"><a href="plotting-the-data.html#heatmaps"><i class="fa fa-check"></i><b>3.7.2</b> Heatmaps</a></li>
 <li class="chapter" data-level="3.7.3" data-path="plotting-the-data.html"><a href="plotting-the-data.html#custom-objects"><i class="fa fa-check"></i><b>3.7.3</b> Custom objects</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="complete-protocols.html"><a href="complete-protocols.html"><i class="fa fa-check"></i><b>4</b> Complete protocols</a><ul>
+<li class="chapter" data-level="4" data-path="complete-protocols.html"><a href="complete-protocols.html"><i class="fa fa-check"></i><b>4</b> Complete protocols</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-1"><i class="fa fa-check"></i><b>4.1</b> Protocol 1 - Spectra of fluorescent proteins</a></li>
 <li class="chapter" data-level="4.2" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-2"><i class="fa fa-check"></i><b>4.2</b> Protocol 2 - A superplot of calcium concentrations</a></li>
 <li class="chapter" data-level="4.3" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-3"><i class="fa fa-check"></i><b>4.3</b> Protocol 3 - small multiples of time courses</a></li>
@@ -210,18 +222,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-6"><i class="fa fa-check"></i><b>4.6</b> Protocol 6 - Heatmap style visualization of timelapse data</a></li>
 <li class="chapter" data-level="4.7" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-7"><i class="fa fa-check"></i><b>4.7</b> Protocol 7 - Ridgeline plot</a></li>
 <li class="chapter" data-level="4.8" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-8"><i class="fa fa-check"></i><b>4.8</b> Protocol 8 - Plotting data in a 96-wells layout</a></li>
+<li class="chapter" data-level="4.9" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-9"><i class="fa fa-check"></i><b>4.9</b> Protocol 9 - A dose response curve with fit</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a><ul>
+<li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a>
+<ul>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble"><i class="fa fa-check"></i>What is the difference between a data.frame and a tibble?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#whats-up-with-spaces-in-variable-names-and-in-files-names"><i class="fa fa-check"></i>What’s up with spaces in variable names and in files names?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-are-the-rules-for-naming-dataframes-or-variables"><i class="fa fa-check"></i>What are the rules for naming dataframes or variables?</a></li>
-<li><a href="questions-and-answers.html#what-is-the-difference-between---and-for-assigning-variables">What is the difference between <code>&lt;-</code> and <code>=</code> for assigning variables?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between---and-for-assigning-variables"><i class="fa fa-check"></i>What is the difference between <code>&lt;-</code> and <code>=</code> for assigning variables?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-does-na-mean-in-a-dataframe"><i class="fa fa-check"></i>What does ‘NA’ mean in a dataframe?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-beste-way-to-type-a-operator"><i class="fa fa-check"></i>What is the beste way to type a ‘%&gt;%’ operator?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#where-do-i-find-the-example-data"><i class="fa fa-check"></i>Where do I find the example data?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-there-a-way-to-re-use-or-adjust-the-protocols"><i class="fa fa-check"></i>Is there a way to re-use or adjust the protocols?</a></li>
-<li><a href="questions-and-answers.html#which-packages-are-included-in-the-tidyverse-package">Which packages are included in the <code>{tidyverse}</code> package?</a></li>
-<li><a href="questions-and-answers.html#what-is-the-difference-between-require-and-library-for-loading-a-package">What is the difference between <code>require()</code> and <code>library()</code> for loading a package?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#which-packages-are-included-in-the-tidyverse-package"><i class="fa fa-check"></i>Which packages are included in the <code>{tidyverse}</code> package?</a></li>
+<li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#what-is-the-difference-between-require-and-library-for-loading-a-package"><i class="fa fa-check"></i>What is the difference between <code>require()</code> and <code>library()</code> for loading a package?</a></li>
 <li class="chapter" data-level="" data-path="questions-and-answers.html"><a href="questions-and-answers.html#is-it-possible-to-have-interactive-file-selection"><i class="fa fa-check"></i>Is it possible to have interactive file selection?</a></li>
 <li><a href="questions-and-answers.html#section"></a></li>
 </ul></li>
@@ -245,28 +259,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="questions-and-answers" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Questions and Answers</h1>
+<div id="questions-and-answers" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Questions and Answers<a href="questions-and-answers.html#questions-and-answers" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>A list of questions that may arise during the use of R and their answers. When you have questions that remain unanswered, feel free to reach out!</p>
-<div id="what-is-the-difference-between-a-data.frame-and-a-tibble" class="section level3 unnumbered">
-<h3>What is the difference between a data.frame and a tibble?</h3>
+<div id="what-is-the-difference-between-a-data.frame-and-a-tibble" class="section level3 unnumbered hasAnchor">
+<h3>What is the difference between a data.frame and a tibble?<a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Both are objects that hold data. The data.frame is the structure supported by basic R and the tibble is an extended variant that is supported by the tidyverse package. Dependig on the function that is used to load data, <code>read.csv()</code> from base R or <code>read_csv()</code> from the tidyverse, the data will be loaded in a data.frame or tibble, respectively. It is possible to convert a classic data.frame to a tibble (which requires the tidyverse pakcage):</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="questions-and-answers.html#cb391-1"></a>df &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(mtcars)</span>
-<span id="cb391-2"><a href="questions-and-answers.html#cb391-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="questions-and-answers.html#cb413-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
+<span id="cb413-2"><a href="questions-and-answers.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df)</span></code></pre></div>
 <pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
 <p>And to convert a tibble to a data.frame:</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="questions-and-answers.html#cb393-1"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(df)</span>
-<span id="cb393-2"><a href="questions-and-answers.html#cb393-2"></a><span class="kw">class</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="questions-and-answers.html#cb415-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(df)</span>
+<span id="cb415-2"><a href="questions-and-answers.html#cb415-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df)</span></code></pre></div>
 <pre><code>[1] &quot;data.frame&quot;</code></pre>
 <hr />
 </div>
-<div id="whats-up-with-spaces-in-variable-names-and-in-files-names" class="section level3 unnumbered">
-<h3>What’s up with spaces in variable names and in files names?</h3>
+<div id="whats-up-with-spaces-in-variable-names-and-in-files-names" class="section level3 unnumbered hasAnchor">
+<h3>What’s up with spaces in variable names and in files names?<a href="questions-and-answers.html#whats-up-with-spaces-in-variable-names-and-in-files-names" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Spaces are used to separate words (as in this line). When a space would be used between two words, these would be treated as separate entities. Avoiding spaces in filenames has a more technical background. Most filesystems currently accept spaces, but some systems do not. To increase compatibility across systems it is a good habit to use_underscores_instead.</p>
 <hr />
 </div>
-<div id="what-are-the-rules-for-naming-dataframes-or-variables" class="section level3 unnumbered">
-<h3>What are the rules for naming dataframes or variables?</h3>
+<div id="what-are-the-rules-for-naming-dataframes-or-variables" class="section level3 unnumbered hasAnchor">
+<h3>What are the rules for naming dataframes or variables?<a href="questions-and-answers.html#what-are-the-rules-for-naming-dataframes-or-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Do not use spaces, stick to characters and numbers. Whenever a variable consists of multiple words, e.g. room temperature there are two options:</p>
 <ol style="list-style-type: decimal">
 <li>Add an underscore as separator: <code>room_temperature.</code></li>
@@ -275,58 +289,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Personally, I prefer an underscore and the abbreviation df for dataframe when multiple dataframes are generated, e.g. df_tidy or df_summary</p>
 <hr />
 </div>
-<div id="what-is-the-difference-between---and-for-assigning-variables" class="section level3 unnumbered">
-<h3>What is the difference between <code>&lt;-</code> and <code>=</code> for assigning variables?</h3>
+<div id="what-is-the-difference-between---and-for-assigning-variables" class="section level3 unnumbered hasAnchor">
+<h3>What is the difference between <code>&lt;-</code> and <code>=</code> for assigning variables?<a href="questions-and-answers.html#what-is-the-difference-between---and-for-assigning-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R prefers the <code>&lt;-</code> for the assignment of a value to a variable. In RStudio the shortcut is <code>&lt;alt&gt;+&lt;-&gt;</code>. It really is a <em>preference</em> since both can be used:</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="questions-and-answers.html#cb395-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb395-2"><a href="questions-and-answers.html#cb395-2"></a>y =<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb395-3"><a href="questions-and-answers.html#cb395-3"></a>x <span class="op">+</span><span class="st"> </span>y</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="questions-and-answers.html#cb417-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb417-2"><a href="questions-and-answers.html#cb417-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb417-3"><a href="questions-and-answers.html#cb417-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span></code></pre></div>
 <pre><code>[1] 3</code></pre>
 <hr />
 </div>
-<div id="what-does-na-mean-in-a-dataframe" class="section level3 unnumbered">
-<h3>What does ‘NA’ mean in a dataframe?</h3>
+<div id="what-does-na-mean-in-a-dataframe" class="section level3 unnumbered hasAnchor">
+<h3>What does ‘NA’ mean in a dataframe?<a href="questions-and-answers.html#what-does-na-mean-in-a-dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When no data is available, this is known as a ‘missing value’. In R this is indicated with NA for ‘Not Available’. Empty cells in a CSV file will be converted to NA when the file is loaded. Other characters that can be present in a file (especially xls files) are: “.” or “NaN” or “#N/A” or “#VALUE!”. To convert these strings to NA use:</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="questions-and-answers.html#cb397-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>, <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;NaN&quot;</span>, <span class="st">&quot;#N/A&quot;</span>, <span class="st">&quot;#VALUE!&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="questions-and-answers.html#cb419-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>, <span class="at">na.strings=</span><span class="fu">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;NaN&quot;</span>, <span class="st">&quot;#N/A&quot;</span>, <span class="st">&quot;#VALUE!&quot;</span>))</span></code></pre></div>
 <hr />
 </div>
-<div id="what-is-the-beste-way-to-type-a-operator" class="section level3 unnumbered">
-<h3>What is the beste way to type a ‘%&gt;%’ operator?</h3>
+<div id="what-is-the-beste-way-to-type-a-operator" class="section level3 unnumbered hasAnchor">
+<h3>What is the beste way to type a ‘%&gt;%’ operator?<a href="questions-and-answers.html#what-is-the-beste-way-to-type-a-operator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>I prefer to literally type it. The shortcut that works in Rstudio is <code>&lt;shift&gt;+&lt;command&gt;+&lt;M&gt;</code> or <code>&lt;shift&gt;+&lt;control&gt;+&lt;M&gt;</code>.</p>
 <hr />
 </div>
-<div id="where-do-i-find-the-example-data" class="section level3 unnumbered">
-<h3>Where do I find the example data?</h3>
+<div id="where-do-i-find-the-example-data" class="section level3 unnumbered hasAnchor">
+<h3>Where do I find the example data?<a href="questions-and-answers.html#where-do-i-find-the-example-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The example data that is used in Chapter 2 and 3 is located on this github page: <a href="https://github.com/JoachimGoedhart/DataViz-protocols">https://github.com/JoachimGoedhart/DataViz-protocols</a></p>
 <p>The data that is used for the protocols in Chapter 4 is located in the subdirectory <a href="https://github.com/JoachimGoedhart/DataViz-protocols/tree/main/Protocols">/Protocols</a>.</p>
 <hr />
 </div>
-<div id="is-there-a-way-to-re-use-or-adjust-the-protocols" class="section level3 unnumbered">
-<h3>Is there a way to re-use or adjust the protocols?</h3>
+<div id="is-there-a-way-to-re-use-or-adjust-the-protocols" class="section level3 unnumbered hasAnchor">
+<h3>Is there a way to re-use or adjust the protocols?<a href="questions-and-answers.html#is-there-a-way-to-re-use-or-adjust-the-protocols" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Instead of copy-pasting and running the code line-by-line, you can download the R Markdown file (.Rmd) from the <a href="https://github.com/JoachimGoedhart/DataViz-protocols/tree/main/Protocols">protocols folder</a> in the Github repository. The R Markdown file (together with the data) can be used to replicate the protocol and to modify it. For more info on R Markdown, see <a href="https://rmarkdown.rstudio.com">https://rmarkdown.rstudio.com</a></p>
 <hr />
 </div>
-<div id="which-packages-are-included-in-the-tidyverse-package" class="section level3 unnumbered">
-<h3>Which packages are included in the <code>{tidyverse}</code> package?</h3>
+<div id="which-packages-are-included-in-the-tidyverse-package" class="section level3 unnumbered hasAnchor">
+<h3>Which packages are included in the <code>{tidyverse}</code> package?<a href="questions-and-answers.html#which-packages-are-included-in-the-tidyverse-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can find this out by first loading the package and then run <code>tidyverse_packages()</code></p>
 <hr />
 </div>
-<div id="what-is-the-difference-between-require-and-library-for-loading-a-package" class="section level3 unnumbered">
-<h3>What is the difference between <code>require()</code> and <code>library()</code> for loading a package?</h3>
+<div id="what-is-the-difference-between-require-and-library-for-loading-a-package" class="section level3 unnumbered hasAnchor">
+<h3>What is the difference between <code>require()</code> and <code>library()</code> for loading a package?<a href="questions-and-answers.html#what-is-the-difference-between-require-and-library-for-loading-a-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Both functions can be used to load a package. The difference is that <code>require()</code> returns <code>FALSE</code> when the package does not exist and can be used to check whether a package was loaded:</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="questions-and-answers.html#cb398-1"></a><span class="cf">if</span> (<span class="kw">require</span>(<span class="st">&quot;nonexistant&quot;</span>) <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>) (<span class="st">&quot;This packkage doesn&#39;t exist&quot;</span>)</span></code></pre></div>
-<pre><code>Loading required package: nonexistant</code></pre>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="questions-and-answers.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">require</span>(<span class="st">&quot;nonexistant&quot;</span>) <span class="sc">==</span> <span class="cn">FALSE</span>) (<span class="st">&quot;This packkage doesn&#39;t exist&quot;</span>)</span></code></pre></div>
 <pre><code>[1] &quot;This packkage doesn&#39;t exist&quot;</code></pre>
 <hr />
 </div>
-<div id="is-it-possible-to-have-interactive-file-selection" class="section level3 unnumbered">
-<h3>Is it possible to have interactive file selection?</h3>
+<div id="is-it-possible-to-have-interactive-file-selection" class="section level3 unnumbered hasAnchor">
+<h3>Is it possible to have interactive file selection?<a href="questions-and-answers.html#is-it-possible-to-have-interactive-file-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In some cases it can be convenient to select a file by point-and-click, although this is not strictly reproducible. This example code shows how this can be achieved by using the function <code>file.choose()</code> inside a function for reading a csv file:</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="questions-and-answers.html#cb401-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">file.choose</span>(), <span class="dt">header =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="questions-and-answers.html#cb422-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.choose</span>(), <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="section" class="section level3 unnumbered">
-<h3></h3>
+<h3 class="unnumbered"></h3>
 
 </div>
 </div>
@@ -340,7 +353,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -380,6 +392,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

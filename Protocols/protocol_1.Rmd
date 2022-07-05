@@ -1,5 +1,4 @@
 ---
-title: "Protocol 1"
 author: "Joachim Goedhart"
 date: "`r Sys.Date()`"
 output: html_document

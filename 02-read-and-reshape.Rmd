@@ -1,9 +1,3 @@
-```{r, include=FALSE}
-if (!require(tidyverse)) {
-    install.packages("tidyverse")
-    require(tidyverse)
-}
-```
 
 # Reading and reshaping data {#read-and-reshape}
 

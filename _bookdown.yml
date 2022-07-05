@@ -1,5 +1,5 @@
-book_filename: "DataViz-protocols"
-repo: "https://github.com/JoachimGoedhart/DataViz-protocols/"
+title: DataViz protocols
+book_filename: DataViz-protocols
 delete_merged_file: true
 language:
   ui:

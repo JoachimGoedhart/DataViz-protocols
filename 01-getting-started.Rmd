@@ -1,3 +1,4 @@
+
 # Getting started with R {#getting-started}
 
 There is a lot of great material out there to get you started with R. I enjoyed [swirl](https://swirlstats.com), which teaches basic R, in R. Whatever you choose, it is probably a good idea to familiarize yourself to some extent with basic R. Below, I only treat some of the basic stuff that is needed to run the code that is presented in the other chapters.

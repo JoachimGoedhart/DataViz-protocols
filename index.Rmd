@@ -1,13 +1,12 @@
 --- 
-title: "DataViz protocols"
-subtitle: "An introduction to data visualization protocols for wet lab scientists"
-author: "Joachim Goedhart"
+title: DataViz protocols
+subtitle: An introduction to data visualization protocols for wet lab scientists
+author: Joachim Goedhart
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-description: "This is an introduction to data visualization protocols for wet lab scientists"
-cover-image: "logo.png"
-github-repo: "JoachimGoedhart/DataViz-protocols"
+description: This is an introduction to data visualization protocols for wet lab scientists
+github-repo: JoachimGoedhart/DataViz-protocols
 always_allow_html: yes
 url: 'https\://joachimgoedhart.github.io/DataViz-protocols/'
 
@@ -41,10 +40,3 @@ Cheers to all the kind people that helped me to get started with R, answered my 
 This work work was improved by specific comments from; Daniel C. de la Fuente (\@DanCF93)
 
 
-
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
