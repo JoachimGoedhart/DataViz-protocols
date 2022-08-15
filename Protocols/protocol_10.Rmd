@@ -89,7 +89,7 @@ The use of color is redundant, since the data is split in Cell and Nucleus anywa
 
 ```{r}
 p <- ggplot(df_size, aes(x=Size)) +
-  geom_histogram(alpha=.5) +
+  geom_histogram(alpha=.5, bins=50) +
   facet_grid(~Sample) +
   annotation_logticks(sides="b", outside = TRUE) +
   scale_x_log10()
@@ -126,12 +126,14 @@ p <-
 p
 ```
 
+This looks very decent. But we can edit change the x-axis to display logarithmic space ticks. In addition, I'd like the bars of the histogram to start from the axis and not 'float' as in the graph above:
+
 ```{r}
 p <- p +
   #Force the y-axis to start at zero
-  scale_y_continuous(expand = c(0, NA), limits = c(0,180)) +
+  scale_y_continuous(expand = c(0, NA), limits = c(0,200)) +
   #Apply a logarithmic scale to the x-axis and set the numbers for the scale
-  scale_x_log10(breaks = c(1,10,100)) +
+  scale_x_log10(breaks = c(1,10,100), limits = c(.5,200)) +
   #Remove minor gridlines
   theme(panel.grid.minor = element_blank()) +
   #Add ticks to the bottom, outside
