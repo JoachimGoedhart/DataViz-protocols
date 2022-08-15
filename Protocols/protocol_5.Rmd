@@ -153,7 +153,7 @@ p
 Finally we can save the plot:
 
 ```{r }
-png(file=paste0("Protocol_5.png"), width = 4000, height = 3000, units = "px", res = 400)
+png(file=paste0("Protocol_05.png"), width = 4000, height = 3000, units = "px", res = 400)
  p
 dev.off()
 ```

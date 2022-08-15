@@ -105,7 +105,7 @@ p
 To save the plot as a png file:
 
 ```{r }
-png(file=paste0("Protocol_8.png"), width = 3000, height = 2000, units = "px", res = 400)
+png(file=paste0("Protocol_08.png"), width = 3000, height = 2000, units = "px", res = 400)
  p + coord_fixed()
 dev.off()
 ```

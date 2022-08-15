@@ -13,12 +13,14 @@ pngfiles <-
     full.names = T
   )
 
+n_columns <- floor(sqrt(length(pngfiles))) 
+
 # read images and then create a montage
 # tile =2 , means arrange the images in 2 columns
 # geometry controls the pixel sixe, spacing between each image in the collage output. 
 
 overview <- image_read(pngfiles) %>%
-  image_montage(tile = "2", geometry = "x400+10+10")
+  image_montage(tile = n_columns, geometry = "x400+10+10")
 
 overview
 

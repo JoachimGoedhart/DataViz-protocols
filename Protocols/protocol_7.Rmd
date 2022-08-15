@@ -120,7 +120,7 @@ p
 To save the plot as PNG:
 
 ```{r}
- png(file=paste0("Protocol_7.png"), width = 4000, height = 3000, units = "px", res = 400)
+ png(file=paste0("Protocol_07.png"), width = 4000, height = 3000, units = "px", res = 400)
    p
  dev.off()
 ```
