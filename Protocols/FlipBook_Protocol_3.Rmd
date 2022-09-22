@@ -1,0 +1,123 @@
+---
+title: "Protocol 3 - step-by-step"
+subtitle: "With flipbookr and xaringan"
+author: "Joachim Goedhart"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, hygge, ninjutsu]
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r, include = F}
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(tidyverse)
+```
+
+
+
+# Hi!
+
+--
+
+This is a 'flipbook' that show how to build a plot step-by-step!
+
+--
+
+Flipbooks are code-movies.  The frames of the movies are slides. 
+
+
+<!-- get a flipbook version of the my_cars code chunk - pauses are where parentheses are balanced -->
+---
+
+`r chunk_reveal("protocol_3")`
+
+```{r protocol_3, include = FALSE}
+read.csv("protocol_3.csv") %>%
+  ggplot(., aes(x=time, y=Roundness, group=Cell)) +
+  geom_line() +
+  facet_wrap(~Cell) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1.0)) + 
+  scale_x_continuous(expand = c(0,0), limits = c(0, 300)) +
+  theme_minimal(base_size = 14) + 
+  theme(strip.background = element_blank(),
+               strip.text = element_blank(),
+               plot.caption = element_text(color = "grey80"),
+               #Remove grid
+               panel.grid.major = element_blank(),
+               panel.grid.minor = element_blank()
+        ) + theme(        
+        #Remove axis labels
+        axis.text = element_blank()
+        )
+
+```
+
+---
+class: inverse, center, middle
+
+
+# Next up:  refer to same chunk, but use user defined breakpoints, and display output only
+
+
+
+
+
+
+<!-- get another flipbook version of the my_cars code chunk, this time at the defined breaks and only showing output -->
+---
+
+`r chunk_reveal("my_cars", break_type = "user", display_type = "output", title = "### user defined break! using #BREAK message")`
+
+
+
+---
+class: inverse, center, middle
+
+# The End
+
+
+
+
+<!-- adjust font size in this css code chunk, currently 80 -->
+
+```{css, eval = TRUE, echo = FALSE}
+.remark-code{line-height: 1.5; font-size: 80%}
+
+@media print {
+  .has-continuation {
+    display: block;
+  }
+}
+
+code.r.hljs.remark-code{
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+code.r.hljs.remark-code:hover{
+  overflow-x:visible;
+  width: 500px;
+  border-style: solid;
+}
+```
+
+
+
+---
+
+# Notes: 
+
+- This minimal flipbook assumes you are online when you build and view.  It is going to find the most recent remark.js info online.
+
+- xaringan/remark.js slideshows are not self contained, single file slide shows.  Make sure you ship all the associated files that are created to display your flipbooks/slideshows.  I like to push .html and associated files to github repository and use Github Pages to host for beyond local sharing. :-)
+

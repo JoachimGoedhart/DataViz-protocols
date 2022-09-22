@@ -1,0 +1,131 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 12 - Plotting grouped data {#protocol-12}
+
+This protocol explains how data can be plotted side-by-side. It is a remake of a figure that was published by [de Man et al. (2021)](https://doi.org/10.7554/eLife.66440). The source data is published with the paper and can be downloaded. Next to the `tidyverse` package we need `readxl` to import the excel file:
+
+```{r}
+library(tidyverse)
+library(readr)
+```
+
+Next, we download the xls file from the url, store it as a (temporary) file, and use `read_excel()` to import the data (note that unlike the `read.csv()` we cannot directly download the data from a url):
+
+```{r}
+url_xls <- "https://cdn.elifesciences.org/articles/66440/elife-66440-fig5-data1-v2.xlsx"
+# file_xls <- basename(url_xls)
+download.file(url = url_xls, destfile = 'temp_file')
+df_download <- readxl::read_excel('temp_file')
+```
+
+Inspection of the dataframe shows that we can remove the first 11 rows and that the name of the columns is in the 12th row. First we fix the column names:
+
+```{r}
+colnames(df_download) <- df_download %>% slice(12)
+```
+
+Then, we can remove the first 12 frames and select only the first 3 columns (I use `dplyr::` here to make explicit that the `select()` function is taken from the `{dplyr}` package. This may not be necessary when you run your own code):
+
+```{r}
+df_tidy <- df_download %>% slice(-(1:12)) %>% dplyr::select(1:3)
+head(df_tidy)
+```
+
+The third column, containing the measurement data has the class `<chr>`, but the correct class is numeric. Here, we mutate the column and rename it. To keep the data that is untouched, we add `.keep = "unused"`:
+
+```{r}
+df_tidy <- df_tidy %>% mutate(`SGFP2-CTNNB1` = as.numeric(`Total SGFP2-CTNNB1 concentration`), .keep = "unused")
+```
+
+Finally, we need to separate the first column, since it contains the relevant data on the conditions and the grouping of the data:
+
+```{r}
+df_tidy <- df_tidy %>% separate(`Sample`, c("Celltype", "ligand", "number", "compartment"), sep=" ")
+head(df_tidy)
+```
+
+There are two compartments (nucleus and cytoplasm) and two ligands (BSA as a control and WNT3A). To avoid abbreviated labels in the plot, we will rename the 'cyto' condition:
+
+```{r}
+df_tidy <- df_tidy %>% mutate(compartment =
+                                case_when(compartment == "cyto" ~ "cytoplasm",
+                                          TRUE ~ compartment)
+                              )
+head(df_tidy)
+```
+
+This data can be plotted in a number of different ways. The first way is by comparing the different compartments for each ligand: 
+
+```{r}
+ggplot(df_tidy, aes(x=ligand, y=`SGFP2-CTNNB1`, fill = compartment)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter() 
+```
+
+However, in the original figure, the data is split between the two compartments and the two ligands are plotted next to eachother:
+
+```{r}
+ggplot(df_tidy, aes(x=ligand, y=`SGFP2-CTNNB1`, fill = compartment)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter() + facet_wrap(~compartment)
+```
+
+This is close to the original figure, but the colors in that figure reflect the ligand, not the compartment:
+
+```{r}
+p <- ggplot(df_tidy, aes(x=ligand, y=`SGFP2-CTNNB1`, fill = ligand)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter() + facet_wrap(~compartment)
+
+p
+```
+
+This plot looks good. Now let's improve the theme. 
+
+``` {r}
+p <- p + theme_linedraw(base_size = 16) + 
+          theme(panel.spacing = unit(0, "points"))
+
+p
+```
+
+The theme is pretty nice, but the black strips are very distracting. Let's change the fill and color (border) of the strips and change the text to black. At the same time, we remove the grid and the legend: 
+
+``` {r}
+p <- p + theme(strip.background = element_rect(fill=NA, color="black", size = .5),
+               strip.text = element_text(color = 'black'),
+               panel.grid = element_blank(),
+               legend.position = "none",
+               plot.caption = element_text(color='grey80')
+               )
+p
+```
+
+Finally, we fix the labels:
+
+```{r}
+p <- p + labs(x="",
+              y="Concentration [nM]",
+              title = "Total SGFP2-CTNNB1",
+              caption = "@joachimgoedhart | based on data from de Man et al., DOI: 10.7554/eLife.66440",
+              tag = "Protocol 12"
+              )
+p
+```
+
+To save the plot as a PNG file:
+
+```{r }
+png(file=paste0("Protocol_12.png"), width = 4000, height = 3000, units = "px", res = 400)
+  p
+dev.off()
+```
+
+
+
+
+
