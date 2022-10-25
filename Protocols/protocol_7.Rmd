@@ -17,7 +17,7 @@ output: html_document
 
 ```{r }
 require(tidyverse)
-df1 <- read.csv("Rac_S1P.csv")
+df1 <- read.csv("data/Rac_S1P.csv")
 head(df1)
 ```
 

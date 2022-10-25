@@ -19,7 +19,7 @@ A CSV file with the data is loaded. Since the file is a couple of Megabytes, we 
 
 ```{r }
 library(data.table)
-df_S1P <- data.table::fread("ERK_repsonse_to_S1P.csv") 
+df_S1P <- data.table::fread("data/ERK_repsonse_to_S1P.csv") 
 head(df_S1P)
 ```
 

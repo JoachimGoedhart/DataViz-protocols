@@ -1,4 +1,3 @@
-
 ---
 author: "Joachim Goedhart"
 date: "`r Sys.Date()`"
@@ -18,7 +17,7 @@ library(tidyverse)
 A good example of data wrangling related to 96-wells data is given in [protocol 4](#protocol-4). Here we start from the tidy data that was the result of data tiyding in the section [Data in 96-wells format](#Data-in-96-wells-format):
 
 ```{r }
-df_8 <- read.csv("df_tidy_wells.csv")
+df_8 <- read.csv("data/df_tidy_wells.csv")
 head(df_8)
 ```
 

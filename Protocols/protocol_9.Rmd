@@ -17,7 +17,7 @@ library(tidyverse)
 Read the data:
 
 ```{r }
-df_DRC <- read.csv("DRC_Histamine.csv", stringsAsFactors = TRUE)
+df_DRC <- read.csv("data/DRC_Histamine.csv", stringsAsFactors = TRUE)
 head(df_DRC)
 ```
 
@@ -117,13 +117,13 @@ To plot the fitted data, we use `augment()` function that is part of the `{broom
 ```{r }
 library(broom)
 
-p + geom_line(data = augment(fit), aes(x=Concentration,y=.fitted), color="black", size=1)
+p + geom_line(data = augment(fit), aes(x=Concentration, y=.fitted), color="black", size=1)
 ```
 
 Instead of `geom_lin()` for plotting the fit, we can also use `geom_smooth()`:
 
 ```{r}
-p <- p + geom_smooth(data = augment(fit), aes(x=Concentration,y=.fitted), color="black", size=1)
+p <- p + geom_smooth(data = augment(fit), aes(x=Concentration, y=.fitted), color="black", size=1)
 p
 ```
 

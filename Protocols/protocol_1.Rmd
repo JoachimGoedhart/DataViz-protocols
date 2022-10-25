@@ -18,7 +18,7 @@ The data was downloaded in CSV format (by clicking on the button in the lower ri
 We read the data from the CSV by using the `read_csv()` function. This function is part of the tidy verse and loads the data as a tibble. It also guesses type of data for each column. To hide that information, we use `show_col_types = FALSE` here.
 
 ```{r }
-df_raw <- read_csv("FPbase_Spectra_4FPs.csv", show_col_types = FALSE)
+df_raw <- read_csv("data/FPbase_Spectra_4FPs.csv", show_col_types = FALSE)
 ```
 
 Let's briefly look at what we have loaded:

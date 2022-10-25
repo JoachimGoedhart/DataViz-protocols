@@ -21,7 +21,7 @@ After clicking on 'Publish' a link is generated that can be read as a csv, and a
 ```{r}
 # df_sheet <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSc-nI1-s_u-XkNXEn_u2l6wkBafxJMHQ_Cd3kStrnToh7kawqjQU3y2l_1riLigKRkIqlNOqPrgkdW/pub?output=csv", na.strings = "")
 
-df_sheet <-  read.csv("20220421_Resultaat-metingen.csv", na.strings = "")
+df_sheet <-  read.csv("data/20220421_Resultaat-metingen.csv", na.strings = "")
 
 head(df_sheet)
 ```

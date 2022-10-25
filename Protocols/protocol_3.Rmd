@@ -18,7 +18,7 @@ library(tidyverse)
 The data comes from an excel file:
 
 ```{r }
-df_raw <- readxl::read_excel("Data_Arts_Circularity.xlsx")
+df_raw <- readxl::read_excel("data/Data_Arts_Circularity.xlsx")
 head(df_raw)
 ```
 
