@@ -5,6 +5,6 @@ This is the source data for the book "DataViz protocols", which is introduction 
 
 A rendered version is available at (https://joachimgoedhart.github.io/DataViz-protocols/)
 
-_Cite as:_ Goedhart, J. (2022) DataViz protocols - An introduction to data visualization protocols for wet lab scientists, Zenodo, doi: [10.5281/zenodo.6457003](https://doi.org/10.5281/zenodo.6457003)
+_Cite as:_ Goedhart, J. (2022) DataViz protocols - An introduction to data visualization protocols for wet lab scientists, Zenodo, doi: [10.5281/zenodo.7257808]([https://doi.org/10.5281/zenodo.6457003](https://doi.org/10.5281/zenodo.7257808))
 
 This book is generated with R Markdown and **bookdown** (https://github.com/rstudio/bookdown).
