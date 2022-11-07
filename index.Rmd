@@ -32,7 +32,7 @@ Finally, modern analysis and visualization methods are treated and since the boo
 
 Part of this work has been published as blogs on [The Node](https://thenode.biologists.com) and the enthusiastic response encouraged me to create a more structured and complete resource. This does not at all imply that this document needs to be read in a structured manner. If you are totally new to R it makes sense to first read the chapter [Getting started with R](#getting-started) which treats some of the essential basics. On the other hand, if you are familiar with R, you may be interested in the chapters on [Reading and Reshaping data](#read-and-reshape) or [Visualizing data](#plotting-the-data). Finally, masters in R/ggplot2 may jump right to the [Complete protocols](#complete-protocols). This final part brings all the ingredients of the preceding chapters together. Each protocol starts with raw data and shows all the steps that lead to a publication quality plot.
 
-I hope that you'll find this book useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter (feel free to mention me: \@joachimgoedhart), in meetings, in preprints or in peer reviewed publications.
+I hope that you'll find this book useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter, <a rel="me" href="https://mas.to/@JoachimGoedhart">Mastodon</a>, in meetings, in preprints or in peer reviewed publications.
 
 
 ### A toast {-}
@@ -41,4 +41,4 @@ This work work was improved by specific comments from; Daniel C. de la Fuente (\
 
 #### How to cite {-}
 
-Goedhart, J. (2022) DataViz protocols - An introduction to data visualization protocols for wet lab scientists, doi: [10.5281/zenodo.6457003](https://doi.org/10.5281/zenodo.6457003)
+Goedhart, J. (2022) DataViz protocols - An introduction to data visualization protocols for wet lab scientists, doi: [10.5281/zenodo.7257808](https://doi.org/10.5281/zenodo.7257808)
