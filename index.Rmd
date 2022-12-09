@@ -36,7 +36,7 @@ I hope that you'll find this book useful and that it may provide a solid foundat
 
 
 ### A toast {-}
-Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter is a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with!
+Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter (and now also Mastodon) is a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with!
 This work work was improved by specific comments from; Daniel C. de la Fuente (\@DanCF93)
 
 #### How to cite {-}

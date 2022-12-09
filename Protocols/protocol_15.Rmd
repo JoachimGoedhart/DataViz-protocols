@@ -1,0 +1,138 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 15 - Timeline {#protocol-15}
+
+In this protocol we will make a timeline. The timeline organizes events along a line that consists of dates, in this case years. The years are treated as continuous data and the events are text and hence qualitative data.
+
+We start by loading the `{tidyverse}` package, mainly for the use of ggplot2:
+
+```{r }
+library(tidyverse)
+```
+
+The data for the timeline is stored in a text file that has tabs as delimiters:
+
+```{r }
+df_timeline <- read.delim("data/GFP-timeline.txt", sep = '\t' )
+head(df_timeline)
+```
+
+Let's first make a basic plot to visualize the data in the column 'Year':
+
+```{r}
+ggplot(df_timeline, aes(x=1,y=Year)) + geom_point()
+
+```
+
+Each point reflects a year in which some event happened. The events can be plotted as text:
+
+```{r}
+ggplot(df_timeline, aes(x=1,y=Year)) + geom_point() + geom_text(aes(label = Event))
+```
+
+We need to do a couple of things. First, make a nice timeline that shows each year as a dot and the years with events as a more pronounced dot. Second, we need to align the text and reduce the overlap.
+
+### Inmprove the timeline
+
+To make a nice timeline, I'd like to show every year as dot and therefore I define a new dataframe:
+
+```{r}
+yrs <- data.frame(Year=min(df_timeline$Year):max(df_timeline$Year))
+```
+
+
+```{r}
+ggplot(df_timeline, aes(x=1,y=Year)) +
+    geom_point(shape=21, size=3, fill="white") +
+    geom_point(data =yrs, aes(x=1), size=0.5, color="grey20") 
+```
+
+Let's add a line to make it a time*line* and do some formatting of the theme to get rid of the legend:
+
+```{r}
+ggplot(df_timeline, aes(x=1, y=Year)) +
+    geom_vline(xintercept = 1, size=0.1) +
+    geom_point(shape=21, size=3, fill="white") +
+    geom_point(data=yrs, aes(x=1), size=0.5, color="grey20") +
+    theme_minimal() + theme(legend.position = "none")
+```
+
+We will remove the grid and text for the x-axis. We add the ticks for the y-axis and we specify the labels for the years using `breaks` in  `scale_y_continuous()`:
+
+```{r}
+p <- ggplot(df_timeline, aes(x=1, y=Year)) +
+  geom_vline(xintercept = 1, size=0.1) +
+  geom_point(shape=21, size=3, fill="white") +
+  geom_point(data=yrs, aes(x=1), size=0.5, color="grey20") +
+  theme_minimal(base_size = 16) +
+  theme(legend.position = "none") +
+  theme(axis.ticks.y = element_line(color="grey", linetype = 1, size = 1),
+        panel.grid = element_blank(),
+        axis.title = element_blank(),
+        axis.text.x = element_blank(),
+        plot.caption = element_text(color = "grey80", hjust = 0)
+  ) +
+  scale_y_continuous(limits = c(1962,2025), breaks = c(seq(1965, 2024, by=5)))
+
+p
+```
+
+Allright, things start to look better now. The next step is to add text. We will use labels and the `geom_label_repel()` function from the `{ggrepel}` package to avoid overlap. First we load the package:
+
+```{r}
+library(ggrepel)
+```
+
+### Add and format text
+
+Now, we can add labels to the plotting object:
+
+```{r}
+p + geom_label_repel(aes(label=Event))
+```
+
+Let's change the x-axis scale, to make room for the text on the right side of the line. Also, we can left-align the text vertically and add some space between the points and the text. This is achieved by optimizing the 'nudge_x', 'hjust' and 'direction':
+
+```{r}
+p + geom_label_repel(aes(label=Event),
+                     nudge_x   = 0.05,
+                     hjust     = 0,
+                     direction = "y"
+                     ) +
+    scale_x_continuous(expand = c(0.01, 0), limits = c(1.0,1.5)) 
+```
+
+Finally, we can adjust the font size for the label. We also add colors to the different years. I like to use the 'viridis' color scale here. because it runs from dark to bright. However, if we would use the full range the final color is bright yellow which has a poor contrast on white. To solve this, we define the 'end' of the viridis scale at 80%:
+
+```{r fig.width=8,fig.height=8}
+p <- p + aes(color=Year) +
+  geom_label_repel(aes(label=Event),
+                     nudge_x   = 0.05,
+                     hjust     = 0,
+                     direction = "y",
+                     size      = 3
+                     ) +
+  scale_x_continuous(expand = c(0.01, 0), limits = c(1.0,1.5)) +
+
+  scale_color_viridis_c(end = 0.8)+
+  labs(title = "60 years of GFP discovery and engineering",
+       tag = "Protocol 15",
+       caption = "@joachimgoedhart") +
+  NULL
+p
+```
+
+
+To save the plot as a png file:
+
+```{r }
+png(file=paste0("Protocol_15.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```
+
+

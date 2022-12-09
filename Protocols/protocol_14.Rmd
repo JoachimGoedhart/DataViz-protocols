@@ -1,0 +1,168 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 14 - Volcano plot {#protocol-14}
+
+The results of comparative omics experiments are (very) large datasets. The datasets contain information on the fold change and level of significance for every gene or protein in a genome. The volcano plot is a scatterplot that visualizes both the ($log_2$) fold change and level of significance (usually $-log_{10}[p-value]$). This data visualization enables the display of a large amount of data in a concise way. Typically, only a handful of datapoints in the volcano plot are of interest, also known as hits. The hits are datapoints that surpass a threshold that is defined by the user for both the significance and fold change. Annotation of hits (with names) is used to draw attention to these most relevant or interesting datapoints.
+
+This protocol showcases the construction of a volcano plot, including the filtering of significant datapoints and the annotation of top candidates. The code that is used here is similar to what is used in the web app [VolcaNoseR](https://doi.org/10.1038/s41598-020-76603-3) which is dedicated to making volcano plots. In fact, the data visualization shown here is very close to the standard output of VolcaNoseR and uses the same example data.
+
+We start by loading the `{tidyverse}` package for plotting:
+
+```{r }
+library(tidyverse)
+```
+
+The measured data is read from a CSV file. These data are originally from [Becares et al, DOI: 10.1016/j.celrep.2018.12.094](https://doi.org/10.1016/j.celrep.2018.12.094)):
+
+```{r }
+df_tidy <- read_csv("data/Becares-diffgenes_HFHC.csv")
+head(df_tidy)
+```
+
+The basic volcano plot is a scatterplot that displays `minus_log10_pvalue` versus `log2_FoldChange`:
+
+```{r}
+ggplot(data = df_tidy, aes(x=log2_FoldChange, y=minus_log10_pvalue)) + geom_point(alpha=0.5)
+```
+
+To improve the visualization, we will 1) set thresholds, 2) display the thresholds, 3) filter interesting candidates based on the thresholds and 4) annotate the top-10 candidates. 
+
+### Step 1 - Define thresholds
+
+To identify data that is of interest, thresholds are defined for both the effect size and the significance. We define the thresholds, <-1.5 and >1.5 for the effect size and >5 for the significance. When both thresholds are exceeded the data is considered as significant (worthy of a closer look).
+
+### Step 2 - Display thresholds
+
+To plot the thresholds, we use `geom_hline()` and `geom_vline()`. Note that we can specify two intercepts at once, which is used below for `geom_vline()`:
+
+```{r}
+ggplot(data = df_tidy, aes(x=log2_FoldChange, y=minus_log10_pvalue)) + geom_point() +
+  geom_vline(xintercept = c(-1.5,1.5), linetype="dashed") +
+  geom_hline(yintercept = 5, linetype="dashed")
+```
+
+### Step 3 - Filtering with thresholds
+
+In this step, we add another column to the data, which defines, for each row, whether a gene is significantly lower, higher or unchanged. This is based on the thresholds:
+
+```{r}
+df_tidy <- df_tidy %>% mutate(
+  Change = case_when(
+    `log2_FoldChange` > 1.5 & `minus_log10_pvalue` > 5 ~ "Increased",
+    `log2_FoldChange` < -1.5 & `minus_log10_pvalue` > 5 ~ "Decreased",
+    TRUE ~ "Unchanged"
+    )
+  )
+
+head(df_tidy)
+```
+
+We can now use the column 'Change' to color code the data:
+
+```{r}
+p <- ggplot(data = df_tidy, aes(x=log2_FoldChange, y=minus_log10_pvalue)) + 
+  geom_vline(xintercept = c(-1.5,1.5), linetype="dashed") +
+  geom_hline(yintercept = 5, linetype="dashed")
+p <- p + geom_point(aes(color = Change))
+p
+```
+
+### Step 4 - Annotations
+
+The 'top hits' are the datapoints that are the furthest from the origin. Here, we only consider genes that are either 'Decreased' or 'Increased', so we remove the 'Unchanged'. To determine the distance from the origin for each datapoint, we sum the x- and y- position. Note that this simple summation is known as the 'Manhattan distance'. After calculation, the top 10 is selected and stored in another dataframe, df_top. :
+
+```{r}
+df_top <- df_tidy %>%
+  filter(Change != 'Unchanged') %>%
+  mutate(distance = minus_log10_pvalue + abs(log2_FoldChange)) %>%
+  top_n(10,distance)
+```
+
+The new dataframe can be used for labeling the top-10 hits:
+
+```{r}
+p + geom_text(
+    data = df_top,
+    aes(label = Gene)
+    )
+```
+
+Wwe see that the labels overlap and this is often the case when a lot of data is displayed. There is a very handy packgae `{ggrepel}` that will reduce the overlap between labels:
+
+```{r}
+library(ggrepel)
+p <- p + geom_text_repel(
+    data = df_top,
+    aes(label = Gene),
+    size=5, # increase font size
+    min.segment.length = 0, # draw all line segments
+    box.padding = 0.5# give some space for drawing the lines
+    
+    )
+p
+```
+
+Now that we have implemeted the features of a volcano plot, we can focus on improving the data visualization. We can emphasize the hits by adding a black outline to these points. The default shape for 'geom_point()' is a filled circle. Below we use shape 21, which accepts both a color for the outline and filling. The black outline is defined by 'color':
+
+```{r}
+p + geom_point(data = df_top, aes(x=log2_FoldChange, y=minus_log10_pvalue), shape=21, color='black')
+```
+
+The line that connects the dot with the label is a bit too long and is visible within the dot, which is a bit ugly. To solve this we can fill these dots which will hide the line. We can also make the dots a bit bigger to emphasize the hits:
+
+```{r}
+p <- p + geom_point(data = df_top, aes(x=log2_FoldChange, y=minus_log10_pvalue, fill=Change), shape=21, color='black', size=2)
+p
+```
+
+Let's change the colors to make the uninteresting datapoints less pronounced:
+
+```{r}
+newColors <- c("dodgerblue", "orange", "grey")
+
+p <- p + scale_color_manual(values = newColors) + scale_fill_manual(values = newColors)
+p
+```
+Finally, we can change the styling by adjusting the labels and the theme. The labels for x- and y-axis use the function `expression()` to add subscript text to the labels:
+
+```{r }
+p <-
+  p + labs(
+    title = "Differentially expressed genes",
+    x = expression('Fold Change ('*Log[2]*')'),
+    y = expression('Significance ('*-Log[10]*')'),
+    caption = "@joachimgoedhart\n(based on data from Becares et al, DOI: 10.1016/j.celrep.2018.12.094)",
+    tag = "Protocol 14"
+  )
+```
+
+
+Modify the layout by adjusting the theme:
+
+```{r }
+p <- p +
+  theme_light(base_size = 16) +
+  theme(plot.caption = element_text(color = "grey80", hjust = 1)) +
+  theme(panel.grid = element_blank()) +
+  theme(legend.position="none")
+```
+
+Change the x-axis scale the give the labels a bit more room and display the result:
+
+```{r}
+p <- p + xlim(-3,3)
+p
+```
+
+To save the plot as a png file:
+
+```{r }
+png(file=paste0("Protocol_14.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```
+

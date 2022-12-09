@@ -1,0 +1,24 @@
+Year	DOI	Event
+1962	10.1002/jcp.1030590302	Osamu Shimomura isolates a green protein from jellyfish
+1971	10.1002/jcp.1040770305	First appearance of the name Green Fluorescent Protein
+1974	10.1021/bi00709a028	 Crystallization of GFP, QY is 0.72
+1979	10.1016/0014-5793(79)80818-2	Structure of the GFP chromophore is solved
+1992	10.1016/0378-1119(92)90691-h	Douglas Prasher clones the AvGFP gene
+1994	10.1126/science.8303295	Martin Chalfie expresses AvGFP in bacteria and worms
+1995	10.1038/373663b0	Engineering of GFP-S65T, the basis for EGFP
+1996	10.1126/science.273.5280.1392	Crystal structure of GFP and engineering of YFP (GFP-T203Y)
+1999	10.1038/13657	Cloning of the first red fluorescent proteins from corals
+2002	10.1126/science.1074952	PA-GFP - A photoactivatable GFP
+2002	10.1126/science.1068539	Monomeric EGFP-A206K and EYFP-A206K reported 
+2002	10.1038/nbt0102-87	Venus - A yellow fluorescent protein with fast and efficient maturation
+2003	10.1186/1472-6750-3-5	T-Sapphire - An efficiently folding long Stokes-shift GFP
+2004	10.1038/nbt1037	mFruits - Improved, monomeric Red Fluorescent Proteins
+2006	10.1038/nbt1172	sfGFP - A superfolder green fluorescent protein
+2008	10.1039/b904023d	Noble Prize in Chemistry for Osamu Shimomura, Martin Chalfie & Roger Tsien
+2011	10.1038/nbt.1952	Dreiklang - A reversibly photoswitchable GFP-like protein
+2012	10.1038/ncomms1738	mTurquoise2 - A monomeric cyan fluorescent protein with high QY reported
+2013	10.1038/nmeth.2413	mNeonGreen - A bright monomeric green fluorescent protein derived from lancelet
+2015	10.1038/ncomms8670	oxFPs - A palette of fluorescent proteins optimized for diverse cellular environments
+2016	10.1038/nmeth.4074	mScarlet - A bright monomeric synthetic RFP
+2020	10.1073/pnas.200094211	mGreenLantern - A bright monomeric fluorescent protein with rapid expression
+2022	10.1038/s41587-022-01278-2	StayGold - An extremely photostable GFP derived from the jellyfish Cytaeis uchidae

@@ -1,0 +1,110 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 13 - Plotting multiple plots side-by-side {#protocol-13}
+
+This protocol is a little different, in that it plots the same data in three different ways. I use this figure to illustrate that barplots are a poor choice for plotting multiple measurements per condition as the actual data is concealed. The alternatives that show all, i.e. jittered dotplots and beeswarmplots (or sinaplots) are shown next to the barplot.
+
+In addition to the `{tidyverse}` package, we need two additional packages. The `{ggbeeswarm}` package to plot the beeswarm plot and `{patchwork}` to stitch the plots together:
+
+```{r}
+library(tidyverse)
+library(patchwork)
+library(ggbeeswarm)
+```
+
+Next, the wide data is loaded and converted into a tidy format:
+
+```{r}
+df_wide <- read.csv("data/Area_in_um-GEFs.csv")
+df_tidy <- pivot_longer(df_wide, cols = everything(), names_to = "Condition", values_to = "Area")
+head(df_tidy)
+```
+
+Next, we define the order of factors in the column with Conditions:
+
+```{r}
+df_tidy <- df_tidy %>%
+  mutate(Condition = fct_relevel(Condition, c("LARG", "wt", "TIAM")))
+```
+
+To plot the barplot, we calculate the summary statistics and store them in a separate dataframe: 
+
+```{r}
+df_summary <- df_tidy %>% na.omit() %>%
+  group_by(Condition) %>%
+  summarise(n=n(),
+            mean=mean(Area),
+            sd=sd(Area)
+            ) %>%
+  mutate(sem=sd/sqrt(n-1))
+```
+
+Now, we do things a bit differently than we've done in other protocols. First, we define a plotting canvas and its theme settings. We use this object `p` as the basis for the three plots that differ in the data visualization and not in the layout.
+
+```{r}
+p <- ggplot(df_tidy, (aes(x=Condition))) +
+  theme_bw(base_size = 12) +
+  theme(panel.grid = element_blank()) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 4200)) +
+  labs(y=NULL)
+p
+```
+The first plot is a barplot (the length of the bar reflects the mean value) with the standard error of the mean as errorbar:
+
+```{r}
+p1 <- p + geom_errorbar(data=df_summary,
+                        aes(x=Condition,ymin=mean-sem, ymax=(mean+sem)),
+                        width=0.3, size=1, alpha=0.7) +
+  geom_bar(data=df_summary, aes(y=mean), stat = 'identity', width = 0.5) +
+  labs(y=expression("Area [µm"^2*"]"), title="Clean | Data hidden")
+```
+
+The second plot shows the data as jittered dots:
+
+```{r}
+p2 <- p + geom_jitter(data = df_tidy,
+                      aes(x=Condition, y=Area),
+                      position=position_jitter(0.3), cex=2, alpha=0.4) +
+  labs(title="Messy | Data shown")
+```
+
+The third plot is a beeswarm-type plot that organizes the dots according to the data distribution:
+
+```{r}
+p3 <- p + geom_quasirandom(data = df_tidy,
+                           aes(x=Condition, y=Area),
+                           varwidth = TRUE, cex=2, alpha=0.4)+
+  labs(title="Clean | Data shown")
+```
+
+The patchwork package has a simple syntax for combining the plots, for examples check the [package website](https://patchwork.data-imaginist.com/articles/patchwork.html). A vertical composition is made by using `p1/p2/p3`. But this won't look good, so combine the plots horizontally using `p1+p2+p3`:
+
+```{r}
+p <- p1+p2+p3
+p
+```
+
+The result is a set of plots that are nicely aligned, side-by-side. We have titles for individual plots and it would be nice to have a title and caption for the entire panel. We can use the `plot_annotation()` function from the `{patchwork}` package. The 'theme' specified in this function is only applied to the main title and caption:
+
+```{r}
+p <- p + plot_annotation(title="Protocol 13",
+                           caption="@joachimgoedhart",
+                           theme = theme(plot.caption = element_text(size = 12, color="grey80"),
+                                         plot.title = element_text(size = 18))
+                          )
+p
+```
+
+To save the composite plot:
+
+```{r}
+png(file=paste0("protocol_13.png"), width = 4000, height = 3000, units = "px", res = 400)
+p
+dev.off()
+```
+
+
