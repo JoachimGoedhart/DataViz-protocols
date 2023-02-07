@@ -16,7 +16,7 @@ We start by loading the `{tidyverse}` package for plotting:
 library(tidyverse)
 ```
 
-The measured data is read from a CSV file. These data are originally from [Becares et al, DOI: 10.1016/j.celrep.2018.12.094](https://doi.org/10.1016/j.celrep.2018.12.094)):
+The measured data is read from a CSV file. These data are originally from [Becares et al, DOI: 10.1016/j.celrep.2018.12.094](https://doi.org/10.1016/j.celrep.2018.12.094):
 
 ```{r }
 df_tidy <- read_csv("data/Becares-diffgenes_HFHC.csv")

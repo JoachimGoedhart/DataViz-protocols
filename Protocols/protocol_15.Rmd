@@ -36,7 +36,7 @@ ggplot(df_timeline, aes(x=1,y=Year)) + geom_point() + geom_text(aes(label = Even
 
 We need to do a couple of things. First, make a nice timeline that shows each year as a dot and the years with events as a more pronounced dot. Second, we need to align the text and reduce the overlap.
 
-### Inmprove the timeline
+### Improve the timeline
 
 To make a nice timeline, I'd like to show every year as dot and therefore I define a new dataframe:
 

@@ -60,6 +60,10 @@ step-2---display-thresholds
 step-3---filtering-with-thresholds
 step-4---annotations
 protocol-15
-inmprove-the-timeline
+improve-the-timeline
 add-and-format-text
+protocol-16
+linear-fit
+multiple-scatterplots
+fit-parameters
 questions-and-answers

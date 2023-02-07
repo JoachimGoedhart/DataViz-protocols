@@ -1,0 +1,206 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 16 - Scatterplots and correlation {#protocol-16}
+
+In this protocol we will look at the data from a co-expression experiment. Images of cells co-expressing two fluorescent proteins were acquired with a fluorescence microscope. The relative intensity of each fluorescent protein was measured. The data can be plotted in a scatter plot to visualize the correlation between the two expressed proteins. To quantify the variation in co-expression, a correlation coefficient can be determined. More experimental details can be found in the original publication [Goedhart et al. (2011)](https://doi.org/10.1371/journal.pone.0027321).
+
+We start by loading the `{tidyverse}` package:
+
+```{r }
+library(tidyverse)
+```
+
+Read the data:
+
+```{r }
+df_co <- read.csv("data/coexpression.csv", stringsAsFactors = TRUE)
+head(df_co)
+```
+
+The data was stored in a spreadsheet, and is in a wide format. Pairs of columns belong to the same measurement. The two fluorescent proteins were CFP and YFP and this indicated in the column name after the underscore. Several co-expression systems were analyzed and this is indicated in the string before the underscore. We can plot one condition to see what the data looks like in a scatter plot:
+
+```{r}
+ggplot(df_co, aes(x=BCY_YFP, y=BCY_CFP)) + geom_point()
+```
+
+### Linear fit
+
+A linear fit can be added with the `geom_smooth` function. The method is speficied as `lm` which means linear model:
+
+```{r}
+ggplot(df_co, aes(x=BCY_YFP, y=BCY_CFP)) + geom_point() + geom_smooth(method = 'lm')
+```
+
+The linear model has an intercept, but suppose that I want to fit the data without offset. To this end, a custom formula can added to overrule the default:
+
+```{r}
+ggplot(df_co, aes(x=BCY_YFP, y=BCY_CFP)) + geom_point() + geom_smooth(method = 'lm', formula = y~0+x)
+```
+
+To get to the coefficients of the fit we can use the `lm()` function fits data to a linear model:
+
+```{r}
+lm(BCY_CFP ~ BCY_YFP + 0, data = df_co)
+```
+
+To get a summary of the fit we use the `summary()` function and assign the results to 'fit_summary':
+
+```{r}
+fit_summary <- summary(lm(BCY_CFP ~ BCY_YFP + 0, data = df_co))
+fit_summary
+```
+
+The object 'fit_summary' is a list and we can extract the R-squared value from this list:
+
+```{r}
+fit_summary$r.squared
+```
+
+
+### Multiple scatterplots
+
+So far so good; we have plotted the data from a single condition and the relevant parameters can be displayed. Now, let's see if we can do the same for the entire dataset. First, we will need to restructure the data into a long format:
+
+```{r}
+df_longer_co <- df_co %>% pivot_longer(cols = everything(), names_to = "Condition", values_to = "Intensity")
+head(df_longer_co)
+```
+
+This is a 'true' long format, but we will need to have the CFP and YFP data side-by-side to generate the scatterplot. Let's first split the column with conditions in the Condition and the fluorescent protein (CFP or YFP):
+
+```{r}
+df_longer_co <- df_longer_co %>% separate(Condition, into = c("Plasmid", "Protein"), sep = "_")
+head(df_longer_co)
+```
+
+Now we can make the data 'wider' with the `pivot_wider()` function:
+
+```{r}
+df_wider_co <- df_longer_co %>% pivot_wider(names_from = Protein, values_from = Intensity)
+head(df_wider_co)
+```
+
+This will throw a warning message, since some rows have duplicated values. This is not an issue here, but the result is a 'nested' dataframe with the data in lists instead of a single value per cell. To fix this, we use `unnest()`:
+
+```{r}
+df_co_all <- df_wider_co %>% unnest(cols = c(YFP, CFP))
+head(df_co_all)
+```
+
+Now, we have the data in the right shape and we can make scatterplots for each 'Plasmid' with `facet_wrap()`:
+
+```{r}
+ggplot(df_co_all, aes(x=YFP, y=CFP)) + geom_point() + facet_wrap(~Plasmid, nrow = 2 )
+```
+
+This looks great, but the names for the column 'Plasmids' are not informative so let's fix that in the dataframe. The last two letter, either YC or CY indicate the order of the fluorescent proteins. The first letter indicates the system that was used for the co-expressing, with B = dual promotor, I = Ires and T = 2A.
+First, we split the column 'Plasmid':
+
+```{r}
+df_co_all %>% separate(Plasmid, into = c('System', 'Order'), sep = "") %>% head()
+```
+
+This doesn't look right, since the first column is empty, so let's try again with:
+
+```{r}
+df_co_all_split <- df_co_all %>% separate(Plasmid, into = c(NA, 'System', 'Order'), sep = "")
+head(df_co_all_split)
+```
+
+This looks good, and so we can replace the characters with names:
+
+```{r}
+df <- df_co_all_split %>%
+  mutate(System = case_when(System == 'B' ~ " Dual-promotor",
+                            System == 'I' ~ " IRES",
+                            System == 'T' ~ '2A-peptide')) %>%
+  mutate(Order = case_when(Order == 'C' ~ "CFP first",
+                           Order == 'Y' ~ "YFP first"))
+
+head(df)
+```
+
+```{r}
+ggplot(df, aes(x=YFP, y=CFP)) + geom_point(size = 0.5, alpha=0.5) + facet_grid(Order~System)
+```
+
+This looks a lot like the original figure in the paper (figure 1: https://doi.org/10.1371/journal.pone.0027321), but we still need to add the fits and optimize the layout. So let's first assign the plot to an object and optimize the theme:
+
+```{r}
+p <- ggplot(df, aes(x=YFP, y=CFP)) + geom_point(size = 0.5, alpha=0.5) + facet_grid(Order~System)
+
+p <- p + geom_smooth(method = "lm", formula = y~x+0)
+p <- p + theme_minimal(14)
+p
+```
+
+Again, I'm not the biggest fan of grids, so I renmove the grids here. To indicate the area of the individual plots, I add a light blueish background with a thin grey border and the 'strips' with labels for the facets are a bit darker shade of blue:
+
+```{r}
+p <- p + theme(axis.text = element_blank(),
+               panel.grid = element_blank(),
+               strip.background = element_rect(fill='#E0E0FF', color="grey90", size = .5),
+               panel.background = element_rect(fill='#F4F4FF', color="grey90"),
+               plot.caption = element_text(color='grey80', hjust=1),
+               NULL)
+p
+```
+I'm happy with the layout, so it's time to adjust the labels. The units for the intensity are arbitrary, so we indicate this with a.u. for arbitrary units:
+
+```{r}
+p <- p + labs(x="yellow fluorescence [a.u.]",
+              y="cyan fluorescence [a.u.]",
+              title = "Correlations for co-expression systems",
+              caption = "\n@joachimgoedhart\nbased on data from Goedhart et al., DOI: 10.1371/journal.pone.0027321",
+              tag = "Protocol 16"
+              )
+p
+```
+
+### Fit parameters
+
+This looks great, but we do not have the numbers for the correlations yet. So let's calculate those and add them to a new dataframe 'df_cor':
+
+```{r}
+df_cor <- df %>% 
+  group_by(System, Order) %>% drop_na() %>%
+  summarize(n=n(), R_squared = cor(CFP, YFP, method = "pearson")^2)
+
+df_cor
+```
+
+
+
+We can use the dataframe with correlation values to add these to the plot. We use `geom_text()` with the 'df_cor' dataframe. The main challenges are (i) to position the text at the correct place and (ii) to add a nice label to indicate that the value is R squared.
+Positioning of the label is defined by the x- and y-coordinate in combination with hjust and vjust. My apporach to get the label at the correct place is usually trial and error. We can use 'x=Inf', to asign an infinite value to x, implying that it will be located at the extreme right of the plot. To position the label on the left side of the x-coordinate, we can use 'hjust=1'. But to give it a bit more space, I prefer here 'hjust=1.1'.
+Similarly, we use 0 for y-coordinate and 'vjust=0' to define that the middle position of the label is at this coordinate ('vjust=1' moves the label down and 'vjust=-1' moves the label up.).
+
+To add a styled R-squared to the value we use the `paste()` function to add text preceding the actual value. We will round down the value to two digits using `round()`. Finally we can set 'parse = TRUE' to make sure that the label is styled according to the `plotmath()` convention. Here that means that the caret produces superscript and that the double equal sign is reduced to a single equal sign:
+
+
+```{r}
+# Code to add r-squared to the plot
+p <- p + geom_text(data=df_cor, 
+                   x=Inf,
+                   y=0,
+                   hjust=1.1,
+                   vjust=0,
+                   aes(label=paste0('R^2 == ',round(R_squared,2))),
+                   parse = TRUE,
+                   color='darkslateblue'
+                   )
+
+p
+```
+
+Finally, we can save the plot:
+
+```{r }
+png(file=paste0("Protocol_16.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```

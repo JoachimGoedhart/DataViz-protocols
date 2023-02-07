@@ -81,7 +81,7 @@ df <- read.delim('FPbase_Spectra.csv', sep = ",")
 ### Loading data from a URL
 
 When the CSV file is available online, e.g. in a data repository or on Github, it can be loaded by providng the URL:
-```{r}
+```{r read-URL-zenodo}
 df <- read.csv('https://zenodo.org/record/2545922/files/FRET-efficiency_mTq2.csv')
 head(df)
 ```

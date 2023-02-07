@@ -23,7 +23,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2022-12-09" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -236,8 +236,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.15" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-15"><i class="fa fa-check"></i><b>4.15</b> Protocol 15 - Timeline</a>
 <ul>
-<li class="chapter" data-level="4.15.1" data-path="complete-protocols.html"><a href="complete-protocols.html#inmprove-the-timeline"><i class="fa fa-check"></i><b>4.15.1</b> Inmprove the timeline</a></li>
+<li class="chapter" data-level="4.15.1" data-path="complete-protocols.html"><a href="complete-protocols.html#improve-the-timeline"><i class="fa fa-check"></i><b>4.15.1</b> Improve the timeline</a></li>
 <li class="chapter" data-level="4.15.2" data-path="complete-protocols.html"><a href="complete-protocols.html#add-and-format-text"><i class="fa fa-check"></i><b>4.15.2</b> Add and format text</a></li>
+</ul></li>
+<li class="chapter" data-level="4.16" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-16"><i class="fa fa-check"></i><b>4.16</b> Protocol 16 - Scatterplots and correlation</a>
+<ul>
+<li class="chapter" data-level="4.16.1" data-path="complete-protocols.html"><a href="complete-protocols.html#linear-fit"><i class="fa fa-check"></i><b>4.16.1</b> Linear fit</a></li>
+<li class="chapter" data-level="4.16.2" data-path="complete-protocols.html"><a href="complete-protocols.html#multiple-scatterplots"><i class="fa fa-check"></i><b>4.16.2</b> Multiple scatterplots</a></li>
+<li class="chapter" data-level="4.16.3" data-path="complete-protocols.html"><a href="complete-protocols.html#fit-parameters"><i class="fa fa-check"></i><b>4.16.3</b> Fit parameters</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a>
@@ -380,10 +386,10 @@ The function <code>read_csv()</code> is used to read the file and the data is as
 <pre><code>[1] &quot;data.frame&quot;</code></pre>
 <p>Now that we have the data loaded, we can generate a plot. For simplicity I use the <code>qplot()</code> function. The more flexible <code>ggplot()</code> function will be introduced later. We need to supply the name of the dataframe, the column for the x-axis data and the column that is used for the y-axis. Note that two of the column names have a space and to properly indicate the name of the column we need to enclose the name with backtics (`).</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="read-and-reshape.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">data=</span>df,<span class="at">x=</span>Wavelength, <span class="at">y=</span><span class="st">`</span><span class="at">mNeonGreen EX</span><span class="st">`</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>A plot with lines instead of dots can be made by supplying this alternative ‘geometry’:</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="read-and-reshape.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">data=</span>df,<span class="at">x=</span>Wavelength, <span class="at">y=</span><span class="st">`</span><span class="at">mNeonGreen EX</span><span class="st">`</span>, <span class="at">geom=</span><span class="st">&#39;line&#39;</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>The plots show the excitation spectrum of mNeonGreen, and it can be inferred that the protein is maximally excited near 500 nm.
 In its current shape, the dataframe is not suitable for simultaneously plotting the excitation and emission spectrum. To do that, we need to reshape the data and this will be the topic of the <a href="read-and-reshape.html#tidy-data">Reshaping data</a> section.</p>
 </div>
@@ -626,7 +632,7 @@ Let’s save the data in a csv file:</p>
 6        302 mNeonGreen EX        NA</code></pre>
 <p>We can now plot the two spectra, which was not possible before the conversion:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="read-and-reshape.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">data=</span>df_tidy,<span class="at">x=</span>Wavelength, <span class="at">y=</span>intensity, <span class="at">color=</span>sample, <span class="at">geom=</span><span class="st">&#39;line&#39;</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>A more elaborate example of plotting spectra is given in <a href="complete-protocols.html#protocol-1">Protocol 1</a></p>
 </div>
 <div id="data-from-multiple-files" class="section level3 hasAnchor" number="2.4.4">
