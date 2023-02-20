@@ -85,7 +85,7 @@ p <-
   ) + theme(plot.caption = element_text(color='grey80', hjust=1))
 ```
 
-This is te version that I save as a preview of the animation:
+This is the version that I save as a preview of the animation:
 
 ```{r}
 png(file=paste0("Protocol_17.png"), width = 4000, height = 3000, units = "px", res = 400)
@@ -109,12 +109,13 @@ To generate an animated plot, we used `animate()` and define the number of frame
 
 ```{r, results="hide"}
 animated_plot <- animate(a, nframes=100, width = 1000, height = 750, units = "px", res = 100)
-animated_plot
 ```
+
+The result can be displayed by typing `animated_plot` in the command line:
 
 ![](Protocol_17.gif)
 
-To save the animation to disk, use:
+To save the animated object `a` to disk, use:
 
 ```{r, results="hide"}
 animate(a, 70, renderer = gifski_renderer("Protocol_17.gif"), width = 1000, height = 750, units = "px", res = 100)
