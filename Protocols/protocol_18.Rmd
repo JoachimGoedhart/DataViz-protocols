@@ -1,0 +1,202 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 18 - Combining animated plots with a movie {#protocol-18}
+
+In protocol 17 an animated plot is generated from time series data. Here, we will see how an animated plot can be combined with a movie from imaging data. The data is originally published by [Mahlandt et al (2022)](https://www.biorxiv.org/content/10.1101/2022.10.17.512253v1). We will plot the cell area over time and the movie that shows the area of individual cells.
+
+Load the required packages:
+
+```{r}
+library(tidyverse)
+library(gganimate)
+
+```
+
+Read the excel file with the data:
+
+```{r}
+df <- readxl::read_excel('data/Summary_GlobalActivation_TimeTrace_TIAM_01.xlsx')
+head(df)
+```
+
+The first timepoint is 15 and to set that to zero:
+
+```{r}
+df <- df %>% mutate(Time=Time-15)
+```
+
+The dataframe 'df' has data for a number of cells, time and the area with the column names 'Cell', 'Time' and 'AreaShape_Area'. To compare the area of the cells at the start of the experiment, we normalize the 'AreaShape_Area' to the initial value dividing all values of a single cell trace by the value of the first timepoint:
+
+```{r}
+df <- df %>% group_by(Cell) %>% arrange(Time) %>% mutate(Area_norm=AreaShape_Area/AreaShape_Area[1]) %>% ungroup()
+```
+
+Next, we calculate the average response and store this in a new dataframe:
+
+```{r}
+df_summary <- df %>% group_by(Construct, Time) %>% summarize(mean=mean(Area_norm))
+```
+
+Let's make a plot of the average:
+
+```{r}
+ggplot(df_summary, aes(x=Time, y=mean)) + geom_line(size=2, color='darkorchid4') 
+```
+
+This is an optogenetic experiment, where the light is turned on between timepoints 135 and 720, and we can define a new column 'light' that stores this information:
+
+```{r}
+df_summary <- df_summary %>%
+  mutate(light = case_when(Time >= 135 & Time <= 720  ~ "ON",
+                           TRUE ~ "OFF"
+                           )
+  )
+```
+
+This information on the light condition needs to be plotted 'behind' the data, and so we define it as the first layer:
+
+```{r}
+p <- ggplot(df_summary, aes(x=Time, y=mean)) +
+  geom_tile(data=df_summary,
+            aes(x=Time, y=1,
+                height = Inf,
+                width = 15,
+                fill = light,
+                group = seq_along(Time)),
+                alpha=1)
+
+p
+```
+
+Note that we use here `group = seq_along(Time))`. This will be explained below, when the animated object is generated.
+
+The blocks in the plot are indicating the different light conditions. The colors can be changed, so that a grey color is displayed when the light is off, and a cyan rectangle shows when the light was switched on:
+
+```{r}
+p <- p + scale_fill_manual(values = c("grey", "cyan"))
+p
+```
+
+Now, let's add the data for both the mean and the individual cells:
+
+```{r}
+p <- p + geom_line(size=2, color='darkorchid4')  +
+  geom_line(data=df, aes(x=Time, y=Area_norm, group=Cell), alpha=0.3, color='darkorchid4')
+p
+```
+
+Some styling:
+
+```{r}
+p <- p + theme_light(base_size=18) +
+  theme(panel.grid = element_blank(),
+        legend.position = "top",
+        legend.justification = "left",
+        legend.box.margin = margin(0,0,0,-40),
+        plot.caption = element_text(color='grey80', hjust=1))
+p
+```
+
+To add a dot that is like the tip of a pen, drawing the line, we can use geom_point(). Here it is only added for the average curve:
+
+```{r}
+  p <- p + geom_point(color='darkorchid4', size=4)
+p
+```
+
+In the plot, the dot is shown for each timepoint, but in the animation it will only be drawn for the active frame. This is unlike the line, which remains visible. More detail about this behavior can be found below.
+
+Finally, let's change the labels for the axes and set the scale. We use `expand = FALSE` to use the exact limits that we have specified:
+
+```{r}
+p <- p + labs(x='Time [s]',
+              y='Area [µm]',
+              caption='\n@joachimgoedhart\nbased on data from Mahlandt et al., DOI: 10.1101/2022.10.17.512253') +
+  coord_cartesian(xlim = c(0,1305), ylim = c(0.8,1.45), expand = FALSE)
+```
+
+For the animation, we need to know the number of timepoints, as we will use this number to generate the same amount of 'frames' in the animation:
+
+```{r}
+length(df_summary$Time)
+```
+
+So the number of frames should be 88. We use to plot object `p` as the input for the animation and generate the animation with the function `transition_reveal()`, which will reveal the data over time. The result is stored in the object `a`:
+
+```{r}
+a <- p + transition_reveal(Time)
+```
+
+Now, we can render the animation with a defined number of frames and size. Since we will display the movie and plot side-by-side, the height of both panels should be identical. The movie has a height of 900 pixels, so we use this to set the dimension of the animated plot:
+
+```{r}
+animated_plot <- animate(plot = a,
+                         nframes = 88,
+                         width = 900,
+                         height = 900,
+                         units = "px", res = 100,
+                         renderer = magick_renderer())
+animated_plot
+```
+
+The result is `animated_plot` which is a "magick-image":
+
+```{r}
+class(animated_plot)
+```
+
+This will allow us to combine it with a GIF using the `{magick}` package. So it is important to define the 'renderer' in the `animate()`function.
+
+### Intermezzo
+
+A few words on the animated objects. Using the function `transition_reveal()`, the lines are revealed over time. Objects like the dot and the mean are only displayed at the location that is defined by a specific time and do not stay. A similar behaviour would be the default for the `geom_tile()`. However, here we want the area to be drawn, which means that the area that was drawn before should remain visible. To achieve that, we added `group = seq_along(Time)` to `geom_tile()`. The same could be done for the `geom_point()` when the points should remain visible for the entire trace.
+
+### Time for some magick
+
+Now it's time to load the movie. We will use the `{magick}` package to load the GIF and to combine them:
+
+```{r}
+library(magick)
+movie <- image_read("data/OptoTIAM_movie.gif")
+```
+
+To test whether we can combine the movie and plot, we start by combining the first frame and verify the result:
+
+```{r}
+combined_gif <- image_append(c(movie[1], animated_plot[1]))
+
+combined_gif
+```
+
+To combine all other frames and add them to the object 'combined_gif' we use a for loop:
+
+```{r}
+for (i in 2:88) {
+   combined_panel <- image_append(c(movie[i], animated_plot[i]))
+   combined_gif <- c(combined_gif, combined_panel)
+}
+```
+
+To show the combined GIF:
+
+```{r}
+combined_gif
+```
+
+To save a preview:
+
+```{r}
+image_write_gif(combined_gif[49], 'Protocol_18.png')
+```
+
+To write the combined GIF to a file:
+
+```{r}
+image_write_gif(combined_gif, 'Protocol_18.gif')
+```
+
+

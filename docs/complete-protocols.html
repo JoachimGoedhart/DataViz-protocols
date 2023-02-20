@@ -23,7 +23,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -245,6 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.16.2" data-path="complete-protocols.html"><a href="complete-protocols.html#multiple-scatterplots"><i class="fa fa-check"></i><b>4.16.2</b> Multiple scatterplots</a></li>
 <li class="chapter" data-level="4.16.3" data-path="complete-protocols.html"><a href="complete-protocols.html#fit-parameters"><i class="fa fa-check"></i><b>4.16.3</b> Fit parameters</a></li>
 </ul></li>
+<li class="chapter" data-level="4.17" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-17"><i class="fa fa-check"></i><b>4.17</b> Protocol 17 - Animated plots of data from optogenetics experiments</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a>
 <ul>
@@ -326,7 +327,7 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb213-3"><a href="complete-protocols.html#cb213-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Wavelength, <span class="at">y =</span> Intensity, <span class="at">color =</span> <span class="st">`</span><span class="at">Fluorescent Protein</span><span class="st">`</span>)</span>
 <span id="cb213-4"><a href="complete-protocols.html#cb213-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <span id="cb213-5"><a href="complete-protocols.html#cb213-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> Spectrum), <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 <p>This looks pretty good already. Now let’s change the order of the fluorescent proteins to their order in the plot:</p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="complete-protocols.html#cb214-1" aria-hidden="true" tabindex="-1"></a>df_1 <span class="ot">&lt;-</span> df_1 <span class="sc">%&gt;%</span></span>
 <span id="cb214-2"><a href="complete-protocols.html#cb214-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Fluorescent Protein</span><span class="st">`</span> <span class="ot">=</span> forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(</span>
@@ -356,7 +357,7 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb216-18"><a href="complete-protocols.html#cb216-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Let’s check the result:</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="complete-protocols.html#cb217-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
 <p>Next, we set the limits of the axis and force the y-axis to start at 0</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="complete-protocols.html#cb218-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
 <span id="cb218-2"><a href="complete-protocols.html#cb218-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.1</span>)) <span class="sc">+</span> </span>
@@ -390,14 +391,14 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb220-17"><a href="complete-protocols.html#cb220-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="cn">NULL</span>, <span class="at">label.position =</span> <span class="st">&quot;right&quot;</span>)</span>
 <span id="cb220-18"><a href="complete-protocols.html#cb220-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="complete-protocols.html#cb221-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
 <p>We are almost there, except that the colors of the plot do not match with the natural colors of the fluorescent proteins. Let’s fix that by defining a custom color palette. The order of the colors matches with the order of the fluorescent proteins that was defined earlier:</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="complete-protocols.html#cb222-1" aria-hidden="true" tabindex="-1"></a>custom_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p>To apply the custom colors to the filled area:</p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="complete-protocols.html#cb223-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> custom_colors)</span></code></pre></div>
 <p>This is the result:</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="complete-protocols.html#cb224-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
 <p>To save this plot as a PNG file:</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="complete-protocols.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_01.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb225-2"><a href="complete-protocols.html#cb225-2" aria-hidden="true" tabindex="-1"></a>  p</span>
@@ -432,12 +433,12 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <p>Let’s look at the data, and identify the biological replicates, as suggested in the original publication on Superplot by <a href="https://doi.org/10.1083/jcb.202001064">(Lord et al., 2021)</a>. In this example a color code is used to label the replicates:</p>
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="complete-protocols.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>df_raw, <span class="fu">aes</span>(<span class="at">x=</span>Stage)) <span class="sc">+</span></span>
 <span id="cb233-2"><a href="complete-protocols.html#cb233-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data=</span>df_raw, <span class="fu">aes</span>(<span class="at">x=</span>Stage, <span class="at">y=</span><span class="st">`</span><span class="at">Calcium (uM)</span><span class="st">`</span>, <span class="at">color=</span>Replicate))</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 <p>To display the statistics for the individual biological replicates, we define a new dataframe. To this end, we group the data for the different stages and biological replicates:</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="complete-protocols.html#cb234-1" aria-hidden="true" tabindex="-1"></a>df_summary <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Stage, Replicate) <span class="sc">%&gt;%</span></span>
 <span id="cb234-2"><a href="complete-protocols.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>(), <span class="at">mean=</span><span class="fu">mean</span>(<span class="st">`</span><span class="at">Calcium (uM)</span><span class="st">`</span>))</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;Stage&#39;. You can override using the
-`.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;Stage&#39;. You can override using
+the `.groups` argument.</code></pre>
 <p>Next, we use ‘df_summary’ which holds the averages of each biological replicate, and we calculate the statistics for the different conditions:</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="complete-protocols.html#cb236-1" aria-hidden="true" tabindex="-1"></a>df_summary_replicas <span class="ot">&lt;-</span> df_summary <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Stage) <span class="sc">%&gt;%</span></span>
 <span id="cb236-2"><a href="complete-protocols.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_rep=</span><span class="fu">n</span>(), <span class="at">mean_rep=</span><span class="fu">mean</span>(mean), <span class="at">sd_rep =</span> <span class="fu">sd</span>(mean))  <span class="sc">%&gt;%</span></span>
@@ -467,7 +468,7 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb241-2"><a href="complete-protocols.html#cb241-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">data=</span>df_2, <span class="fu">aes</span>(<span class="at">x=</span>Stage, <span class="at">y=</span><span class="st">`</span><span class="at">Calcium (uM)</span><span class="st">`</span>), <span class="at">color=</span><span class="cn">NA</span>, <span class="at">fill=</span><span class="st">&quot;grey80&quot;</span>)</span></code></pre></div>
 <p>This is what it looks like:</p>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="complete-protocols.html#cb242-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 <p>We add the 95% confidence interval from the summary of the biological replicates as a line:</p>
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="complete-protocols.html#cb243-1" aria-hidden="true" tabindex="-1"></a> p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_linerange</span>(<span class="at">data =</span> df_2, <span class="fu">aes</span>(<span class="at">ymin=</span><span class="st">`</span><span class="at">95%CI_lo</span><span class="st">`</span>, <span class="at">ymax=</span><span class="st">`</span><span class="at">95%CI_hi</span><span class="st">`</span>), <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.8</span>) </span></code></pre></div>
 <p>And we add the mean value of each replicate as a dot. Here, the size of the dot is reflecting n:</p>
@@ -476,14 +477,14 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="complete-protocols.html#cb245-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_size_area</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">90</span>), <span class="at">max_size =</span> <span class="dv">6</span>)</span></code></pre></div>
 <p>This is what that looks like:</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="complete-protocols.html#cb246-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
 <p>Next, one of my favorite tweaks for discrete conditions is to rotate the plot 90 degrees. At the same time, the limits are defined.</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="complete-protocols.html#cb247-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">coord_flip</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">0.02</span>,<span class="fl">0.09</span>)) <span class="sc">+</span></span>
 <span id="cb247-2"><a href="complete-protocols.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This ensures correct order of conditions when plot is rotated 90 degrees</span></span>
 <span id="cb247-3"><a href="complete-protocols.html#cb247-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> rev)</span></code></pre></div>
 <p>Rotation improves readability of the labels for the conditions, even when they are long. It also easier to read the different calcium levels:</p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="complete-protocols.html#cb248-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
 <p>To guide the interpretation, a line is added as a threshold of 0.06 µM (=60 nM):</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="complete-protocols.html#cb249-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.060</span>, <span class="at">linetype=</span><span class="st">&#39;dotted&#39;</span>)</span></code></pre></div>
 <p>Adjusting the axis labels and adding a title and caption:</p>
@@ -520,7 +521,7 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb251-21"><a href="complete-protocols.html#cb251-21" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">&#39;n per replicate&#39;</span>, <span class="at">label.position =</span> <span class="st">&quot;left&quot;</span>)</span>
 <span id="cb251-22"><a href="complete-protocols.html#cb251-22" aria-hidden="true" tabindex="-1"></a>               )</span></code></pre></div>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="complete-protocols.html#cb252-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
 <p>To save the plot as a PNG file:</p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="complete-protocols.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_02.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb253-2"><a href="complete-protocols.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  p</span>
@@ -561,11 +562,11 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <p>First we create a line plot of all the data:</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="complete-protocols.html#cb260-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_3, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>Roundness, <span class="at">group=</span>Cell)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
 <span id="cb260-2"><a href="complete-protocols.html#cb260-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <p>With the facet_wrap() function, we turn this into a small multiple:</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="complete-protocols.html#cb261-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Cell)</span>
 <span id="cb261-2"><a href="complete-protocols.html#cb261-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
 <p>Set the limits of the axis and force the y-axis to start at 0</p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="complete-protocols.html#cb262-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
 <span id="cb262-2"><a href="complete-protocols.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.0</span>)) <span class="sc">+</span> </span>
@@ -581,14 +582,14 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb263-8"><a href="complete-protocols.html#cb263-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb263-9"><a href="complete-protocols.html#cb263-9" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb263-10"><a href="complete-protocols.html#cb263-10" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
 <p>I do not like the repeated axis for the different plots. We can remove those:</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="complete-protocols.html#cb264-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(        </span>
 <span id="cb264-2"><a href="complete-protocols.html#cb264-2" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Remove axis labels</span></span>
 <span id="cb264-3"><a href="complete-protocols.html#cb264-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb264-4"><a href="complete-protocols.html#cb264-4" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb264-5"><a href="complete-protocols.html#cb264-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
 <p>This is a very minimal plot, focusing entirely on the data. It may work well, but it is informative to add some information about the scaling of the x- and y-axis. To achieve this, I add lines to the lower left plot, which correspond to the data of ‘neutro 6’ (you can see this in the small multiple plot where each plot was labeled). I define a new dataframe with the x- and y-scale for ‘neutro 6’ to do just that:</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="complete-protocols.html#cb265-1" aria-hidden="true" tabindex="-1"></a>ann_line<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">xmin=</span><span class="dv">0</span>,<span class="at">xmax=</span><span class="dv">300</span>,<span class="at">ymin=</span><span class="dv">0</span>,<span class="at">ymax=</span><span class="dv">1</span>,</span>
 <span id="cb265-2"><a href="complete-protocols.html#cb265-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Cell=</span><span class="fu">factor</span>(<span class="st">&quot;neutro 6&quot;</span>,<span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;neutro 6&quot;</span>)))</span>
@@ -604,7 +605,7 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb267-6"><a href="complete-protocols.html#cb267-6" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
 <span id="cb267-7"><a href="complete-protocols.html#cb267-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb267-8"><a href="complete-protocols.html#cb267-8" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
 <p>The plot is now in black and white which gives it a strong contrast. We can make it a bit more soft and pleasant to look at by changing to shades of grey. Also, the labels of the axes are moved next to the lines:</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="complete-protocols.html#cb268-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
 <span id="cb268-2"><a href="complete-protocols.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;grey98&#39;</span>, <span class="at">color=</span><span class="cn">NA</span>),</span>
@@ -622,7 +623,7 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb269-7"><a href="complete-protocols.html#cb269-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">tag =</span> <span class="st">&quot;Protocol 3&quot;</span></span>
 <span id="cb269-8"><a href="complete-protocols.html#cb269-8" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="complete-protocols.html#cb270-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="complete-protocols.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_03.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb271-2"><a href="complete-protocols.html#cb271-2" aria-hidden="true" tabindex="-1"></a> p</span>
 <span id="cb271-3"><a href="complete-protocols.html#cb271-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
@@ -704,8 +705,8 @@ The data is subset and converted to a vector</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="complete-protocols.html#cb288-1" aria-hidden="true" tabindex="-1"></a>df_norm <span class="ot">&lt;-</span> df_4 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(condition <span class="sc">==</span> <span class="st">&quot;-&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb288-2"><a href="complete-protocols.html#cb288-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment1,treatment2) <span class="sc">%&gt;%</span></span>
 <span id="cb288-3"><a href="complete-protocols.html#cb288-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(expression)) </span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;treatment1&#39;. You can override using the
-`.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;treatment1&#39;. You can override
+using the `.groups` argument.</code></pre>
 <p>Combine the mean values (needed for normalization) values with the df_4 dataframe</p>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="complete-protocols.html#cb290-1" aria-hidden="true" tabindex="-1"></a>df_4 <span class="ot">&lt;-</span> df_4 <span class="sc">%&gt;%</span></span>
 <span id="cb290-2"><a href="complete-protocols.html#cb290-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(df_norm, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;treatment1&quot;</span>,<span class="st">&quot;treatment2&quot;</span>)) <span class="sc">%&gt;%</span></span>
@@ -760,7 +761,7 @@ The data is subset and converted to a vector</p>
 <span id="cb300-8"><a href="complete-protocols.html#cb300-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Let’s look at the result:</p>
 <div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="complete-protocols.html#cb301-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
 <p>To save the plot as a png file:</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="complete-protocols.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_04.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb302-2"><a href="complete-protocols.html#cb302-2" aria-hidden="true" tabindex="-1"></a> p</span>
@@ -802,12 +803,12 @@ The data is subset and converted to a vector</p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="complete-protocols.html#cb315-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_tile</span>(<span class="at">data=</span>df_5, <span class="fu">aes</span>(<span class="at">x=</span>position, <span class="at">y=</span>aa)) <span class="sc">+</span></span>
 <span id="cb315-2"><a href="complete-protocols.html#cb315-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_y_discrete</span>(<span class="at">limits =</span> <span class="fu">rev</span>(amino_acid_ordered))</span>
 <span id="cb315-3"><a href="complete-protocols.html#cb315-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
 <p>Set the theme to classic, to get rid off the ‘frame’ around the plot and the grid.</p>
 <div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="complete-protocols.html#cb316-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p<span class="sc">+</span><span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code></pre></div>
 <p>For each of the four classes of amino acids we can define a box with a color that indicates the class. For example, there are three basic residues that will have a rectangle filled with blue in the background. The amino acids are factors, but we need numbers to define the coordinates for the rectangle. In a plot with a factors (here on the y-axis) their position is defined by a (non visible) natural number. Therefore we can define a box with the function <code>annotate()</code> for the first residue with y-coordinates <code>ymin=0.5</code> and <code>ymax=1.5</code>:</p>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="complete-protocols.html#cb317-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;rect&quot;</span>, <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymin =</span> <span class="fl">0.5</span>, <span class="at">xmax =</span> <span class="cn">Inf</span>, <span class="at">ymax=</span><span class="fl">1.5</span>, <span class="at">fill=</span><span class="st">&#39;blue&#39;</span>, <span class="at">alpha=</span><span class="fl">0.4</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-270-1.png" width="672" />
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-271-1.png" width="672" />
 In this way, we define four colored rectangles that reflect the different amino acids categories; blue=basic, red=acidic, yellow=hydrophilic, grey=hydrophobic:</p>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="complete-protocols.html#cb318-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;rect&quot;</span>, <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymin =</span> <span class="fl">0.5</span>, <span class="at">xmax =</span> <span class="cn">Inf</span>, <span class="at">ymax=</span><span class="fl">3.5</span>, <span class="at">fill=</span><span class="st">&#39;blue&#39;</span>, <span class="at">alpha=</span><span class="fl">0.15</span>)</span>
 <span id="cb318-2"><a href="complete-protocols.html#cb318-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;rect&quot;</span>, <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymin =</span> <span class="fl">3.5</span>, <span class="at">xmax =</span> <span class="cn">Inf</span>, <span class="at">ymax=</span><span class="fl">5.5</span>, <span class="at">fill=</span><span class="st">&#39;red&#39;</span>, <span class="at">alpha=</span><span class="fl">0.15</span>)</span>
@@ -815,7 +816,7 @@ In this way, we define four colored rectangles that reflect the different amino 
 <span id="cb318-4"><a href="complete-protocols.html#cb318-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;rect&quot;</span>, <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymin =</span> <span class="fl">10.5</span>, <span class="at">xmax =</span> <span class="cn">Inf</span>, <span class="at">ymax=</span><span class="fl">20.5</span>, <span class="at">fill=</span><span class="st">&#39;black&#39;</span>, <span class="at">alpha=</span><span class="fl">0.15</span>)</span></code></pre></div>
 <p>Let’s look at the result:</p>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="complete-protocols.html#cb319-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
 <p>Adjusting the axis labels and adding a title and caption:</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="complete-protocols.html#cb320-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
 <span id="cb320-2"><a href="complete-protocols.html#cb320-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">labs</span>(</span>
@@ -835,15 +836,15 @@ In this way, we define four colored rectangles that reflect the different amino 
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="complete-protocols.html#cb322-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin=</span><span class="dv">0</span>, <span class="at">xmax=</span><span class="dv">118</span>, <span class="at">ymin=</span><span class="dv">21</span>, <span class="at">ymax=</span><span class="dv">22</span>, <span class="at">fill=</span><span class="st">&#39;darkblue&#39;</span>) <span class="sc">+</span></span>
 <span id="cb322-2"><a href="complete-protocols.html#cb322-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x=</span><span class="dv">59</span>, <span class="at">y=</span><span class="dv">23</span>, <span class="at">alpha=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">&#39;darkblue&#39;</span>, <span class="at">size=</span><span class="dv">4</span>,<span class="at">label=</span><span class="st">&#39;IDR&#39;</span>)</span>
 <span id="cb322-3"><a href="complete-protocols.html#cb322-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-275-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
 <p>To avoid clipping of the new label by the subtitle of the plot:</p>
 <div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="complete-protocols.html#cb323-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">&#39;off&#39;</span>)</span>
 <span id="cb323-2"><a href="complete-protocols.html#cb323-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
 <p>The subtitle is quite close to the IDR label. Let’s give the subtitle a bit more room, by adding a margin at the bottom of the subtitle. This can be done with the <code>theme()</code> function to style the subtitle:</p>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="complete-protocols.html#cb324-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b=</span><span class="dv">20</span>)))</span>
 <span id="cb324-2"><a href="complete-protocols.html#cb324-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
 <p>Finally we can save the plot:</p>
 <div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="complete-protocols.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_05.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb325-2"><a href="complete-protocols.html#cb325-2" aria-hidden="true" tabindex="-1"></a> p</span>
@@ -887,7 +888,7 @@ Attaching package: &#39;data.table&#39;</code></pre>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="complete-protocols.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sub, <span class="fu">aes</span>(<span class="at">x=</span>Time_in_min, <span class="at">y=</span>Unique_Object,<span class="at">fill=</span>ERKn)) <span class="sc">+</span></span>
 <span id="cb338-2"><a href="complete-protocols.html#cb338-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span> <span class="fu">theme_void</span>()<span class="sc">+</span></span>
 <span id="cb338-3"><a href="complete-protocols.html#cb338-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() </span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-285-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-286-1.png" width="672" /></p>
 <p>Can we also sort the data based on something else? Definitely, but it requires a bit of understanding of functions. Previously, we used the maximum value. This is defined by the function <code>max</code>, which takes the maxium value from a vector of numbers. Let’s look at an artificial example:</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="complete-protocols.html#cb339-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">9</span>)</span>
 <span id="cb339-2"><a href="complete-protocols.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(x)</span></code></pre></div>
@@ -905,7 +906,7 @@ Attaching package: &#39;data.table&#39;</code></pre>
 <span id="cb345-3"><a href="complete-protocols.html#cb345-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sub, <span class="fu">aes</span>(<span class="at">x=</span>Time_in_min, <span class="at">y=</span>Unique_Object,<span class="at">fill=</span>ERKn)) <span class="sc">+</span></span>
 <span id="cb345-4"><a href="complete-protocols.html#cb345-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span> <span class="fu">theme_void</span>()<span class="sc">+</span></span>
 <span id="cb345-5"><a href="complete-protocols.html#cb345-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() </span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-288-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
 <p>If we want to sort on the sum of the top five values we can define a function:</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="complete-protocols.html#cb346-1" aria-hidden="true" tabindex="-1"></a>top_five <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {<span class="fu">sum</span>(<span class="fu">tail</span>(<span class="fu">sort</span>(x),<span class="dv">5</span>))}</span></code></pre></div>
 <p>But we can also directly implement the function in the <code>fct_reorder()</code> function:</p>
@@ -917,7 +918,7 @@ Attaching package: &#39;data.table&#39;</code></pre>
 <span id="cb349-3"><a href="complete-protocols.html#cb349-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">na.value=</span><span class="st">&quot;black&quot;</span>, <span class="at">limits =</span> <span class="fu">range</span>(<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">1.5</span>))</span></code></pre></div>
 <p>Let’s look at the plot</p>
 <div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="complete-protocols.html#cb350-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-293-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-294-1.png" width="672" /></p>
 <p>Add labels:</p>
 <div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="complete-protocols.html#cb351-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
 <span id="cb351-2"><a href="complete-protocols.html#cb351-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">labs</span>(</span>
@@ -953,7 +954,7 @@ Attaching package: &#39;data.table&#39;</code></pre>
 <span id="cb352-21"><a href="complete-protocols.html#cb352-21" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb352-22"><a href="complete-protocols.html#cb352-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb352-23"><a href="complete-protocols.html#cb352-23" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-295-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-296-1.png" width="672" /></p>
 <p>The caption does not look good in this plot, but it has been optimized to look good in the saved PNG. To get a proper aligned caption in the Rmd you may need to optimize the hjust value in <code>theme((plot.caption = element_text()))</code></p>
 <p>To save the plot as PNG:</p>
 <div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="complete-protocols.html#cb353-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_06.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
@@ -1039,11 +1040,11 @@ In addition, we have more flexibility (and insight) when we do this ourselves.</
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="complete-protocols.html#cb362-1" aria-hidden="true" tabindex="-1"></a>df_7 <span class="sc">%&gt;%</span> <span class="fu">write.csv</span>(<span class="st">&quot;protocol_7.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Let’s make a lineplot of this data and use the rank to shift the data plotted on the y-axis:</p>
 <div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="complete-protocols.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_7, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>Activity<span class="sc">+</span>(rank<span class="sc">*</span><span class="dv">1</span>), <span class="at">group=</span>Cell, <span class="at">height =</span> rank)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">size=</span><span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-302-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
 <p>We can use the rank to shift the plot also in the horizontal direction:</p>
 <div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="complete-protocols.html#cb364-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_7, <span class="fu">aes</span>(<span class="at">x=</span>Time<span class="sc">+</span>(rank<span class="sc">*</span><span class="dv">10</span>), <span class="at">y=</span>(Activity<span class="sc">+</span>(rank<span class="sc">*</span><span class="dv">1</span>)), <span class="at">group=</span>Cell)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">size=</span><span class="fl">0.5</span>)</span>
 <span id="cb364-2"><a href="complete-protocols.html#cb364-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-304-1.png" width="672" /></p>
 <p>Add labels:</p>
 <div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="complete-protocols.html#cb365-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
 <span id="cb365-2"><a href="complete-protocols.html#cb365-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">labs</span>(</span>
@@ -1057,7 +1058,7 @@ In addition, we have more flexibility (and insight) when we do this ourselves.</
 <p>If we would like to use color, this would be a way to do that:</p>
 <div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="complete-protocols.html#cb366-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(rank))) <span class="sc">+</span></span>
 <span id="cb366-2"><a href="complete-protocols.html#cb366-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-305-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-306-1.png" width="672" /></p>
 <p>Although it looks flashy, we do not really need color here. So we stick to black and white and make some adjustments to the layout by tweaking the theme settings. To remove the grid and show the axis:</p>
 <div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="complete-protocols.html#cb367-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span>
 <span id="cb367-2"><a href="complete-protocols.html#cb367-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
@@ -1065,7 +1066,7 @@ In addition, we have more flexibility (and insight) when we do this ourselves.</
 <span id="cb367-4"><a href="complete-protocols.html#cb367-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb367-5"><a href="complete-protocols.html#cb367-5" aria-hidden="true" tabindex="-1"></a>           <span class="cn">NULL</span>)</span>
 <span id="cb367-6"><a href="complete-protocols.html#cb367-6" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-306-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-307-1.png" width="672" /></p>
 <p>To give it more of a 3D feel we can add a third axis by defining a line:</p>
 <div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="complete-protocols.html#cb368-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;segment&quot;</span>, <span class="at">x=</span><span class="dv">0</span>,<span class="at">y=</span><span class="dv">1</span>,<span class="at">xend=</span><span class="dv">10</span>,<span class="at">yend=</span><span class="dv">2</span>, <span class="at">size=</span><span class="dv">1</span>)</span></code></pre></div>
 <p>The next step is to remove the original x-axis, which is a bit too long and also replace that with a line that runs until 20 (minutes):</p>
@@ -1074,12 +1075,12 @@ In addition, we have more flexibility (and insight) when we do this ourselves.</
 <span id="cb369-3"><a href="complete-protocols.html#cb369-3" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span></span>
 <span id="cb369-4"><a href="complete-protocols.html#cb369-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;segment&quot;</span>, <span class="at">x=</span><span class="dv">0</span>,<span class="at">y=</span><span class="dv">1</span>,<span class="at">xend=</span><span class="dv">20</span>,<span class="at">yend=</span><span class="dv">1</span>, <span class="at">size=</span><span class="dv">1</span>)</span>
 <span id="cb369-5"><a href="complete-protocols.html#cb369-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-308-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-309-1.png" width="672" /></p>
 <p>Finally, we can use <code>scale_x_continuous()</code> to improve two aspects of the x-axis. First, the labels run up to 30, but we can set the scale to 0-20 with <code>breaks = c(0,20)</code>. Second, the default in ggplot is add a bit of margin to the plot, that’s why the x-axis does not touch the y-axis. This can be solved by using <code>expand = c(0, 0)</code>:
 We can manually add two</p>
 <div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="complete-protocols.html#cb370-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
 <span id="cb370-2"><a href="complete-protocols.html#cb370-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-309-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-310-1.png" width="672" /></p>
 <p>To save the plot as PNG:</p>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="complete-protocols.html#cb371-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_07.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb371-2"><a href="complete-protocols.html#cb371-2" aria-hidden="true" tabindex="-1"></a>   p</span>
@@ -1105,30 +1106,31 @@ We can manually add two</p>
 <p>We can construct a basic plot where each well is represented by a large dot and the color used to fill the dot represents the intensity. This is much like a heatmap, but it uses a dot instead of a tile:</p>
 <div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="complete-protocols.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>df_8, <span class="fu">aes</span>(<span class="at">x=</span>column, <span class="at">y=</span>row)) <span class="sc">+</span></span>
 <span id="cb376-2"><a href="complete-protocols.html#cb376-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Intensity), <span class="at">size=</span><span class="dv">10</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-313-1.png" width="672" />
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-314-1.png" width="672" />
 There is a couple of things that need to be fixed. First, we invert the row names, to put the row ‘A’ at the top. In addition, the column names are depicted as factors (this can also be achieved by mutating the dataframe):</p>
 <div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="complete-protocols.html#cb377-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>df_8, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.factor</span>(column), <span class="at">y=</span><span class="fu">fct_rev</span>(row))) <span class="sc">+</span></span>
 <span id="cb377-2"><a href="complete-protocols.html#cb377-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Intensity), <span class="at">size=</span><span class="dv">10</span>)</span>
 <span id="cb377-3"><a href="complete-protocols.html#cb377-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-315-1.png" width="672" /></p>
 <p>Let’s change the color palette that displays intensity to viridis. The numbers in the legend are high and that is why they are difficult to read quickly. So we use the <code>scales</code> package to use the scientific notation:</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="complete-protocols.html#cb378-1" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
 <span id="cb378-2"><a href="complete-protocols.html#cb378-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">label =</span> scales<span class="sc">::</span>scientific)</span>
 <span id="cb378-3"><a href="complete-protocols.html#cb378-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-315-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-316-1.png" width="672" /></p>
 <p>In my opinion, the scientific notation does not work well, so let’s try to use commas as a thousands separator:</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="complete-protocols.html#cb379-1" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
 <span id="cb379-2"><a href="complete-protocols.html#cb379-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">label =</span> scales<span class="sc">::</span>comma)</span></code></pre></div>
 <pre><code>Scale for x is already present.
 Adding another scale for x, which will replace the existing scale.
 Scale for colour is already present.
-Adding another scale for colour, which will replace the existing scale.</code></pre>
+Adding another scale for colour, which will replace the existing
+scale.</code></pre>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="complete-protocols.html#cb381-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-316-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-317-1.png" width="672" /></p>
 <p>This is a bit better, but the numbers need to be right aligned:</p>
 <div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="complete-protocols.html#cb382-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.text.align =</span> <span class="dv">1</span>)</span>
 <span id="cb382-2"><a href="complete-protocols.html#cb382-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-317-1.png" width="672" />
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-318-1.png" width="672" />
 This looks better, now add the labels (and we skip the labels for the x- and y-axis):</p>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="complete-protocols.html#cb383-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
 <span id="cb383-2"><a href="complete-protocols.html#cb383-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">labs</span>(</span>
@@ -1141,7 +1143,7 @@ This looks better, now add the labels (and we skip the labels for the x- and y-a
 <span id="cb383-9"><a href="complete-protocols.html#cb383-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">tag =</span> <span class="st">&quot;Protocol 8&quot;</span></span>
 <span id="cb383-10"><a href="complete-protocols.html#cb383-10" aria-hidden="true" tabindex="-1"></a>  ) </span>
 <span id="cb383-11"><a href="complete-protocols.html#cb383-11" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-318-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
 <p>Set the theme and font size:</p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="complete-protocols.html#cb384-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_light</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span></code></pre></div>
 <p>Note that this overrides any previously defined modifications of the <code>theme()</code> function, such as the alignment of the legend labels. So we need to define this again.</p>
@@ -1155,7 +1157,7 @@ This looks better, now add the labels (and we skip the labels for the x- and y-a
 <span id="cb386-6"><a href="complete-protocols.html#cb386-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Let’s look at the result:</p>
 <div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="complete-protocols.html#cb387-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-322-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-323-1.png" width="672" /></p>
 <p>To save the plot as a png file:</p>
 <div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="complete-protocols.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_08.png&quot;</span>), <span class="at">width =</span> <span class="dv">3000</span>, <span class="at">height =</span> <span class="dv">2000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb388-2"><a href="complete-protocols.html#cb388-2" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span> <span class="fu">coord_fixed</span>()</span>
@@ -1213,8 +1215,8 @@ This looks better, now add the labels (and we skip the labels for the x- and y-a
 <span id="cb397-5"><a href="complete-protocols.html#cb397-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Next we take the ‘Response’ and calculate the average per concentration and for each biological replicate and store that information in a new dataframe:</p>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="complete-protocols.html#cb398-1" aria-hidden="true" tabindex="-1"></a>df_summary <span class="ot">&lt;-</span> df_DRC <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Concentration, Replicate) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_Response=</span><span class="fu">mean</span>(Response))</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;Concentration&#39;. You can override using the
-`.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;Concentration&#39;. You can
+override using the `.groups` argument.</code></pre>
 <p>We can define a plot that shows the data with <code>geom_jitter()</code> and the average with a large dot with <code>geom_point()</code>. Each replicate has its own color and the data is plotted on a log scale with <code>scale_x_log10()</code>:</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="complete-protocols.html#cb400-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_DRC, <span class="fu">aes</span>(<span class="at">x =</span> Concentration, <span class="at">y =</span> Response)) <span class="sc">+</span> </span>
 <span id="cb400-2"><a href="complete-protocols.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> Concentration, <span class="at">y =</span> Response, <span class="at">color=</span>Replicate), <span class="at">width=</span><span class="fl">0.2</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">shape=</span><span class="dv">16</span>, <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span> </span>
@@ -1222,14 +1224,14 @@ This looks better, now add the labels (and we skip the labels for the x- and y-a
 <span id="cb400-4"><a href="complete-protocols.html#cb400-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span>
 <span id="cb400-5"><a href="complete-protocols.html#cb400-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb400-6"><a href="complete-protocols.html#cb400-6" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-330-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-331-1.png" width="672" /></p>
 <p>Adjusting the theme and the y-axis scale improves the plot:</p>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="complete-protocols.html#cb401-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span>  p <span class="sc">+</span></span>
 <span id="cb401-2"><a href="complete-protocols.html#cb401-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">6</span>) <span class="sc">+</span></span>
 <span id="cb401-3"><a href="complete-protocols.html#cb401-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>(<span class="dv">16</span>)</span>
 <span id="cb401-4"><a href="complete-protocols.html#cb401-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb401-5"><a href="complete-protocols.html#cb401-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-331-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-332-1.png" width="672" /></p>
 <p>Add labels:</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="complete-protocols.html#cb402-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">labs</span>(</span>
 <span id="cb402-2"><a href="complete-protocols.html#cb402-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Responses of individual cells to Histamine&quot;</span>,</span>
@@ -1244,7 +1246,7 @@ This looks better, now add the labels (and we skip the labels for the x- and y-a
 <p>To use these colors we define manual color scales for both ‘fill’ (used for <code>geom_point()</code>) and ‘color’ (used for <code>geom_jitter()</code>):</p>
 <div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="complete-protocols.html#cb404-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> Tol_bright) <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> Tol_bright)</span>
 <span id="cb404-2"><a href="complete-protocols.html#cb404-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-334-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-335-1.png" width="672" /></p>
 <p>The result is a dose response curve in which the replicates are clearly identified with colorblind friendly colors. The EC50 can be determined from fitting a curve. To this end, we use the function <code>nls()</code>, which needs an equation, the data and estimates of the values. It will perform a ‘nonlinear least squares’ optimization to find parameters for the equation that best fit with the data of ‘df_summary’. The parameters are ‘bot’, ‘top’, ‘EC50’ and ‘slope’:</p>
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="complete-protocols.html#cb405-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">nls</span>(mean_Response <span class="sc">~</span> top<span class="sc">+</span>(bot<span class="sc">-</span>top)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>(Concentration<span class="sc">/</span>EC50)<span class="sc">^</span>slope),</span>
 <span id="cb405-2"><a href="complete-protocols.html#cb405-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> df_summary,</span>
@@ -1257,12 +1259,12 @@ This looks better, now add the labels (and we skip the labels for the x- and y-a
 <div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="complete-protocols.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
 <span id="cb408-2"><a href="complete-protocols.html#cb408-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb408-3"><a href="complete-protocols.html#cb408-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">augment</span>(fit), <span class="fu">aes</span>(<span class="at">x=</span>Concentration, <span class="at">y=</span>.fitted), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-337-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-338-1.png" width="672" /></p>
 <p>Instead of <code>geom_lin()</code> for plotting the fit, we can also use <code>geom_smooth()</code>:</p>
 <div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="complete-protocols.html#cb409-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">augment</span>(fit), <span class="fu">aes</span>(<span class="at">x=</span>Concentration, <span class="at">y=</span>.fitted), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">1</span>)</span>
 <span id="cb409-2"><a href="complete-protocols.html#cb409-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 <pre><code>`geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-338-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-339-1.png" width="672" /></p>
 <p>An alternative way to do the curve fit is provided through the <code>{drc}</code> package. To demonstrate this, we load the package and add the curve fit to the data:</p>
 <div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="complete-protocols.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(drc)</span></code></pre></div>
 <pre><code>Loading required package: MASS</code></pre>
@@ -1283,7 +1285,7 @@ Attaching package: &#39;drc&#39;</code></pre>
 <div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="complete-protocols.html#cb420-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">data=</span>df_summary, <span class="fu">aes</span>(<span class="at">x =</span> Concentration, <span class="at">y =</span> mean_Response), <span class="at">color=</span><span class="st">&#39;blue&#39;</span>, <span class="at">method =</span> drm, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">fct =</span> <span class="fu">L.4</span>()), <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>`geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</code></pre>
 <pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-339-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-340-1.png" width="672" /></p>
 <p>The <code>{drc}</code> package was used to fit the data in the paper by <a href="https://doi.org/10.1242/jcs.259685">Chavez-Abiega et al. (2022)</a>. But the approach followed above with <code>nls()</code> is easier to adapt for data that requires other models for the fit.</p>
 <p>Finally, we can save the plot:</p>
 <div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="complete-protocols.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_09.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
@@ -1367,13 +1369,13 @@ After clicking on ‘Publish’ a link is generated that can be read as a csv, a
 <p>The dataframe is cleaned and tidy and so it is ready for visualization. The primary information is the distribution of size measurements for the measurements of cells and cell nuclei. This can be achieved by using <code>geom_density()</code>. Given the range of sizes, it makes sense to use a log10 scale for the x-axis:</p>
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="complete-protocols.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_size, <span class="fu">aes</span>(<span class="at">x=</span>Size, <span class="at">fill=</span>Sample))<span class="sc">+</span><span class="fu">geom_density</span>(<span class="at">alpha=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb438-2"><a href="complete-protocols.html#cb438-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-349-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-350-1.png" width="672" /></p>
 <p>The <code>geom_density()</code> produces a smooth distribution of the data. I actually prefer to see the real data and that’s why we turn to <code>geom_histogram</code>. I also will split the data according to the sample and groups and this can be achieved with <code>facet_grid()</code>. Here, we use the <code>labeller()</code> function to combine the column name ‘Group’ with the the factor it presents, as this makes it easier to understand what is plotted:</p>
 <div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="complete-protocols.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_size, <span class="fu">aes</span>(<span class="at">x=</span>Size, <span class="at">fill=</span>Sample))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">alpha=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb439-2"><a href="complete-protocols.html#cb439-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(Sample<span class="sc">~</span>Group, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">Group=</span>label_both)) <span class="sc">+</span></span>
 <span id="cb439-3"><a href="complete-protocols.html#cb439-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-350-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-351-1.png" width="672" /></p>
 <p>The use of color is redundant, since the data is split in Cell and Nucleus anyway, so we remove that. The difference between groups is not large and for the final data visualization I chose to combine the data for all the groups:</p>
 <div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="complete-protocols.html#cb441-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_size, <span class="fu">aes</span>(<span class="at">x=</span>Size)) <span class="sc">+</span></span>
 <span id="cb441-2"><a href="complete-protocols.html#cb441-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha=</span>.<span class="dv">5</span>, <span class="at">bins=</span><span class="dv">50</span>) <span class="sc">+</span></span>
@@ -1381,7 +1383,7 @@ After clicking on ‘Publish’ a link is generated that can be read as a csv, a
 <span id="cb441-4"><a href="complete-protocols.html#cb441-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_logticks</span>(<span class="at">sides=</span><span class="st">&quot;b&quot;</span>, <span class="at">outside =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb441-5"><a href="complete-protocols.html#cb441-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span>
 <span id="cb441-6"><a href="complete-protocols.html#cb441-6" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-351-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-352-1.png" width="672" /></p>
 <p>The data is presented in a nice way now, and we can improve the axis labels and add a title and caption:</p>
 <div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="complete-protocols.html#cb442-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
 <span id="cb442-2"><a href="complete-protocols.html#cb442-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">labs</span>(</span>
@@ -1404,7 +1406,7 @@ After clicking on ‘Publish’ a link is generated that can be read as a csv, a
 <span id="cb443-9"><a href="complete-protocols.html#cb443-9" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb443-10"><a href="complete-protocols.html#cb443-10" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb443-11"><a href="complete-protocols.html#cb443-11" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-353-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-354-1.png" width="672" /></p>
 <p>This looks very decent. But we can edit change the x-axis to display logarithmic space ticks. In addition, I’d like the bars of the histogram to start from the axis and not ‘float’ as in the graph above:</p>
 <div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="complete-protocols.html#cb444-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
 <span id="cb444-2"><a href="complete-protocols.html#cb444-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Force the y-axis to start at zero</span></span>
@@ -1422,7 +1424,7 @@ After clicking on ‘Publish’ a link is generated that can be read as a csv, a
 <pre><code>Scale for x is already present.
 Adding another scale for x, which will replace the existing scale.</code></pre>
 <div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="complete-protocols.html#cb446-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-354-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-355-1.png" width="672" /></p>
 <p>To save the plot as a PNG file:</p>
 <div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="complete-protocols.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_10.png&quot;</span>), <span class="at">width =</span> <span class="dv">3000</span>, <span class="at">height =</span> <span class="dv">2000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb447-2"><a href="complete-protocols.html#cb447-2" aria-hidden="true" tabindex="-1"></a>  p</span>
@@ -1490,32 +1492,32 @@ After clicking on ‘Publish’ a link is generated that can be read as a csv. A
 <p>Note that we use <code>convert = TRUE</code> to ensure that the data is treated as numbers (not as characters). We can use the data to check at what time the data was submitted:</p>
 <div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="complete-protocols.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>hour))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">alpha=</span>.<span class="dv">8</span>)</span></code></pre></div>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-362-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-363-1.png" width="672" /></p>
 <p>The default number of ‘bins’ is 30, but it makes more sense to use 24 here as there are 24 hours in a day:</p>
 <div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="complete-protocols.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>hour))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">24</span>, <span class="at">alpha=</span>.<span class="dv">8</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-363-1.png" width="672" />
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-364-1.png" width="672" />
 Since ‘hour’ is a number that cycles, with 0 followed by 23, it is nice to connect the data from 23 with 0 and we can do that with <code>coord_polar()</code>:</p>
 <div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="complete-protocols.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>hour)) <span class="sc">+</span> </span>
 <span id="cb461-2"><a href="complete-protocols.html#cb461-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">24</span>, <span class="at">alpha=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb461-3"><a href="complete-protocols.html#cb461-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>() <span class="sc">+</span> </span>
 <span id="cb461-4"><a href="complete-protocols.html#cb461-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="at">by=</span><span class="dv">2</span>))</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-364-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-365-1.png" width="672" /></p>
 <p>To center the plot at 0, we need to rotate it by -7.5 degrees (1 hour equal 15 degrees). We can use the <code>start</code> option within <code>coord_polar()</code>, but it only accepts ‘radians’. To convert degrees to radians the value is multiplied by pi/180:</p>
 <div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="complete-protocols.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>hour)) <span class="sc">+</span> </span>
 <span id="cb462-2"><a href="complete-protocols.html#cb462-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">24</span>, <span class="at">alpha=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb462-3"><a href="complete-protocols.html#cb462-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">start =</span> (<span class="sc">-</span><span class="fl">7.5</span><span class="sc">*</span>pi<span class="sc">/</span><span class="dv">180</span>)) <span class="sc">+</span> </span>
 <span id="cb462-4"><a href="complete-protocols.html#cb462-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="at">by=</span><span class="dv">3</span>))</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-365-1.png" width="672" />
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-366-1.png" width="672" />
 The plot can be rotated to center it around 15h as it reflects the middle of the afternoon, when most activity takes place. To achieve this, we need to shift the start another 15*15 degrees:</p>
 <div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="complete-protocols.html#cb463-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>hour)) <span class="sc">+</span> </span>
 <span id="cb463-2"><a href="complete-protocols.html#cb463-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">24</span>, <span class="at">alpha=</span>.<span class="dv">8</span>, <span class="at">color=</span><span class="st">&#39;black&#39;</span>) <span class="sc">+</span></span>
 <span id="cb463-3"><a href="complete-protocols.html#cb463-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">coord_polar</span>(<span class="at">start =</span> (<span class="sc">-</span><span class="fl">7.5</span> <span class="sc">-</span> <span class="dv">15</span><span class="sc">*</span><span class="dv">15</span>)<span class="sc">*</span>pi<span class="sc">/</span><span class="dv">180</span>) <span class="sc">+</span> </span>
 <span id="cb463-4"><a href="complete-protocols.html#cb463-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="at">by=</span><span class="dv">3</span>))</span>
 <span id="cb463-5"><a href="complete-protocols.html#cb463-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-366-1.png" width="672" />
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-367-1.png" width="672" />
 This looks good, let’s first improve on the layout by changing the theme. I do not like the grey background, so any theme with a white background is an improvement, for instance <code>theme_minimal()</code>:</p>
 <div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="complete-protocols.html#cb464-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-367-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-368-1.png" width="672" /></p>
 <p>I do not like the labels that show the count. Since it is clear that the length of the bar indicates an amount and since the absolute amount is not so interesting, these labels can be removed. The labels for the hours are helpful and their sice needs to be increased. Finally, I do not like the grid running through the numbers. I did not find a way in the theme setting to get rid of this, so we define the grid ourselves by using repetitive horizontal and vertical lines:</p>
 <div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="complete-protocols.html#cb465-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
 <span id="cb465-2"><a href="complete-protocols.html#cb465-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>), <span class="at">colour =</span> <span class="st">&quot;grey90&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
@@ -1529,7 +1531,7 @@ This looks good, let’s first improve on the layout by changing the theme. I do
 <span id="cb465-10"><a href="complete-protocols.html#cb465-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb465-11"><a href="complete-protocols.html#cb465-11" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb465-12"><a href="complete-protocols.html#cb465-12" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-368-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-369-1.png" width="672" /></p>
 <p>The grid looks good, but the bars have to be on top of this layer, so we redefine the plot in the correct order:</p>
 <div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="complete-protocols.html#cb466-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>hour)) <span class="sc">+</span></span>
 <span id="cb466-2"><a href="complete-protocols.html#cb466-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>), <span class="at">colour =</span> <span class="st">&quot;grey90&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
@@ -1555,14 +1557,14 @@ This looks good, let’s first improve on the layout by changing the theme. I do
 <span id="cb466-22"><a href="complete-protocols.html#cb466-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;grey80&quot;</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
 <span id="cb466-23"><a href="complete-protocols.html#cb466-23" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb466-24"><a href="complete-protocols.html#cb466-24" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-369-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-370-1.png" width="672" /></p>
 <p>A centered title and subtitle looks nice on this plot:</p>
 <div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="complete-protocols.html#cb467-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(</span>
 <span id="cb467-2"><a href="complete-protocols.html#cb467-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
 <span id="cb467-3"><a href="complete-protocols.html#cb467-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
 <span id="cb467-4"><a href="complete-protocols.html#cb467-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb467-5"><a href="complete-protocols.html#cb467-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-370-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-371-1.png" width="672" /></p>
 <p>To save the plot as a PNG file:</p>
 <div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="complete-protocols.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_11.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb468-2"><a href="complete-protocols.html#cb468-2" aria-hidden="true" tabindex="-1"></a>  p</span>
@@ -1638,25 +1640,25 @@ This looks good, let’s first improve on the layout by changing the theme. I do
 <div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="complete-protocols.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>ligand, <span class="at">y=</span><span class="st">`</span><span class="at">SGFP2-CTNNB1</span><span class="st">`</span>, <span class="at">fill =</span> compartment)) <span class="sc">+</span></span>
 <span id="cb481-2"><a href="complete-protocols.html#cb481-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb481-3"><a href="complete-protocols.html#cb481-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() </span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-379-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-380-1.png" width="672" /></p>
 <p>However, in the original figure, the data is split between the two compartments and the two ligands are plotted next to eachother:</p>
 <div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="complete-protocols.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>ligand, <span class="at">y=</span><span class="st">`</span><span class="at">SGFP2-CTNNB1</span><span class="st">`</span>, <span class="at">fill =</span> compartment)) <span class="sc">+</span></span>
 <span id="cb482-2"><a href="complete-protocols.html#cb482-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb482-3"><a href="complete-protocols.html#cb482-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>compartment)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-380-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-381-1.png" width="672" /></p>
 <p>This is close to the original figure, but the colors in that figure reflect the ligand, not the compartment:</p>
 <div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="complete-protocols.html#cb483-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>ligand, <span class="at">y=</span><span class="st">`</span><span class="at">SGFP2-CTNNB1</span><span class="st">`</span>, <span class="at">fill =</span> ligand)) <span class="sc">+</span></span>
 <span id="cb483-2"><a href="complete-protocols.html#cb483-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb483-3"><a href="complete-protocols.html#cb483-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>compartment)</span>
 <span id="cb483-4"><a href="complete-protocols.html#cb483-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb483-5"><a href="complete-protocols.html#cb483-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-381-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-382-1.png" width="672" /></p>
 <p>This plot looks good. Now let’s improve the theme.</p>
 <div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="complete-protocols.html#cb484-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_linedraw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
 <span id="cb484-2"><a href="complete-protocols.html#cb484-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">theme</span>(<span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;points&quot;</span>))</span>
 <span id="cb484-3"><a href="complete-protocols.html#cb484-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb484-4"><a href="complete-protocols.html#cb484-4" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-382-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-383-1.png" width="672" /></p>
 <p>The theme is pretty nice, but the black strips are very distracting. Let’s change the fill and color (border) of the strips and change the text to black. At the same time, we remove the grid and the legend:</p>
 <div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="complete-protocols.html#cb485-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="cn">NA</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>),</span>
 <span id="cb485-2"><a href="complete-protocols.html#cb485-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&#39;black&#39;</span>),</span>
@@ -1665,7 +1667,7 @@ This looks good, let’s first improve on the layout by changing the theme. I do
 <span id="cb485-5"><a href="complete-protocols.html#cb485-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">&#39;grey80&#39;</span>)</span>
 <span id="cb485-6"><a href="complete-protocols.html#cb485-6" aria-hidden="true" tabindex="-1"></a>               )</span>
 <span id="cb485-7"><a href="complete-protocols.html#cb485-7" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-383-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-384-1.png" width="672" /></p>
 <p>Finally, we fix the labels:</p>
 <div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="complete-protocols.html#cb486-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,</span>
 <span id="cb486-2"><a href="complete-protocols.html#cb486-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">y=</span><span class="st">&quot;Concentration [nM]&quot;</span>,</span>
@@ -1674,7 +1676,7 @@ This looks good, let’s first improve on the layout by changing the theme. I do
 <span id="cb486-5"><a href="complete-protocols.html#cb486-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">tag =</span> <span class="st">&quot;Protocol 12&quot;</span></span>
 <span id="cb486-6"><a href="complete-protocols.html#cb486-6" aria-hidden="true" tabindex="-1"></a>              )</span>
 <span id="cb486-7"><a href="complete-protocols.html#cb486-7" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-384-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-385-1.png" width="672" /></p>
 <p>To save the plot as a PNG file:</p>
 <div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="complete-protocols.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_12.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb487-2"><a href="complete-protocols.html#cb487-2" aria-hidden="true" tabindex="-1"></a>  p</span>
@@ -1725,7 +1727,7 @@ Attaching package: &#39;patchwork&#39;</code></pre>
 <span id="cb497-4"><a href="complete-protocols.html#cb497-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4200</span>)) <span class="sc">+</span></span>
 <span id="cb497-5"><a href="complete-protocols.html#cb497-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="cn">NULL</span>)</span>
 <span id="cb497-6"><a href="complete-protocols.html#cb497-6" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-390-1.png" width="672" />
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-391-1.png" width="672" />
 The first plot is a barplot (the length of the bar reflects the mean value) with the standard error of the mean as errorbar:</p>
 <div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="complete-protocols.html#cb498-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_errorbar</span>(<span class="at">data=</span>df_summary,</span>
 <span id="cb498-2"><a href="complete-protocols.html#cb498-2" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">x=</span>Condition,<span class="at">ymin=</span>mean<span class="sc">-</span>sem, <span class="at">ymax=</span>(mean<span class="sc">+</span>sem)),</span>
@@ -1745,7 +1747,7 @@ The first plot is a barplot (the length of the bar reflects the mean value) with
 <p>The patchwork package has a simple syntax for combining the plots, for examples check the <a href="https://patchwork.data-imaginist.com/articles/patchwork.html">package website</a>. A vertical composition is made by using <code>p1/p2/p3</code>. But this won’t look good, so combine the plots horizontally using <code>p1+p2+p3</code>:</p>
 <div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="complete-protocols.html#cb501-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p1<span class="sc">+</span>p2<span class="sc">+</span>p3</span>
 <span id="cb501-2"><a href="complete-protocols.html#cb501-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-394-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-395-1.png" width="672" /></p>
 <p>The result is a set of plots that are nicely aligned, side-by-side. We have titles for individual plots and it would be nice to have a title and caption for the entire panel. We can use the <code>plot_annotation()</code> function from the <code>{patchwork}</code> package. The ‘theme’ specified in this function is only applied to the main title and caption:</p>
 <div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="complete-protocols.html#cb502-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title=</span><span class="st">&quot;Protocol 13&quot;</span>,</span>
 <span id="cb502-2"><a href="complete-protocols.html#cb502-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">caption=</span><span class="st">&quot;@joachimgoedhart&quot;</span>,</span>
@@ -1753,7 +1755,7 @@ The first plot is a barplot (the length of the bar reflects the mean value) with
 <span id="cb502-4"><a href="complete-protocols.html#cb502-4" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>))</span>
 <span id="cb502-5"><a href="complete-protocols.html#cb502-5" aria-hidden="true" tabindex="-1"></a>                          )</span>
 <span id="cb502-6"><a href="complete-protocols.html#cb502-6" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-395-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-396-1.png" width="672" /></p>
 <p>To save the composite plot:</p>
 <div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="complete-protocols.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;protocol_13.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb503-2"><a href="complete-protocols.html#cb503-2" aria-hidden="true" tabindex="-1"></a>p</span>
@@ -1770,7 +1772,7 @@ The first plot is a barplot (the length of the bar reflects the mean value) with
 <p>The measured data is read from a CSV file. These data are originally from <a href="https://doi.org/10.1016/j.celrep.2018.12.094">Becares et al, DOI: 10.1016/j.celrep.2018.12.094</a>:</p>
 <div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="complete-protocols.html#cb506-1" aria-hidden="true" tabindex="-1"></a>df_tidy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Becares-diffgenes_HFHC.csv&quot;</span>)</span></code></pre></div>
 <pre><code>Rows: 3001 Columns: 9
-── Column specification ───────────────────────────────────────────────────────────────────────────────
+── Column specification ────────────────────────────────────────────
 Delimiter: &quot;,&quot;
 chr (1): Gene
 dbl (8): baseMean, log2_FoldChange, FC, lfcSE, stat, pvalue, padj, minus_log...
@@ -1790,7 +1792,7 @@ dbl (8): baseMean, log2_FoldChange, FC, lfcSE, stat, pvalue, padj, minus_log...
 # … with 1 more variable: minus_log10_pvalue &lt;dbl&gt;</code></pre>
 <p>The basic volcano plot is a scatterplot that displays <code>minus_log10_pvalue</code> versus <code>log2_FoldChange</code>:</p>
 <div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="complete-protocols.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>log2_FoldChange, <span class="at">y=</span>minus_log10_pvalue)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-399-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-400-1.png" width="672" /></p>
 <p>To improve the visualization, we will 1) set thresholds, 2) display the thresholds, 3) filter interesting candidates based on the thresholds and 4) annotate the top-10 candidates.</p>
 <div id="step-1---define-thresholds" class="section level3 hasAnchor" number="4.14.1">
 <h3><span class="header-section-number">4.14.1</span> Step 1 - Define thresholds<a href="complete-protocols.html#step-1---define-thresholds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1802,7 +1804,7 @@ dbl (8): baseMean, log2_FoldChange, FC, lfcSE, stat, pvalue, padj, minus_log...
 <div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="complete-protocols.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_tidy, <span class="fu">aes</span>(<span class="at">x=</span>log2_FoldChange, <span class="at">y=</span>minus_log10_pvalue)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb511-2"><a href="complete-protocols.html#cb511-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
 <span id="cb511-3"><a href="complete-protocols.html#cb511-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">5</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-400-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-401-1.png" width="672" /></p>
 </div>
 <div id="step-3---filtering-with-thresholds" class="section level3 hasAnchor" number="4.14.3">
 <h3><span class="header-section-number">4.14.3</span> Step 3 - Filtering with thresholds<a href="complete-protocols.html#step-3---filtering-with-thresholds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1832,7 +1834,7 @@ dbl (8): baseMean, log2_FoldChange, FC, lfcSE, stat, pvalue, padj, minus_log...
 <span id="cb514-3"><a href="complete-protocols.html#cb514-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">5</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)</span>
 <span id="cb514-4"><a href="complete-protocols.html#cb514-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Change))</span>
 <span id="cb514-5"><a href="complete-protocols.html#cb514-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-402-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-403-1.png" width="672" /></p>
 </div>
 <div id="step-4---annotations" class="section level3 hasAnchor" number="4.14.4">
 <h3><span class="header-section-number">4.14.4</span> Step 4 - Annotations<a href="complete-protocols.html#step-4---annotations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1846,7 +1848,7 @@ dbl (8): baseMean, log2_FoldChange, FC, lfcSE, stat, pvalue, padj, minus_log...
 <span id="cb516-2"><a href="complete-protocols.html#cb516-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_top,</span>
 <span id="cb516-3"><a href="complete-protocols.html#cb516-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> Gene)</span>
 <span id="cb516-4"><a href="complete-protocols.html#cb516-4" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-404-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-405-1.png" width="672" /></p>
 <p>Wwe see that the labels overlap and this is often the case when a lot of data is displayed. There is a very handy packgae <code>{ggrepel}</code> that will reduce the overlap between labels:</p>
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="complete-protocols.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
 <span id="cb517-2"><a href="complete-protocols.html#cb517-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_text_repel</span>(</span>
@@ -1858,20 +1860,20 @@ dbl (8): baseMean, log2_FoldChange, FC, lfcSE, stat, pvalue, padj, minus_log...
 <span id="cb517-8"><a href="complete-protocols.html#cb517-8" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb517-9"><a href="complete-protocols.html#cb517-9" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb517-10"><a href="complete-protocols.html#cb517-10" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-405-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-406-1.png" width="672" /></p>
 <p>Now that we have implemeted the features of a volcano plot, we can focus on improving the data visualization. We can emphasize the hits by adding a black outline to these points. The default shape for ‘geom_point()’ is a filled circle. Below we use shape 21, which accepts both a color for the outline and filling. The black outline is defined by ‘color’:</p>
 <div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="complete-protocols.html#cb518-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> df_top, <span class="fu">aes</span>(<span class="at">x=</span>log2_FoldChange, <span class="at">y=</span>minus_log10_pvalue), <span class="at">shape=</span><span class="dv">21</span>, <span class="at">color=</span><span class="st">&#39;black&#39;</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-406-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-407-1.png" width="672" /></p>
 <p>The line that connects the dot with the label is a bit too long and is visible within the dot, which is a bit ugly. To solve this we can fill these dots which will hide the line. We can also make the dots a bit bigger to emphasize the hits:</p>
 <div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="complete-protocols.html#cb519-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> df_top, <span class="fu">aes</span>(<span class="at">x=</span>log2_FoldChange, <span class="at">y=</span>minus_log10_pvalue, <span class="at">fill=</span>Change), <span class="at">shape=</span><span class="dv">21</span>, <span class="at">color=</span><span class="st">&#39;black&#39;</span>, <span class="at">size=</span><span class="dv">2</span>)</span>
 <span id="cb519-2"><a href="complete-protocols.html#cb519-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-407-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-408-1.png" width="672" /></p>
 <p>Let’s change the colors to make the uninteresting datapoints less pronounced:</p>
 <div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="complete-protocols.html#cb520-1" aria-hidden="true" tabindex="-1"></a>newColors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;grey&quot;</span>)</span>
 <span id="cb520-2"><a href="complete-protocols.html#cb520-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb520-3"><a href="complete-protocols.html#cb520-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> newColors) <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> newColors)</span>
 <span id="cb520-4"><a href="complete-protocols.html#cb520-4" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-408-1.png" width="672" />
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-409-1.png" width="672" />
 Finally, we can change the styling by adjusting the labels and the theme. The labels for x- and y-axis use the function <code>expression()</code> to add subscript text to the labels:</p>
 <div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="complete-protocols.html#cb521-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
 <span id="cb521-2"><a href="complete-protocols.html#cb521-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">labs</span>(</span>
@@ -1890,7 +1892,7 @@ Finally, we can change the styling by adjusting the labels and the theme. The la
 <p>Change the x-axis scale the give the labels a bit more room and display the result:</p>
 <div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="complete-protocols.html#cb523-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>)</span>
 <span id="cb523-2"><a href="complete-protocols.html#cb523-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-411-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-412-1.png" width="672" /></p>
 <p>To save the plot as a png file:</p>
 <div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="complete-protocols.html#cb524-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_14.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb524-2"><a href="complete-protocols.html#cb524-2" aria-hidden="true" tabindex="-1"></a> p</span>
@@ -1923,10 +1925,10 @@ Finally, we can change the styling by adjusting the labels and the theme. The la
 6    Martin Chalfie expresses AvGFP in bacteria and worms</code></pre>
 <p>Let’s first make a basic plot to visualize the data in the column ‘Year’:</p>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="complete-protocols.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_timeline, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span>Year)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-415-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-416-1.png" width="672" /></p>
 <p>Each point reflects a year in which some event happened. The events can be plotted as text:</p>
 <div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="complete-protocols.html#cb530-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_timeline, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span>Year)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Event))</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-416-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-417-1.png" width="672" /></p>
 <p>We need to do a couple of things. First, make a nice timeline that shows each year as a dot and the years with events as a more pronounced dot. Second, we need to align the text and reduce the overlap.</p>
 <div id="improve-the-timeline" class="section level3 hasAnchor" number="4.15.1">
 <h3><span class="header-section-number">4.15.1</span> Improve the timeline<a href="complete-protocols.html#improve-the-timeline" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1935,14 +1937,14 @@ Finally, we can change the styling by adjusting the labels and the theme. The la
 <div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="complete-protocols.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_timeline, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span>Year)) <span class="sc">+</span></span>
 <span id="cb532-2"><a href="complete-protocols.html#cb532-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">21</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">fill=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
 <span id="cb532-3"><a href="complete-protocols.html#cb532-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span>yrs, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>), <span class="at">size=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;grey20&quot;</span>) </span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-418-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-419-1.png" width="672" /></p>
 <p>Let’s add a line to make it a time<em>line</em> and do some formatting of the theme to get rid of the legend:</p>
 <div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="complete-protocols.html#cb533-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_timeline, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span>Year)) <span class="sc">+</span></span>
 <span id="cb533-2"><a href="complete-protocols.html#cb533-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">size=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
 <span id="cb533-3"><a href="complete-protocols.html#cb533-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">21</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">fill=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
 <span id="cb533-4"><a href="complete-protocols.html#cb533-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data=</span>yrs, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>), <span class="at">size=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;grey20&quot;</span>) <span class="sc">+</span></span>
 <span id="cb533-5"><a href="complete-protocols.html#cb533-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-419-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-420-1.png" width="672" /></p>
 <p>We will remove the grid and text for the x-axis. We add the ticks for the y-axis and we specify the labels for the years using <code>breaks</code> in <code>scale_y_continuous()</code>:</p>
 <div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="complete-protocols.html#cb534-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_timeline, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span>Year)) <span class="sc">+</span></span>
 <span id="cb534-2"><a href="complete-protocols.html#cb534-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">size=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
@@ -1959,7 +1961,7 @@ Finally, we can change the styling by adjusting the labels and the theme. The la
 <span id="cb534-13"><a href="complete-protocols.html#cb534-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1962</span>,<span class="dv">2025</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">1965</span>, <span class="dv">2024</span>, <span class="at">by=</span><span class="dv">5</span>)))</span>
 <span id="cb534-14"><a href="complete-protocols.html#cb534-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb534-15"><a href="complete-protocols.html#cb534-15" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-420-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-421-1.png" width="672" /></p>
 <p>Allright, things start to look better now. The next step is to add text. We will use labels and the <code>geom_label_repel()</code> function from the <code>{ggrepel}</code> package to avoid overlap. First we load the package:</p>
 <div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="complete-protocols.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
 </div>
@@ -1967,7 +1969,7 @@ Finally, we can change the styling by adjusting the labels and the theme. The la
 <h3><span class="header-section-number">4.15.2</span> Add and format text<a href="complete-protocols.html#add-and-format-text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, we can add labels to the plotting object:</p>
 <div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="complete-protocols.html#cb536-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>Event))</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-422-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-423-1.png" width="672" /></p>
 <p>Let’s change the x-axis scale, to make room for the text on the right side of the line. Also, we can left-align the text vertically and add some space between the points and the text. This is achieved by optimizing the ‘nudge_x’, ‘hjust’ and ‘direction’:</p>
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="complete-protocols.html#cb537-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>Event),</span>
 <span id="cb537-2"><a href="complete-protocols.html#cb537-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">nudge_x   =</span> <span class="fl">0.05</span>,</span>
@@ -1975,7 +1977,7 @@ Finally, we can change the styling by adjusting the labels and the theme. The la
 <span id="cb537-4"><a href="complete-protocols.html#cb537-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">direction =</span> <span class="st">&quot;y&quot;</span></span>
 <span id="cb537-5"><a href="complete-protocols.html#cb537-5" aria-hidden="true" tabindex="-1"></a>                     ) <span class="sc">+</span></span>
 <span id="cb537-6"><a href="complete-protocols.html#cb537-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">1.0</span>,<span class="fl">1.5</span>)) </span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-423-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-424-1.png" width="672" /></p>
 <p>Finally, we can adjust the font size for the label. We also add colors to the different years. I like to use the ‘viridis’ color scale here. because it runs from dark to bright. However, if we would use the full range the final color is bright yellow which has a poor contrast on white. To solve this, we define the ‘end’ of the viridis scale at 80%:</p>
 <div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="complete-protocols.html#cb538-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">color=</span>Year) <span class="sc">+</span></span>
 <span id="cb538-2"><a href="complete-protocols.html#cb538-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>Event),</span>
@@ -1992,7 +1994,7 @@ Finally, we can change the styling by adjusting the labels and the theme. The la
 <span id="cb538-13"><a href="complete-protocols.html#cb538-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;@joachimgoedhart&quot;</span>) <span class="sc">+</span></span>
 <span id="cb538-14"><a href="complete-protocols.html#cb538-14" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
 <span id="cb538-15"><a href="complete-protocols.html#cb538-15" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-424-1.png" width="768" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-425-1.png" width="768" /></p>
 <p>To save the plot as a png file:</p>
 <div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="complete-protocols.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_15.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb539-2"><a href="complete-protocols.html#cb539-2" aria-hidden="true" tabindex="-1"></a> p</span>
@@ -2025,16 +2027,16 @@ Finally, we can change the styling by adjusting the labels and the theme. The la
 6  225.22 150.590  775.40</code></pre>
 <p>The data was stored in a spreadsheet, and is in a wide format. Pairs of columns belong to the same measurement. The two fluorescent proteins were CFP and YFP and this indicated in the column name after the underscore. Several co-expression systems were analyzed and this is indicated in the string before the underscore. We can plot one condition to see what the data looks like in a scatter plot:</p>
 <div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="complete-protocols.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_co, <span class="fu">aes</span>(<span class="at">x=</span>BCY_YFP, <span class="at">y=</span>BCY_CFP)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-428-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-429-1.png" width="672" /></p>
 <div id="linear-fit" class="section level3 hasAnchor" number="4.16.1">
 <h3><span class="header-section-number">4.16.1</span> Linear fit<a href="complete-protocols.html#linear-fit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A linear fit can be added with the <code>geom_smooth</code> function. The method is speficied as <code>lm</code> which means linear model:</p>
 <div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="complete-protocols.html#cb545-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_co, <span class="fu">aes</span>(<span class="at">x=</span>BCY_YFP, <span class="at">y=</span>BCY_CFP)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
 <pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-429-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-430-1.png" width="672" /></p>
 <p>The linear model has an intercept, but suppose that I want to fit the data without offset. To this end, a custom formula can added to overrule the default:</p>
 <div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="complete-protocols.html#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_co, <span class="fu">aes</span>(<span class="at">x=</span>BCY_YFP, <span class="at">y=</span>BCY_CFP)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">formula =</span> y<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>x)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-430-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-431-1.png" width="672" /></p>
 <p>To get to the coefficients of the fit we can use the <code>lm()</code> function fits data to a linear model:</p>
 <div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="complete-protocols.html#cb548-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(BCY_CFP <span class="sc">~</span> BCY_YFP <span class="sc">+</span> <span class="dv">0</span>, <span class="at">data =</span> df_co)</span></code></pre></div>
 <pre><code>
@@ -2121,7 +2123,7 @@ F-statistic:  2641 on 1 and 733 DF,  p-value: &lt; 2.2e-16</code></pre>
 6 BCY     142.   225.</code></pre>
 <p>Now, we have the data in the right shape and we can make scatterplots for each ‘Plasmid’ with <code>facet_wrap()</code>:</p>
 <div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="complete-protocols.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_co_all, <span class="fu">aes</span>(<span class="at">x=</span>YFP, <span class="at">y=</span>CFP)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plasmid, <span class="at">nrow =</span> <span class="dv">2</span> )</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-438-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-439-1.png" width="672" /></p>
 <p>This looks great, but the names for the column ‘Plasmids’ are not informative so let’s fix that in the dataframe. The last two letter, either YC or CY indicate the order of the fluorescent proteins. The first letter indicates the system that was used for the co-expressing, with B = dual promotor, I = Ires and T = 2A.
 First, we split the column ‘Plasmid’:</p>
 <div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="complete-protocols.html#cb563-1" aria-hidden="true" tabindex="-1"></a>df_co_all <span class="sc">%&gt;%</span> <span class="fu">separate</span>(Plasmid, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&#39;System&#39;</span>, <span class="st">&#39;Order&#39;</span>), <span class="at">sep =</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
@@ -2165,14 +2167,14 @@ First, we split the column ‘Plasmid’:</p>
 5 &quot; Dual-promotor&quot; CFP first 124.   163.
 6 &quot; Dual-promotor&quot; CFP first 142.   225.</code></pre>
 <div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="complete-protocols.html#cb569-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>YFP, <span class="at">y=</span>CFP)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">facet_grid</span>(Order<span class="sc">~</span>System)</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-442-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-443-1.png" width="672" /></p>
 <p>This looks a lot like the original figure in the paper (figure 1: <a href="https://doi.org/10.1371/journal.pone.0027321" class="uri">https://doi.org/10.1371/journal.pone.0027321</a>), but we still need to add the fits and optimize the layout. So let’s first assign the plot to an object and optimize the theme:</p>
 <div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="complete-protocols.html#cb570-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>YFP, <span class="at">y=</span>CFP)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">facet_grid</span>(Order<span class="sc">~</span>System)</span>
 <span id="cb570-2"><a href="complete-protocols.html#cb570-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb570-3"><a href="complete-protocols.html#cb570-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y<span class="sc">~</span>x<span class="sc">+</span><span class="dv">0</span>)</span>
 <span id="cb570-4"><a href="complete-protocols.html#cb570-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="dv">14</span>)</span>
 <span id="cb570-5"><a href="complete-protocols.html#cb570-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-443-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-444-1.png" width="672" /></p>
 <p>Again, I’m not the biggest fan of grids, so I renmove the grids here. To indicate the area of the individual plots, I add a light blueish background with a thin grey border and the ‘strips’ with labels for the facets are a bit darker shade of blue:</p>
 <div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="complete-protocols.html#cb571-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb571-2"><a href="complete-protocols.html#cb571-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
@@ -2181,7 +2183,7 @@ First, we split the column ‘Plasmid’:</p>
 <span id="cb571-5"><a href="complete-protocols.html#cb571-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">&#39;grey80&#39;</span>, <span class="at">hjust=</span><span class="dv">1</span>),</span>
 <span id="cb571-6"><a href="complete-protocols.html#cb571-6" aria-hidden="true" tabindex="-1"></a>               <span class="cn">NULL</span>)</span>
 <span id="cb571-7"><a href="complete-protocols.html#cb571-7" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-444-1.png" width="672" />
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-445-1.png" width="672" />
 I’m happy with the layout, so it’s time to adjust the labels. The units for the intensity are arbitrary, so we indicate this with a.u. for arbitrary units:</p>
 <div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="complete-protocols.html#cb572-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;yellow fluorescence [a.u.]&quot;</span>,</span>
 <span id="cb572-2"><a href="complete-protocols.html#cb572-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">y=</span><span class="st">&quot;cyan fluorescence [a.u.]&quot;</span>,</span>
@@ -2190,7 +2192,7 @@ I’m happy with the layout, so it’s time to adjust the labels. The units for 
 <span id="cb572-5"><a href="complete-protocols.html#cb572-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">tag =</span> <span class="st">&quot;Protocol 16&quot;</span></span>
 <span id="cb572-6"><a href="complete-protocols.html#cb572-6" aria-hidden="true" tabindex="-1"></a>              )</span>
 <span id="cb572-7"><a href="complete-protocols.html#cb572-7" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-445-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-446-1.png" width="672" /></p>
 </div>
 <div id="fit-parameters" class="section level3 hasAnchor" number="4.16.3">
 <h3><span class="header-section-number">4.16.3</span> Fit parameters<a href="complete-protocols.html#fit-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -2198,8 +2200,8 @@ I’m happy with the layout, so it’s time to adjust the labels. The units for 
 <div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="complete-protocols.html#cb573-1" aria-hidden="true" tabindex="-1"></a>df_cor <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
 <span id="cb573-2"><a href="complete-protocols.html#cb573-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(System, Order) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb573-3"><a href="complete-protocols.html#cb573-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(), <span class="at">R_squared =</span> <span class="fu">cor</span>(CFP, YFP, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;System&#39;. You can override using the
-`.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;System&#39;. You can override
+using the `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="complete-protocols.html#cb575-1" aria-hidden="true" tabindex="-1"></a>df_cor</span></code></pre></div>
 <pre><code># A tibble: 6 × 4
 # Groups:   System [3]
@@ -2227,18 +2229,90 @@ Similarly, we use 0 for y-coordinate and ‘vjust=0’ to define that the middle
 <span id="cb577-10"><a href="complete-protocols.html#cb577-10" aria-hidden="true" tabindex="-1"></a>                   )</span>
 <span id="cb577-11"><a href="complete-protocols.html#cb577-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb577-12"><a href="complete-protocols.html#cb577-12" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-447-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-448-1.png" width="672" /></p>
 <p>Finally, we can save the plot:</p>
 <div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="complete-protocols.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_16.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
 <span id="cb578-2"><a href="complete-protocols.html#cb578-2" aria-hidden="true" tabindex="-1"></a> p</span>
 <span id="cb578-3"><a href="complete-protocols.html#cb578-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>quartz_off_screen 
                 2 </code></pre>
+</div>
+</div>
+<div id="protocol-17" class="section level2 hasAnchor" number="4.17">
+<h2><span class="header-section-number">4.17</span> Protocol 17 - Animated plots of data from optogenetics experiments<a href="complete-protocols.html#protocol-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To study dynamic processes, data is measured at multiple points in time. This type of data is often presented in lineplots (see for instance protocols 3 &amp; 7). To better visualize the dynamics, animated versions of lineplots can be made. These are nice for presentations or websites. This protocol explains how to generate an animated lineplot from timeseries data. The data is originally published by <a href="https://www.biorxiv.org/content/10.1101/2022.10.17.512253v1">Mahlandt et al (2022)</a>.</p>
+<p>Load the required packages:</p>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="complete-protocols.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb580-2"><a href="complete-protocols.html#cb580-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span></code></pre></div>
+<p>First, we load the data from an excel file:</p>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="complete-protocols.html#cb581-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&#39;data/210222_OptoG08_02_Sheldon_TIAM_tidy_02.xlsx&#39;</span>)</span>
+<span id="cb581-2"><a href="complete-protocols.html#cb581-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code># A tibble: 6 × 6
+  unique_id    id          Time Sample Value type   
+  &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  
+1 Sheldon_A1_R Sheldon 0.000355 A1_R    836. Control
+2 Sheldon_A1_R Sheldon 0.00761  A1_R    836. Control
+3 Sheldon_A1_R Sheldon 0.0104   A1_R    835. Control
+4 Sheldon_A1_R Sheldon 0.0132   A1_R    834. Control
+5 Sheldon_A1_R Sheldon 0.0159   A1_R    834. Control
+6 Sheldon_A1_R Sheldon 0.0187   A1_R    833. Control</code></pre>
+<p>The entire dataset is quite large and to simplify the presentation, we select a timerange between 17.75 and 18.8378 (this is the time in hours). In this timerange the dynamics can be nicely observed:</p>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="complete-protocols.html#cb583-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Time <span class="sc">&gt;=</span> <span class="fl">17.75</span> <span class="sc">&amp;</span> Time <span class="sc">&lt;=</span> <span class="fl">18.8378</span>)</span></code></pre></div>
+<p>There are two factors in the column ‘type’, namely Control and OptoTiam. We calculate the summary of the measurements and labele the new column ‘Value’:</p>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="complete-protocols.html#cb584-1" aria-hidden="true" tabindex="-1"></a>df_sub_summary <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(type, Time) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(Value))</span></code></pre></div>
+<pre><code>`summarise()` has grouped output by &#39;type&#39;. You can override using
+the `.groups` argument.</code></pre>
+<p>Let’s make a first plot to visualize the data:</p>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="complete-protocols.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sub_summary, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>mean, <span class="at">color =</span> type)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">linewidth=</span><span class="dv">2</span>) </span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-454-1.png" width="672" /></p>
+<p>This looks good, so let’s define an object that contains the plot:</p>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="complete-protocols.html#cb587-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_sub_summary, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>mean, <span class="at">color =</span> type)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">linewidth=</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill=</span>type), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">shape=</span><span class="dv">21</span>)</span></code></pre></div>
+<p>Note that we add a dot as well, by ‘geom_point()’. This will looks messy in the static plot, but it is a nice addition for the dynamic plot.</p>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="complete-protocols.html#cb588-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_light</span>(<span class="at">base_size=</span><span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb588-2"><a href="complete-protocols.html#cb588-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb588-3"><a href="complete-protocols.html#cb588-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>)</span>
+<span id="cb588-4"><a href="complete-protocols.html#cb588-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb588-5"><a href="complete-protocols.html#cb588-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-456-1.png" width="672" /></p>
+<p>In this experiment, cells are exposed to blue light (optogenetics) and this triggers a change in the measured value. So below, we define two lightblue rectangles that indicate the illumination with blue light:</p>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="complete-protocols.html#cb589-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin =</span> <span class="fl">17.8333</span>, <span class="at">xmax =</span> <span class="fl">18.0833</span> , <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, <span class="at">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="at">alpha=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb589-2"><a href="complete-protocols.html#cb589-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin =</span> <span class="fl">18.3333</span>, <span class="at">xmax =</span> <span class="fl">18.5833</span> , <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, <span class="at">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="at">alpha=</span><span class="fl">0.1</span>)</span>
+<span id="cb589-3"><a href="complete-protocols.html#cb589-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-457-1.png" width="672" /></p>
+<p>Now, we change the colors of the two lines and dots:</p>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="complete-protocols.html#cb590-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#BEBEBE&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb590-2"><a href="complete-protocols.html#cb590-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#BEBEBE&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>))</span>
+<span id="cb590-3"><a href="complete-protocols.html#cb590-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-458-1.png" width="672" /></p>
+<p>Next, we can add labels and titles:</p>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="complete-protocols.html#cb591-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span></span>
+<span id="cb591-2"><a href="complete-protocols.html#cb591-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb591-3"><a href="complete-protocols.html#cb591-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Reversible increase of resistance in endothelial cells by optogenetics&quot;</span>,</span>
+<span id="cb591-4"><a href="complete-protocols.html#cb591-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Time [h]&quot;</span>,</span>
+<span id="cb591-5"><a href="complete-protocols.html#cb591-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Resistance [Ω]&quot;</span>,</span>
+<span id="cb591-6"><a href="complete-protocols.html#cb591-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;@joachimgoedhart</span><span class="sc">\n</span><span class="st">(based on data from Mahlandt et al, DOI: https://doi.org/10.1101/2022.10.17.512253)&quot;</span>,</span>
+<span id="cb591-7"><a href="complete-protocols.html#cb591-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">tag =</span> <span class="st">&quot;Protocol 17&quot;</span></span>
+<span id="cb591-8"><a href="complete-protocols.html#cb591-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">&#39;grey80&#39;</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code></pre></div>
+<p>This is te version that I save as a preview of the animation:</p>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="complete-protocols.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;Protocol_17.png&quot;</span>), <span class="at">width =</span> <span class="dv">4000</span>, <span class="at">height =</span> <span class="dv">3000</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
+<span id="cb592-2"><a href="complete-protocols.html#cb592-2" aria-hidden="true" tabindex="-1"></a> p</span>
+<span id="cb592-3"><a href="complete-protocols.html#cb592-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>quartz_off_screen 
+                2 </code></pre>
+<p>For the animated version, we can add a label for each of the two conditions. Note that (similar to the dots) it is plotted for each datapoint. But, in the animated version, only the leading (newly drawn) datapoint and label is shown.</p>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="complete-protocols.html#cb594-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y=</span>mean, <span class="at">label=</span>type), <span class="at">nudge_x =</span> <span class="fl">0.02</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">hjust=</span><span class="dv">0</span>)</span></code></pre></div>
+<p>Finally, we can turn this into an animated object with the function <code>transition_reveal()</code> from the <code>{gganimate}</code> package:</p>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="complete-protocols.html#cb595-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">transition_reveal</span>(Time)</span></code></pre></div>
+<p>To generate an animated plot, we used <code>animate()</code> and define the number of frames:</p>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="complete-protocols.html#cb596-1" aria-hidden="true" tabindex="-1"></a>animated_plot <span class="ot">&lt;-</span> <span class="fu">animate</span>(a, <span class="at">nframes=</span><span class="dv">100</span>, <span class="at">width =</span> <span class="dv">1000</span>, <span class="at">height =</span> <span class="dv">750</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">100</span>)</span>
+<span id="cb596-2"><a href="complete-protocols.html#cb596-2" aria-hidden="true" tabindex="-1"></a>animated_plot</span></code></pre></div>
+<p><img src="Protocol_17.gif" /></p>
+<p>To save the animation to disk, use:</p>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="complete-protocols.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(a, <span class="dv">70</span>, <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>(<span class="st">&quot;Protocol_17.gif&quot;</span>), <span class="at">width =</span> <span class="dv">1000</span>, <span class="at">height =</span> <span class="dv">750</span>, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">100</span>)</span></code></pre></div>
 <div id="in-progress" class="section level4 unnumbered hasAnchor">
 <h4>In progress<a href="complete-protocols.html#in-progress" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>This chapter is ‘in progress’ and I plan to add more protocols in the future.</p>
 
-</div>
 </div>
 </div>
 </div>
