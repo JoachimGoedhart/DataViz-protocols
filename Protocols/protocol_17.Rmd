@@ -107,13 +107,13 @@ a <- p + transition_reveal(Time)
 
 To generate an animated plot, we used `animate()` and define the number of frames:
 
-```{r, results="hide"}
+```{r, eval=FALSE}
 animated_plot <- animate(a, nframes=100, width = 1000, height = 750, units = "px", res = 100)
 ```
 
 The result can be displayed by typing `animated_plot` in the command line:
 
-![](Protocol_17.gif)
+![](https://raw.githubusercontent.com/JoachimGoedhart/DataViz-protocols/main/Protocols/Protocol_17.gif)
 
 To save the animated object `a` to disk, use:
 
