@@ -67,4 +67,7 @@ linear-fit
 multiple-scatterplots
 fit-parameters
 protocol-17
+protocol-18
+intermezzo
+time-for-some-magick
 questions-and-answers

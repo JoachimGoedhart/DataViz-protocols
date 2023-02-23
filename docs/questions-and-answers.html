@@ -23,7 +23,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2023-02-20" />
+<meta name="date" content="2023-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,6 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.16.3" data-path="complete-protocols.html"><a href="complete-protocols.html#fit-parameters"><i class="fa fa-check"></i><b>4.16.3</b> Fit parameters</a></li>
 </ul></li>
 <li class="chapter" data-level="4.17" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-17"><i class="fa fa-check"></i><b>4.17</b> Protocol 17 - Animated plots of data from optogenetics experiments</a></li>
+<li class="chapter" data-level="4.18" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-18"><i class="fa fa-check"></i><b>4.18</b> Protocol 18 - Combining animated plots with a movie</a>
+<ul>
+<li class="chapter" data-level="4.18.1" data-path="complete-protocols.html"><a href="complete-protocols.html#intermezzo"><i class="fa fa-check"></i><b>4.18.1</b> Intermezzo</a></li>
+<li class="chapter" data-level="4.18.2" data-path="complete-protocols.html"><a href="complete-protocols.html#time-for-some-magick"><i class="fa fa-check"></i><b>4.18.2</b> Time for some magick</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a>
 <ul>
@@ -288,12 +293,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-is-the-difference-between-a-data.frame-and-a-tibble" class="section level3 unnumbered hasAnchor">
 <h3>What is the difference between a data.frame and a tibble?<a href="questions-and-answers.html#what-is-the-difference-between-a-data.frame-and-a-tibble" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Both are objects that hold data. The data.frame is the structure supported by basic R and the tibble is an extended variant that is supported by the tidyverse package. Dependig on the function that is used to load data, <code>read.csv()</code> from base R or <code>read_csv()</code> from the tidyverse, the data will be loaded in a data.frame or tibble, respectively. It is possible to convert a classic data.frame to a tibble (which requires the tidyverse pakcage):</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="questions-and-answers.html#cb598-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
-<span id="cb598-2"><a href="questions-and-answers.html#cb598-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="questions-and-answers.html#cb629-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
+<span id="cb629-2"><a href="questions-and-answers.html#cb629-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df)</span></code></pre></div>
 <pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
 <p>And to convert a tibble to a data.frame:</p>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="questions-and-answers.html#cb600-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(df)</span>
-<span id="cb600-2"><a href="questions-and-answers.html#cb600-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="questions-and-answers.html#cb631-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(df)</span>
+<span id="cb631-2"><a href="questions-and-answers.html#cb631-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df)</span></code></pre></div>
 <pre><code>[1] &quot;data.frame&quot;</code></pre>
 <hr />
 </div>
@@ -315,16 +320,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-is-the-difference-between---and-for-assigning-variables" class="section level3 unnumbered hasAnchor">
 <h3>What is the difference between <code>&lt;-</code> and <code>=</code> for assigning variables?<a href="questions-and-answers.html#what-is-the-difference-between---and-for-assigning-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R prefers the <code>&lt;-</code> for the assignment of a value to a variable. In RStudio the shortcut is <code>&lt;alt&gt;+&lt;-&gt;</code>. It really is a <em>preference</em> since both can be used:</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="questions-and-answers.html#cb602-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb602-2"><a href="questions-and-answers.html#cb602-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb602-3"><a href="questions-and-answers.html#cb602-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="questions-and-answers.html#cb633-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb633-2"><a href="questions-and-answers.html#cb633-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb633-3"><a href="questions-and-answers.html#cb633-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span></code></pre></div>
 <pre><code>[1] 3</code></pre>
 <hr />
 </div>
 <div id="what-does-na-mean-in-a-dataframe" class="section level3 unnumbered hasAnchor">
 <h3>What does ‘NA’ mean in a dataframe?<a href="questions-and-answers.html#what-does-na-mean-in-a-dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When no data is available, this is known as a ‘missing value’. In R this is indicated with NA for ‘Not Available’. Empty cells in a CSV file will be converted to NA when the file is loaded. Other characters that can be present in a file (especially xls files) are: “.” or “NaN” or “#N/A” or “#VALUE!”. To convert these strings to NA use:</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="questions-and-answers.html#cb604-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>, <span class="at">na.strings=</span><span class="fu">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;NaN&quot;</span>, <span class="st">&quot;#N/A&quot;</span>, <span class="st">&quot;#VALUE!&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="questions-and-answers.html#cb635-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;FPbase_Spectra.csv&#39;</span>, <span class="at">na.strings=</span><span class="fu">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;NaN&quot;</span>, <span class="st">&quot;#N/A&quot;</span>, <span class="st">&quot;#VALUE!&quot;</span>))</span></code></pre></div>
 <hr />
 </div>
 <div id="what-is-the-beste-way-to-type-a-operator" class="section level3 unnumbered hasAnchor">
@@ -351,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-is-the-difference-between-require-and-library-for-loading-a-package" class="section level3 unnumbered hasAnchor">
 <h3>What is the difference between <code>require()</code> and <code>library()</code> for loading a package?<a href="questions-and-answers.html#what-is-the-difference-between-require-and-library-for-loading-a-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Both functions can be used to load a package. The difference is that <code>require()</code> returns <code>FALSE</code> when the package does not exist and can be used to check whether a package was loaded:</p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="questions-and-answers.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">require</span>(<span class="st">&quot;nonexistant&quot;</span>) <span class="sc">==</span> <span class="cn">FALSE</span>) (<span class="st">&quot;This packkage doesn&#39;t exist&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="questions-and-answers.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">require</span>(<span class="st">&quot;nonexistant&quot;</span>) <span class="sc">==</span> <span class="cn">FALSE</span>) (<span class="st">&quot;This packkage doesn&#39;t exist&quot;</span>)</span></code></pre></div>
 <pre><code>Loading required package: nonexistant</code></pre>
 <pre><code>[1] &quot;This packkage doesn&#39;t exist&quot;</code></pre>
 <hr />
@@ -359,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="is-it-possible-to-have-interactive-file-selection" class="section level3 unnumbered hasAnchor">
 <h3>Is it possible to have interactive file selection?<a href="questions-and-answers.html#is-it-possible-to-have-interactive-file-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In some cases it can be convenient to select a file by point-and-click, although this is not strictly reproducible. This example code shows how this can be achieved by using the function <code>file.choose()</code> inside a function for reading a csv file:</p>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="questions-and-answers.html#cb608-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.choose</span>(), <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="questions-and-answers.html#cb639-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.choose</span>(), <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="section" class="section level3 unnumbered">

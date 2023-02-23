@@ -6,7 +6,7 @@ output: html_document
 
 ## Protocol 18 - Combining animated plots with a movie {#protocol-18}
 
-In protocol 17 an animated plot is generated from time series data. Here, we will see how an animated plot can be combined with a movie from imaging data. The data is originally published by [Mahlandt et al (2022)](https://www.biorxiv.org/content/10.1101/2022.10.17.512253v1). We will plot the cell area over time and the movie that shows the area of individual cells.
+In [protocol 17](#protocol-17) an animated plot is generated from time series data. Here, we will see how an animated plot can be combined with a movie from imaging data. The data is originally published by [Mahlandt et al (2022)](https://www.biorxiv.org/content/10.1101/2022.10.17.512253v1). We will plot the cell area over time and the movie that shows the area of individual cells.
 
 Load the required packages:
 
@@ -140,7 +140,6 @@ animated_plot <- animate(plot = a,
                          height = 900,
                          units = "px", res = 100,
                          renderer = magick_renderer())
-animated_plot
 ```
 
 The result is `animated_plot` which is a "magick-image":
@@ -164,7 +163,7 @@ library(magick)
 movie <- image_read("data/OptoTIAM_movie.gif")
 ```
 
-To test whether we can combine the movie and plot, we start by combining the first frame and verify the result:
+To test whether we can combine the movie and plot, we start by combining the first frame and verify that the resulting image looks right:
 
 ```{r}
 combined_gif <- image_append(c(movie[1], animated_plot[1]))
@@ -183,11 +182,13 @@ for (i in 2:88) {
 
 To show the combined GIF:
 
-```{r}
+```{r, eval=FALSE}
 combined_gif
 ```
 
-To save a preview:
+![](https://raw.githubusercontent.com/JoachimGoedhart/DataViz-protocols/main/Protocols/Protocol_18.gif)
+
+To save a preview, we can selected one frame of the movie and save it:
 
 ```{r}
 image_write_gif(combined_gif[49], 'Protocol_18.png')
