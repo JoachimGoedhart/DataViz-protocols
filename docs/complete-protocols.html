@@ -2439,11 +2439,12 @@ Disabled features: fftw, ghostscript, x11</code></pre>
 <div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="complete-protocols.html#cb624-1" aria-hidden="true" tabindex="-1"></a>combined_gif</span></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/JoachimGoedhart/DataViz-protocols/main/Protocols/Protocol_18.gif" /></p>
 <p>To save a preview, we can selected one frame of the movie and save it:</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="complete-protocols.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write_gif</span>(combined_gif[<span class="dv">49</span>], <span class="st">&#39;Protocol_18.png&#39;</span>)</span></code></pre></div>
-<pre><code>[1] &quot;/Users/joachimgoedhart/surfdrive/Bookdown-project/DataViz-protocols/Protocols/Protocol_18.png&quot;</code></pre>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="complete-protocols.html#cb625-1" aria-hidden="true" tabindex="-1"></a>montage <span class="ot">&lt;-</span> <span class="fu">image_montage</span>(<span class="fu">c</span>(combined_gif[<span class="dv">22</span>],combined_gif[<span class="dv">44</span>],combined_gif[<span class="dv">66</span>],combined_gif[<span class="dv">88</span>]), <span class="at">geometry =</span> <span class="st">&quot;x400+0+100&quot;</span>, <span class="at">tile =</span> <span class="st">&#39;2x2&#39;</span>)</span>
+<span id="cb625-2"><a href="complete-protocols.html#cb625-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb625-3"><a href="complete-protocols.html#cb625-3" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write_gif</span>(montage, <span class="st">&#39;Protocol_18.png&#39;</span>)</span></code></pre></div>
 <p>To write the combined GIF to a file:</p>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="complete-protocols.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write_gif</span>(combined_gif, <span class="st">&#39;Protocol_18.gif&#39;</span>)</span></code></pre></div>
-<pre><code>[1] &quot;/Users/joachimgoedhart/surfdrive/Bookdown-project/DataViz-protocols/Protocols/Protocol_18.gif&quot;</code></pre>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="complete-protocols.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write_gif</span>(combined_gif, <span class="st">&#39;Protocol_18.gif&#39;</span>)</span></code></pre></div>
+<hr />
 <div id="in-progress" class="section level4 unnumbered hasAnchor">
 <h4>In progress<a href="complete-protocols.html#in-progress" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>This chapter is ‘in progress’ and I plan to add more protocols in the future.</p>

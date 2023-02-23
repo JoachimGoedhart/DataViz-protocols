@@ -158,7 +158,7 @@ A few words on the animated objects. Using the function `transition_reveal()`, t
 
 Now it's time to load the movie. We will use the `{magick}` package to load the GIF and to combine them:
 
-```{r}
+```{r, results='hide'}
 library(magick)
 movie <- image_read("data/OptoTIAM_movie.gif")
 ```
@@ -190,7 +190,7 @@ combined_gif
 
 To save a preview, we can selected one frame of the movie and save it:
 
-```{r}
+```{r, results='hide', eval=FALSE}
 
 montage <- image_montage(c(combined_gif[22],combined_gif[44],combined_gif[66],combined_gif[88]), geometry = "x400+0+100", tile = '2x2')
 
@@ -199,7 +199,7 @@ image_write_gif(montage, 'Protocol_18.png')
 
 To write the combined GIF to a file:
 
-```{r}
+```{r, results='hide', eval=FALSE}
 image_write_gif(combined_gif, 'Protocol_18.gif')
 ```
 
