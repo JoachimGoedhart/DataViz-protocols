@@ -442,8 +442,8 @@ $ `miRFP670 EX`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <p>To display the statistics for the individual biological replicates, we define a new dataframe. To this end, we group the data for the different stages and biological replicates:</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="complete-protocols.html#cb234-1" aria-hidden="true" tabindex="-1"></a>df_summary <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Stage, Replicate) <span class="sc">%&gt;%</span></span>
 <span id="cb234-2"><a href="complete-protocols.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>(), <span class="at">mean=</span><span class="fu">mean</span>(<span class="st">`</span><span class="at">Calcium (uM)</span><span class="st">`</span>))</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;Stage&#39;. You can override using
-the `.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;Stage&#39;. You can override using the `.groups`
+argument.</code></pre>
 <p>Next, we use ‘df_summary’ which holds the averages of each biological replicate, and we calculate the statistics for the different conditions:</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="complete-protocols.html#cb236-1" aria-hidden="true" tabindex="-1"></a>df_summary_replicas <span class="ot">&lt;-</span> df_summary <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Stage) <span class="sc">%&gt;%</span></span>
 <span id="cb236-2"><a href="complete-protocols.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_rep=</span><span class="fu">n</span>(), <span class="at">mean_rep=</span><span class="fu">mean</span>(mean), <span class="at">sd_rep =</span> <span class="fu">sd</span>(mean))  <span class="sc">%&gt;%</span></span>
@@ -710,8 +710,8 @@ The data is subset and converted to a vector</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="complete-protocols.html#cb288-1" aria-hidden="true" tabindex="-1"></a>df_norm <span class="ot">&lt;-</span> df_4 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(condition <span class="sc">==</span> <span class="st">&quot;-&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb288-2"><a href="complete-protocols.html#cb288-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment1,treatment2) <span class="sc">%&gt;%</span></span>
 <span id="cb288-3"><a href="complete-protocols.html#cb288-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(expression)) </span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;treatment1&#39;. You can override
-using the `.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;treatment1&#39;. You can override using the `.groups`
+argument.</code></pre>
 <p>Combine the mean values (needed for normalization) values with the df_4 dataframe</p>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="complete-protocols.html#cb290-1" aria-hidden="true" tabindex="-1"></a>df_4 <span class="ot">&lt;-</span> df_4 <span class="sc">%&gt;%</span></span>
 <span id="cb290-2"><a href="complete-protocols.html#cb290-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(df_norm, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;treatment1&quot;</span>,<span class="st">&quot;treatment2&quot;</span>)) <span class="sc">%&gt;%</span></span>
@@ -1128,8 +1128,7 @@ There is a couple of things that need to be fixed. First, we invert the row name
 <pre><code>Scale for x is already present.
 Adding another scale for x, which will replace the existing scale.
 Scale for colour is already present.
-Adding another scale for colour, which will replace the existing
-scale.</code></pre>
+Adding another scale for colour, which will replace the existing scale.</code></pre>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="complete-protocols.html#cb381-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-318-1.png" width="672" /></p>
 <p>This is a bit better, but the numbers need to be right aligned:</p>
@@ -1220,8 +1219,8 @@ This looks better, now add the labels (and we skip the labels for the x- and y-a
 <span id="cb397-5"><a href="complete-protocols.html#cb397-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Next we take the ‘Response’ and calculate the average per concentration and for each biological replicate and store that information in a new dataframe:</p>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="complete-protocols.html#cb398-1" aria-hidden="true" tabindex="-1"></a>df_summary <span class="ot">&lt;-</span> df_DRC <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Concentration, Replicate) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_Response=</span><span class="fu">mean</span>(Response))</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;Concentration&#39;. You can
-override using the `.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;Concentration&#39;. You can override using the
+`.groups` argument.</code></pre>
 <p>We can define a plot that shows the data with <code>geom_jitter()</code> and the average with a large dot with <code>geom_point()</code>. Each replicate has its own color and the data is plotted on a log scale with <code>scale_x_log10()</code>:</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="complete-protocols.html#cb400-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_DRC, <span class="fu">aes</span>(<span class="at">x =</span> Concentration, <span class="at">y =</span> Response)) <span class="sc">+</span> </span>
 <span id="cb400-2"><a href="complete-protocols.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> Concentration, <span class="at">y =</span> Response, <span class="at">color=</span>Replicate), <span class="at">width=</span><span class="fl">0.2</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">shape=</span><span class="dv">16</span>, <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span> </span>
@@ -1777,7 +1776,7 @@ The first plot is a barplot (the length of the bar reflects the mean value) with
 <p>The measured data is read from a CSV file. These data are originally from <a href="https://doi.org/10.1016/j.celrep.2018.12.094">Becares et al, DOI: 10.1016/j.celrep.2018.12.094</a>:</p>
 <div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="complete-protocols.html#cb506-1" aria-hidden="true" tabindex="-1"></a>df_tidy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Becares-diffgenes_HFHC.csv&quot;</span>)</span></code></pre></div>
 <pre><code>Rows: 3001 Columns: 9
-── Column specification ────────────────────────────────────────────
+── Column specification ────────────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
 chr (1): Gene
 dbl (8): baseMean, log2_FoldChange, FC, lfcSE, stat, pvalue, padj, minus_log...
@@ -2205,8 +2204,8 @@ I’m happy with the layout, so it’s time to adjust the labels. The units for 
 <div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="complete-protocols.html#cb573-1" aria-hidden="true" tabindex="-1"></a>df_cor <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
 <span id="cb573-2"><a href="complete-protocols.html#cb573-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(System, Order) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb573-3"><a href="complete-protocols.html#cb573-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(), <span class="at">R_squared =</span> <span class="fu">cor</span>(CFP, YFP, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;System&#39;. You can override
-using the `.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;System&#39;. You can override using the `.groups`
+argument.</code></pre>
 <div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="complete-protocols.html#cb575-1" aria-hidden="true" tabindex="-1"></a>df_cor</span></code></pre></div>
 <pre><code># A tibble: 6 × 4
 # Groups:   System [3]
@@ -2265,8 +2264,8 @@ Similarly, we use 0 for y-coordinate and ‘vjust=0’ to define that the middle
 <div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="complete-protocols.html#cb583-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Time <span class="sc">&gt;=</span> <span class="fl">17.75</span> <span class="sc">&amp;</span> Time <span class="sc">&lt;=</span> <span class="fl">18.8378</span>)</span></code></pre></div>
 <p>There are two factors in the column ‘type’, namely Control and OptoTiam. We calculate the summary of the measurements and labele the new column ‘Value’:</p>
 <div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="complete-protocols.html#cb584-1" aria-hidden="true" tabindex="-1"></a>df_sub_summary <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(type, Time) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(Value))</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;type&#39;. You can override using
-the `.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;type&#39;. You can override using the `.groups`
+argument.</code></pre>
 <p>Let’s make a first plot to visualize the data:</p>
 <div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="complete-protocols.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sub_summary, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>mean, <span class="at">color =</span> type)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">linewidth=</span><span class="dv">2</span>) </span></code></pre></div>
 <p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-455-1.png" width="672" /></p>
@@ -2346,8 +2345,8 @@ the `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="complete-protocols.html#cb602-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Cell) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(Time) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Area_norm=</span>AreaShape_Area<span class="sc">/</span>AreaShape_Area[<span class="dv">1</span>]) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>()</span></code></pre></div>
 <p>Next, we calculate the average response and store this in a new dataframe:</p>
 <div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="complete-protocols.html#cb603-1" aria-hidden="true" tabindex="-1"></a>df_summary <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Construct, Time) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(Area_norm))</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;Construct&#39;. You can override
-using the `.groups` argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;Construct&#39;. You can override using the `.groups`
+argument.</code></pre>
 <p>Let’s make a plot of the average:</p>
 <div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="complete-protocols.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_summary, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>mean)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">color=</span><span class="st">&#39;darkorchid4&#39;</span>) </span></code></pre></div>
 <p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-471-1.png" width="672" /></p>
@@ -2409,9 +2408,7 @@ using the `.groups` argument.</code></pre>
 <span id="cb616-3"><a href="complete-protocols.html#cb616-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">width =</span> <span class="dv">900</span>,</span>
 <span id="cb616-4"><a href="complete-protocols.html#cb616-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">height =</span> <span class="dv">900</span>,</span>
 <span id="cb616-5"><a href="complete-protocols.html#cb616-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">units =</span> <span class="st">&quot;px&quot;</span>, <span class="at">res =</span> <span class="dv">100</span>,</span>
-<span id="cb616-6"><a href="complete-protocols.html#cb616-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">renderer =</span> <span class="fu">magick_renderer</span>())</span>
-<span id="cb616-7"><a href="complete-protocols.html#cb616-7" aria-hidden="true" tabindex="-1"></a>animated_plot</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-481-1.gif" /><!-- --></p>
+<span id="cb616-6"><a href="complete-protocols.html#cb616-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">renderer =</span> <span class="fu">magick_renderer</span>())</span></code></pre></div>
 <p>The result is <code>animated_plot</code> which is a “magick-image”:</p>
 <div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="complete-protocols.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(animated_plot)</span></code></pre></div>
 <pre><code>[1] &quot;magick-image&quot;</code></pre>
@@ -2431,8 +2428,8 @@ Disabled features: fftw, ghostscript, x11</code></pre>
 <p>To test whether we can combine the movie and plot, we start by combining the first frame and verify that the resulting image looks right:</p>
 <div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="complete-protocols.html#cb622-1" aria-hidden="true" tabindex="-1"></a>combined_gif <span class="ot">&lt;-</span> <span class="fu">image_append</span>(<span class="fu">c</span>(movie[<span class="dv">1</span>], animated_plot[<span class="dv">1</span>]))</span>
 <span id="cb622-2"><a href="complete-protocols.html#cb622-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb622-3"><a href="complete-protocols.html#cb622-3" aria-hidden="true" tabindex="-1"></a>combined_gif</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-484-1.gif" /><!-- --></p>
+<span id="cb622-3"><a href="complete-protocols.html#cb622-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">as.raster</span>(combined_gif))</span></code></pre></div>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-484-1.png" width="672" /></p>
 <p>To combine all other frames and add them to the object ‘combined_gif’ we use a for loop:</p>
 <div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="complete-protocols.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">88</span>) {</span>
 <span id="cb623-2"><a href="complete-protocols.html#cb623-2" aria-hidden="true" tabindex="-1"></a>   combined_panel <span class="ot">&lt;-</span> <span class="fu">image_append</span>(<span class="fu">c</span>(movie[i], animated_plot[i]))</span>
@@ -2443,10 +2440,10 @@ Disabled features: fftw, ghostscript, x11</code></pre>
 <p><img src="https://raw.githubusercontent.com/JoachimGoedhart/DataViz-protocols/main/Protocols/Protocol_18.gif" /></p>
 <p>To save a preview, we can selected one frame of the movie and save it:</p>
 <div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="complete-protocols.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write_gif</span>(combined_gif[<span class="dv">49</span>], <span class="st">&#39;Protocol_18.png&#39;</span>)</span></code></pre></div>
-<pre><code>[1] &quot;Protocol_18.png&quot;</code></pre>
+<pre><code>[1] &quot;/Users/joachimgoedhart/surfdrive/Bookdown-project/DataViz-protocols/Protocols/Protocol_18.png&quot;</code></pre>
 <p>To write the combined GIF to a file:</p>
 <div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="complete-protocols.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write_gif</span>(combined_gif, <span class="st">&#39;Protocol_18.gif&#39;</span>)</span></code></pre></div>
-<pre><code>[1] &quot;Protocol_18.gif&quot;</code></pre>
+<pre><code>[1] &quot;/Users/joachimgoedhart/surfdrive/Bookdown-project/DataViz-protocols/Protocols/Protocol_18.gif&quot;</code></pre>
 <div id="in-progress" class="section level4 unnumbered hasAnchor">
 <h4>In progress<a href="complete-protocols.html#in-progress" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>This chapter is ‘in progress’ and I plan to add more protocols in the future.</p>

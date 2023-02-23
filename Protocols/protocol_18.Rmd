@@ -168,7 +168,7 @@ To test whether we can combine the movie and plot, we start by combining the fir
 ```{r}
 combined_gif <- image_append(c(movie[1], animated_plot[1]))
 
-combined_gif
+plot(as.raster(combined_gif))
 ```
 
 To combine all other frames and add them to the object 'combined_gif' we use a for loop:
