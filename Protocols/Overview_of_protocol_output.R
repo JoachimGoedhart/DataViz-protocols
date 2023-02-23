@@ -13,7 +13,9 @@ pngfiles <-
     full.names = T
   )
 
-n_columns <- floor(sqrt(length(pngfiles))) 
+# n_columns <- floor(sqrt(length(pngfiles))) 
+
+n_columns <- 3
 
 # read images and then create a montage
 # tile =2 , means arrange the images in 2 columns

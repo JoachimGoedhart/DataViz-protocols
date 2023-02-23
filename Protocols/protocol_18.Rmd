@@ -191,7 +191,10 @@ combined_gif
 To save a preview, we can selected one frame of the movie and save it:
 
 ```{r}
-image_write_gif(combined_gif[49], 'Protocol_18.png')
+
+montage <- image_montage(c(combined_gif[22],combined_gif[44],combined_gif[66],combined_gif[88]), geometry = "x400+0+100", tile = '2x2')
+
+image_write_gif(montage, 'Protocol_18.png')
 ```
 
 To write the combined GIF to a file:
