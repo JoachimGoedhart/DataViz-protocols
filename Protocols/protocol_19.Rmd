@@ -1,0 +1,151 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 19 - Plotting ratiometric FRET data {#protocol-19}
+
+In this protocol, we plot the intensity data that are quantified by ImageJ/FIJI. The image analysis is originally reported in a preprint by [Mahlandt and Goedhart (2021)](https://doi.org/10.1101/2021.02.24.432684) in section 3.2.2. The original R-script is available on [Github](https://github.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/tree/main/3_2_2_RatioImaging). Here, all steps are explained in protocol style.
+
+
+```{r}
+library(tidyverse)
+```
+
+
+We can load the output from FIJI data from the Github repository:
+
+```{r}
+df_CFP <- read.csv("https://raw.githubusercontent.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/main/3_2_2_RatioImaging/Results-CFP.csv")
+df_YFP <-  read.csv("https://raw.githubusercontent.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/main/3_2_2_RatioImaging/Results-YFP.csv")
+```
+
+To avoid the repetition of actions on both dataframes, we merge them:
+
+```{r}
+df_ratio <- bind_rows(df_CFP, df_YFP)
+head(df_ratio)
+```
+And let's look at the last rows of this dataframe
+
+```{r}
+tail(df_ratio)
+```
+
+This looks right and the format of the dataframe is in a long format. However, the first column contains multiple conditions, or IDs, separated by a colon, so we split those with `separate()`:
+
+```{r}
+df_split_ratio <- df_ratio %>% separate(Label,c("filename", "Sample","Number"),sep=':')
+str(df_split_ratio)
+```
+
+We can have a first glance at the data:
+
+```{r}
+ggplot(df_split_ratio, aes(x=Slice, y=Mean, by=Sample)) +
+  geom_line() + facet_wrap(~filename)
+```
+
+To get rid of cell-to-cell variation in expression levels, we normalize the data by dividing all data by the average value of the first 5 timepoints (a.k.a. the baseline):
+
+```{r}
+df_split_ratio <- df_split_ratio %>%
+  group_by(Sample, filename) %>%
+  mutate(Mean_norm = Mean/mean(Mean[1:5]))
+
+ggplot(df_split_ratio, aes(x=Slice, y=Mean_norm, by=Sample)) +
+  geom_line() + facet_wrap(~filename)
+```
+
+This looks good. To display the FRET ratio the data from the YFP channel are divided by that of the CFP channel. To achieve that, I will first make the data wider with `pivot_wider()` by defining two columns (this is close to what's done in protocol 16). One with the YFP intensities and one with the CFP intensities:
+
+```{r}
+df_wider_ratio <- df_split_ratio %>% pivot_wider(names_from = filename, values_from = Mean_norm)
+head(df_wider_ratio)
+```
+
+This is not what I wanted, as the YFP column shows `NA` . The reason is that the columns "Number" and "Mean" are not identical for the CFP and YFP data. So I will do this again, but first get rid of these columns:
+
+```{r}
+df_wider_ratio <- df_split_ratio %>% dplyr::select(-c(Number, Mean)) %>%
+  pivot_wider(names_from = filename, values_from = Mean_norm)
+
+head(df_wider_ratio)
+```
+
+The data is ow in the right format and the calculation the ratio is straightforward:
+
+```{r}
+df_wider_ratio <- df_wider_ratio %>% mutate (Ratio = YFP/CFP)
+head(df_wider_ratio)
+```
+
+From the experimental settings, we know that each slice takes two seconds, so we can add a column with 'Time' data:
+
+```{r}
+df_wider_ratio <- df_wider_ratio %>% mutate(Time=Slice*2)
+```
+
+To plot the ratio data:
+
+```{r}
+p <- ggplot(df_wider_ratio, aes(x=Time, y=Ratio, group=Sample, color=Sample)) +
+  geom_line(size=1) +
+  geom_point(size=2)
+
+p
+```
+
+The data is in correct shape and we can start to work on the layout of the plot. The response that is observed is triggered by receptor activation at time point t=25 until t=175. We can display this time window by adding a rectangle with the function `annotate()`. We also change the theme:
+
+```{r}
+p <- p +
+  annotate("rect",xmin=25,xmax=175,ymin=-Inf,ymax=Inf,alpha=0.1,fill="black") +
+  theme_light(base_size = 16)
+
+p
+```
+
+Let's remove the grid and change the labels of the axes:
+
+```{r}
+p <- p +
+  labs(x = "Time [s]", y = "Normalized Ratio") +
+  labs(title = "Calcium oscillations induced by histamine",
+       tag = "Protocol 19") +
+  theme(panel.grid = element_blank())
+
+p
+```
+
+The heterogeneity is best display by zooming in (to a timerange of 0-200s) and by displaying the plots individually:
+
+```{r}
+p <- p + coord_cartesian(xlim = c(0,190), ylim = c(0.8,5.9), expand = FALSE) + facet_wrap(~Sample)
+
+p
+```
+
+The 'Sample' is indicatd twice in this plot and we can get rid of at least one label. However, since I'm interested in displaying the heterogeneity and not in connecting the plots to a specific sample, I'll get rid of both labels:
+
+To remove the labels and strips for the facets:
+
+```{r}
+p <- p + theme(strip.text.x = element_blank())
+```
+
+To remove the legend and add a :
+
+```{r}
+p <- p + theme(legend.position = "none")
+p
+```
+
+To save the plot:
+
+```{r }
+png(file=paste0("Protocol_19.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```

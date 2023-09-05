@@ -70,4 +70,10 @@ protocol-17
 protocol-18
 intermezzo
 time-for-some-magick
+protocol-19
+protocol-20
+reading-and-processing-the-data
+trial-fitting-on-a-single-trace
+on-kinetics---alltogether
+off-kinetics
 questions-and-answers

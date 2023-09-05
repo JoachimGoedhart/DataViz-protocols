@@ -176,7 +176,7 @@ df_cor
 
 
 We can use the dataframe with correlation values to add these to the plot. We use `geom_text()` with the 'df_cor' dataframe. The main challenges are (i) to position the text at the correct place and (ii) to add a nice label to indicate that the value is R squared.
-Positioning of the label is defined by the x- and y-coordinate in combination with hjust and vjust. My apporach to get the label at the correct place is usually trial and error. We can use 'x=Inf', to asign an infinite value to x, implying that it will be located at the extreme right of the plot. To position the label on the left side of the x-coordinate, we can use 'hjust=1'. But to give it a bit more space, I prefer here 'hjust=1.1'.
+Positioning of the label is defined by the x- and y-coordinate in combination with hjust and vjust. My approach to get the label at the correct place is usually trial and error. We can use 'x=Inf', to assign an infinite value to x, implying that it will be located at the extreme right of the plot. To position the label on the left side of the x-coordinate, we can use 'hjust=1'. But to give it a bit more space, I prefer here 'hjust=1.1'.
 Similarly, we use 0 for y-coordinate and 'vjust=0' to define that the middle position of the label is at this coordinate ('vjust=1' moves the label down and 'vjust=-1' moves the label up.).
 
 To add a styled R-squared to the value we use the `paste()` function to add text preceding the actual value. We will round down the value to two digits using `round()`. Finally we can set 'parse = TRUE' to make sure that the label is styled according to the `plotmath()` convention. Here that means that the caret produces superscript and that the double equal sign is reduced to a single equal sign:

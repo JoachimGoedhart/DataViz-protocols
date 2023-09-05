@@ -1,0 +1,260 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 20 - On- and off-kinetics {#protocol-20}
+
+This document explains how to perform an exponential fit in R. It relies heavy on this blog by Douglas Watson:
+https://douglas-watson.github.io/post/2018-09_exponential_curve_fitting/
+We use data that was originally published in figure 1 of [Mahlandt et al (2022)](https://www.biorxiv.org/content/10.1101/2022.10.17.512253v1).
+
+Load packages needed to wrangle the data and for plotting:
+
+```{r}
+library(tidyverse)
+```
+
+We can also define custom colors and set the theme for the plots:
+
+```{r}
+#Nature themed color palette by Eike =D
+#rapamycin would be springgreen4, magnets are cornflowerblue and iLID is darkorchid4
+newColors <- c("cornflowerblue", "darkorchid4", "springgreen4")
+```
+
+### Reading and processing the data
+
+Read the data. Since this dataset has "N.A." that need to be converted to 'NA' for proper handling, we define this in 'na.strings' and after that the rows with 'NA' are removed:
+
+```{r}
+df <- read.csv("data/OptoG003_Kinetics_Summary_timeZero.csv", na.strings = "N.A.") %>% na.omit()
+head(df)
+```
+
+Two of the columns are renamed. And the order of the factors in the new column 'System' is defined (this will define the order in which the plots are shown):
+
+```{r}
+df <- df %>% rename(Time=Time_adjusted, System=Construct) %>%
+  mutate(`System` = forcats::fct_relevel(`System`, c("magnets", "iLID", "rapamycin")))
+```
+
+Let's have a look at the data:
+
+```{r}
+ggplot(df, aes(x=Time, y=Ratio))+geom_line(aes(group=Experiment), alpha=0.5)+facet_wrap(~System)
+```
+
+To summarise the data and get the mean for each condition:
+
+```{r}
+df_summary <- df %>% group_by(Time, System) %>% summarise(n=n(),
+                                                          mean=mean(Ratio))
+head(df_summary)
+```
+Let's plot the average values:
+
+```{r}
+ggplot(df_summary, aes(x=Time, y=mean))+geom_point(size=2, alpha=0.8)+facet_wrap(~System)
+```
+
+The data shows an increase and decrease of signal. The increase in the signal is due to blue-light stimulation and starts at t=0. Note that the systems 'iLID' and 'magnets' are reversible and have an on-rate and an off-rate. The rapamycin system is irreversible and only has an on-rate. To determine the rates, we will filter the relevant time-window. 
+
+### Trial fitting on a single trace
+
+First we define a dataframe that only has the iLID data from t=0 until t=100:
+
+```{r}
+df_ilid <- df_summary %>% filter(System == "iLID") %>% filter(Time>=0 & Time<100)
+```
+
+To fit the data we use the function `nls()`. First, let's look at an example for a linear fit with the unknown variables 'a' and 'b':
+
+```{r}
+#linear fit
+fit <- nls(mean ~ a * Time + b, data = df_ilid, start = list(a = 1, b = 0))
+```
+
+The coefficients of the fit can be retrieved by:
+
+```{r}
+coef(fit)
+```
+
+This will not be very accurate, but it illustrates how it works. Now let's use a better model and fit an exponential:
+
+```{r}
+#exponential fit: a0 is starting value, a is the amplitude, k is the rate constant
+fit <- nls(mean ~ a0 + a*(1- exp(-k * Time)),
+           data = df_ilid, 
+           start = list(a0 = 0, a = 2, k = .1)
+           )
+```
+
+The variables are 'a0', 'a' and 'k', which reflect the value at t=0, the amplitude and the rate. The values are:
+
+```{r}
+coef(fit)
+```
+
+To plot the fit together with the data, we use the function `augment()` from the broom package:
+
+```{r}
+library(broom)
+
+ggplot(data = augment(fit), aes(x=Time, y=mean)) + geom_point(size=4, alpha=.5) + 
+  geom_line(aes(y=.fitted), color="black", size=1)
+
+```
+
+This looks like a good fit. Now let's determine the half time, which is defines as ln2/k, where ln2 is the natural logarithm of 2. By default the `log()` function calculates the natural logarithm, so we use `log(2)`. The value of 'k' is the third variable of the list that is returned by `coef(fit)`:
+
+```{r}
+var <- coef(fit)
+paste("The halftime is",log(2)/var[3])
+```
+
+### On kinetics - alltogether
+
+Let's try to do the fitting on all three curves at once. First we need to filter the data to get the relevant part of the trace for determining the on-kinetics and we store this is a new dataframe `df_fit_on`:
+
+```{r}
+df_fit_on <- df_summary %>% filter(Time>=0)
+df_fit_on <- df_fit_on %>% filter(System=="iLID" & Time<100 | System=="magnets" & Time<100 | System=="rapamycin")
+
+ggplot(df_fit_on, aes(x=Time, y=mean))+geom_point(size=2, alpha=0.8)+facet_wrap(~System)+xlim(0,200)
+```
+
+This looks good. To fit the data, we use an approach that uses `nest()` to generate a nested dataframe. The `map()` function is used to apply the fit to each System.
+
+```{r}
+fitted <- df_fit_on %>% 
+  nest(-System) %>%
+  mutate(
+    fit = map(data, ~nls(mean ~ a0 + a*(1- exp(-k * Time)),
+           data = ., 
+           start = list(a0 = 0, a = 2, k = .1)
+           )),
+    tidied = map(fit, tidy),
+    augmented = map(fit, augment),
+  )
+fitted
+```
+
+The resulting dataframe `fitted` holds the estimated variables and these can be shown by using the function `unnest()` as follows:
+
+```{r}
+fitted %>% 
+  unnest(tidied) %>% 
+  dplyr::select(System, term, estimate) %>% 
+  spread(term, estimate) %>% rename(Amplitude=a) %>% mutate(`t1/2`=log(2)/k)
+```
+
+Finally, we can extract the fit and plot it on top of the experimental data:
+
+```{r}
+augmented <- fitted %>% 
+  unnest(augmented)
+
+ggplot(data = augmented, aes(x=Time, y=mean, colour = System)) + 
+  geom_point(size=4, alpha=.5) + 
+  geom_line(aes(y=.fitted), color="black", size=1) + facet_wrap(~System) + xlim(0,100) +
+  scale_color_manual(values = newColors)
+  
+```
+
+### Off kinetics
+
+In a similar way, we can fit the off-kinetics. First we need to select the right time window:
+
+```{r}
+df_fit_off <- df_summary %>% mutate(Time=Time-121)
+df_fit_off <- df_fit_off %>% filter(System=="iLID" & Time>=0 | System=="magnets" & Time>=0)
+
+ggplot(df_fit_off, aes(x=Time, y=mean))+geom_point(size=2, alpha=0.8)+facet_wrap(~System)+xlim(0,200)
+
+```
+
+Next, we can do the fitting:
+
+```{r}
+fitted_off <- df_fit_off %>% 
+  nest(-System) %>%
+  mutate(
+    fit = map(data, ~nls(mean ~ a0 + a*(1- exp(-k * Time)),
+           data = ., 
+           start = list(a0 = 2, a = -2, k = .1)
+           )),
+    tidied = map(fit, tidy),
+    augmented = map(fit, augment),
+  )
+```
+
+To get the fit parameters:
+
+```{r}
+fit_results <- fitted_off %>% 
+  unnest(tidied) %>% 
+  dplyr::select(System, term, estimate) %>% 
+  spread(term, estimate) %>% rename(Amplitude=a) %>% mutate(`t1/2`=log(2)/k)
+fit_results
+```
+
+And finally, we can inspect the fit:
+
+```{r}
+augmented <- fitted_off %>% 
+  unnest(augmented)
+
+
+p <- ggplot(data = augmented, aes(x=Time, y=mean, colour = System)) + geom_point(size=4, alpha=.5) +
+  geom_line(aes(y=.fitted), color="black", size=1) + facet_wrap(~System)  +
+  scale_color_manual(values = newColors)
+
+p
+```
+
+Finally, we can adjust the layout and titles:
+
+```{r}
+p <- p + labs(
+  title = "Off-kinetics of two optogenetic systems",
+  x = "Time [s]",
+  y = "Response [arbitrary units]",
+  caption = "@joachimgoedhart\nbased on data from Mahlandt et al., DOI: 10.1101/2022.10.17.512253",
+  tag = "Protocol 20"
+) +
+  theme(plot.caption = element_text(color = "grey80"),
+        legend.position = "none")
+p
+```
+
+The data and fit look good, let's add the t1/2 values as well. Protocol 16 explains how to add labels to plots that uses 'facets' and we use that approach here too:
+
+```{r}
+# Code to add r-squared to the plot
+p + geom_text(data=fit_results, 
+                   x=Inf,
+                   y=0.9,
+                   hjust=1.1,
+                   vjust=0,
+                   aes(label=paste0('t½ = ',round(`t1/2`,1), 's')),
+                  size=5,
+                   color='grey40'
+                   )
+
+
+```
+
+
+
+Let's save the result:
+
+```{r }
+png(file=paste0("Protocol_20.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```
+
+
