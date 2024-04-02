@@ -1,0 +1,191 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 21 - A spiral plot {#protocol-21}
+
+
+In this protocol, we will plot time-series data in a spiral plot. This protocol is inspired by another application of a [spiral plot](https://flowingdata.com/2022/01/10/a-quick-and-easy-way-to-make-spiral-charts-in-r/) to visualize data from several years.
+
+
+We will use the data that is supplied by [addgene](http://www.addgene.org) on requests for plasmids that we have deposited.
+We first load the `{tidyverse}` package:
+
+```{r }
+library(tidyverse)
+```
+
+The data comes in a csv format, let's load that and check its first 6 rows:
+
+```{r }
+df_addgene <- read.csv("data/Addgene-Requests-for-Materials_MolCyto_March_2024.csv", stringsAsFactors = TRUE)
+head(df_addgene)
+```
+The column with dates should not be a factor as it is now, but rather be in a date format. Alternatively, and that is what we will do here, we can split this column into day/month/year. The argument `convert = TRUE` ensures conversion of the values into a integer:
+
+```{r}
+df_addgene <- df_addgene %>%
+  separate(Date.Ordered, into = c("Month","Day","Year"), sep = "/", convert = TRUE)
+head(df_addgene)
+```
+
+Let's calculate the accumulated number of requests. In this dataframe, each row is a single request:
+
+```{r}
+total_requests <- nrow(df_addgene)
+df_addgene$total <- seq(total_requests, 1)
+```
+
+Let's plot how the number of requests evolved over months:
+
+```{r}
+ggplot(df_addgene, aes(Month, total, color=as.factor(Year))) + geom_line()
+```
+
+The plot shows the accumulation of requests over the years. The zig-zag appears because there are multiple values for each month. We can simplify this dataframe to show only the maximal value for each month (per year):
+
+```{r}
+df_addgene_month <- df_addgene %>% group_by(Year, Month) %>%
+  summarise(total_max = max(total)) %>%
+  ungroup()
+```
+
+Let's plot these data again:
+
+```{r}
+ggplot(df_addgene_month, aes(Month, total_max, color=as.factor(Year))) + geom_line()
+```
+
+This looks better, and we can now plot this in a circular fahsion with `coord_polar()`:
+
+```{r}
+ggplot(df_addgene_month, aes(Month, total_max, color=as.factor(Year))) +
+  geom_line(linewidth=2) +
+  coord_polar(clip = 'off')
+```
+
+This looks good, but the lines show a step at the 0 degrees angle. This is because the data for the different years are connected to join all these data. There is a nice solution described here that we will use:
+https://stackoverflow.com/questions/41842249/join-gap-in-polar-line-ggplot-plot
+
+```{r}
+bridge <- df_addgene_month[df_addgene_month$Month==12,]
+bridge$Year <- bridge$Year +1
+bridge$Month <- 0
+df <- rbind(df_addgene_month, bridge)
+
+```
+
+Now, plot again and change the colors:
+
+```{r}
+p <- ggplot(df, aes(Month, total_max, color=as.factor(Year), fill=as.factor(Year))) +
+    geom_line(linewidth=2) +
+  coord_polar()
+p
+```
+
+I do not like the girds and axis labels for these types of plots, so let's get rid of those:
+
+```{r}
+p <- p + theme_bw(base_size = 14) +
+  labs(x="", y="", color="Year") +
+  scale_y_continuous(limits = c(0,NA)) +
+  guides(color = guide_legend(reverse = TRUE)) +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.y = element_text(hjust=.8),
+        plot.caption = element_text(color='grey80', hjust=1, vjust=5))
+p
+```
+
+Adding titles:
+
+```{r}
+p <- p + labs(title = "Evolution of the total number of plasmids",
+              subtitle = "shared through addgene.org",
+              tag = "Protocol 21",
+              caption="data provided by addgene.org - March 2024")
+p
+```
+
+The legend is quite long as it lists all the years. We could list a subset by using `scale_color_discrete()`:
+
+```{r}
+p + scale_color_discrete(breaks=c("2011", "2014", "2017", "2020", "2023")) + labs(color = "")
+```
+
+The legend is less cluttered, but it is less clear how many years are shown and which line belongs to which year (especially if you are colorblind, like I am). Another way the make the legend less prominent is by reducing the size:
+
+```{r}
+p + theme(legend.text = element_text(size = 10),
+          legend.key.height= unit(12, 'points'))
+```
+
+Yep, that is better. Let's see if we can also do some direct labeling. We need a separate dataframe to get there:
+
+```{r}
+df_label <- df %>% filter(Month==12)
+```
+
+Now we take a subset, because we only want to label every nth line (every 5th in this example), to reduce the number of labels. We use `slice()` and since we want to include the most recent year, we first sort the order of the years with `arrange()`:
+
+```{r}
+df_label <- df_label %>%
+  arrange(desc(Year)) %>%
+  slice(seq(1, nrow(df_label), 5))
+
+df_label
+```
+
+
+The `df_label` is now exactly as I wanted it. Let's add the labels from this dataframe:
+
+```{r}
+p + geom_label(data=df_label, aes(x=Month, y=total_max, label=paste0(Year,": ",total_max)), color="black", size=4, label.size = NA, alpha=0.8)
+```
+
+Nice. We do not need the legend anymore. And the labels are a bit large, so let's make them smaller and move them a bit upwards. By adding a triangle (this is defined by `shape=25` within `geom_point()`), that is also slightly moved upwards in the plot, the labels nicely point to the correct line:
+
+```{r}
+p <- p + theme(legend.position = "none", axis.text = element_blank(), axis.ticks = element_blank()) +
+  geom_point(data=df_label,
+             aes(x=Month, y=total_max+600), color="black", shape=25, size=5) +
+  geom_label(data=df_label,
+             aes(x=Month, y=total_max+1200, label=paste0(Year,": ",total_max)),
+             color="black", size=4,
+             # label.size = NA,
+             alpha=1) +
+  scale_y_continuous(limits = c(0,NA), expand = c(0,0))
+p
+```
+
+Let's also add a label that shows the current, maximal value. First, we define the dataframe:
+
+```{r}
+df_label_last <- df_addgene_month %>% tail(1)
+```
+
+We use this dataframe to add a label to the endpoint:
+
+```{r}
+p <- p +
+  geom_point(data=df_label_last,
+             aes(x=Month, y=total_max), size=3) +
+  geom_label(data=df_label_last,
+             aes(x=Month, y=total_max+2000, label=paste0(total_max)),
+             color="black", size=4,
+             # label.size = NA,
+             alpha=1)
+p
+```
+
+Finally, we can save the plot:
+
+```{r }
+png(file=paste0("Protocol_21.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```
