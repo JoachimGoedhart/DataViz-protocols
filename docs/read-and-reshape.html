@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Reading and reshaping data | DataViz protocols</title>
   <meta name="description" content="This is an introduction to data visualization protocols for wet lab scientists" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Reading and reshaping data | DataViz protocols" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2024-04-02" />
+<meta name="date" content="2024-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -66,7 +66,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -129,6 +129,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -260,6 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.20.4" data-path="complete-protocols.html"><a href="complete-protocols.html#off-kinetics"><i class="fa fa-check"></i><b>4.20.4</b> Off kinetics</a></li>
 </ul></li>
 <li class="chapter" data-level="4.21" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-21"><i class="fa fa-check"></i><b>4.21</b> Protocol 21 - A spiral plot</a></li>
+<li class="chapter" data-level="4.22" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-22"><i class="fa fa-check"></i><b>4.22</b> Protocol 22 - Frequencies of discrete data</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a>
 <ul>
@@ -616,7 +621,7 @@ Let’s save the data in a csv file:</p>
  8 Control   Replicate2  38.2
  9 Control   Replicate3  35.6
 10 Drug      Replicate1  34.8
-# … with 290 more rows</code></pre>
+# ℹ 290 more rows</code></pre>
 <p>This kind of data, acquired at different conditions with different replicas is ideally suited for a SuperPlot <a href="https://doi.org/10.1083/jcb.202001064">(Lord et al., 2000)</a>. An example of this kind of data visualization is <a href="complete-protocols.html#protocol-2">Protocol 2</a></p>
 </div>
 <div id="double-quantitative-data" class="section level3 hasAnchor" number="2.4.3">
@@ -862,7 +867,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

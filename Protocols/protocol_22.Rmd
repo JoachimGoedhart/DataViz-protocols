@@ -1,0 +1,128 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 22 - Frequencies of discrete data {#protocol-22}
+
+In this protocol we will look at the data supplied by [addgene](http://www.addgene.org) on requests for plasmids that we have deposited. We first load the `{tidyverse}` package:
+
+```{r }
+library(tidyverse)
+```
+
+Let's load the data:
+
+```{r }
+df_addgene <- read.csv("data/Addgene-Requests-for-Materials-Joachim-Goedhart-2005-2023-2023-Jan-31-05-05.csv", stringsAsFactors = TRUE)
+head(df_addgene)
+```
+
+There are several columns of data (note that the original data contains a column with names of the 'Requesting PI' which I have removed for privacy reasons). The `Material`, `Requesting.Country` and `Date.ordered` are of type `factor`. We can learn more about these factors with the function `str()`
+
+```{r}
+str(df_addgene)
+```
+
+There are 3740 rows, which reflect the number of requests. There are 107 different values for `Material` and 54 unique countries. Now, the ID is a unique identifier of the material as described in the column `Material`.
+
+```{r}
+df_addgene <- df_addgene %>% mutate(ID=as.factor(ID))
+head(df_addgene)
+```
+
+Let's look at the number of requests for each plasmid:
+
+```{r}
+ggplot(df_addgene, aes(x=Material)) + geom_bar()
+```
+
+Clearly, there are several popular plasmids and a large majority that has been requested only a few times. We generate a summary that shows has the count for each plasmid:
+
+```{r}
+df_count <- df_addgene %>% group_by(Material) %>% tally(sort = TRUE)
+head(df_count)
+
+```
+
+A column with the count data is generated. This can be used to sort the data:
+
+```{r}
+df_count <- df_count %>% mutate(Material = fct_reorder(Material, n))
+head(df_count)
+```
+
+The resulting dataframe shows the sorted count `n` for each `Material`. We can use these values in combination with `geom_col()` to plot these data.
+
+```{r}
+ggplot(df_count, aes(x=Material, y=n)) + geom_col()
+```
+
+Ok, this looks better, but it's probably more informative to look at a subset. Let's say anything that has more than 10 requests. We also rotate the plot, which makes the plasmid names easier to read:
+
+```{r}
+ggplot(df_count %>% filter(n>10), aes(x=Material, y=n)) + geom_col() + coord_flip()
+```
+
+Addgene uses different colors of flames to indicate the popularity of the plasmids. For more than 20 request a red flame, more than 50 requests is a green flame and more than 100 requests is a blue flame. We can use these categories and colors also in the bar chart, but we first need to add this to the dataframe:
+
+```{r}
+df_count <- df_count %>% mutate(flame = case_when(n<20 ~ "grey80",
+                                                  (n>=20 & n<50) ~ "#D96C6D",  #using a 'softer red'
+                                                  (n>=50 & n <100) ~ "#E19E37",
+                                                  n>=100 ~ "#50B0E8")
+                                )
+```
+
+Let's replot these data:
+
+```{r}
+ggplot(df_count %>% filter(n>15), aes(x=Material, y=n, fill=flame)) + geom_col() + coord_flip()
+```
+
+The colors do not match with the data in the `flame` column. To use the actual colors from this column, we need the function `scale_fill_identity()`:
+
+```{r}
+p <- ggplot(df_count %>% filter(n>15), aes(x=Material, y=n, fill=flame)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_identity()
+
+p
+```
+
+Let's tweak the layout:
+
+```{r}
+p <- p + theme_bw(base_size = 12) +
+  labs(x="",
+       y="Number of requests",
+       title="Requests for our plasmids at Addgene.org",
+       caption="@joachimgoedhart | Data from addgene") +
+  theme(legend.position = "none") +
+  scale_y_continuous(expand = c(0,0)) +
+  theme(plot.caption = element_text(color='grey80', hjust=1),
+        panel.border = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.y = element_text(size=8))
+p
+```
+
+Note that the font size for labels on the vertical axis is rather small, to avoid overlap between the labels. The text size can only be invreased when the number of labels is reduced (or when the plot area is increased).
+
+To save the plot:
+
+```{r }
+png(file=paste0("Protocol_22.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```
+
+Note that this plot is also used on the addgene dashboard that is available here:
+
+<https://amsterdamstudygroup.shinyapps.io/Addgene_dashboard/>
+
+You can upload your own addgene data, which will a plot similar to the one that is described here.
