@@ -1,0 +1,139 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 23 - Plotting multiple conditions side-by-side {#protocol-23}
+
+In this protocol, we plot data that is gathered on 'cellular brightness' as described in [this blog post](https://blog.addgene.org/a-practical-approach-to-choosing-the-brightest-fluorescent-protein). In this specific set, different proteins are measured before (pre) and after (post) saturating the cells with calcium. The dataset has brightness values per cell and there are quite some data-points that are gathered from two independent experiments. This data was first published [here](https://doi.org/10.1101/2024.11.05.622032
+) and the code below can be used to replicate figure 4 of the preprint.
+
+First the necessary packages are activated:
+
+```{r}
+library(tidyverse)
+library(ggbeeswarm)
+```
+
+Next, the data is loaded as CSV into a dataframe:
+
+```{r}
+df <- read.csv("data/ratio_cells_selection_for_JG_2.csv")
+head(df)
+```
+
+There are more data than I want to show, so I filter the data based on the name in the column `construct`, and this cleaned dataset is saved:
+
+```{r}
+df %>% filter(construct %in% c("EGFP", "G-Ca-FLITS", "mTq2_T203Y","GCaMP6s", "jGCaMP7c", "GCaMP3", "G-GECO1.1")) %>% write.csv("data/ratio_cells_FLITS_set.csv", row.names = F)
+```
+
+We can load the filtered data, which is a standard CSV file:
+
+```{r}
+df <- read.csv("data/ratio_cells_FLITS_set.csv")
+head(df)
+```
+
+The column `glass` identifies the replicate, so we change the name to better reflect that:
+
+```{r}
+df <- df %>% rename(replicate=glass)
+```
+
+Let's also clean up some of the qualitative variables:
+
+```{r}
+df <- df %>% mutate(construct =
+                      case_when(construct == "mTq2_T203Y" ~ "mTq2-T203Y",
+                                TRUE ~ construct)
+                    )
+
+df <- df %>% mutate(across('replicate', str_replace, 'g', ''))
+
+head(df)
+
+```
+
+
+
+The data is in tidy format. The quantitative variable that we want to plot is the `norm_ratio` per construct and state.
+One way to achieve this by specifying different fill colors for the `state` and plotting the distributions with `geom_violin()`:
+
+```{r}
+ggplot(df, aes(x=construct, y=norm_ratio)) + geom_violin(aes(fill=state))
+```
+
+Another way is to do this with `facet_wrap()`:
+
+```{r}
+ggplot(df, aes(x=state, y=norm_ratio)) + geom_violin() + facet_wrap(~construct)
+```
+
+Here, I think the second option is much nicer, as it shows the different constructs as a label on top of the figure. Let's work on this plot to improve it. It makes more sense that the 'pre' condition is shown first:
+
+```{r}
+df <- df %>% mutate(state = fct_relevel(state, c("pre", "post")))
+```
+
+And, in the same way, I will group the true GFP-based probes (EGFP,GCaMP3,GCaMP6s,jGCaMP7c) and the Turquoise-based probes (G-Ca-FLITS,mTq2_T203Y):
+
+```{r}
+df <- df %>% mutate(construct = fct_relevel(construct, c("EGFP","G-GECO1.1", "GCaMP3","GCaMP6s","jGCaMP7c","G-Ca-FLITS","mTq2-T203Y")))
+```
+
+We can also show the individual datapoints according to their distribution by using `geom_quasirandom()` from the `{ggbeeswarm}` package:
+
+```{r}
+ ggplot(df, aes(x=state, y=norm_ratio, group = replicate)) + geom_quasirandom(alpha=0.3, size=2) + facet_wrap(~construct)
+```
+
+Let's compress the plot in the y-direction, showing all plots in a single row (and add some color):
+We also 'compress' the plot, taking less space:
+
+```{r}
+p <- ggplot(df, aes(x=state, y=norm_ratio, group = replicate, fill=construct, color=construct)) + geom_quasirandom(alpha=0.3, size=2) + facet_wrap(~construct, nrow = 1)
+p <- p + theme_bw(base_size = 16) + theme(aspect.ratio = 4)
+p
+```
+
+To display the median value of the replicates we add a larger dot showing the median and add a line to connect these paired data:
+
+```{r}
+p <- p +
+  stat_summary(fun = median, geom="line", color="black", linewidth=1) +
+  stat_summary(fun = median, geom='point', size=6, shape=21, color="black", alpha=0.5)
+p
+```
+
+Let's edit the plot to adjust the theme, labels and layout:
+
+```{r}
+p <- p + scale_color_manual(values = c('darkgreen','darkgreen','darkgreen','darkgreen','darkgreen','darkseagreen4','darkseagreen4'))
+p <- p + scale_fill_manual(values = c('darkgreen','darkgreen','darkgreen','darkgreen','darkgreen','darkseagreen4','darkseagreen4'))
+
+
+p <- p + guides(fill = "none",
+                color = "none"
+                )
+
+p <-
+  p + labs(
+    title = "Cellular brightness of green Calcium biosensors",
+    subtitle = "pre and post ionomycin addition",
+    y = "normalized brightness"
+  ) +
+  theme(panel.grid = element_blank()) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1.3))
+
+p
+```
+
+To save the plot:
+
+```{r }
+png(file=paste0("Protocol_23.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```

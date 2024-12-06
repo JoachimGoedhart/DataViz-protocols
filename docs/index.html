@@ -23,7 +23,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2024-09-11" />
+<meta name="date" content="2024-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -265,6 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.21" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-21"><i class="fa fa-check"></i><b>4.21</b> Protocol 21 - A spiral plot</a></li>
 <li class="chapter" data-level="4.22" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-22"><i class="fa fa-check"></i><b>4.22</b> Protocol 22 - Frequencies of discrete data</a></li>
+<li class="chapter" data-level="4.23" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-23"><i class="fa fa-check"></i><b>4.23</b> Protocol 23 - Plotting multiple conditions side-by-side</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="questions-and-answers.html"><a href="questions-and-answers.html"><i class="fa fa-check"></i><b>5</b> Questions and Answers</a>
 <ul>
@@ -305,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">DataViz protocols</h1>
 <h2 class="subtitle"><em>An introduction to data visualization protocols for wet lab scientists</em></h2>
 <p class="author"><em>Joachim Goedhart</em></p>
-<p class="date"><em>2024-09-11</em></p>
+<p class="date"><em>2024-12-06</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered hasAnchor">
 <h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -317,14 +318,18 @@ First, there is a strict focus on R. All examples use R for all steps. Second, t
 Third, since details determine successful use of R, I will go into detail whenever necessary. Examples of details include the use of spaces in column names, reading files with missing values, or optimizing the position of a label in a data visualization.
 Finally, modern analysis and visualization methods are treated and since the book is in a digital, online format it will be adjusted when new methods are introduced. An example of a recently introduced data visualization is the Superplot, which is the result of <a href="complete-protocols.html#protocol-2">Protocol 2</a>.</p>
 <p>Part of this work has been published as blogs on <a href="https://thenode.biologists.com">The Node</a> and the enthusiastic response encouraged me to create a more structured and complete resource. This does not at all imply that this document needs to be read in a structured manner. If you are totally new to R it makes sense to first read the chapter <a href="getting-started.html#getting-started">Getting started with R</a> which treats some of the essential basics. On the other hand, if you are familiar with R, you may be interested in the chapters on <a href="read-and-reshape.html#read-and-reshape">Reading and Reshaping data</a> or <a href="plotting-the-data.html#plotting-the-data">Visualizing data</a>. Finally, masters in R/ggplot2 may jump right to the <a href="complete-protocols.html#complete-protocols">Complete protocols</a>. This final part brings all the ingredients of the preceding chapters together. Each protocol starts with raw data and shows all the steps that lead to a publication quality plot.</p>
-<p>I hope that you’ll find this book useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on twitter, <a rel="me" href="https://mas.to/@JoachimGoedhart">Mastodon</a>, in meetings, in preprints or in peer reviewed publications.</p>
+<p>I hope that you’ll find this book useful and that it may provide a solid foundation for anyone that wants to use R for the analysis and visualization of scientific data that comes from a wetlab. I look forward to seeing the results on <del>twitter</del> <a rel="me" href="https://bsky.app/profile/joachimgoedhart.bsky.social">Bluesky</a>, <a rel="me" href="https://mas.to/@JoachimGoedhart">Mastodon</a>, in meetings, in preprints or in peer reviewed publications.</p>
 <div id="a-toast" class="section level3 unnumbered hasAnchor">
 <h3>A toast<a href="index.html#a-toast" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter (and now also Mastodon) is a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with!
+<p>Cheers to all the kind people that helped me to get started with R, answered my questions, provided feedback on code and data visualizations, and helped me to troubleshoot scripts. Also thanks to all co-workers for sharing data and the helpful discussions. Finally, twitter (not to be confused with “X”) was a huge source of inspiration, a magnificent playground, and an ideal place to meet people, discuss, get feedback or just hang out and I thank anyone I interact(ed) with! I hope to continue this on Bluesky.
 This work work was improved by specific comments from; Daniel C. de la Fuente (@DanCF93)</p>
 <div id="how-to-cite" class="section level4 unnumbered hasAnchor">
 <h4>How to cite<a href="index.html#how-to-cite" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Goedhart, J. (2022) DataViz protocols - An introduction to data visualization protocols for wet lab scientists, doi: <a href="https://doi.org/10.5281/zenodo.7257808">10.5281/zenodo.7257808</a></p>
+</div>
+<div id="sharing" class="section level4 unnumbered hasAnchor">
+<h4>Sharing<a href="index.html#sharing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To share this resource on Bluesky <a href="https://bsky.app/intent/compose?text=DataViz%20protocols%20-%20An%20introduction%20to%20data%20visualization%20protocols%20for%20wet%20lab%20scientists%20by%20@joachimgoedhart.bsky.social%3A%20https%3A//joachimgoedhart.github.io/DataViz-protocols/">click here</a></p>
 
 </div>
 </div>
@@ -352,7 +357,7 @@ gitbook.start({
 "sharing": {
 "github": true,
 "facebook": false,
-"twitter": true,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
