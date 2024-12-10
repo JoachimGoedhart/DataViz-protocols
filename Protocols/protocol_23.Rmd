@@ -122,6 +122,7 @@ p <-
   p + labs(
     title = "Cellular brightness of green Calcium biosensors",
     subtitle = "pre and post ionomycin addition",
+    tag = "Protocol 23",
     y = "normalized brightness"
   ) +
   theme(panel.grid = element_blank()) +

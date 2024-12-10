@@ -99,6 +99,7 @@ p <- p + theme_bw(base_size = 12) +
   labs(x="",
        y="Number of requests",
        title="Requests for our plasmids at Addgene.org",
+       tag = "Protocol 22",
        caption="@joachimgoedhart | Data from addgene") +
   theme(legend.position = "none") +
   scale_y_continuous(expand = c(0,0)) +

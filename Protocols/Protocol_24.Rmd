@@ -1,0 +1,97 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 24 - Colored slopes plot {#protocol-24}
+
+The purpose of this protocol is to demonstrate how paired data can be colored based on the slope of the connecting line. In this example, a negative slope will be blue and a positive slope red.
+
+Let's load the necessary library first:
+
+```{r}
+library(tidyverse)
+```
+
+We'll create some synthetic data with three columns. There is data on the `Tissue` that was examined, and a measured result `Value`. We also have a column with information on the `Replicate`. The latter columns is needed to identifiy the pairs of data. We generate random values between 0 and 1 by using runif() for the 'Healthy' condition and repeat this for the 'Tumor' and add 0.4 for every sample to obtain and increased value:
+
+```{r}
+df <- data.frame(Tissue = c(rep("Healthy",50),rep("Tumor",50)), Replicate = rep(1:50, 2), Value=c(runif(50), runif(50)+0.4))
+head(df)
+```
+
+These data can be visualized as a slope plot, where the Value for every replicate is connected with a line:
+
+```{r}
+ggplot(df, aes(x=Tissue, y=Value)) + geom_point() + geom_line(aes(group=Replicate))
+```
+
+We can see that the average of "Tumor" is higher than the "Healthy" condition, but it is not straighforward to see how many of the slopes show an increase or decrease. To depict the different slopes with different colorsm we will calculate the difference for `Value` between the  "Tumor" and "Healthy" condition per replicate, as this defines the trend (positive or negative):
+
+```{r}
+df <- df %>% group_by(Replicate) %>%
+         mutate(difference = (Value[Tissue=="Tumor"] - Value[Tissue=="Healthy"]))
+head(df)
+
+```
+
+It is rather straighforward to add a color that reflects the slope:
+
+```{r}
+
+ggplot(df, aes(x=Tissue, y=Value)) +
+  geom_line(aes(group=Replicate, color=difference), linewidth=1, alpha=0.6) +
+  geom_point(color = "black", fill="grey", shape=21, size=3, alpha=0.4) + theme_light(base_size = 16)
+
+```
+
+This works, but it's probably sufficient, and much clearer, to just distinguish between an increase and decrease. We can use a trick to color according to the slope by using `color=difference>0`":
+
+```{r}
+p <- ggplot(df, aes(x=Tissue, y=Value)) +
+  geom_line(aes(group=Replicate, color=difference<0), linewidth=1, alpha=0.8) +
+  geom_point(color = "black", fill="grey", shape=21, size=3, alpha=0.8)
+
+p <- p + theme_light(base_size = 16)
+p
+```
+
+To define the colors manually:
+
+```{r}
+p + scale_color_manual(values = c("red", "darkblue"))
+
+```
+
+And we can also use the function `scale_color_manual()` to further style the legend:
+
+We can also use 
+```{r}
+p <- p + scale_color_manual(values = c("red", "darkblue"),
+                            labels = c("Positive", "Negative"),
+                            name = "Slope Direction")
+p
+```
+
+We can add a title to complete this protocol:
+
+```{r}
+p <-
+  p + labs(
+    title = "A colored slope plot",
+    tag = "Protocol 24"
+  )
+p
+```
+
+
+To save the plot as a png file:
+
+```{r }
+png(file=paste0("Protocol_24.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```
+
+
