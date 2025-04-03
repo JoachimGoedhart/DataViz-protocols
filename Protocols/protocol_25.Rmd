@@ -1,0 +1,127 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 25 - Colorblind friendly colors on a dark theme {#protocol-25}
+
+In this protocol, we recreate a plot that can easily be done in [PlotTwist](https://doi.org/10.1371/journal.pbio.3000581). What I want to highlight is (i) how to use colorblind friendly colors for the lines and (i) how to apply a dark theme. I think that the colorblind friendly palette designed by Okabe and Ito works very well on a dark background, showing lines in clear, vivid colors.
+
+```{r}
+library(tidyverse)
+```
+
+We load the data from a tidy dataframe:
+
+```{r}
+df_tidy <- read.csv("data/PlotTwist_tidy_6.csv")
+head(df_tidy)
+```
+
+We can have a first glance at the data:
+
+```{r}
+ggplot(df_tidy, aes(x=Time, y=Value)) +
+  geom_line() + facet_wrap(~Sample)
+```
+
+### Add a colorblind safe palette
+
+The different lines are different categories and therefore we need a _qualitative_ colorscale. This can be defined with a vector of hexadecimal color codes. For the Okabe Ito palette we define:
+
+```{r}
+Okabe_Ito <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+```
+
+To use these colors for the line we use the function `scale_color_manual()`. We also increase the width of the lines to improve the visibility of the colors.
+
+```{r}
+ggplot(df_tidy, aes(x=Time, y=Value, color=Sample)) +
+  geom_line(linewidth=1.5) + facet_wrap(~Sample) +
+  scale_color_manual(values=Okabe_Ito)
+  
+```
+
+This looks good, so we define this plot as `p` and make the layout less cluttered, by removing the legend and the strips on top of each plot:
+
+```{r}
+p <- ggplot(df_tidy, aes(x=Time, y=Value, color=Sample)) +
+  geom_line(linewidth=1.5) + facet_wrap(~Sample) +
+  scale_color_manual(values=Okabe_Ito) +
+  theme(legend.position = "none", strip.text = element_blank())
+p
+```
+
+
+### Dark theme
+
+Let's add a dark theme. Themes can be defined as modifications of existing themes, e.g. the default theme `theme_grey()`. Here, we will use a theme that is also available in PlotTwist and that can be loaded from the Github repo by using `source()`:
+
+```{r}
+source("https://raw.githubusercontent.com/JoachimGoedhart/PlotTwist/master/themes.R")
+```
+
+The theme that is defined in this file is `theme_light_dark_bg()` and we can apply it to the plot like this:
+
+```{r}
+p + theme_light_dark_bg()
+```
+
+Now we have a nice dark background, but the legend and strips on top of each plot are back. That's because these modifications are overwritten by applying a new theme. So we should first add the new theme definition and then the modifications:
+
+```{r}
+p <- ggplot(df_tidy, aes(x=Time, y=Value, color=Sample)) +
+  geom_line(linewidth=1.5) + facet_wrap(~Sample) +
+  scale_color_manual(values=Okabe_Ito) +
+  theme_light_dark_bg() +
+  theme(legend.position = "none", strip.text = element_blank())
+p
+```
+
+That looks great. Now we can further modify the layout by modifying labels and tweaking the theme:
+
+```{r}
+p <- p +
+  labs(x = "Time [s]", y = "Normalized Ratio") +
+  labs(title = "G-protein activation and deactivation",
+       tag = "Protocol 25") +
+  theme(panel.grid = element_blank())
+
+p
+```
+
+I do not like the boxes around each plot, and these can be removed by modifying the theme:
+
+```{r}
+p + theme(panel.border = element_blank())
+```
+
+This looks better, and if we still want to keep the axis on one side we can re-add those:
+
+```{r}
+p <- p + theme(panel.border = element_blank())
+p <- p + theme(axis.line.x  = element_line(colour = "grey80"), axis.line.y  = element_line(colour = "grey80"))
+p
+```
+
+To prevent the collision of labels (i.e. "0" and "250") on the x-axis, we can remove the space that is added by default:
+
+```{r}
+p + coord_cartesian(expand = F)
+```
+
+Or by defining the ticks:
+
+```{r}
+p <- p + scale_x_continuous(breaks=c(0,100,200))
+p
+```
+
+Ok, let's (s)tick with this. To save the plot:
+
+```{r }
+png(file=paste0("Protocol_25.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```

@@ -1,0 +1,150 @@
+---
+author: "Joachim Goedhart"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Protocol 26 - Donut charts {#protocol-26}
+
+The pie chart is used to show proportions and it is one of the ugliest charts that is around. Somehow, adding a hole to the pie chart is an incredible, aesthetic upgrade of this type of data visualization. This alternative is known as a donut chart for obvious reasons. Donut charts also work well on dashboards. So let's see how we can generate a donut chart. Here, we start with a very simple donut chart that displays the proportion of cells in the S-phase as determined from staining of EdU incorporation. I use data harvested from a practical course that I teach [Goedhart, DOI: 10.1371/journal.pcbi.1011836](https://doi.org/10.1371/journal.pcbi.1011836]).
+
+
+```{r}
+library(ggplot2)
+```
+
+Let's load the data on the percentage of S-phase cells that I gathered over 5 years:
+
+```{r}
+df_S <- read.csv("data/results_S-phase-5yrs.csv") 
+head(df_S)
+```
+
+This data is cleaned and it has information on the year (ranging from 2021-2025), the group (A/B/C/D), whether the data was analysed by hand or automatically and the percentage of S-phase cells that was detected. I'd like to make a donut chart of the manual and automated analysis that was done in 2025. So, to isolate these data I will use `filter()` to get the data for 2025:
+
+```{r}
+df_2025 <- df_S %>% filter(year=="2025")
+```
+
+To improve the labels later on, I will change the content of the column 'Analysis' to more understandable text:
+
+```{r}
+df_2025 <- df_2025 %>%
+  mutate(
+    Analysis = paste(Analysis, "analysis")
+  )
+```
+
+
+
+There were 4 different groups (A,B,C,D) so I will use `summarise()` to take the average of the four groups:
+
+```{r}
+df_2025_avg <- df_2025 %>% group_by(Analysis, year) %>% summarise(S = mean(S_phase))
+
+df_2025_avg
+```
+
+Great, so now we have summarised data for the donut chart. However, to contruct the chart we also need the non-S-phase cells. In the donut chart, this will be the rest of the circle. To get this, we add a second column and subtract the total, 100&, from the percentage of S-phase:
+
+```{r}
+df_2025_avg <- df_2025_avg %>% mutate("non-S" = 100-S)
+```
+
+Finally, we need to tidy up this dataframe:
+
+```{r}
+df_tidy <- df_2025_avg %>%  pivot_longer(cols = c(S, `non-S`), 
+               names_to = "category", 
+               values_to = "percentage")
+```
+
+A standard method to display the proportion is to use a stacked bar graph with `geom_bar(stat = "identity")` to use the actual values in the dataframe:
+
+```{r}
+ggplot(df_tidy, aes(x = 1, y = percentage, fill = category)) +
+  geom_bar(stat = "identity") + facet_wrap(~Analysis)
+```
+
+This can be turned into a pie chart by changing the coordinates to a polar system:
+
+```{r}
+ggplot(df_tidy, aes(x = 1, y = percentage, fill = category)) +
+  geom_bar(stat = "identity") + facet_wrap(~Analysis) +
+  coord_polar(theta = "y")
+```
+
+Here, the y values fill up the 360 degrees of the pie chart, and the x value defines the width of the curved band. This can be turned into a donut chart by changing the x limits. We also move the labels of the facets to the bottom by defining `strip.position = "bottom"`, as this looks better in the final figure:
+
+```{r}
+ggplot(df_tidy, aes(x = 1, y = percentage, fill = category)) +
+  geom_bar(stat = "identity") + facet_wrap(~Analysis, strip.position = "bottom") +
+  coord_polar(theta = "y") + xlim(-0.5,1.5)
+```
+
+This looks like a donut. We will define the object as 'p' and adjust the layout:
+
+```{r}
+p <- ggplot(df_tidy, aes(x = 1, y = percentage, fill = category)) +
+  geom_bar(stat = "identity", alpha = 0.8) + facet_wrap(~Analysis, strip.position = "bottom") +
+  coord_polar(theta = "y") + xlim(-0.5,1.5)
+```
+
+We do not want any of the labels for the axes, the grid and background, so we use `theme_void()`. In addition, we will highlight the proportion of S-phase cells in red and remove the legend:
+
+```{r}
+p <- p + theme_void() +
+  scale_fill_manual(values = c("S" = "Red")) +
+  theme(legend.position = "none")
+p
+```
+
+The hole in the donut is often used to display a number, in this case we can add the percentage, to state the percentage of cells in the S-phase.
+To this end, we can filter the dataframe to get the right labels:
+
+```{r}
+df_label <- df_tidy %>% filter(category == "S") %>% mutate()
+```
+
+Then we use this to add the label:
+
+```{r}
+p <- p + geom_text(data = df_label, aes(label = paste0(round(percentage,0),"%")), x= -.5, y = 0, size=12)
+p
+```
+
+
+And we add a title (note that I use a 'subtitle' here to leave a bit of space between the 'tag' and the title):
+
+```{r}
+p <- p +
+    labs(
+    title = "The percentage of HeLa cells in S-phase...",
+    subtitle = "...depends on the image analysis method",
+    caption = "@joachimgoedhart | data submitted by students",
+    tag = "Protocol 26"
+  ) +
+  theme(plot.caption = element_text(color = "grey80", hjust = 1)) +
+  theme(plot.title = element_text(hjust = 0.5, size= 18)) +
+  theme(plot.subtitle = element_text(hjust = 0.5, size= 18)
+)
+
+p
+```
+
+
+```{r}
+p <- p + theme(strip.text = element_text(size = 16, face = "bold"),
+    strip.placement = "inside")
+p
+```
+
+
+
+Saving the plot:
+
+```{r }
+png(file=paste0("Protocol_26.png"), width = 4000, height = 3000, units = "px", res = 400)
+ p
+dev.off()
+```

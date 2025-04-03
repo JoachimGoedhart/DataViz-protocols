@@ -70,7 +70,7 @@ protocol-17
 protocol-18
 intermezzo
 time-for-some-magick
-protocol-19
+protocol-25
 protocol-20
 reading-and-processing-the-data
 trial-fitting-on-a-single-trace
@@ -80,4 +80,7 @@ protocol-21
 protocol-22
 protocol-23
 protocol-24
+add-a-colorblind-safe-palette
+dark-theme
+protocol-26
 questions-and-answers
