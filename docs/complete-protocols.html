@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.18.1" data-path="complete-protocols.html"><a href="complete-protocols.html#intermezzo"><i class="fa fa-check"></i><b>4.18.1</b> Intermezzo</a></li>
 <li class="chapter" data-level="4.18.2" data-path="complete-protocols.html"><a href="complete-protocols.html#time-for-some-magick"><i class="fa fa-check"></i><b>4.18.2</b> Time for some magick</a></li>
 </ul></li>
-<li class="chapter" data-level="4.19" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-25"><i class="fa fa-check"></i><b>4.19</b> Protocol 25 - Dark theme</a></li>
+<li class="chapter" data-level="4.19" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-19"><i class="fa fa-check"></i><b>4.19</b> Protocol 19 - Plotting ratiometric FRET data</a></li>
 <li class="chapter" data-level="4.20" data-path="complete-protocols.html"><a href="complete-protocols.html#protocol-20"><i class="fa fa-check"></i><b>4.20</b> Protocol 20 - On- and off-kinetics</a>
 <ul>
 <li class="chapter" data-level="4.20.1" data-path="complete-protocols.html"><a href="complete-protocols.html#reading-and-processing-the-data"><i class="fa fa-check"></i><b>4.20.1</b> Reading and processing the data</a></li>
@@ -1803,7 +1803,7 @@ The first plot is a barplot (the length of the bar reflects the mean value) with
 <p>The measured data is read from a CSV file. These data are originally from <a href="https://doi.org/10.1016/j.celrep.2018.12.094">Becares et al, DOI: 10.1016/j.celrep.2018.12.094</a>:</p>
 <div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="complete-protocols.html#cb507-1" tabindex="-1"></a>df_tidy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Becares-diffgenes_HFHC.csv&quot;</span>)</span></code></pre></div>
 <pre><code>Rows: 3001 Columns: 9
-── Column specification ─────────────────────────────────────────────────────────
+── Column specification ───────────────────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
 chr (1): Gene
 dbl (8): baseMean, log2_FoldChange, FC, lfcSE, stat, pvalue, padj, minus_log...
@@ -2291,8 +2291,8 @@ Similarly, we use 0 for y-coordinate and ‘vjust=0’ to define that the middle
 <div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="complete-protocols.html#cb584-1" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Time <span class="sc">&gt;=</span> <span class="fl">17.75</span> <span class="sc">&amp;</span> Time <span class="sc">&lt;=</span> <span class="fl">18.8378</span>)</span></code></pre></div>
 <p>There are two factors in the column ‘type’, namely Control and OptoTiam. We calculate the summary of the measurements and labele the new column ‘Value’:</p>
 <div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="complete-protocols.html#cb585-1" tabindex="-1"></a>df_sub_summary <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(type, Time) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(Value))</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;type&#39;. You can override using the `.groups`
-argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;type&#39;. You can override using the
+`.groups` argument.</code></pre>
 <p>Let’s make a first plot to visualize the data:</p>
 <div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="complete-protocols.html#cb587-1" tabindex="-1"></a><span class="fu">ggplot</span>(df_sub_summary, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>mean, <span class="at">color =</span> type)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">linewidth=</span><span class="dv">2</span>) </span></code></pre></div>
 <p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-918-1.png" width="672" /></p>
@@ -2481,12 +2481,13 @@ Disabled features: fftw, ghostscript, x11</code></pre>
 <div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="complete-protocols.html#cb628-1" tabindex="-1"></a><span class="fu">image_write_gif</span>(combined_gif, <span class="st">&#39;Protocol_18.gif&#39;</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="protocol-25" class="section level2 hasAnchor" number="4.19">
-<h2><span class="header-section-number">4.19</span> Protocol 25 - Dark theme<a href="complete-protocols.html#protocol-25" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this protocol, we recreate a plot that can easily done in PlotTwist. What I want to highlight is (i) how to use colorblind friendly colors for the lines and (i) how to apply a dark theme. I think that the colorblind friendly palette designed by Okabe and Ito works very well on a dark background, showing lines in clear vivid colors.</p>
+<div id="protocol-19" class="section level2 hasAnchor" number="4.19">
+<h2><span class="header-section-number">4.19</span> Protocol 19 - Plotting ratiometric FRET data<a href="complete-protocols.html#protocol-19" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this protocol, we plot the intensity data that are quantified by ImageJ/FIJI. The image analysis is originally reported in a preprint by <a href="https://doi.org/10.1101/2021.02.24.432684">Mahlandt and Goedhart (2021)</a> in section 3.2.2. The original R-script is available on <a href="https://github.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/tree/main/3_2_2_RatioImaging">Github</a>. Here, all steps are explained in protocol style.</p>
 <div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="complete-protocols.html#cb629-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<p>We load the data from a tidy dataframe:</p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="complete-protocols.html#cb630-1" tabindex="-1"></a>df_tidy <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/PlotTwist_tidy_6.csv&quot;</span>)</span></code></pre></div>
+<p>We can load the output from FIJI data from the Github repository:</p>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="complete-protocols.html#cb630-1" tabindex="-1"></a>df_CFP <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/main/3_2_2_RatioImaging/Results-CFP.csv&quot;</span>)</span>
+<span id="cb630-2"><a href="complete-protocols.html#cb630-2" tabindex="-1"></a>df_YFP <span class="ot">&lt;-</span>  <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/main/3_2_2_RatioImaging/Results-YFP.csv&quot;</span>)</span></code></pre></div>
 <p>To avoid the repetition of actions on both dataframes, we merge them:</p>
 <div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="complete-protocols.html#cb631-1" tabindex="-1"></a>df_ratio <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_CFP, df_YFP)</span>
 <span id="cb631-2"><a href="complete-protocols.html#cb631-2" tabindex="-1"></a><span class="fu">head</span>(df_ratio)</span></code></pre></div>
@@ -2652,8 +2653,8 @@ We use data that was originally published in figure 1 of <a href="https://www.bi
 <p>To summarise the data and get the mean for each condition:</p>
 <div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="complete-protocols.html#cb660-1" tabindex="-1"></a>df_summary <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Time, System) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>(),</span>
 <span id="cb660-2"><a href="complete-protocols.html#cb660-2" tabindex="-1"></a>                                                          <span class="at">mean=</span><span class="fu">mean</span>(Ratio))</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;Time&#39;. You can override using the `.groups`
-argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;Time&#39;. You can override using the
+`.groups` argument.</code></pre>
 <div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="complete-protocols.html#cb662-1" tabindex="-1"></a><span class="fu">head</span>(df_summary)</span></code></pre></div>
 <pre><code># A tibble: 6 × 4
 # Groups:   Time [2]
@@ -2859,8 +2860,8 @@ We first load the <code>{tidyverse}</code> package:</p>
 <div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="complete-protocols.html#cb697-1" tabindex="-1"></a>df_addgene_month <span class="ot">&lt;-</span> df_addgene <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year, Month) <span class="sc">%&gt;%</span></span>
 <span id="cb697-2"><a href="complete-protocols.html#cb697-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_max =</span> <span class="fu">max</span>(total)) <span class="sc">%&gt;%</span></span>
 <span id="cb697-3"><a href="complete-protocols.html#cb697-3" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;Year&#39;. You can override using the `.groups`
-argument.</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;Year&#39;. You can override using the
+`.groups` argument.</code></pre>
 <p>Let’s plot these data again:</p>
 <div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="complete-protocols.html#cb699-1" tabindex="-1"></a><span class="fu">ggplot</span>(df_addgene_month, <span class="fu">aes</span>(Month, total_max, <span class="at">color=</span><span class="fu">as.factor</span>(Year))) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-1089-1.png" width="672" /></p>

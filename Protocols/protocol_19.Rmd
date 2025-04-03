@@ -4,19 +4,21 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-## Protocol 25 - Dark theme {#protocol-25}
+## Protocol 19 - Plotting ratiometric FRET data {#protocol-19}
 
-In this protocol, we recreate a plot that can easily done in PlotTwist. What I want to highlight is (i) how to use colorblind friendly colors for the lines and (i) how to apply a dark theme. I think that the colorblind friendly palette designed by Okabe and Ito works very well on a dark background, showing lines in clear vivid colors.
+In this protocol, we plot the intensity data that are quantified by ImageJ/FIJI. The image analysis is originally reported in a preprint by [Mahlandt and Goedhart (2021)](https://doi.org/10.1101/2021.02.24.432684) in section 3.2.2. The original R-script is available on [Github](https://github.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/tree/main/3_2_2_RatioImaging). Here, all steps are explained in protocol style.
+
 
 ```{r}
 library(tidyverse)
 ```
 
 
-We load the data from a tidy dataframe:
+We can load the output from FIJI data from the Github repository:
 
 ```{r}
-df_tidy <- read.csv("data/PlotTwist_tidy_6.csv")
+df_CFP <- read.csv("https://raw.githubusercontent.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/main/3_2_2_RatioImaging/Results-CFP.csv")
+df_YFP <-  read.csv("https://raw.githubusercontent.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/main/3_2_2_RatioImaging/Results-YFP.csv")
 ```
 
 To avoid the repetition of actions on both dataframes, we merge them:
