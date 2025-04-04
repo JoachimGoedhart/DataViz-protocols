@@ -10,53 +10,53 @@ The pie chart is used to show proportions and it is one of the ugliest charts th
 
 
 ```{r}
-library(ggplot2)
+library(tidyverse)
 ```
 
 Let's load the data on the percentage of S-phase cells that I gathered over 5 years:
 
 ```{r}
-df_S <- read.csv("data/results_S-phase-5yrs.csv") 
+df_S <- read.csv("data/results_S-phase-5yrs.csv") %>% filter(Group != "D")
 head(df_S)
 ```
 
-This data is cleaned and it has information on the year (ranging from 2021-2025), the group (A/B/C/D), whether the data was analysed by hand or automatically and the percentage of S-phase cells that was detected. I'd like to make a donut chart of the manual and automated analysis that was done in 2025. So, to isolate these data I will use `filter()` to get the data for 2025:
+This data is cleaned and it has information on the year (ranging from 2021-2025), the group (A/B/C/D), whether the data was analysed by hand or automatically and the percentage of S-phase cells that was detected. I'd like to make a donut chart of the manual and automated analysis that was done over the years, so we'll make a summary:
 
 ```{r}
-df_2025 <- df_S %>% filter(year=="2025")
+df_avg <- df_S %>% group_by(Analysis) %>% summarise(S = mean(S_phase), n=n())
+
+df_avg
 ```
+
 
 To improve the labels later on, I will change the content of the column 'Analysis' to more understandable text:
 
 ```{r}
-df_2025 <- df_2025 %>%
+df_avg <- df_avg %>%
   mutate(
     Analysis = paste(Analysis, "analysis")
   )
 ```
 
 
-
-There were 4 different groups (A,B,C,D) so I will use `summarise()` to take the average of the four groups:
-
-```{r}
-df_2025_avg <- df_2025 %>% group_by(Analysis, year) %>% summarise(S = mean(S_phase))
-
-df_2025_avg
-```
-
 Great, so now we have summarised data for the donut chart. However, to contruct the chart we also need the non-S-phase cells. In the donut chart, this will be the rest of the circle. To get this, we add a second column and subtract the total, 100&, from the percentage of S-phase:
 
 ```{r}
-df_2025_avg <- df_2025_avg %>% mutate("non-S" = 100-S)
+df_avg <- df_avg %>% mutate("non-S" = 100-S)
 ```
 
 Finally, we need to tidy up this dataframe:
 
 ```{r}
-df_tidy <- df_2025_avg %>%  pivot_longer(cols = c(S, `non-S`), 
+df_tidy <- df_avg %>%  pivot_longer(cols = c(S, `non-S`), 
                names_to = "category", 
                values_to = "percentage")
+```
+
+I will add an 'index' column that later can be used to specify colors:
+
+```{r}
+df_tidy <- df_tidy %>% mutate(ID = as.factor(row_number())) 
 ```
 
 A standard method to display the proportion is to use a stacked bar graph with `geom_bar(stat = "identity")` to use the actual values in the dataframe:
@@ -82,19 +82,24 @@ ggplot(df_tidy, aes(x = 1, y = percentage, fill = category)) +
   coord_polar(theta = "y") + xlim(-0.5,1.5)
 ```
 
-This looks like a donut. We will define the object as 'p' and adjust the layout:
+This looks like a donut. We will define the object as 'p' and adjust the layout. In addition, we will use the 'ID' to define the color of each of the segments:
 
 ```{r}
-p <- ggplot(df_tidy, aes(x = 1, y = percentage, fill = category)) +
-  geom_bar(stat = "identity", alpha = 0.8) + facet_wrap(~Analysis, strip.position = "bottom") +
-  coord_polar(theta = "y") + xlim(-0.5,1.5)
+p <- ggplot(df_tidy, aes(x = 1, y = percentage, fill = ID)) +
+  geom_bar(stat = "identity") + facet_wrap(~Analysis, strip.position = "bottom") +
+  coord_polar(theta = "y", direction = -1) + xlim(-0.5,1.5)
+p
+```
+That looks odd. I want the proportions of S-phase in two distinct (colorblind safe) colors and I want the remainder (non-S) in grey:
+
+```{r}
+p <- p + scale_fill_manual(values = c("darkorange2", "grey80", "dodgerblue3", "grey80"))
 ```
 
-We do not want any of the labels for the axes, the grid and background, so we use `theme_void()`. In addition, we will highlight the proportion of S-phase cells in red and remove the legend:
+We do not want any of the labels for the axes, the grid and background, so we use `theme_void()`. In addition, we will highlight the proportion of S-phase cells in two different colors and remove the legend:
 
 ```{r}
 p <- p + theme_void() +
-  scale_fill_manual(values = c("S" = "Red")) +
   theme(legend.position = "none")
 p
 ```
@@ -120,7 +125,7 @@ And we add a title (note that I use a 'subtitle' here to leave a bit of space be
 p <- p +
     labs(
     title = "The percentage of HeLa cells in S-phase...",
-    subtitle = "...depends on the image analysis method",
+    subtitle = "...determined by two methods",
     caption = "@joachimgoedhart | data submitted by students",
     tag = "Protocol 26"
   ) +
