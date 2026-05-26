@@ -19,6 +19,11 @@ df_tidy <- read.csv("data/PlotTwist_tidy_6.csv")
 head(df_tidy)
 ```
 
+The data is saved for consistency:
+```{r}
+df_tidy %>% write.csv("protocol_25.csv", row.names = FALSE)
+```
+
 We can have a first glance at the data:
 
 ```{r}

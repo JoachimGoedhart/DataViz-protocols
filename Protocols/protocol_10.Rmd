@@ -70,6 +70,11 @@ df_size <- df_tidy %>% filter(Size>0 & Size<1000)
 head(df_size)
 ```
 
+The cleaned data is saved:
+```{r}
+df_size %>% write.csv("protocol_10.csv", row.names = FALSE)
+```
+
 The dataframe is cleaned and tidy and so it is ready for visualization. The primary information is the distribution of size measurements for the measurements of cells and cell nuclei. This can be achieved by using `geom_density()`. Given the range of sizes, it makes sense to use a log10 scale for the x-axis:
 
 ```{r}

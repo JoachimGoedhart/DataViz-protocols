@@ -92,15 +92,15 @@ But we can also directly implement the function in the `fct_reorder()` function:
 
 ```{r }
 df_6 <- df_sub %>% mutate(Unique_Object = fct_reorder(Unique_Object, ERKn, function(x) {sum(tail(sort(x),5))}))
-
-
 ```
 
 Let's save this data:
+
 ```{r}
 df_6 %>% write.csv("protocol_6.csv", row.names=FALSE)
 ```
 
+We can define a plot:
 
 ```{r}
 p <-  ggplot(df_6, aes(x=Time_in_min, y=Unique_Object,fill=ERKn)) + geom_tile() +

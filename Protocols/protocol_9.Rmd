@@ -45,6 +45,11 @@ df_DRC <- df_DRC  %>%
   )
 ```
 
+The cleaned data is saved:
+```{r}
+df_DRC %>% write.csv("protocol_9.csv", row.names = FALSE)
+```
+
 Next we take the 'Response' and calculate the average per concentration and for each biological replicate and store that information in a new dataframe:
 
 ```{r }

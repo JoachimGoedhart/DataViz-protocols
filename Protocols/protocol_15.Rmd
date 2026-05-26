@@ -21,6 +21,11 @@ df_timeline <- read.delim("data/GFP-timeline.txt", sep = '\t' )
 head(df_timeline)
 ```
 
+The data is saved for later use and consistency:
+```{r}
+df_timeline %>% write.csv("protocol_15.csv", row.names = FALSE)
+```
+
 Let's first make a basic plot to visualize the data in the column 'Year':
 
 ```{r}

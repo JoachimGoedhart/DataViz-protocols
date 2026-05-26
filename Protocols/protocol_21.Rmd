@@ -77,6 +77,11 @@ df <- rbind(df_addgene_month, bridge)
 
 ```
 
+The processed data is saved:
+```{r}
+df %>% write.csv("protocol_21.csv", row.names = FALSE)
+```
+
 Now, plot again and change the colors:
 
 ```{r}

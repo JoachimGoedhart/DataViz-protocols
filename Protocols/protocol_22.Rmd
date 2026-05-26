@@ -75,6 +75,11 @@ df_count <- df_count %>% mutate(flame = case_when(n<20 ~ "grey80",
                                 )
 ```
 
+The processed data is saved:
+```{r}
+df_count %>% write.csv("protocol_22.csv", row.names = FALSE)
+```
+
 Let's replot these data:
 
 ```{r}

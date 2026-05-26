@@ -61,13 +61,20 @@ Now we reorder the data frame to the order of the amino acids that we defined ea
 df_5 <- df_5 %>% mutate(aa = fct_relevel(aa, amino_acid_ordered))
 ```
 
-The basic plot shows a black tile for each amino acid. Note that the y-axis order is defined by the vector `amino_acid_ordered`, but it needs to be reverted to order the amino acids from top to bottom along the y-axis (which is naturally starts at the bottom it corresponds to the origin).
-
 The data is in the right shape now, so let's save it:
 
 ```{r}
 df_5 %>% write.csv("protocol_5.csv", row.names = FALSE)
 ```
+
+We can define a basic plot:
+
+```{r}
+ggplot() + geom_tile(data=df_5, aes(x=position, y=aa))
+```
+
+
+The basic plot shows a black tile for each amino acid. Note that the y-axis order is defined by the vector `amino_acid_ordered`, but it needs to be reverted to order the amino acids from top to bottom along the y-axis (which is naturally starts at the bottom it corresponds to the origin).
 
 
 ```{r }

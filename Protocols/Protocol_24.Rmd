@@ -36,6 +36,11 @@ head(df)
 
 ```
 
+The synthetic data is saved:
+```{r}
+df %>% write.csv("protocol_24.csv", row.names = FALSE)
+```
+
 It is rather straighforward to add a color that reflects the slope:
 
 ```{r}

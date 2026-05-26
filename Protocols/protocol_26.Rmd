@@ -59,6 +59,11 @@ I will add an 'index' column that later can be used to specify colors:
 df_tidy <- df_tidy %>% mutate(ID = as.factor(row_number())) 
 ```
 
+The tidy data is saved:
+```{r}
+df_tidy %>% write.csv("protocol_26.csv", row.names = FALSE)
+```
+
 A standard method to display the proportion is to use a stacked bar graph with `geom_bar(stat = "identity")` to use the actual values in the dataframe:
 
 ```{r}

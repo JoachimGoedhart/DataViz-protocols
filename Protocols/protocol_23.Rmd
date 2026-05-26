@@ -83,6 +83,11 @@ And, in the same way, I will group the true GFP-based probes (EGFP,GCaMP3,GCaMP6
 df <- df %>% mutate(construct = fct_relevel(construct, c("EGFP","G-GECO1.1", "GCaMP3","GCaMP6s","jGCaMP7c","G-Ca-FLITS","mTq2-T203Y")))
 ```
 
+The processed data is saved:
+```{r}
+df %>% write.csv("protocol_23.csv", row.names = FALSE)
+```
+
 We can also show the individual datapoints according to their distribution by using `geom_quasirandom()` from the `{ggbeeswarm}` package:
 
 ```{r}

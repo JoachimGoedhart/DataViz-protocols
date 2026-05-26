@@ -14,11 +14,11 @@ library(tidyverse)
 ```
 
 
-We can load the output from FIJI data from the Github repository:
+We load the data from local copies:
 
 ```{r}
-df_CFP <- read.csv("https://raw.githubusercontent.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/main/3_2_2_RatioImaging/Results-CFP.csv")
-df_YFP <-  read.csv("https://raw.githubusercontent.com/JoachimGoedhart/TimeLapse-Imaging-DataViz/main/3_2_2_RatioImaging/Results-YFP.csv")
+df_CFP <- read.csv("data/Results-CFP.csv")
+df_YFP <-  read.csv("data/Results-YFP.csv")
 ```
 
 To avoid the repetition of actions on both dataframes, we merge them:
@@ -85,6 +85,11 @@ From the experimental settings, we know that each slice takes two seconds, so we
 
 ```{r}
 df_wider_ratio <- df_wider_ratio %>% mutate(Time=Slice*2)
+```
+
+The processed data is saved:
+```{r}
+df_wider_ratio %>% write.csv("protocol_19.csv", row.names = FALSE)
 ```
 
 To plot the ratio data:

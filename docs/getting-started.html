@@ -23,7 +23,7 @@
 <meta name="author" content="Joachim Goedhart" />
 
 
-<meta name="date" content="2025-12-10" />
+<meta name="date" content="2026-05-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -378,7 +378,7 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="getting-started.html#cb13-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
 <span id="cb13-2"><a href="getting-started.html#cb13-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb13-3"><a href="getting-started.html#cb13-3" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" /></p>
 <p>It is important to end each line with a <code>+</code>, as it indicates that the code continues on the next line. This will result in a warning message:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="getting-started.html#cb14-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="getting-started.html#cb14-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
@@ -388,13 +388,13 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <span id="cb15-2"><a href="getting-started.html#cb15-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb15-3"><a href="getting-started.html#cb15-3" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb15-4"><a href="getting-started.html#cb15-4" tabindex="-1"></a>  <span class="cn">NULL</span></span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 <p>The advantage is that it is easy to deactivate a line by placing a hashtag in front of it (without the need to remove the <code>+</code>). The hashtag tells R to treat that line as a comment and not as code:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="getting-started.html#cb16-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
 <span id="cb16-2"><a href="getting-started.html#cb16-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb16-3"><a href="getting-started.html#cb16-3" tabindex="-1"></a><span class="co"># geom_line() +</span></span>
 <span id="cb16-4"><a href="getting-started.html#cb16-4" tabindex="-1"></a>  <span class="cn">NULL</span></span></code></pre></div>
-<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="DataViz-protocols_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 <p>This strategy is called ‘commenting out’ and is very useful to examine the effect of a line of code. For plots, it works very well in combination with <code>NULL</code> on the last line.</p>
 
 </div>

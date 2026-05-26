@@ -42,6 +42,11 @@ custom_order <-  rev(strsplit("QENHDRKTSAGMCLVIWYFP", "")[[1]])
 df_mut$mutAA <- factor(df_mut$mutAA, levels = custom_order)
 ```
 
+The processed data is saved:
+```{r}
+df_mut %>% write.csv("protocol_28.csv", row.names = FALSE)
+```
+
 In addition to changing the order, we change the legend to the bottom of the figure to make the tiles more square, change the range of the colors, remove the grid, and add a bit of whitespace around each tile:
 
 ```{r}

@@ -34,6 +34,11 @@ There are two factors in the column 'type', namely Control and OptoTiam. We calc
 df_sub_summary <- df_sub %>% group_by(type, Time) %>% summarize(mean=mean(Value))
 ```
 
+The summarized data is saved:
+```{r}
+df_sub_summary %>% write.csv("protocol_17.csv", row.names = FALSE)
+```
+
 Let's make a first plot to visualize the data:
 
 ```{r}

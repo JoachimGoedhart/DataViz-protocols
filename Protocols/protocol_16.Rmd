@@ -124,6 +124,11 @@ df <- df_co_all_split %>%
 head(df)
 ```
 
+The tidy data is saved:
+```{r}
+df %>% write.csv("protocol_16.csv", row.names = FALSE)
+```
+
 ```{r}
 ggplot(df, aes(x=YFP, y=CFP)) + geom_point(size = 0.5, alpha=0.5) + facet_grid(Order~System)
 ```

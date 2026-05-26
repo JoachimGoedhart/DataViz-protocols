@@ -49,6 +49,11 @@ df_tidy <-  df_tidy %>%
 head(df_tidy)
 ```
 
+The cleaned tidy data is saved:
+```{r}
+df_tidy %>% write.csv("protocol_11.csv", row.names = FALSE)
+```
+
 Note that we use `convert = TRUE` to ensure that the data is treated as numbers (not as characters). We can use the data to check at what time the data was submitted:
 
 ```{r}

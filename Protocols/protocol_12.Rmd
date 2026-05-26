@@ -13,13 +13,10 @@ library(tidyverse)
 library(readr)
 ```
 
-Next, we download the xls file from the url, store it as a (temporary) file, and use `read_excel()` to import the data (note that unlike the `read.csv()` we cannot directly download the data from a url):
+We load the data from a local copy of the xls file:
 
 ```{r}
-url_xls <- "https://cdn.elifesciences.org/articles/66440/elife-66440-fig5-data1-v2.xlsx"
-# file_xls <- basename(url_xls)
-download.file(url = url_xls, destfile = 'temp_file')
-df_download <- readxl::read_excel('temp_file')
+df_download <- readxl::read_excel('data/elife-66440-fig5-data1-v2.xlsx')
 ```
 
 Inspection of the dataframe shows that we can remove the first 11 rows and that the name of the columns is in the 12th row. First we fix the column names:
@@ -56,6 +53,11 @@ df_tidy <- df_tidy %>% mutate(compartment =
                                           TRUE ~ compartment)
                               )
 head(df_tidy)
+```
+
+The tidy data is saved:
+```{r}
+df_tidy %>% write.csv("protocol_12.csv", row.names = FALSE)
 ```
 
 This data can be plotted in a number of different ways. The first way is by comparing the different compartments for each ligand: 

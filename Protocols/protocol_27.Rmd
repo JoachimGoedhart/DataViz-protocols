@@ -17,6 +17,11 @@ df_S <- read.csv("data/results_S-phase-5yrs.csv") %>% filter(Group != "D")
 head(df_S)
 ```
 
+The data is saved:
+```{r}
+df_S %>% write.csv("protocol_27.csv", row.names = FALSE)
+```
+
 This data is cleaned and it has information on the year (ranging from 2021-2025), the group (A/B/C/D), whether the data was analysed by hand or automatically and the percentage of S-phase cells that was detected. There is quite some data on the manual versus automated analysis and I want to see the distribution of the data and evaluate whether these approaches give similar results.
 
 Let's first look at the distributions:

@@ -21,6 +21,11 @@ df_8 <- read.csv("data/df_tidy_wells.csv")
 head(df_8)
 ```
 
+The data is saved for consistency:
+```{r}
+df_8 %>% write.csv("protocol_8.csv", row.names = FALSE)
+```
+
 We can construct a basic plot where each well is represented by a large dot and the color used to fill the dot represents the intensity. This is much like a heatmap, but it uses a dot instead of a tile:
 
 ```{r}

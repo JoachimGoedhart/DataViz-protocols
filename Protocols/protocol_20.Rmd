@@ -53,6 +53,12 @@ df_summary <- df %>% group_by(Time, System) %>% summarise(n=n(),
                                                           mean=mean(Ratio))
 head(df_summary)
 ```
+
+The summarized data is saved:
+```{r}
+df_summary %>% write.csv("protocol_20.csv", row.names = FALSE)
+```
+
 Let's plot the average values:
 
 ```{r}

@@ -61,6 +61,11 @@ df_tidy <- df_tidy %>% mutate(
 head(df_tidy)
 ```
 
+The processed data is saved:
+```{r}
+df_tidy %>% write.csv("protocol_14.csv", row.names = FALSE)
+```
+
 We can now use the column 'Change' to color code the data:
 
 ```{r}
