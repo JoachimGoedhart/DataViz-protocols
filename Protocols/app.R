@@ -114,7 +114,7 @@ server <- function(input, output, session) {
   
   codeInput <- reactive({
     
-    #Hitting the run button reads and runs the code
+    #Hitting the run button reads and runs the code 
     input$run
     isolate(input$ggplotCode)
     })

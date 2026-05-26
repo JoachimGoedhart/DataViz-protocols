@@ -1,0 +1,13 @@
+#Convert script.R to script.Rmd in R:
+
+knitr::spin('script.R', doc = '#', precious = TRUE)
+
+#Convert script.Rmd to script.R:
+
+knitr::purl(
+  input         = "script.Rmd",
+  output        = "script.R",
+  documentation = 0
+)
+
+# documentation = 0 means that all comments are removed
